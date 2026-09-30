@@ -1,0 +1,49 @@
+{
+  "id": "checkbox",
+  "kind": "primitive",
+  "purpose": "Radix-style checkbox (button role=checkbox plus hidden native input).",
+  "measuredFrom": [
+    "src/components/company/Form.jsx:57-80"
+  ],
+  "props": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "variants": [
+    {
+      "name": "unchecked",
+      "description": "h-5 w-5 rounded, bg gray-1",
+      "measuredFrom": [
+        "src/components/company/Form.jsx:68"
+      ]
+    },
+    {
+      "name": "checked",
+      "description": "bg gray-10, white check icon size-4",
+      "measuredFrom": [
+        "src/components/company/Form.jsx:68",
+        "src/components/company/Form.jsx:70-74"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "gray.1",
+    "gray.10",
+    "white"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/company/Form.jsx:68"
+    ]
+  }
+}

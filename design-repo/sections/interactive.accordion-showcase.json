@@ -1,0 +1,74 @@
+{
+  "id": "interactive.accordion-showcase",
+  "kind": "section",
+  "category": "interactive",
+  "purpose": "Explain one product capability area through a headline, an optional lede, a single-open accordion of 2 to 4 benefit items and a square screenshot that changes with the open item. The section advances itself so a visitor sees each benefit paired with its screenshot without clicking.",
+  "measuredFrom": ["src/components/products/ProductAccordion.jsx:34-120", "src/components/blog/MobileSections.jsx:225-335"],
+  "behaviour": [
+    { "note": "Two real implementations of one layout: ProductAccordion (product pages, data-driven, HTML strings) and FeatureSection (apps/mobile, plain JSX, near-duplicate). Modelled as one contract; differences are listed in the variants and in the notes below.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:34", "src/components/blog/MobileSections.jsx:261"] },
+    { "note": "Single-open accordion: exactly one item is open at a time (item 1 initially). Clicking an item's title button opens it and closes the others; clicking the already-open item does nothing (aria-disabled).", "measuredFrom": ["src/components/products/ProductAccordion.jsx:37", "src/components/products/ProductAccordion.jsx:94-107", "src/components/blog/MobileSections.jsx:262", "src/components/blog/MobileSections.jsx:305-321"] },
+    { "note": "Auto-advance: every 5000ms the open item moves to the next (wrapping to the first), but ONLY while the section is intersecting the viewport. Leaving the viewport clears the timer; re-entering starts a fresh 5000ms; any click also restarts it because the timer effect depends on the active index.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:11", "src/components/products/ProductAccordion.jsx:22-31", "src/components/products/ProductAccordion.jsx:42-46", "src/components/blog/MobileSections.jsx:225", "src/components/blog/MobileSections.jsx:264-275"] },
+    { "note": "The IntersectionObserver threshold is 0.3 (30% of the section visible). This is the value the clone code uses; it was NOT independently measured on the original site, so treat 0.3 as a guess.", "confidence": "guess", "measuredFrom": ["src/components/products/ProductAccordion.jsx:39", "src/components/blog/MobileSections.jsx:267"] },
+    { "note": "Open item body expands height 0 to auto with opacity 0 to 1 over 175ms, easing cubic-bezier(.33,1,.68,1) (products). Non-open titles are opacity .6; the open item has a strong left border, closed items a default border.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:12", "src/components/products/ProductAccordion.jsx:96-109", "src/components/motion.jsx:59-60", "src/components/motion.jsx:62-102"] },
+    { "note": "Image swap (products): the current image fades out over 175ms (same easing as the body), then the next image is swapped in and fades 0 to 1 over 200ms with cubic-bezier(.4,0,.2,1) (sequential, like AnimatePresence mode=wait). Mobile variant: swap after 200ms, new image fades in over 250ms, and the body expands through Collapse with its default 200ms cubic-bezier(.4,0,.2,1).", "measuredFrom": ["src/components/products/ProductAccordion.jsx:48-68", "src/components/motion.jsx:8", "src/components/blog/MobileSections.jsx:227-257", "src/components/blog/MobileSections.jsx:323-325"] },
+    { "note": "Image is a 1:1 square (lazy, 1000x1000 on products, 1200x1200 on mobile). Only ONE image is shown at a time, always that of the open item.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:83-87", "src/components/blog/MobileSections.jsx:237-254"] },
+    { "note": "Items may carry a 'Soon' tag next to the title (products only).", "measuredFrom": ["src/components/products/ProductAccordion.jsx:106"] },
+    { "note": "Real placement: 2 per page on find, connect, manage and foundation product pages, 1 on sell, and 3 on /apps/mobile. When two occur on a page the second flips to light and reverses the image side (find, connect, foundation). On manage the pair is dark then light without reverse, and the first has noPb. On apps/mobile all three are light; the first has a top border and the next two drop top padding.", "measuredFrom": ["src/components/products/data.js:25", "src/components/products/data.js:31", "src/components/products/data.js:70", "src/components/products/data.js:76", "src/components/products/data.js:108", "src/components/products/data.js:140", "src/components/products/data.js:150", "src/components/products/data.js:184", "src/components/products/data.js:189", "src/pages/AppsMobile.jsx:11-55", "src/pages/AppsMobile.jsx:80-81", "src/components/blog/MobileSections.jsx:288"] },
+    { "note": "Copy lengths observed: products headline 6 to 9 words, lede none or up to 28 words, items 3 to 4 with titles up to 12 words and bodies up to 39 words; apps/mobile headline 6 to 8 words, lede 28 to 30 words, items 2 or 3, bodies 18 to 36 words.", "measuredFrom": ["src/components/products/data.js:25-193", "src/pages/AppsMobile.jsx:11-70"] }
+  ],
+  "variants": [
+    { "name": "dark", "description": "theme=dark: the section root carries the 'dark' class so the whole band flips to the dark theme (bg-background resolves dark). Used as the first accordion on every product page.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:74", "src/components/products/data.js:25", "src/components/products/data.js:70", "src/components/products/data.js:108", "src/components/products/data.js:140", "src/components/products/data.js:184"] },
+    { "name": "light", "description": "theme=light: default light background. Used as the second accordion on product pages and for all three apps/mobile sections.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:74", "src/components/products/data.js:31", "src/components/products/data.js:150", "src/components/blog/MobileSections.jsx:288"] },
+    { "name": "reverse", "description": "imageSide=left: text and accordion in the right-hand columns, image in the left-hand columns (mirrors the grid at lg and xl). Products default (reverse false) puts the image on the right; the mobile component names this the other way (imageRight=true is the products default), and mobile's default (imageRight false) puts the image on the left.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:15-20", "src/components/products/ProductAccordion.jsx:70", "src/components/blog/MobileSections.jsx:277-285"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "theme": { "type": "enum", "required": true, "values": ["dark", "light"], "note": "Section colour theme; maps to the dark boolean.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:74"] },
+      "imageSide": { "type": "enum", "required": true, "values": ["right", "left"], "note": "right = products default (reverse false); left = reverse true. On apps/mobile imageRight false renders left.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:70", "src/components/blog/MobileSections.jsx:277-285"] },
+      "removeBottomPadding": { "type": "boolean", "required": false, "note": "Drops the bottom padding (the !pb-0 noPb flag). Used once, on the first accordion of the manage page, so it butts against the next block.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:74", "src/components/products/data.js:140"] },
+      "topDivider": { "type": "boolean", "required": false, "note": "apps/mobile only: first section has a top border; the other two drop top padding instead.", "measuredFrom": ["src/components/blog/MobileSections.jsx:288", "src/pages/AppsMobile.jsx:13"] },
+      "headline": { "type": "richtext-inline", "required": true, "maxWords": 10, "note": "h2, heading font, uppercase. May contain non-breaking spaces. Observed 6 to 10 words.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:78", "src/components/blog/MobileSections.jsx:293-295"] },
+      "lede": { "type": "richtext-inline", "required": false, "maxWords": 32, "note": "Optional paragraph under the headline. Absent on some product accordions (null); observed up to 30 words.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:79", "src/components/products/data.js:31", "src/pages/AppsMobile.jsx:15"] },
+      "items": {
+        "type": "array", "required": true, "minItems": 2, "maxItems": 4,
+        "note": "Products 3 (one has 4); apps/mobile 2 or 3. The image sequence and the accordion are the same array.",
+        "measuredFrom": ["src/components/products/ProductAccordion.jsx:93", "src/components/products/data.js:26-29", "src/components/products/data.js:109-112", "src/pages/AppsMobile.jsx:16-27"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": { "type": "string", "required": true, "maxWords": 12, "note": "Accordion trigger label (a button inside an h3). Observed up to 12 words.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:97-107"] },
+            "body": { "type": "richtext-inline", "required": true, "maxWords": 42, "note": "Text shown when the item is open. Observed up to 39 words.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:109-111"] },
+            "soon": { "type": "boolean", "required": false, "note": "Shows a 'Soon' tag beside the title. Products only.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:106"] },
+            "image": { "type": "assetRef", "required": true, "assetRole": "product-screenshot", "note": "Square product screenshot for this item. Existing real file only.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:83-85", "src/components/blog/MobileSections.jsx:246-254"] },
+            "alt": { "type": "string", "required": true, "maxWords": 30, "note": "Alt text of the screenshot. Observed up to 29 words.", "measuredFrom": ["src/components/products/ProductAccordion.jsx:85", "src/components/products/data.js:26"] }
+          }
+        }
+      }
+    }
+  },
+  "mediaFields": [ { "field": "items[].image", "assetRole": "product-screenshot" } ],
+  "constraints": { "maxPerPage": 3 },
+  "motion": {
+    "pattern": "auto-advance-accordion",
+    "reducedMotionFallback": "pause",
+    "reducedMotionNote": "Proposal only: with reduced motion, disable auto-advance and the image cross-fade; swap instantly on click. The source has no prefers-reduced-motion handling.",
+    "durationMs": 175,
+    "easing": "cubic-bezier(.33,1,.68,1)",
+    "intervalMs": 5000,
+    "inViewThreshold": 0.3,
+    "measuredFrom": ["src/components/products/ProductAccordion.jsx:7-13", "src/components/products/ProductAccordion.jsx:39-68", "src/components/motion.jsx:59-60", "src/components/motion.jsx:62-102"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "single column stack: headline and lede, square image, then the accordion", "measuredFrom": ["src/components/products/ProductAccordion.jsx:15-20", "src/components/products/ProductAccordion.jsx:76-91"] },
+      { "at": "md", "change": "two columns of 6: image occupies rows 1 to 2 of one side (md:grid-rows-1), text and accordion on the other; vertical padding grows from 64 to 96px", "measuredFrom": ["src/components/products/ProductAccordion.jsx:15-20", "src/components/products/ProductAccordion.jsx:74", "src/components/products/ProductAccordion.jsx:76"] },
+      { "at": "lg", "change": "text 10 columns, image 12 columns; section padding 128px; accordion gets 24px bottom padding", "measuredFrom": ["src/components/products/ProductAccordion.jsx:15-20", "src/components/products/ProductAccordion.jsx:74", "src/components/products/ProductAccordion.jsx:92"] },
+      { "at": "xl", "change": "text narrows to 8 columns (starting at column 2 or 15), image 13 columns", "measuredFrom": ["src/components/products/ProductAccordion.jsx:15-20"] },
+      { "at": "below md (accordion offset)", "change": "accordion top padding 8px then 16px at sm, 0 at md", "measuredFrom": ["src/components/products/ProductAccordion.jsx:91"] }
+    ]
+  },
+  "usedOnRoutes": ["/products/find", "/products/connect", "/products/sell", "/products/manage", "/products/foundation", "/apps/mobile"],
+  "tokensUsed": ["semanticColor.surface.background", "semanticColor.text.strong", "semanticColor.border.default", "fontFamily.heading", "fontSize.display-2xl", "fontSize.lg", "duration.fast-180", "duration.base-200", "duration.fade-250", "easing.ease-out", "easing.standard", "theme.dark", "theme.light"]
+}

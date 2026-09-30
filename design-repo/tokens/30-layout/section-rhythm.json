@@ -1,0 +1,54 @@
+{
+  "$description": "Section vertical rhythm (Section in ui.jsx; the STACK constant, overridable through its `stack` prop) and footer padding.",
+  "category": "layout",
+  "sectionRhythm": {
+    "padding-y-base": {
+      "value": "4rem (64px)",
+      "measuredFrom": "src/components/ui.jsx:130",
+      "classes": "py-16"
+    },
+    "padding-y-md": {
+      "value": "6rem (96px)",
+      "measuredFrom": "src/components/ui.jsx:130",
+      "classes": "md:py-24"
+    },
+    "padding-y-lg": {
+      "value": "8rem (128px)",
+      "measuredFrom": "src/components/ui.jsx:130",
+      "classes": "lg:py-32"
+    },
+    "content-top-pad-base": {
+      "value": "1.5rem (24px) below md, 0 at md+",
+      "measuredFrom": "src/components/ui.jsx:133",
+      "classes": "pt-6 md:pt-0"
+    },
+    "stack-gap-base": {
+      "value": "2.5rem (40px)",
+      "measuredFrom": "src/components/ui.jsx:8",
+      "classes": "space-y-10"
+    },
+    "stack-gap-md": {
+      "value": "4rem (64px)",
+      "measuredFrom": "src/components/ui.jsx:8",
+      "classes": "md:space-y-16"
+    },
+    "stack-gap-lg": {
+      "value": "5rem (80px)",
+      "measuredFrom": "src/components/ui.jsx:8",
+      "classes": "lg:space-y-20"
+    },
+    "stack-gap-xl": {
+      "value": "6rem (96px)",
+      "measuredFrom": "src/components/ui.jsx:8",
+      "classes": "xl:space-y-24"
+    },
+    "footer-padding-y": {
+      "value": "40 / 56 / 64 / 80px at base / md / lg / xl (py-10 md:py-14 lg:py-16 xl:py-20)",
+      "measuredFrom": "CLONE_SPEC.md:257"
+    },
+    "cta-grid-gap-y": {
+      "value": "24 / 32 / 40 / 56px (gap-y-6 md:gap-y-8 lg:gap-y-10 xl:gap-y-14)",
+      "measuredFrom": "CLONE_SPEC.md:250"
+    }
+  }
+}

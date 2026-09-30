@@ -1,0 +1,19 @@
+{
+  "$description": "Elevation. The only box-shadow in the theme is `diffused` (dropdown panels). Everything else is flat.",
+  "category": "elevation",
+  "elevation": {
+    "none": {
+      "value": "none",
+      "type": "elevation",
+      "note": "header has no shadow (CLONE_SPEC.md:109)",
+      "measuredFrom": "CLONE_SPEC.md:109"
+    },
+    "diffused": {
+      "value": "176px 308px 142px 0 rgba(0,0,0,.01), 99px 174px 120px 0 rgba(0,0,0,.05), 44px 77px 89px 0 rgba(0,0,0,.09), 11px 19px 49px 0 rgba(0,0,0,.10)",
+      "type": "elevation",
+      "tailwindClass": "shadow-diffused",
+      "usedAt": "src/components/Navbar.jsx:60",
+      "measuredFrom": "tailwind.config.js:82-85"
+    }
+  }
+}

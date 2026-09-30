@@ -1,0 +1,46 @@
+{
+  "id": "lead-paragraph",
+  "kind": "primitive",
+  "purpose": "Company-page lead paragraph in a caller-supplied column.",
+  "measuredFrom": [
+    "src/components/company/shared.jsx:3-15"
+  ],
+  "props": {
+    "col": {
+      "type": "string",
+      "required": true,
+      "description": "Column-span class; presets COL_LEAD_WIDE, COL_LEAD_13"
+    },
+    "className": {
+      "type": "string",
+      "default": "text-2xl text-pretty"
+    }
+  },
+  "variants": [
+    {
+      "name": "COL_LEAD_WIDE",
+      "description": "md:10 lg:18 xl:16 start 2",
+      "measuredFrom": [
+        "src/components/company/shared.jsx:14"
+      ]
+    },
+    {
+      "name": "COL_LEAD_13",
+      "description": "xl:13 start 2",
+      "measuredFrom": [
+        "src/components/company/shared.jsx:15"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "text.strong",
+    "2xl"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/company/shared.jsx:4-10"
+    ]
+  }
+}

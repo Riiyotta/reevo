@@ -1,0 +1,77 @@
+{
+  "id": "plan-card",
+  "kind": "component",
+  "purpose": "Pricing plan tile: name, tagline, email capture, bullet list of features and a footer link or note.",
+  "measuredFrom": [
+    "src/components/pricing/PricingPlans.jsx:46-82"
+  ],
+  "props": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxWords": 2
+    },
+    "tagline": {
+      "type": "string",
+      "required": true,
+      "maxWords": 10
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxWords": 8
+      },
+      "minItems": 5,
+      "maxItems": 6
+    },
+    "dark": {
+      "type": "boolean",
+      "default": false
+    },
+    "footer": {
+      "type": "string",
+      "description": "Replaces the \"Show full plan comparison\" link when set"
+    }
+  },
+  "variants": [
+    {
+      "name": "light",
+      "description": "bg-gray-1; second child bg-gray-3",
+      "measuredFrom": [
+        "src/components/pricing/PricingPlans.jsx:48"
+      ]
+    },
+    {
+      "name": "dark",
+      "description": "dark class + bg-gray-10, footer text instead of link",
+      "measuredFrom": [
+        "src/components/pricing/PricingPlans.jsx:48",
+        "src/components/pricing/PricingPlans.jsx:69-71"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "gray.1",
+    "gray.3",
+    "gray.10",
+    "text.strong",
+    "eyebrow",
+    "display-2xl",
+    "display-lg"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/pricing/PricingPlans.jsx:46-82"
+    ]
+  },
+  "composes": [
+    "eyebrow",
+    "button"
+  ],
+  "notes": [
+    "Contains an email form (PricingPlans.jsx:13-42) with a Talk to a human button."
+  ]
+}

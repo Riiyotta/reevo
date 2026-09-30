@@ -1,0 +1,82 @@
+{
+  "id": "content.release-entry",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Record one product release in a changelog timeline: a dated, linkable heading with an optional italic subtitle, then either a short bullet list or one summary sentence, and optionally one or two screenshots. Repeated once per release so a reader can scan what changed and when.",
+  "measuredFrom": ["src/pages/ReleaseNotes.jsx:47-98", "src/pages/ReleaseNotes.jsx:10-45", "src/data/releaseNotes.js:1-105"],
+  "behaviour": [
+    { "note": "FLAT, REPEATABLE NODE nested in doc.prose-page: this is not a page-level section. It is rendered once per release as a child of a single doc.prose-page (which supplies the h1 Release Notes and the 880px column), all inside one plain section wrapper, followed by the shared CTA band. The template lists it flat with nestedIn doc.prose-page and repeatable true.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:100-111", "src/components/blog/DocPage.jsx:5-15"] },
+    { "note": "COPY IS REWRITTEN: in this clone the subtitles, bullet points and summary sentences are short one-line summaries written for the clone, not the original changelog prose. Only the anchor id, date and heading are factual from the original. Do not treat the summaries as authoritative product claims; author new entries in the same short style.", "measuredFrom": ["src/data/releaseNotes.js:1-3"] },
+    { "note": "Data snapshot: 99 entries, newest first (2026-09-17 down to 2026-02-04), not re-sorted in code. 96 entries carry a subtitle. Each entry has exactly one of two body forms: a bullet list (28 entries, 3 bullets or fewer) or a summary sentence (71 entries); none has both and none has neither. 23 entries also carry screenshots (1 or 2 each).", "measuredFrom": ["src/data/releaseNotes.js:6-104", "src/pages/ReleaseNotes.jsx:70-93"] },
+    { "note": "Anchor and deep link: each entry is an article with id equal to the entry slug and scroll-margin-top 4rem (6rem from md) so a hash link lands below the sticky header. A hash button next to the heading copies the entry's full URL with the hash to the clipboard; the icon swaps to a check for 2000ms then swaps back. The button is invisible until the heading is hovered or the button is focused (opacity transition), so it is keyboard reachable but hidden for mouse users at rest.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:11-45", "src/pages/ReleaseNotes.jsx:49", "src/pages/ReleaseNotes.jsx:64-67"] },
+    { "note": "Timeline: from md the entry is two columns. The left column holds a 7px teal dot and the date and is position sticky at top 96px, so the date stays visible while a tall entry scrolls; a 1px vertical rule runs down the left edge and is cut off at the last entry. Below md the dot and rule are hidden, the layout stacks with the date above the heading in teal.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:49-60"] },
+    { "note": "Right column: an h2 heading (display-xl, bold) with the copy-link button inline after it, an optional italic subtitle, then the body inside the shared prose wrapper (bullets as a ul, or a p, then figures). Vertical space after an entry grows with the viewport: 40, 64, 80 and 96px; the last entry has none.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:63-94"] },
+    { "note": "Figures: lazy-loaded screenshot centred at a fixed per-image width from the data (capped at 100%), empty alt text, optional centred small caption (5 of the 29 figures have no caption). Width and height attributes come from the source file to avoid layout shift.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:78-93", "src/data/releaseNotes.js:34-38"] },
+    { "note": "The text column is stretched to fill (flex-1) from md: the original's column is shrink-to-fit because its long copy always fills 648px, but the short rewritten summaries would not, so the clone forces the width. A real long changelog would not need this.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:61-63"] },
+    { "note": "Dates are formatted in UTC as short month, day, year and also set as the machine-readable datetime attribute on a time element.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:57-59", "src/data/blog.js:69"] }
+  ],
+  "themeDependency": {
+    "requires": "light",
+    "how": "Default light theme on the plain background. The timeline dot has a 4px halo in the background colour so the rule looks broken around it; that halo would show as a ring on any non-background surface.",
+    "measuredFrom": ["src/pages/ReleaseNotes.jsx:50-56"]
+  },
+  "variants": [
+    { "name": "points", "description": "Body is a bullet list (up to 3 short bullets). 28 of 99 entries.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:70-76"] },
+    { "name": "text", "description": "Body is a single summary sentence. 71 of 99 entries.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:77"] },
+    { "name": "with-figures", "description": "Either body form plus 1 or 2 screenshot figures after it (23 entries; independent of the body form).", "measuredFrom": ["src/pages/ReleaseNotes.jsx:78-93", "src/data/releaseNotes.js:34-38"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "id": { "type": "string", "required": true, "note": "Anchor slug: lowercase, hyphenated, derived from the title; unique per page. Used for the hash link.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:49", "src/pages/ReleaseNotes.jsx:66", "src/data/releaseNotes.js:6"] },
+      "date": { "type": "string", "required": true, "note": "ISO timestamp; rendered in UTC.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:57-59"] },
+      "title": { "type": "string", "required": true, "maxWords": 9, "note": "h2 heading. Observed up to 8 words.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:65"] },
+      "subtitle": { "type": "string", "required": false, "maxWords": 16, "note": "Italic line under the heading; present on 96 of 99 entries. Observed up to 15 words.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:67"] },
+      "points": { "type": "array", "required": false, "minItems": 1, "maxItems": 3, "note": "Bullets. Mutually exclusive with text (exactly one of the two per entry). Observed up to 3 items of up to 8 words.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:70-76"], "items": { "type": "string", "maxWords": 10 } },
+      "text": { "type": "string", "required": false, "maxWords": 15, "note": "Single sentence summary. Mutually exclusive with points. Observed up to 13 words.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:77"] },
+      "figures": {
+        "type": "array", "required": false, "minItems": 1, "maxItems": 2,
+        "note": "Optional screenshots after the body; 23 entries, 1 or 2 each.",
+        "measuredFrom": ["src/pages/ReleaseNotes.jsx:78-93", "src/data/releaseNotes.js:34-38"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "image": { "type": "assetRef", "required": true, "assetRole": "product-screenshot", "note": "Product screenshot; existing real file only. Source pixel width and height are recorded with it.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:80-88"] },
+            "displayWidthPx": { "type": "number", "required": true, "note": "Rendered width in pixels (capped at 100% of the column). Usually half the source pixel width, not always.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:85", "src/data/releaseNotes.js:34"] },
+            "caption": { "type": "string", "required": false, "maxWords": 9, "note": "Small centred caption; may be absent (5 figures have none). Observed up to 8 words.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:89-91"] }
+          }
+        }
+      }
+    }
+  },
+  "mediaFields": [ { "field": "figures[].image", "assetRole": "product-screenshot" } ],
+  "constraints": { "mustFollow": "doc.prose-page", "mustBeFollowedBy": "conversion" },
+  "motion": {
+    "pattern": "popover-fade-scale",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only; the code has no prefers-reduced-motion handling. Proposed: swap the hash and check icons with no scale, keep the 2000ms dwell.",
+    "durationMs": 150,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": ["src/pages/ReleaseNotes.jsx:31-42", "src/pages/ReleaseNotes.jsx:20", "src/components/motion.jsx:8"]
+  },
+  "additionalMotion": [
+    {
+      "context": "copy-link button visibility: opacity 0 to 1 when the heading is hovered or the button is focused (colour and opacity transition); not part of the icon swap.",
+      "pattern": "hover-color-transition",
+      "reducedMotionFallback": "instant",
+      "reducedMotionNote": "Proposal only; no prefers-reduced-motion handling exists.",
+      "measuredFrom": ["src/pages/ReleaseNotes.jsx:29"]
+    }
+  ],
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "entry stacks: date (teal) above the heading; timeline dot and vertical rule hidden; scroll margin 4rem", "measuredFrom": ["src/pages/ReleaseNotes.jsx:49-57"] },
+      { "at": "md", "change": "two columns: sticky date column 192px wide at top 96px with the timeline dot and rule, text column fills the rest; scroll margin 6rem; heading spacing grows to 24px", "measuredFrom": ["src/pages/ReleaseNotes.jsx:49-51", "src/pages/ReleaseNotes.jsx:63-64"] },
+      { "at": "lg", "change": "entry bottom padding 80px and heading spacing 32px", "measuredFrom": ["src/pages/ReleaseNotes.jsx:63-64"] },
+      { "at": "xl", "change": "date column widens to 224px; entry bottom padding 96px; heading spacing 40px", "measuredFrom": ["src/pages/ReleaseNotes.jsx:51", "src/pages/ReleaseNotes.jsx:63-64"] }
+    ]
+  },
+  "usedOnRoutes": ["/release-notes"],
+  "tokensUsed": ["surface.background", "text.strong", "border.default", "teal.8", "teal.9", "display-xl", "text.muted"]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "carousel-row",
+  "kind": "primitive",
+  "purpose": "Horizontal scroll-snap row below md that becomes an equal-width flex row at md and up.",
+  "measuredFrom": [
+    "src/components/ui.jsx:16-19"
+  ],
+  "props": {
+    "items": {
+      "type": "array",
+      "description": "li children each wrapped with the CAROUSEL_ITEM class"
+    }
+  },
+  "variants": [
+    {
+      "name": "below md",
+      "description": "snap-x snap-mandatory overflow-x-auto scroll-smooth, negative side margins to bleed",
+      "measuredFrom": [
+        "src/components/ui.jsx:18"
+      ]
+    },
+    {
+      "name": "md and up",
+      "description": "flex row, gap-4, items flex-1 min-w-0",
+      "measuredFrom": [
+        "src/components/ui.jsx:18-19"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "md",
+    "4"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "scroll-smooth used below md; source has no prefers-reduced-motion handling.",
+    "measuredFrom": [
+      "src/components/ui.jsx:18"
+    ]
+  }
+}

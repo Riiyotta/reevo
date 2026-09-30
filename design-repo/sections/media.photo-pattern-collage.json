@@ -1,0 +1,45 @@
+{
+  "id": "media.photo-pattern-collage",
+  "kind": "section",
+  "category": "media",
+  "purpose": "Full-bleed image moment between a hero and the content below: a wide photograph overlapped by a decorative pattern block, standing on a coloured band that hands over to white so the photo appears to straddle the section boundary.",
+  "measuredFrom": ["src/pages/Startups.jsx:53-89", "src/components/blog/MobileSections.jsx:409-454"],
+  "variants": [
+    { "name": "photo-on-white", "description": "Startups Collage: white top band, photograph with descriptive alt text.", "measuredFrom": ["src/pages/Startups.jsx:53-89"] },
+    { "name": "taxi-on-gray-10", "description": "Mobile page TaxiBand: same structure on a dark gray-10 top band, photograph with empty alt.", "measuredFrom": ["src/components/blog/MobileSections.jsx:409-454"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "photo": { "type": "assetRef", "required": true, "assetRole": "editorial-photo", "note": "Wide photo, aspect 1221 by 641.", "measuredFrom": ["src/pages/Startups.jsx:60-68", "src/components/blog/MobileSections.jsx:420-430"] },
+      "photoAlt": { "type": "string", "required": false, "maxWords": 12, "note": "Descriptive on startups, empty on the mobile page.", "measuredFrom": ["src/pages/Startups.jsx:63", "src/components/blog/MobileSections.jsx:421"] },
+      "pattern": { "type": "assetRef", "required": true, "assetRole": "decorative-pattern", "note": "Square 700 by 700 pattern block overlapped by the photo (presentation only, aria-hidden, empty alt).", "measuredFrom": ["src/pages/Startups.jsx:73-82", "src/components/blog/MobileSections.jsx:435-446"] },
+      "bandColor": { "type": "enum", "required": true, "values": ["white", "gray-10"], "note": "Colour of the top band behind the photo.", "measuredFrom": ["src/pages/Startups.jsx:56", "src/components/blog/MobileSections.jsx:411"] }
+    }
+  },
+  "mediaFields": [
+    { "field": "photo", "assetRole": "editorial-photo" },
+    { "field": "pattern", "assetRole": "decorative-pattern" }
+  ],
+  "behaviour": [
+    { "note": "A white (bg-background) slab is absolutely positioned across the bottom 64/96/128px of the band, so the photo (which carries an equal bottom margin) straddles into the following white section. No section padding of its own.", "measuredFrom": ["src/pages/Startups.jsx:56", "src/pages/Startups.jsx:60"] },
+    { "note": "Images are lazy loaded.", "measuredFrom": ["src/pages/Startups.jsx:67", "src/pages/Startups.jsx:79"] }
+  ],
+  "constraints": { "maxPerPage": 1, "mustBeFollowedBy": "white" },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Static.",
+    "measuredFrom": ["src/pages/Startups.jsx:53-89", "src/components/blog/MobileSections.jsx:409-454"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to lg", "change": "white slab height and photo bottom margin step 64 / 96 (md) / 128 (lg)", "measuredFrom": ["src/pages/Startups.jsx:56", "src/pages/Startups.jsx:60"] },
+      { "at": "below md", "change": "photo bleeds off the left edge (-24px, -32px from sm) and the pattern bleeds off the right edge; from md both align to the grid", "measuredFrom": ["src/pages/Startups.jsx:60", "src/pages/Startups.jsx:73"] },
+      { "at": "md to xl", "change": "photo spans columns 1 to 11 (md), 1 to 22 (lg), 2 to 22 (xl); pattern occupies columns 6 to 12 (md), 10 to 24 (lg), from 11 (xl); pattern stacks under the photo (overlapped) below md", "measuredFrom": ["src/pages/Startups.jsx:59", "src/pages/Startups.jsx:73"] }
+    ]
+  },
+  "usedOnRoutes": ["/startups", "/apps/mobile"],
+  "tokensUsed": ["semanticColor.surface.background", "semanticColor.surface.inverse", "color.white"]
+}

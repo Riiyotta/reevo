@@ -1,0 +1,37 @@
+{
+  "id": "inline-link",
+  "kind": "primitive",
+  "purpose": "Inline body link inside FAQ answers: strong colour, normal weight, underlined.",
+  "measuredFrom": [
+    "src/components/pricing/shared.jsx:3-8"
+  ],
+  "props": {
+    "href": {
+      "type": "route-or-url",
+      "required": true
+    },
+    "children": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "variants": [
+    {
+      "name": "faq",
+      "description": "font-normal text-strong underline",
+      "measuredFrom": [
+        "src/components/pricing/shared.jsx:6"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "text.strong"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/pricing/shared.jsx:4-8"
+    ]
+  }
+}

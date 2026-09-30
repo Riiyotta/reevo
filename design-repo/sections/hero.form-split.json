@@ -1,0 +1,41 @@
+{
+  "id": "hero.form-split",
+  "kind": "section",
+  "category": "hero",
+  "purpose": "Newsletter sign-up hero: headline, short pitch and a one-field email form with a consent line on the left, a square photo on the right. Turns the page visit into a subscription ask.",
+  "measuredFrom": ["src/pages/Newsletter.jsx:9-52", "src/components/company/Form.jsx:22-24", "src/components/company/Form.jsx:92-108"],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "headline": { "type": "string", "required": true, "maxWords": 8, "note": "Rendered as h1, display-2xl, extrabold, uppercase, balanced. Observed 7 words.", "measuredFrom": ["src/pages/Newsletter.jsx:13-15"] },
+      "lede": { "type": "string", "required": true, "maxWords": 28, "note": "Rendered as h2. Observed about 23 words; last two words are glued with a non-breaking space.", "measuredFrom": ["src/pages/Newsletter.jsx:16-19"] },
+      "emailPlaceholder": { "type": "string", "required": true, "maxWords": 5, "measuredFrom": ["src/pages/Newsletter.jsx:24-31"] },
+      "submitLabel": { "type": "string", "required": true, "maxWords": 4, "note": "Primary full-width submit button with a chevron.", "measuredFrom": ["src/pages/Newsletter.jsx:33"] },
+      "consent": { "type": "richtext-inline", "required": true, "maxWords": 30, "note": "Small muted line containing a link to the privacy notice. Observed about 24 words.", "measuredFrom": ["src/pages/Newsletter.jsx:36-42"] },
+      "image": { "type": "assetRef", "required": true, "assetRole": "editorial-photo", "note": "Square 810 by 810 photograph of a person working.", "measuredFrom": ["src/pages/Newsletter.jsx:45-48"] },
+      "imageAlt": { "type": "string", "required": true, "maxWords": 8, "measuredFrom": ["src/pages/Newsletter.jsx:47"] }
+    }
+  },
+  "mediaFields": [ { "field": "image", "assetRole": "editorial-photo" } ],
+  "behaviour": [
+    { "note": "The form never sends data anywhere. Native constraint validation runs (email is required), then the submit handler calls preventDefault and does nothing. No success or error state exists.", "measuredFrom": ["src/pages/Newsletter.jsx:6", "src/pages/Newsletter.jsx:21", "src/components/company/Form.jsx:103-108"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true, "mustBeFollowedBy": "conversion" },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Static; only the shared button hover.",
+    "measuredFrom": ["src/pages/Newsletter.jsx:9-52"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to xl", "change": "vertical padding 40 / 48 (md) / 56 (xl); form block top margin 24 / 32 (md) / 40 (xl)", "measuredFrom": ["src/pages/Newsletter.jsx:9", "src/pages/Newsletter.jsx:20"] },
+      { "at": "below md", "change": "single column: text and form first, image below", "measuredFrom": ["src/pages/Newsletter.jsx:12", "src/pages/Newsletter.jsx:45"] },
+      { "at": "md to xl", "change": "text column 5 cols (md), 9 (lg), 8 from col 2 (xl); image 6 cols from col 7 at md, 14 cols from col 11 at lg and xl, row 1 so it sits beside the text", "measuredFrom": ["src/components/ui.jsx:16", "src/pages/Newsletter.jsx:45"] }
+    ]
+  },
+  "usedOnRoutes": ["/newsletter"],
+  "tokensUsed": ["fontFamily.heading", "fontSize.display-2xl", "semanticColor.text.strong", "semanticColor.text.muted", "color.gray.1"]
+}

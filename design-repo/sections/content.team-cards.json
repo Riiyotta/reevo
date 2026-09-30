@@ -1,0 +1,63 @@
+{
+  "id": "content.team-cards",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Put real faces and credentials on the company: four founder cards (photo, name, role) that reveal a short bio on hover, introduced by a paragraph on where the team's experience comes from.",
+  "measuredFrom": ["src/pages/About.jsx:79-107", "src/pages/About.jsx:140-153", "src/pages/About.jsx:6-29"],
+  "behaviour": [
+    { "note": "Each card: landscape photo (aspect 635/422) with a dark name and role tag at the bottom-left in teal text. On hover (lg and up only) a full-card dark overlay fades in with the founder's bio.", "measuredFrom": ["src/pages/About.jsx:82-106"] },
+    { "note": "Content gap: below lg the hover overlay does not exist as an interactive state (it is opacity 0 with no non-hover trigger), so the bio text is not reachable on touch or narrow screens.", "measuredFrom": ["src/pages/About.jsx:93-95"] },
+    { "note": "Cards are laid out in a 2-column grid from sm (one column below). Section is on the plain background with a top pattern strip (pattern-10).", "measuredFrom": ["src/pages/About.jsx:139", "src/pages/About.jsx:147-152"] },
+    { "note": "Photos are real people (the four founders); people, names, roles and bios must come from the real source content and never be generated or invented.", "measuredFrom": ["src/pages/About.jsx:6-29", "src/pages/About.jsx:84-90"] }
+  ],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "label": { "type": "string", "required": true, "maxWords": 3, "note": "Eyebrow label with an icon. Observed 2 words.", "measuredFrom": ["src/pages/About.jsx:140"] },
+      "lead": { "type": "richtext-inline", "required": true, "maxWords": 70, "note": "Bold opening sentence plus supporting text. Observed about 67 words (own count; the inventory's about 55 was not reproduced).", "measuredFrom": ["src/pages/About.jsx:141-146"] },
+      "members": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 4,
+        "note": "Observed 4 founders.",
+        "items": {
+          "type": "object",
+          "fields": {
+            "name": { "type": "string", "required": true, "maxWords": 3, "note": "Real person's name." },
+            "role": { "type": "string", "required": true, "maxWords": 4, "note": "Observed 2 to 4 words, for example Co-Founder & CEO." },
+            "photo": { "type": "assetRef", "required": true, "assetRole": "person-portrait", "note": "Landscape crop (aspect 635/422) of the real person. Existing real file only; never generate, edit or substitute." },
+            "bio": { "type": "string", "required": true, "maxWords": 68, "note": "Shown on hover from lg. Observed 54 to 66 words." }
+          }
+        },
+        "measuredFrom": ["src/pages/About.jsx:6-29", "src/pages/About.jsx:79-107"]
+      },
+      "patternStrip": { "type": "assetRef", "required": false, "assetRole": "decorative-pattern", "measuredFrom": ["src/pages/About.jsx:139"] }
+    }
+  },
+  "mediaFields": [
+    { "field": "members[].photo", "assetRole": "person-portrait" },
+    { "field": "patternStrip", "assetRole": "decorative-pattern" }
+  ],
+  "constraints": {},
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only: the code has no prefers-reduced-motion handling. Overlay opacity goes 0 to 1 on hover at lg and up, 200ms, default ease (cubic-bezier(.4,0,.2,1) per tailwind.config.js:90). The closest closed-enum pattern is hover-color-transition; it is an opacity reveal rather than a colour change.",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": ["src/pages/About.jsx:93", "tailwind.config.js:90"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below sm", "change": "cards stack in one column", "measuredFrom": ["src/pages/About.jsx:148"] },
+      { "at": "sm", "change": "two-column card grid", "measuredFrom": ["src/pages/About.jsx:148"] },
+      { "at": "below lg", "change": "bio overlay is not revealed (hover overlay is lg only); overlay padding is 24px then 32px from md", "measuredFrom": ["src/pages/About.jsx:93"] },
+      { "at": "sm to xl", "change": "name tag offset from card edge grows (bottom 16, 24, 28, 33px; right 24, 32, 40, 48px)", "measuredFrom": ["src/pages/About.jsx:96"] }
+    ]
+  },
+  "usedOnRoutes": ["/about"],
+  "tokensUsed": ["surface.background", "gray.10", "gray.2", "teal.6", "display-lg", "display-xs", "base-200"]
+}

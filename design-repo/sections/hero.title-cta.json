@@ -1,0 +1,45 @@
+{
+  "id": "hero.title-cta",
+  "kind": "section",
+  "category": "hero",
+  "purpose": "Text-only hero for the startup programme page: an all-caps headline, a one-sentence pitch and two CTAs (apply, and see the product). No media; the image collage follows it.",
+  "measuredFrom": ["src/pages/Startups.jsx:19-49", "src/pages/Startups.jsx:101-104"],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "headline": { "type": "string", "required": true, "maxWords": 7, "note": "Rendered as h1, uppercase heading font, balanced. Observed 5 words.", "measuredFrom": ["src/pages/Startups.jsx:25-27"] },
+      "lede": { "type": "string", "required": true, "maxWords": 22, "note": "Observed 19 words.", "measuredFrom": ["src/pages/Startups.jsx:29-34"] },
+      "ctas": {
+        "type": "array", "required": true, "minItems": 2, "maxItems": 2,
+        "items": { "type": "object", "fields": {
+          "label": { "type": "string", "maxWords": 4 },
+          "href": { "type": "string", "kind": "route-or-url" },
+          "variant": { "type": "enum", "values": ["primary", "outline"] }
+        } },
+        "measuredFrom": ["src/pages/Startups.jsx:37-44"]
+      }
+    }
+  },
+  "mediaFields": [],
+  "behaviour": [
+    { "note": "Page-local component defined inside the Startups page file; it is not a shared file. It is the only page with this shape.", "measuredFrom": ["src/pages/Startups.jsx:19"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true, "mustBeFollowedBy": "media" },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Static; only the shared button hover.",
+    "measuredFrom": ["src/pages/Startups.jsx:19-49"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to xl", "change": "vertical padding 40 / 48 (md) / 56 (xl); CTA block top margin 4 / 8 (sm) / 12 (lg) / 16 (xl)", "measuredFrom": ["src/pages/Startups.jsx:21", "src/pages/Startups.jsx:36"] },
+      { "at": "sm and up", "change": "CTAs sit side by side capped at 400px wide; below sm they stack full width", "measuredFrom": ["src/pages/Startups.jsx:37"] },
+      { "at": "md to xl", "change": "headline spans 12 cols (md), 22 (lg), 20 from col 2 (xl)", "measuredFrom": ["src/pages/Startups.jsx:24"] }
+    ]
+  },
+  "usedOnRoutes": ["/startups"],
+  "tokensUsed": ["fontFamily.heading", "fontSize.display-3xl", "fontSize.lg", "semanticColor.text.strong"]
+}

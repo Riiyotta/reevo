@@ -1,0 +1,50 @@
+{
+  "id": "tag",
+  "kind": "primitive",
+  "purpose": "Small bordered mono chip, used for \"Soon\" flags and hero pills.",
+  "measuredFrom": [
+    "src/components/ui.jsx:33-39",
+    "src/components/blog/PostCard.jsx:6-13"
+  ],
+  "props": {
+    "children": {
+      "type": "string",
+      "maxWords": 5,
+      "description": "Label; observed 1 to 5 words"
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "h-[21px] inline-flex, rounded, 1px border, px-2, mono display-xs uppercase",
+      "measuredFrom": [
+        "src/components/ui.jsx:36"
+      ]
+    },
+    {
+      "name": "category (CategoryTag)",
+      "description": "Same recipe at h-[25px]; used for blog post category",
+      "measuredFrom": [
+        "src/components/blog/PostCard.jsx:10"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "tag",
+    "border.default",
+    "text.strong",
+    "mono",
+    "display-xs"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/ui.jsx:33-39"
+    ]
+  }
+}

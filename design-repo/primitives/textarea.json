@@ -1,0 +1,36 @@
+{
+  "id": "textarea",
+  "kind": "primitive",
+  "purpose": "Multi-line text input.",
+  "measuredFrom": [
+    "src/components/company/Form.jsx:9",
+    "src/components/company/Form.jsx:26-28"
+  ],
+  "props": {
+    "className": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "Same field recipe as input, resize-none, py-3",
+      "measuredFrom": [
+        "src/components/company/Form.jsx:27"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "gray.1",
+    "control-lg",
+    "sm"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/company/Form.jsx:27"
+    ]
+  }
+}

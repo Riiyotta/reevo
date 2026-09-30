@@ -1,0 +1,27 @@
+{
+  "id": "rich-text",
+  "kind": "primitive",
+  "purpose": "Renders trusted static HTML strings (strong, a, nbsp) into a chosen tag.",
+  "measuredFrom": [
+    "src/components/products/primitives.jsx:1-3"
+  ],
+  "props": {
+    "as": {
+      "type": "string",
+      "default": "span"
+    },
+    "html": {
+      "type": "richtext-inline",
+      "required": true
+    }
+  },
+  "variants": [],
+  "tokensUsed": [],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/products/primitives.jsx:2-3"
+    ]
+  }
+}

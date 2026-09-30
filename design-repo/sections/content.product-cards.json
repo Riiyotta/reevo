@@ -1,0 +1,70 @@
+{
+  "id": "content.product-cards",
+  "kind": "section",
+  "category": "content",
+  "purpose": "On a product page, show two to four benefit cards, each pairing a short benefit statement with a screenshot of the feature, to make the value tangible after the accordion walkthrough.",
+  "measuredFrom": ["src/components/products/ProductCards.jsx:48-72", "src/components/products/ProductCards.jsx:13-46", "src/components/products/ProductCards.jsx:4-11"],
+  "behaviour": [
+    { "note": "Section is either light (gray-1 background) or dark (dark token scope with background). Cards carry their own dark and light flags that control text colour independently of the section (text is white when the card is not light, gray-10 when light).", "measuredFrom": ["src/components/products/ProductCards.jsx:7-8", "src/components/products/ProductCards.jsx:30", "src/components/products/ProductCards.jsx:50"] },
+    { "note": "Card layouts: half-width card (text above a screenshot with aspect 633/466, optional full-bleed background image behind it), or one wide two-column card (screenshot aspect 631/397 beside the text, coloured by a background class, text side reversed from md).", "measuredFrom": ["src/components/products/ProductCards.jsx:15-27", "src/components/products/ProductCards.jsx:29-44"] },
+    { "note": "Observed usage: find has 4 half cards (light section), connect has 1 wide card (light), manage has 2 half cards (dark section), foundation has 2 half cards (light). Absent on sell. The section is optional and appears at most once per product page.", "measuredFrom": ["src/components/products/data.js:36", "src/components/products/data.js:81", "src/components/products/data.js:145", "src/components/products/data.js:194"] },
+    { "note": "Even-indexed half cards start at column 2 on xl, giving a staggered outer margin.", "measuredFrom": ["src/components/products/ProductCards.jsx:30"] }
+  ],
+  "variants": [
+    { "name": "light-section", "description": "gray-1 background section; used by find, connect and foundation.", "measuredFrom": ["src/components/products/ProductCards.jsx:50", "src/components/products/data.js:36", "src/components/products/data.js:81", "src/components/products/data.js:194"] },
+    { "name": "dark-section", "description": "Dark token scope with background; used by manage. Requires the .dark theme scope.", "measuredFrom": ["src/components/products/ProductCards.jsx:50", "src/components/products/data.js:145", "src/index.css:42"] },
+    { "name": "half-card", "description": "Card spanning half the grid with text above and a screenshot below; optional background image fills the card behind the screenshot.", "measuredFrom": ["src/components/products/ProductCards.jsx:29-44"] },
+    { "name": "wide-card", "description": "One full-width card: screenshot and text side by side (text on the right from md via flex-row-reverse) on a coloured background class.", "measuredFrom": ["src/components/products/ProductCards.jsx:15-27", "src/components/products/data.js:82"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "dark": { "type": "boolean", "required": true, "note": "Section theme: true for the dark section." },
+      "headline": { "type": "richtext-inline", "required": true, "maxWords": 7, "note": "Section h2, rendered uppercase in the heading font. Observed 4 to 6 words.", "measuredFrom": ["src/components/products/ProductCards.jsx:55"] },
+      "lede": { "type": "richtext-inline", "required": false, "maxWords": 32, "note": "Optional paragraph beside the headline from md. Observed on connect (26 words) and foundation (31 words), absent on find and manage.", "measuredFrom": ["src/components/products/ProductCards.jsx:57-61", "src/components/products/data.js:81", "src/components/products/data.js:194"] },
+      "cards": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 4,
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": { "type": "richtext-inline", "required": true, "maxWords": 10, "note": "Observed up to 9 words." },
+            "body": { "type": "richtext-inline", "required": true, "maxWords": 32, "note": "Observed up to 30 words." },
+            "image": { "type": "assetRef", "required": true, "assetRole": "product-screenshot", "note": "Screenshot of the feature (PNG or JPG). Real UI only; do not generate." },
+            "alt": { "type": "string", "required": true, "maxWords": 12 },
+            "backgroundImage": { "type": "assetRef", "required": false, "assetRole": "decorative-pattern", "note": "Optional abstract pixel-pattern backdrop behind the screenshot (half card only). Roles registry lists this pattern-style asset family under decorative-pattern; this specific usage is not among its listed usedBy citations." },
+            "textTone": { "type": "enum", "required": true, "values": ["dark", "light"], "note": "Card's own dark or light flag controlling text colour, independent of the section." },
+            "layout": { "type": "enum", "required": true, "values": ["half", "wide"] },
+            "backgroundClass": { "type": "string", "required": false, "note": "Tailwind background class for the wide card (observed bg-pink-3)." }
+          }
+        },
+        "measuredFrom": ["src/components/products/ProductCards.jsx:13-46", "src/components/products/data.js:37-40", "src/components/products/data.js:82"]
+      }
+    }
+  },
+  "mediaFields": [
+    { "field": "cards[].image", "assetRole": "product-screenshot" },
+    { "field": "cards[].backgroundImage", "assetRole": "decorative-pattern" }
+  ],
+  "constraints": { "maxPerPage": 1 },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No motion in the source; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": ["src/components/products/ProductCards.jsx:48-72"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "cards stack one per row; wide card text sits above its screenshot", "measuredFrom": ["src/components/products/ProductCards.jsx:18", "src/components/products/ProductCards.jsx:30"] },
+      { "at": "md", "change": "half cards take 6 of 12 columns (two per row); wide card becomes two columns with text on the right; headline and lede share a row", "measuredFrom": ["src/components/products/ProductCards.jsx:18", "src/components/products/ProductCards.jsx:30", "src/components/products/ProductCards.jsx:54-58"] },
+      { "at": "lg", "change": "half cards take 12 of 24 columns; lede starts at column 15 spanning 9", "measuredFrom": ["src/components/products/ProductCards.jsx:30", "src/components/products/ProductCards.jsx:58"] },
+      { "at": "xl", "change": "half cards take 11 columns, even-indexed ones start at column 2; lede spans 8 from column 16", "measuredFrom": ["src/components/products/ProductCards.jsx:30", "src/components/products/ProductCards.jsx:58"] },
+      { "at": "sm to xl", "change": "vertical stack spacing grows 24, 32, 40, 48, 56px; section padding 16, 24, 32", "measuredFrom": ["src/components/products/ProductCards.jsx:50", "src/components/products/ProductCards.jsx:52"] }
+    ]
+  },
+  "usedOnRoutes": ["/products/find", "/products/connect", "/products/manage", "/products/foundation"],
+  "tokensUsed": ["gray.1", "dark", "surface.background", "text.strong", "gray.10", "white", "pink.3", "display-2xl", "display-lg", "lg"]
+}

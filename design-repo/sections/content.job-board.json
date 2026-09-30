@@ -1,0 +1,71 @@
+{
+  "id": "content.job-board",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Turn careers interest into applications: list every open role grouped by team, with a sticky team index for jumping, each row linking straight to its external posting.",
+  "measuredFrom": ["src/pages/Careers.jsx:180-213", "src/pages/Careers.jsx:50-73", "src/components/company/jobs.js:1-72"],
+  "behaviour": [
+    { "note": "Two-column layout from md: a sticky Teams index on the left (each item jumps to that team's anchor) and the grouped lists on the right. Each team block has an anchor id with scroll-margin-top 8rem so the jump clears the sticky header. The section itself is anchored at #openings, which other sections link to.", "measuredFrom": ["src/pages/Careers.jsx:180", "src/pages/Careers.jsx:186-197", "src/pages/Careers.jsx:200-201"] },
+    { "note": "Each job row is a bordered line with title, location and a chevron chip; the whole row is a link via a stretched pseudo-element on the title link. Links leave the site to the applicant tracking board in a new tab.", "measuredFrom": ["src/pages/Careers.jsx:50-73", "src/components/company/jobs.js:1-2"] },
+    { "note": "Data is a static snapshot of the job board: 7 teams and 25 jobs counted from jobs.js (the inventory said 21). Rows are real postings; do not invent roles, locations or posting ids.", "measuredFrom": ["src/components/company/jobs.js:4-72"] },
+    { "note": "Last section before the footer on /careers.", "measuredFrom": ["src/pages/Careers.jsx:213"] }
+  ],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "label": { "type": "string", "required": true, "maxWords": 3, "note": "Eyebrow label with an icon. Observed 2 words.", "measuredFrom": ["src/pages/Careers.jsx:181"] },
+      "lead": { "type": "richtext-inline", "required": true, "maxWords": 6, "note": "Bold lead line. Observed 5 words.", "measuredFrom": ["src/pages/Careers.jsx:182-184"] },
+      "teamsLabel": { "type": "string", "required": true, "maxWords": 1, "note": "Heading above the sticky team index.", "measuredFrom": ["src/pages/Careers.jsx:188"] },
+      "teams": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 10,
+        "note": "Observed 7 teams.",
+        "items": {
+          "type": "object",
+          "fields": {
+            "id": { "type": "string", "required": true, "note": "Anchor slug used by the team index." },
+            "title": { "type": "string", "required": true, "maxWords": 4, "note": "Observed up to 3 words (Product & Design)." },
+            "jobs": {
+              "type": "array",
+              "required": true,
+              "minItems": 1,
+              "maxItems": 10,
+              "items": {
+                "type": "object",
+                "fields": {
+                  "title": { "type": "string", "required": true, "maxWords": 8, "note": "Observed up to 7 words." },
+                  "location": { "type": "string", "required": true, "maxWords": 5, "note": "Observed up to 5 words." },
+                  "postingId": { "type": "string", "required": true, "note": "Posting id appended to the job board base URL; real value from the source, not invented." }
+                }
+              }
+            }
+          }
+        },
+        "measuredFrom": ["src/components/company/jobs.js:4-72", "src/pages/Careers.jsx:200-208"]
+      },
+      "boardBaseUrl": { "type": "string", "required": true, "kind": "route-or-url", "note": "Base URL for posting links (external hosted job board).", "measuredFrom": ["src/components/company/jobs.js:2"] }
+    }
+  },
+  "mediaFields": [],
+  "constraints": { "onePerPage": true, "mustPrecedeFooter": true },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No animation: anchor jumps and a CSS sticky index only; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": ["src/pages/Careers.jsx:187", "src/pages/Careers.jsx:201"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "team index is hidden; lists take the full width", "measuredFrom": ["src/pages/Careers.jsx:186"] },
+      { "at": "md", "change": "index takes 3 of 12 columns; list 8 columns starting at column 5", "measuredFrom": ["src/pages/Careers.jsx:186", "src/pages/Careers.jsx:198"] },
+      { "at": "lg", "change": "index 4 of 24 columns; list 15 columns starting at column 9; job rows switch from stacked to title and location side by side", "measuredFrom": ["src/pages/Careers.jsx:186", "src/pages/Careers.jsx:198", "src/pages/Careers.jsx:53"] },
+      { "at": "xl", "change": "index starts at column 2; list 13 columns starting at column 11", "measuredFrom": ["src/pages/Careers.jsx:186", "src/pages/Careers.jsx:198"] }
+    ]
+  },
+  "usedOnRoutes": ["/careers"],
+  "tokensUsed": ["surface.background", "text.strong", "border.default", "gray.2", "display-xl", "display-md", "display-xs"]
+}

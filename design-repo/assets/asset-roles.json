@@ -1,0 +1,340 @@
+{
+  "$description": "Closed asset-role registry built from real usage sites in src/ and public/. Roles are a CLOSED enum; a generator may not invent a role.",
+  "rolesEnumClosed": true,
+  "generationPolicyEnum": [
+    "may-generate-new",
+    "must-reuse-exact",
+    "must-not-fabricate",
+    "must-not-reuse-live-endpoint"
+  ],
+  "generationPolicyMeaning": {
+    "may-generate-new": "New assets may be generated (non-identifying, decorative only).",
+    "must-reuse-exact": "Only the exact existing file/inline SVG may be used; no redraws.",
+    "must-not-fabricate": "Only existing real files may be referenced; never generate, alter or invent.",
+    "must-not-reuse-live-endpoint": "Do not embed or copy the live third-party URL/token; use a placeholder."
+  },
+  "globalProhibitions": [
+    "Do not reproduce real third-party or company logos (customer, press, investor, competitor, employer, integration, store badges) by redrawing, tracing or generating them.",
+    "Do not generate, edit or substitute photos or videos of real people, and do not fabricate names, titles or quotes for them.",
+    "Do not reproduce real proprietary content (product UI, footage, blog covers, copy) as newly generated material presented as the real thing.",
+    "Do not copy live endpoints, tokens or account ids from the source."
+  ],
+  "pinnedRoles": {
+    "$note": "Compliance-critical roles and the exact generationPolicy each MUST carry. Stage 3 turns this into a pinned-value check.",
+    "person-portrait": {
+      "generationPolicy": "must-not-fabricate"
+    },
+    "customer-logo": {
+      "generationPolicy": "must-not-fabricate"
+    },
+    "press-logo": {
+      "generationPolicy": "must-not-fabricate"
+    },
+    "investor-logo": {
+      "generationPolicy": "must-not-fabricate"
+    },
+    "brand-mark": {
+      "generationPolicy": "must-reuse-exact"
+    },
+    "product-screenshot": {
+      "generationPolicy": "must-not-fabricate"
+    },
+    "third-party-embed": {
+      "generationPolicy": "must-not-reuse-live-endpoint"
+    }
+  },
+  "roles": {
+    "brand-mark": {
+      "description": "Reevo wordmark and square footer mark, rendered as inline SVG from svgPaths.js",
+      "generationPolicy": "must-reuse-exact",
+      "licensingGuidance": "Reevo trademark. Reuse the exact path data from src/components/svgPaths.js; never redraw or alter proportions or colour (uses currentColor).",
+      "usedBy": [
+        "src/components/ui.jsx:139-141",
+        "src/components/Navbar.jsx:11",
+        "src/components/Footer.jsx:46",
+        "src/components/compare/CompareSections.jsx:86",
+        "src/components/svgPaths.js:2-5"
+      ],
+      "examples": [
+        "src/components/svgPaths.js#WORDMARK_PATHS",
+        "src/components/svgPaths.js#FOOTERMARK_PATHS",
+        "public/assets/images/favicon-light.png"
+      ]
+    },
+    "customer-logo": {
+      "description": "Customer logos in the home marquee and testimonial cards",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Real customers' trademarks. This is a real company's site. Never redraw, restyle, approximate or AI-generate a real third-party logo; only reference the exact existing file. Do not invent customer names or logos.",
+      "usedBy": [
+        "src/components/LogoMarquee.jsx:9-19",
+        "src/components/LogoMarquee.jsx:28",
+        "src/components/Customers.jsx:9-18",
+        "src/components/Customers.jsx:149"
+      ],
+      "examples": [
+        "public/assets/casca.svg",
+        "public/assets/propel.svg",
+        "public/assets/nclarity.svg",
+        "public/assets/snap.svg",
+        "public/assets/coreranger.svg",
+        "public/assets/codecargo.svg",
+        "public/assets/wallaroo.svg",
+        "public/assets/genefab.svg",
+        "public/assets/pgl.svg"
+      ]
+    },
+    "press-logo": {
+      "description": "Press outlet logos in the 'As seen on' row, each linking to a real article",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Real publishers' trademarks and real article links. This is a real company's site. Never redraw, restyle, approximate or AI-generate a real third-party logo; only reference the exact existing file. Do not invent press coverage.",
+      "usedBy": [
+        "src/components/Customers.jsx:42-47",
+        "src/components/Customers.jsx:147-150"
+      ],
+      "examples": [
+        "public/assets/bloomberg.svg",
+        "public/assets/yahoo-finance.svg",
+        "public/assets/revenuebrew.svg",
+        "public/assets/sfbt.svg",
+        "public/assets/wsj.svg"
+      ]
+    },
+    "investor-logo": {
+      "description": "Investor logos / cards on About and Startups pages",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Real investors' trademarks. This is a real company's site. Never redraw, restyle, approximate or AI-generate a real third-party logo; only reference the exact existing file. Do not imply investment relationships that are not in the source.",
+      "usedBy": [
+        "src/pages/About.jsx:33-35",
+        "src/pages/About.jsx:164-167",
+        "src/pages/Startups.jsx:159",
+        "src/components/Customers.jsx:14"
+      ],
+      "examples": [
+        "public/assets/images/about/investors/khosla.png",
+        "public/assets/images/about/investors/kleiner-perkins.png",
+        "public/assets/images/startups/investors/yc.png",
+        "public/assets/images/startups/investors/greylock.png"
+      ]
+    },
+    "competitor-logo": {
+      "description": "Competitor logo cards on the compare pages (e.g. a HubSpot card)",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Third-party trademarks used for comparison. This is a real company's site. Never redraw, restyle, approximate or AI-generate a real third-party logo; only reference the exact existing file.",
+      "usedBy": [
+        "src/data/compare.js:6",
+        "src/data/compare.js:409",
+        "src/data/compare.js:532"
+      ],
+      "examples": [
+        "public/assets/images/compare/logos/hubspot.svg",
+        "public/assets/images/compare/hubspot.png",
+        "public/assets/images/compare/salesforce.png"
+      ]
+    },
+    "employer-logo": {
+      "description": "Logos of companies team members previously worked at (careers page)",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Third-party trademarks. This is a real company's site. Never redraw, restyle, approximate or AI-generate a real third-party logo; only reference the exact existing file.",
+      "usedBy": [
+        "src/pages/Careers.jsx:34",
+        "src/pages/Careers.jsx:145-150"
+      ],
+      "examples": [
+        "public/assets/images/careers/logos/stripe.svg",
+        "public/assets/images/careers/logos/uber.svg",
+        "public/assets/images/careers/logos/doordash.svg"
+      ]
+    },
+    "integration-logo": {
+      "description": "Locally stored integration partner logos (overrides of the logo.dev feed)",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Third-party trademarks. This is a real company's site. Never redraw, restyle, approximate or AI-generate a real third-party logo; only reference the exact existing file. Remote logo.dev URLs are governed by the third-party-embed role.",
+      "usedBy": [
+        "src/components/pricing/integrationsData.js:1344-1351",
+        "src/components/pricing/IntegrationsBrowser.jsx:48"
+      ],
+      "examples": [
+        "public/assets/images/integrations/logos/salesloft.jpg",
+        "public/assets/images/integrations/logos/windmill.jpg",
+        "public/assets/images/integrations/logos/leadmagic.jpg"
+      ]
+    },
+    "person-portrait": {
+      "description": "Photos of real leadership, customers and testimonial authors",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Real individuals. Depicts real, identifiable people. Never generate, alter, composite or substitute a person's face/likeness, name or quote attribution; reuse the exact supplied file or leave a neutral placeholder slot.",
+      "usedBy": [
+        "src/pages/About.jsx:20-26",
+        "src/pages/About.jsx:85",
+        "src/components/Testimonials.jsx:22",
+        "src/components/products/data.js:30",
+        "src/components/products/data.js:75",
+        "src/components/products/data.js:114",
+        "src/components/products/data.js:149",
+        "src/pages/Startups.jsx:116"
+      ],
+      "examples": [
+        "public/assets/images/about/leadership/david.jpg",
+        "public/assets/images/about/leadership/cindy.jpg",
+        "public/assets/nate.jpg",
+        "public/assets/images/testimonials/tim.jpg",
+        "public/assets/images/testimonials/leslie.jpg",
+        "public/assets/images/testimonials/chris.jpg"
+      ]
+    },
+    "editorial-photo": {
+      "description": "Photographs of people in work scenes (problem cards, newsletter, startups, mobile surfaces)",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Photographs of real or stock-licensed people, some watermarked. Depicts real, identifiable people. Never generate, alter, composite or substitute a person's face/likeness, name or quote attribution; reuse the exact supplied file or leave a neutral placeholder slot. Licence of the originals is unknown; do not redistribute.",
+      "usedBy": [
+        "src/components/Problem.jsx:6-18",
+        "src/pages/Newsletter.jsx:47",
+        "src/pages/Startups.jsx:63",
+        "src/components/pricing/PricingPlans.jsx:96",
+        "src/components/blog/MobileSections.jsx:207",
+        "src/components/blog/MobileSections.jsx:420"
+      ],
+      "examples": [
+        "public/assets/integration-tax.jpg",
+        "public/assets/swivel-chair.jpg",
+        "public/assets/fake-ai.jpg",
+        "public/assets/images/lp/workspace.jpg",
+        "public/assets/images/startups/collaboration.jpg"
+      ]
+    },
+    "product-screenshot": {
+      "description": "Screenshots and UI renders of Reevo's product",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Proprietary product UI. Do not generate fake product UI that claims to be Reevo screens, and do not invent metrics, customer data or names in UI imagery; reuse the exact file.",
+      "usedBy": [
+        "src/components/Solution.jsx:7-25",
+        "src/components/Foundation.jsx:9-17",
+        "src/components/products/data.js:26",
+        "src/components/compare/CompareSections.jsx:36",
+        "src/pages/AppsMobile.jsx:20-69",
+        "src/pages/Integrations.jsx:22"
+      ],
+      "examples": [
+        "public/assets/find.jpg",
+        "public/assets/connect.jpg",
+        "public/assets/sell.jpg",
+        "public/assets/manage.jpg",
+        "public/assets/reevo-alerts.jpg",
+        "public/assets/images/products/find/find-hero-ui.jpg",
+        "public/assets/images/surfaces/mobile/ask-reevo.jpg"
+      ]
+    },
+    "decorative-pattern": {
+      "description": "Abstract dot/halftone pattern strips and backgrounds",
+      "generationPolicy": "may-generate-new",
+      "licensingGuidance": "Decorative and non-identifying; new patterns may be generated in the same halftone style, or the existing files reused. Must carry no text, logos or people.",
+      "usedBy": [
+        "src/components/ui.jsx:85-100",
+        "src/components/BuiltDifferent.jsx:7",
+        "src/components/Testimonials.jsx:9",
+        "src/components/products/ProductTestimonial.jsx:26",
+        "src/pages/About.jsx:69",
+        "src/pages/Careers.jsx:92"
+      ],
+      "examples": [
+        "public/assets/images/patterns/pattern-01.png",
+        "public/assets/images/testimonials/patterns/pattern-top.png",
+        "public/assets/images/about/pattern.png",
+        "public/assets/images/careers/hero-pattern.jpg",
+        "public/assets/images/products/find/find-hero-pattern.png"
+      ]
+    },
+    "video-teaser": {
+      "description": "Reevo promo / tour teaser videos and poster",
+      "generationPolicy": "must-reuse-exact",
+      "licensingGuidance": "Proprietary Reevo footage. Reuse the exact file; do not synthesise product video.",
+      "usedBy": [
+        "src/components/Hero.jsx:15-16",
+        "src/components/Hero.jsx:63",
+        "src/components/pricing/TourDemo.jsx:49"
+      ],
+      "examples": [
+        "public/assets/videos/promo-teaser.mp4",
+        "public/assets/videos/promo-full.mp4",
+        "public/assets/videos/tour-teaser.mp4",
+        "public/assets/images/home/promo-teaser-poster.jpg"
+      ]
+    },
+    "testimonial-video": {
+      "description": "Customer testimonial videos (teaser and full)",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Real customers speaking. Depicts real, identifiable people. Never generate, alter, composite or substitute a person's face/likeness, name or quote attribution; reuse the exact supplied file or leave a neutral placeholder slot.",
+      "usedBy": [
+        "src/components/Customers.jsx:23",
+        "src/components/Customers.jsx:29",
+        "src/components/Customers.jsx:35"
+      ],
+      "examples": [
+        "public/assets/videos/testimonials/tony-teaser.mp4",
+        "public/assets/videos/testimonials/samir-full.mp4",
+        "public/assets/videos/testimonials/adlon-teaser.mp4"
+      ]
+    },
+    "nav-thumbnail": {
+      "description": "Square product thumbnails in the nav dropdown and pricing cards",
+      "generationPolicy": "must-reuse-exact",
+      "licensingGuidance": "Reevo product artwork; reuse the exact file.",
+      "usedBy": [
+        "src/components/Navbar.jsx:23-27",
+        "src/components/pricing/pricingData.jsx:41-80"
+      ],
+      "examples": [
+        "public/assets/images/nav/find.png",
+        "public/assets/images/nav/connect.png",
+        "public/assets/images/nav/sell.png",
+        "public/assets/images/nav/manage.png",
+        "public/assets/images/nav/foundation.png"
+      ]
+    },
+    "blog-cover": {
+      "description": "Blog post cover images (43 posts)",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Editorial images owned by Reevo or its licensors, some containing people or third-party brands. Reuse the exact file; do not synthesise a cover that implies a real article.",
+      "usedBy": [
+        "src/data/blog.js:17-19",
+        "src/pages/BlogPost.jsx:36",
+        "src/components/blog/PostCard.jsx:49"
+      ],
+      "examples": [
+        "public/images/319mqrro/production/12311a23c2e7e2bd377389cfa9222635f7f14829-2508x2508.png",
+        "public/images/319mqrro/production/adad84d81205025a59bc0f2b6c8603c4b843aef9-1320x1320.jpg"
+      ]
+    },
+    "store-badge": {
+      "description": "App Store / Google Play badges and the download QR",
+      "generationPolicy": "must-not-fabricate",
+      "licensingGuidance": "Apple and Google badge artwork is governed by their brand guidelines. Reuse the exact files; never redraw.",
+      "usedBy": [
+        "src/components/blog/MobileSections.jsx:9",
+        "src/components/blog/MobileSections.jsx:43",
+        "src/components/blog/MobileSections.jsx:51"
+      ],
+      "examples": [
+        "public/assets/images/surfaces/mobile/app-store.svg",
+        "public/assets/images/surfaces/mobile/google-play.svg",
+        "src/components/blog/qr.svg"
+      ]
+    },
+    "third-party-embed": {
+      "description": "Remote third-party content: Storylane demo iframes, the scheduler (cal.reevo.ai) dialog and logo.dev logo URLs",
+      "generationPolicy": "must-not-reuse-live-endpoint",
+      "licensingGuidance": "Live third-party endpoints and account-bound URLs. Never copy or ship these URLs/tokens (the source contains a logo.dev publishable token and Storylane demo ids; they must not be reproduced). Render a neutral placeholder or local static stand-in.",
+      "usedBy": [
+        "src/components/pricing/TourDemo.jsx:16-33",
+        "src/components/pricing/GetStartedForm.jsx:53",
+        "src/components/pricing/IntegrationsBrowser.jsx:48",
+        "src/pages/Integrations.jsx:59"
+      ],
+      "examples": [
+        "app.storylane.io demo iframe (src/components/pricing/TourDemo.jsx:19)",
+        "cal.reevo.ai scheduler iframe (src/components/pricing/GetStartedForm.jsx:53)",
+        "img.logo.dev logo feed (src/components/pricing/IntegrationsBrowser.jsx:48)"
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "author-avatar",
+  "kind": "component",
+  "purpose": "Small square author photo.",
+  "measuredFrom": [
+    "src/components/blog/PostCard.jsx:18-30"
+  ],
+  "props": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "className": {
+      "type": "string",
+      "default": "size-6"
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "aspect-square 24px, object-cover",
+      "measuredFrom": [
+        "src/components/blog/PostCard.jsx:19"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "6"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/blog/PostCard.jsx:18-30"
+    ]
+  }
+}

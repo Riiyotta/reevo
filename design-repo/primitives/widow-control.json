@@ -1,0 +1,24 @@
+{
+  "id": "widow-control",
+  "kind": "primitive",
+  "purpose": "String helper that glues the last two words with a non-breaking space; applied to FAQ questions/answers and blog excerpts. Single module exporting NBSP and nb.",
+  "measuredFrom": [
+    "src/components/text.js:1-5",
+    "src/components/faq.jsx:34"
+  ],
+  "props": {
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "variants": [],
+  "tokensUsed": [],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/text.js:5"
+    ]
+  }
+}

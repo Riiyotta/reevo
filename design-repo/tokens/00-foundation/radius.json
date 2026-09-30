@@ -1,0 +1,54 @@
+{
+  "$description": "Border radius scale. NOTE: Tailwind class `rounded` (DEFAULT) = var(--radius) = 2px, not the Tailwind default 4px; `rounded-sm` = .25rem = 4px.",
+  "category": "radius",
+  "borderRadius": {
+    "none": {
+      "value": "0",
+      "type": "borderRadius",
+      "tailwindClass": "rounded-none",
+      "measuredFrom": "tailwind.config.js:60"
+    },
+    "xs": {
+      "value": ".125rem",
+      "type": "borderRadius",
+      "tailwindClass": "rounded-xs",
+      "px": 2,
+      "measuredFrom": "tailwind.config.js:61"
+    },
+    "DEFAULT": {
+      "value": "var(--radius)",
+      "type": "borderRadius",
+      "tailwindClass": "rounded",
+      "resolvesTo": "2px",
+      "resolvedFrom": "src/index.css:35",
+      "measuredFrom": "tailwind.config.js:62"
+    },
+    "sm": {
+      "value": ".25rem",
+      "type": "borderRadius",
+      "tailwindClass": "rounded-sm",
+      "px": 4,
+      "measuredFrom": "tailwind.config.js:63"
+    },
+    "lg": {
+      "value": ".5rem",
+      "type": "borderRadius",
+      "tailwindClass": "rounded-lg",
+      "px": 8,
+      "measuredFrom": "tailwind.config.js:64"
+    },
+    "2xl": {
+      "value": "1rem",
+      "type": "borderRadius",
+      "tailwindClass": "rounded-2xl",
+      "px": 16,
+      "measuredFrom": "tailwind.config.js:65"
+    },
+    "full": {
+      "value": "9999px",
+      "type": "borderRadius",
+      "tailwindClass": "rounded-full",
+      "measuredFrom": "tailwind.config.js:66"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "social-proof.testimonial",
+  "kind": "section",
+  "category": "social-proof",
+  "purpose": "Put one real customer's face, quote, name and role at full width so a visitor sees a peer vouching for a specific outcome. One layout, implemented three times in the source (home, /startups, product pages).",
+  "measuredFrom": ["src/components/Testimonials.jsx:3-57", "src/components/company/QuoteTestimonial.jsx:6-87", "src/components/products/ProductTestimonial.jsx:8-67"],
+  "behaviour": [
+    { "note": "Shared layout: square portrait (700x700) on the left, large quote on the right over a coloured card backdrop, and a white name tag bar (h-14) overlapping the bottom of the photo. Below md the name tag overlaps the photo with a negative top margin; from md it sits bottom-left of the photo (self-end).", "measuredFrom": ["src/components/Testimonials.jsx:19-31", "src/components/Testimonials.jsx:42-51", "src/components/company/QuoteTestimonial.jsx:49-80", "src/components/products/ProductTestimonial.jsx:37-61"] },
+    { "note": "Three real implementations of one layout (duplicated code to consolidate): a home-only component, a configurable component used by /startups, and a product-page component fed from product data. Modelled here as three variants.", "measuredFrom": ["src/components/Testimonials.jsx:3", "src/components/company/QuoteTestimonial.jsx:6", "src/components/products/ProductTestimonial.jsx:8"] },
+    { "note": "Product pages place this section between two accordions (find, connect), between an accordion and the FAQ (sell) and between the cards and an accordion (manage). Not present on foundation.", "measuredFrom": ["src/components/products/data.js:30", "src/components/products/data.js:75", "src/components/products/data.js:114", "src/components/products/data.js:149"] },
+    { "note": "Card colour on product pages is chosen per product in data: find pink-2, connect teal-2, sell teal-2, manage pink-3. /startups defaults to teal-2 (#c9f8ff).", "measuredFrom": ["src/components/products/data.js:30", "src/components/products/data.js:75", "src/components/products/data.js:114", "src/components/products/data.js:149", "src/components/company/QuoteTestimonial.jsx:9"] },
+    { "note": "The role line may contain a link to the customer's company (startups variant) or non-breaking-space markup (product variant).", "measuredFrom": ["src/pages/Startups.jsx:126-132", "src/components/products/ProductTestimonial.jsx:57"] }
+  ],
+  "variants": [
+    {
+      "name": "home-dark-card",
+      "description": "Home. gray-3 section band, gray-10 (dark) card, only a top neutral pattern strip, light quote text (gray-2). Hard-wired quote, photo and name; not configurable.",
+      "measuredFrom": ["src/components/Testimonials.jsx:5-16", "src/components/Testimonials.jsx:32", "src/pages/Home.jsx:21"]
+    },
+    {
+      "name": "startups-colored-card",
+      "description": "/startups. Configurable component: gray-9 section band, coloured card (default teal-2 #c9f8ff), dark quote text (#121212), top and bottom pattern strips, lazy photo, role may carry a link.",
+      "measuredFrom": ["src/components/company/QuoteTestimonial.jsx:6-18", "src/components/company/QuoteTestimonial.jsx:22-45", "src/pages/Startups.jsx:115-132"]
+    },
+    {
+      "name": "product-colored-card",
+      "description": "Product pages (find, connect, sell, manage). gray-9 band, card colour supplied by product data (Tailwind bg class), gray-10 quote text, top and bottom pattern strips, quote and role as inline HTML strings.",
+      "measuredFrom": ["src/components/products/ProductTestimonial.jsx:8-33", "src/components/products/ProductTestimonial.jsx:45", "src/components/products/data.js:30", "src/components/products/data.js:75", "src/components/products/data.js:114", "src/components/products/data.js:149"]
+    }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "variant": { "type": "enum", "required": true, "values": ["home-dark-card", "startups-colored-card", "product-colored-card"] },
+      "photo": { "type": "assetRef", "required": true, "assetRole": "person-portrait", "note": "Square portrait of the real customer quoted. Existing real file only; never generate, edit or substitute.", "measuredFrom": ["src/components/Testimonials.jsx:21-27", "src/components/company/QuoteTestimonial.jsx:51-58", "src/components/products/ProductTestimonial.jsx:39"] },
+      "photoAlt": { "type": "string", "required": true, "maxWords": 3, "note": "Observed as the first name plus the word photo." },
+      "quote": { "type": "richtext-inline", "required": true, "maxWords": 75, "note": "Observed: home 72, startups 55, products 40 to 48. Real customer words; never fabricate.", "measuredFrom": ["src/components/Testimonials.jsx:32-39", "src/pages/Startups.jsx:118-123", "src/components/products/data.js:30", "src/components/products/data.js:75", "src/components/products/data.js:114", "src/components/products/data.js:149"] },
+      "name": { "type": "string", "required": true, "maxWords": 1, "note": "First name only; real person.", "measuredFrom": ["src/components/Testimonials.jsx:46"] },
+      "role": { "type": "richtext-inline", "required": true, "maxWords": 6, "note": "Title, company. Observed up to 6 words; may include a link (startups variant).", "measuredFrom": ["src/components/Testimonials.jsx:47", "src/pages/Startups.jsx:127-132"] },
+      "cardColor": { "type": "enum", "required": false, "values": ["teal-2", "pink-2", "pink-3"], "note": "Coloured card behind the photo and quote. Ignored by home-dark-card (fixed gray-10). Values are the ones used in source; QuoteTestimonial default is teal-2.", "measuredFrom": ["src/components/company/QuoteTestimonial.jsx:9", "src/components/products/data.js:30", "src/components/products/data.js:75", "src/components/products/data.js:149"] },
+      "sectionBackground": { "type": "enum", "required": false, "values": ["gray-3", "gray-9"], "note": "home-dark-card uses gray-3; the two coloured variants use gray-9 by default.", "measuredFrom": ["src/components/Testimonials.jsx:5", "src/components/company/QuoteTestimonial.jsx:8", "src/components/products/ProductTestimonial.jsx:10"] },
+      "patternStrips": { "type": "assetRef", "required": false, "assetRole": "decorative-pattern", "note": "Top strip (all variants; neutral on home) and bottom strip (coloured variants only).", "measuredFrom": ["src/components/Testimonials.jsx:6-10", "src/components/company/QuoteTestimonial.jsx:40-45", "src/components/products/ProductTestimonial.jsx:22-33"] }
+    }
+  },
+  "mediaFields": [
+    { "field": "photo", "assetRole": "person-portrait" },
+    { "field": "patternStrips", "assetRole": "decorative-pattern" }
+  ],
+  "constraints": {},
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No motion in the source, so no fallback is needed; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": ["src/components/Testimonials.jsx:3-57", "src/components/company/QuoteTestimonial.jsx:6-87", "src/components/products/ProductTestimonial.jsx:8-67"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "single column: photo, then name tag overlapping the photo bottom (negative top margin), then quote; padding 8 on the quote", "measuredFrom": ["src/components/Testimonials.jsx:19", "src/components/Testimonials.jsx:31", "src/components/Testimonials.jsx:42"] },
+      { "at": "md", "change": "photo spans 5 columns and quote 7 columns, both rows; name tag moves to the photo's bottom-left (self-end)", "measuredFrom": ["src/components/Testimonials.jsx:19", "src/components/Testimonials.jsx:31", "src/components/Testimonials.jsx:42"] },
+      { "at": "lg", "change": "photo spans 9 columns (overlaps the card by -mr-4), quote 13 columns starting at column 11, name tag 6 columns", "measuredFrom": ["src/components/Testimonials.jsx:19-20", "src/components/Testimonials.jsx:31", "src/components/Testimonials.jsx:42"] },
+      { "at": "xl", "change": "photo 8 columns from column 2, quote 12 columns, card 18 columns from column 6; name tag bottom padding 56px", "measuredFrom": ["src/components/Testimonials.jsx:15", "src/components/Testimonials.jsx:19", "src/components/Testimonials.jsx:31", "src/components/Testimonials.jsx:43"] },
+      { "at": "md (strips)", "change": "pattern strips grow from 28px to 40px high; below sm they bleed to the right edge", "measuredFrom": ["src/components/Testimonials.jsx:8", "src/components/company/QuoteTestimonial.jsx:20"] }
+    ]
+  },
+  "usedOnRoutes": ["/", "*", "/startups", "/products/find", "/products/connect", "/products/sell", "/products/manage"],
+  "tokensUsed": ["gray.3", "gray.9", "gray.10", "gray.2", "teal.2", "pink.2", "pink.3", "text.strong", "display-lg-2", "display-xs", "white"]
+}

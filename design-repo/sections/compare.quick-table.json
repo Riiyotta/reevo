@@ -1,0 +1,61 @@
+{
+  "id": "compare.quick-table",
+  "kind": "section",
+  "category": "compare",
+  "purpose": "Give a comparison-page visitor the answer in four rows: a three-column table that sets Reevo against one named competitor on best-for, system of record, AI capability and ideal team, so the decision is visible before any longer argument.",
+  "measuredFrom": ["src/components/compare/CompareSections.jsx:70-111", "src/pages/Compare.jsx:27"],
+  "behaviour": [
+    { "note": "One template serves 7 competitors (apollo, attio, fireflies, gong, hubspot, outreach, salesforce); only the competitor name, logo and the four rows change. Unknown slugs fall back to the gong data.", "measuredFrom": ["src/pages/Compare.jsx:7-11", "src/data/compare.js:9", "src/data/compare.js:539-541"] },
+    { "note": "Always exactly 4 rows in the same label order across all 7 competitors: best for, system of record, AI capabilities, ideal team.", "measuredFrom": ["src/data/compare.js:31-36", "src/components/compare/CompareSections.jsx:98"] },
+    { "note": "Column 1 (feature) has a visually hidden header. Column 2 header is the Reevo wordmark (23px high, inline SVG); column 3 header is the competitor logo (20px by 76px box, single colour, muted foreground). The competitor logo is an inline SVG built from stored path data with fill currentColor.", "measuredFrom": ["src/components/compare/CompareSections.jsx:13-18", "src/components/compare/CompareSections.jsx:82-94"] },
+    { "note": "Rows alternate gray-1 and background starting with gray-1. Column 1 cell text is bold. Cells are top-aligned and each column is one third wide.", "measuredFrom": ["src/components/compare/CompareSections.jsx:67", "src/components/compare/CompareSections.jsx:98-105"] },
+    { "note": "Section sits on the gray-2 tint with the pattern-05 decorative strip. The section heading is the same sentence pattern on every competitor (Reevo vs. name: at a glance); the eyebrow label is fixed.", "measuredFrom": ["src/components/compare/CompareSections.jsx:72-76"] },
+    { "note": "Deviation recorded in the source: the original's tables overflow the viewport below sm, so the clone adds overflow-x-clip to the section; on the phone layout the table bleeds 24px past the gutters (negative margin) instead of scrolling.", "measuredFrom": ["src/components/compare/CompareSections.jsx:65-66", "src/components/compare/CompareSections.jsx:72", "src/components/compare/CompareSections.jsx:79"] },
+    { "note": "Text of the rows is competitor comparison copy written by the original author. It is not reproduced here; only the budgets are. Some Reevo cells are marketing claims and must be treated as fixed data per competitor, not free-authored.", "measuredFrom": ["src/data/compare.js:1-4"] }
+  ],
+  "themeDependency": {
+    "requires": "light",
+    "how": "Rendered in the default light scope on a gray-2 band; the header cells for Reevo and the competitor use the gray-3 tint with a translucent gray-4 border. It is not wrapped in a dark scope (contrast: the feature table further down is).",
+    "measuredFrom": ["src/components/compare/CompareSections.jsx:72", "src/components/compare/CompareSections.jsx:85-88"]
+  },
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "competitorName": { "type": "string", "required": true, "maxWords": 2, "note": "Used in the section headline. Observed 1 word.", "measuredFrom": ["src/components/compare/CompareSections.jsx:75", "src/data/compare.js:12"] },
+      "competitorLogo": { "type": "assetRef", "required": true, "assetRole": "competitor-logo", "note": "Single-colour third-party logo shown in the column 3 header. Reuse the exact existing file only (inline path data in data/compare.js, standalone copy under public/assets/images/compare/logos/); never redraw.", "measuredFrom": ["src/components/compare/CompareSections.jsx:13-18", "src/components/compare/CompareSections.jsx:90-92", "src/data/compare.js:5-6"] },
+      "rows": {
+        "type": "array", "required": true, "minItems": 4, "maxItems": 4,
+        "note": "Exactly 4 rows for all 7 competitors.",
+        "measuredFrom": ["src/components/compare/CompareSections.jsx:98-105", "src/data/compare.js:31-36"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "label": { "type": "string", "required": true, "maxWords": 6, "note": "Bold row label. Observed up to 5 words (one HubSpot label carries a bracketed acronym).", "measuredFrom": ["src/components/compare/CompareSections.jsx:100-102", "src/data/compare.js:396"] },
+            "reevo": { "type": "string", "required": true, "maxWords": 14, "note": "Reevo cell. Observed up to 12 words. Plain text.", "measuredFrom": ["src/components/compare/CompareSections.jsx:103"] },
+            "competitor": { "type": "string", "required": true, "maxWords": 12, "note": "Competitor cell. Observed up to 10 words. Plain text.", "measuredFrom": ["src/components/compare/CompareSections.jsx:104"] }
+          }
+        }
+      }
+    }
+  },
+  "mediaFields": [ { "field": "competitorLogo", "assetRole": "competitor-logo" } ],
+  "constraints": { "onePerPage": true, "mustFollow": "hero.split-image" },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No animation or hover state in the table; the code has no prefers-reduced-motion handling.",
+    "measuredFrom": ["src/components/compare/CompareSections.jsx:70-111"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below sm", "change": "table extends 24px beyond each side gutter (negative horizontal margin) and the section clips horizontal overflow", "measuredFrom": ["src/components/compare/CompareSections.jsx:72", "src/components/compare/CompareSections.jsx:79"] },
+      { "at": "sm", "change": "table takes the full width of the content column", "measuredFrom": ["src/components/compare/CompareSections.jsx:79"] },
+      { "at": "md", "change": "header cell padding 24px on all sides (from 20px vertical); body cell vertical padding 24px", "measuredFrom": ["src/components/compare/CompareSections.jsx:67-68"] },
+      { "at": "xl", "change": "header cell padding 32px; body cells 32px horizontal and 28px vertical", "measuredFrom": ["src/components/compare/CompareSections.jsx:67-68"] }
+    ]
+  },
+  "usedOnRoutes": ["/compare/:competitor"],
+  "tokensUsed": ["surface.section-alt", "gray.1", "gray.3", "gray.4", "border.default", "text.strong", "text.muted", "display-lg", "display-xs"]
+}

@@ -1,0 +1,886 @@
+{
+  "pageSpecVersion": "1.0.0",
+  "route": "/",
+  "template": "home",
+  "title": "Reevo home",
+  "nodes": [
+    {
+      "section": "shell.navbar",
+      "content": {
+        "wordmark": {
+          "assetRole": "brand-mark",
+          "ref": "src/components/svgPaths.js#WORDMARK_PATHS"
+        },
+        "primaryLinks": [
+          {
+            "label": "Pricing",
+            "href": "/pricing"
+          },
+          {
+            "label": "Tour",
+            "href": "/product-tour"
+          }
+        ],
+        "menus": [
+          {
+            "label": "Platform",
+            "key": "platform"
+          },
+          {
+            "label": "Company",
+            "key": "company"
+          },
+          {
+            "label": "Resources",
+            "key": "resources"
+          }
+        ],
+        "platformProducts": [
+          {
+            "name": "Find",
+            "href": "/products/find",
+            "description": "Source high-value buyers with precision",
+            "thumbnail": {
+              "assetRole": "nav-thumbnail",
+              "ref": "public/assets/images/nav/find.png"
+            }
+          },
+          {
+            "name": "Connect",
+            "href": "/products/connect",
+            "description": "Engage, qualify, and seamlessly route leads",
+            "thumbnail": {
+              "assetRole": "nav-thumbnail",
+              "ref": "public/assets/images/nav/connect.png"
+            }
+          },
+          {
+            "name": "Sell",
+            "href": "/products/sell",
+            "description": "Capture every interaction and convert deals faster",
+            "thumbnail": {
+              "assetRole": "nav-thumbnail",
+              "ref": "public/assets/images/nav/sell.png"
+            }
+          },
+          {
+            "name": "Manage",
+            "href": "/products/manage",
+            "description": "Track performance, pipeline, and activity",
+            "thumbnail": {
+              "assetRole": "nav-thumbnail",
+              "ref": "public/assets/images/nav/manage.png"
+            }
+          },
+          {
+            "name": "Foundation",
+            "href": "/products/foundation",
+            "description": "One memory layer where context compounds",
+            "thumbnail": {
+              "assetRole": "nav-thumbnail",
+              "ref": "public/assets/images/nav/foundation.png"
+            }
+          }
+        ],
+        "worksWith": [
+          {
+            "label": "Integrations",
+            "href": "/integrations",
+            "tag": "New"
+          },
+          {
+            "label": "Mobile App",
+            "href": "/apps/mobile"
+          },
+          {
+            "label": "Chrome Extension",
+            "href": "https://chromewebstore.google.com/detail/reevo/fhnjabhbjkfgcijifbeeifdbbiclphaa"
+          }
+        ],
+        "companyLinks": [
+          {
+            "label": "About us",
+            "href": "/about"
+          },
+          {
+            "label": "Careers",
+            "href": "/careers"
+          }
+        ],
+        "resourceLinks": [
+          {
+            "label": "Blog",
+            "href": "/blog"
+          },
+          {
+            "label": "Newsletter",
+            "href": "/newsletter"
+          },
+          {
+            "label": "Startup Program",
+            "href": "/startups"
+          },
+          {
+            "label": "Partners",
+            "href": "/partners"
+          },
+          {
+            "label": "Help Center",
+            "href": "https://help.reevo.ai/"
+          },
+          {
+            "label": "Release Notes",
+            "href": "/release-notes"
+          }
+        ],
+        "trustLabels": [
+          "SOC 2",
+          "AICPA SOC",
+          "ISO 27001"
+        ],
+        "loginCta": {
+          "label": "Log in",
+          "href": "http://app.reevo.ai",
+          "variant": "outline"
+        },
+        "primaryCta": {
+          "label": "Get started",
+          "href": "/get-started",
+          "variant": "primary"
+        }
+      },
+      "motion": {
+        "pattern": "popover-fade-scale",
+        "reducedMotionFallback": "instant",
+        "durationMs": 200,
+        "easing": "cubic-bezier(.4,0,.2,1)"
+      },
+      "variant": "desktop"
+    },
+    {
+      "section": "hero.marketing-video",
+      "content": {
+        "tag": "The AI-native sales platform",
+        "headline": "Your sales tools are guessing. Reevo actually knows.",
+        "subheadline": "Reevo runs your whole sales motion on everything your team knows. It learns from every deal – so every rep closes like your best one.",
+        "ctas": [
+          {
+            "label": "Get started",
+            "href": "/get-started",
+            "variant": "primary"
+          },
+          {
+            "label": "See Reevo",
+            "href": "/product-tour",
+            "variant": "outline"
+          }
+        ],
+        "teaserVideo": {
+          "assetRole": "video-teaser",
+          "ref": "public/assets/videos/promo-teaser.mp4"
+        },
+        "teaserPoster": {
+          "assetRole": "video-teaser",
+          "ref": "public/assets/images/home/promo-teaser-poster.jpg"
+        },
+        "fullVideo": {
+          "assetRole": "video-teaser",
+          "ref": "public/assets/videos/promo-full.mp4"
+        }
+      },
+      "motion": {
+        "pattern": "dialog-overlay",
+        "reducedMotionFallback": "first-frame",
+        "durationMs": 300,
+        "easing": "cubic-bezier(0,0,.58,1)"
+      },
+      "variant": "teaser-playing"
+    },
+    {
+      "section": "social-proof.logo-marquee",
+      "content": {
+        "caption": "One platform for your whole sales motion",
+        "logos": [
+          {
+            "file": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/casca.svg"
+            },
+            "widthPx": 98,
+            "alt": "casca"
+          },
+          {
+            "file": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/propel.svg"
+            },
+            "widthPx": 114,
+            "alt": "propel"
+          },
+          {
+            "file": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/nclarity.svg"
+            },
+            "widthPx": 82,
+            "alt": "nclarity"
+          },
+          {
+            "file": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/snap.svg"
+            },
+            "widthPx": 90,
+            "alt": "snap"
+          },
+          {
+            "file": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/coreranger.svg"
+            },
+            "widthPx": 133,
+            "alt": "coreranger"
+          },
+          {
+            "file": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/codecargo.svg"
+            },
+            "widthPx": 120,
+            "alt": "codecargo"
+          },
+          {
+            "file": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/wallaroo.svg"
+            },
+            "widthPx": 130,
+            "alt": "wallaroo"
+          },
+          {
+            "file": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/genefab.svg"
+            },
+            "widthPx": 132,
+            "alt": "genefab"
+          },
+          {
+            "file": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/pgl.svg"
+            },
+            "widthPx": 80,
+            "alt": "pgl"
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "marquee",
+        "reducedMotionFallback": "static",
+        "durationMs": 700,
+        "easing": "linear",
+        "speedPxPerSec": 30
+      }
+    },
+    {
+      "section": "content.platform-columns",
+      "content": {
+        "variant": "home-label-headline",
+        "label": "One AI-native platform, your entire sales motion",
+        "headline": "Revenue should feel predictable.",
+        "lede": "Built on an AI foundation, Reevo runs your whole sales motion on the full context of every deal, from what your team's learned to signals they haven't seen yet.",
+        "columns": [
+          {
+            "title": "Find",
+            "href": "/products/find",
+            "chipColor": "orange-3",
+            "items": [
+              {
+                "label": "TAM sourcing",
+                "icon": "Combine"
+              },
+              {
+                "label": "Contact enrichment",
+                "icon": "UserSearch"
+              },
+              {
+                "label": "Company enrichment",
+                "icon": "FolderSearch"
+              },
+              {
+                "label": "Intent signals",
+                "icon": "Signal",
+                "soon": true
+              },
+              {
+                "label": "Lead scoring",
+                "icon": "Crown",
+                "soon": true
+              }
+            ]
+          },
+          {
+            "title": "Connect",
+            "href": "/products/connect",
+            "chipColor": "pink-3",
+            "items": [
+              {
+                "label": "Domain purchase",
+                "icon": "Banknote"
+              },
+              {
+                "label": "Inbox warming",
+                "icon": "Inbox"
+              },
+              {
+                "label": "Sequence & dial",
+                "icon": "SquareStack"
+              },
+              {
+                "label": "Smart scheduler",
+                "icon": "CalendarCheck"
+              },
+              {
+                "label": "Reply tracking",
+                "icon": "MessageSquareReply"
+              }
+            ]
+          },
+          {
+            "title": "Sell",
+            "href": "/products/sell",
+            "chipColor": "green-3",
+            "items": [
+              {
+                "label": "Meeting prep",
+                "icon": "FileSearch"
+              },
+              {
+                "label": "Call recording",
+                "icon": "Disc"
+              },
+              {
+                "label": "Transcription",
+                "icon": "SearchCheck"
+              },
+              {
+                "label": "Smart task logging",
+                "icon": "ListChecks"
+              }
+            ]
+          },
+          {
+            "title": "Manage",
+            "href": "/products/manage",
+            "chipColor": "yellow-3",
+            "items": [
+              {
+                "label": "Auto-deal update",
+                "icon": "RefreshCw"
+              },
+              {
+                "label": "Forecasting",
+                "icon": "TrendingUp"
+              },
+              {
+                "label": "Reporting",
+                "icon": "ChartColumn"
+              },
+              {
+                "label": "Coaching insights",
+                "icon": "Speech"
+              }
+            ]
+          }
+        ],
+        "foundationBand": {
+          "title": "Foundation",
+          "tagline": "One memory layer where context compounds",
+          "href": "/products/foundation",
+          "items": [
+            {
+              "label": "AI-native CRM",
+              "icon": "Database"
+            },
+            {
+              "label": "Ask Reevo",
+              "icon": "MessageCircleQuestion"
+            },
+            {
+              "label": "Custom objects & relationships",
+              "icon": "Boxes"
+            },
+            {
+              "label": "Workflow automation",
+              "icon": "Workflow"
+            },
+            {
+              "label": "Command center",
+              "icon": "LayoutDashboard"
+            },
+            {
+              "label": "One-click migration",
+              "icon": "Import"
+            }
+          ]
+        },
+        "patternStrip": {
+          "assetRole": "decorative-pattern",
+          "ref": "public/assets/images/patterns/pattern-01.png"
+        }
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "none-needed"
+      },
+      "variant": "home-label-headline"
+    },
+    {
+      "section": "content.dark-problem",
+      "content": {
+        "label": "Why fragmented sales tools lose context",
+        "headline": "None of your tools can see the whole deal.",
+        "lede": "A CRM nobody updates. A call recorder. An outbound tool. Each one sees a fragment, so the AI bolted onto them is guessing. AI without the full picture is just guessing.",
+        "cards": [
+          {
+            "image": {
+              "assetRole": "editorial-photo",
+              "ref": "public/assets/integration-tax.jpg"
+            },
+            "alt": "Surreal black and white photo of a person sitting at a table with coffee cups, covering their head with crumpled foil, pop art style with purple overlay",
+            "title": "Meeting prep is a scavenger hunt.",
+            "body": "Everything your team knows about the account is scattered across inboxes, recordings, and half-filled CRM fields. Reps spend 30 minutes reconstructing it before every call. Reevo preps the full picture automatically."
+          },
+          {
+            "image": {
+              "assetRole": "editorial-photo",
+              "ref": "public/assets/swivel-chair.jpg"
+            },
+            "alt": "Conceptual black and white photo of a tired person slumped forward with their face on a laptop at a café table, exhaustion theme with orange square overlay",
+            "title": "Bending over backward to move deals.",
+            "body": "No single tool saw the whole conversation, so next steps depend on what the rep remembers to type. Reevo captures what was actually said, drafts the follow-up, and updates the record on its own."
+          },
+          {
+            "image": {
+              "assetRole": "editorial-photo",
+              "ref": "public/assets/fake-ai.jpg"
+            },
+            "alt": "Artistic black and white image of a woman in a dress and high heels leaning backward over an office swivel chair, abstract pose with green overlay",
+            "title": "Coaching in the dark.",
+            "body": "Managers coach from what reps report in the pipeline meeting, not from what happened on the calls. Reevo grounds every coaching conversation in real call evidence, for every rep, every week."
+          }
+        ],
+        "patternStrip": {
+          "assetRole": "decorative-pattern",
+          "ref": "public/assets/images/patterns/pattern-02.png"
+        }
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "none-needed"
+      },
+      "variant": "dark"
+    },
+    {
+      "section": "content.solution-rows",
+      "content": {
+        "label": "How Reevo turns sales context into action",
+        "headline": "The AI-Native Sales Platform.",
+        "lede": "Every call, email, and deal feeds one shared memory, so Reevo drafts follow-ups, updates the CRM, and flags risk on its own. Works alongside the tools you already use, or runs everything out of the box.",
+        "rows": [
+          {
+            "pillLabel": "Find",
+            "pillColor": "orange-2",
+            "image": {
+              "assetRole": "product-screenshot",
+              "ref": "public/assets/find.jpg"
+            },
+            "alt": "Reevo Find: Lead generation CRM screenshot with company filters including industry, location, employees, and revenue, alongside contact list of professionals with names, companies, and emails",
+            "title": "Generate more pipeline.",
+            "body": "Build lists of the accounts worth your time, enrich them in a click, and research any buyer with built-in web search, so your team spends its energy selling instead of hunting for data.",
+            "href": "/products/find"
+          },
+          {
+            "pillLabel": "Connect",
+            "pillColor": "pink-2",
+            "image": {
+              "assetRole": "product-screenshot",
+              "ref": "public/assets/connect.jpg"
+            },
+            "alt": "Reevo Connect: Email performance dashboard showing outbound metrics with 2,495 emails sent, progress breakdown by done, in progress, and enrolled, CRM analytics interface on purple background",
+            "title": "More meetings, less manual outreach.",
+            "body": "Turn signals into booked meetings, personalizing every touch with full context on each buyer. Make sure no warm lead ever goes cold.",
+            "href": "/products/connect"
+          },
+          {
+            "pillLabel": "Sell",
+            "pillColor": "green-3",
+            "image": {
+              "assetRole": "product-screenshot",
+              "ref": "public/assets/sell.jpg"
+            },
+            "alt": "Reevo Sell: Video meeting summary tool with AI-generated transcript, sentiment analysis, and highlights, showing woman in headphones during remote call, business productivity software on blue background",
+            "title": "Win more deals.",
+            "body": "Go into every meeting fully prepared and see deal risk before deals slip, so nothing catches your team off guard. Give every rep a day back each week, freeing them to spend more time selling.",
+            "href": "/products/sell"
+          },
+          {
+            "pillLabel": "Manage",
+            "pillColor": "yellow-3",
+            "image": {
+              "assetRole": "product-screenshot",
+              "ref": "public/assets/manage.jpg"
+            },
+            "alt": "Reevo Manage opportunities chart tracking deals and prospects created each month against a goal line",
+            "title": "Numbers you can actually trust.",
+            "body": "Forecasts grounded in evidence instead of optimism, giving you a pipeline you can finally trust. Make it easy to coach every rep, every week, turning that same evidence into consistent, repeatable improvement.",
+            "href": "/products/manage"
+          }
+        ],
+        "ctaLabel": "Learn more",
+        "patternStrip": {
+          "assetRole": "decorative-pattern",
+          "ref": "public/assets/images/patterns/pattern-03.png"
+        }
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "none-needed"
+      },
+      "variant": "image-right"
+    },
+    {
+      "section": "social-proof.customer-video-cards",
+      "content": {
+        "label": "Customers love Reevo",
+        "headline": "Teams that switched to Reevo sell more and type less.",
+        "testimonials": [
+          {
+            "teaserVideo": {
+              "assetRole": "testimonial-video",
+              "ref": "public/assets/videos/testimonials/tony-teaser.mp4"
+            },
+            "fullVideo": {
+              "assetRole": "testimonial-video",
+              "ref": "public/assets/videos/testimonials/tony-full.mp4"
+            },
+            "companyLogo": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/propel.svg"
+            },
+            "quote": "The last piece of software we actually ever need within our go-to-market side.",
+            "name": "Tony",
+            "role": "CEO, Propel"
+          },
+          {
+            "teaserVideo": {
+              "assetRole": "testimonial-video",
+              "ref": "public/assets/videos/testimonials/samir-teaser.mp4"
+            },
+            "fullVideo": {
+              "assetRole": "testimonial-video",
+              "ref": "public/assets/videos/testimonials/samir-full.mp4"
+            },
+            "companyLogo": {
+              "assetRole": "customer-logo",
+              "ref": "src/components/svgPaths.js#KHOSLA_PATHS"
+            },
+            "quote": "Every sales executive will be a better sales executive. They will service their customers better.",
+            "name": "Samir",
+            "role": "Managing Director, Khosla Ventures"
+          },
+          {
+            "teaserVideo": {
+              "assetRole": "testimonial-video",
+              "ref": "public/assets/videos/testimonials/adlon-teaser.mp4"
+            },
+            "fullVideo": {
+              "assetRole": "testimonial-video",
+              "ref": "public/assets/videos/testimonials/adlon-full.mp4"
+            },
+            "companyLogo": {
+              "assetRole": "customer-logo",
+              "ref": "public/assets/casca.svg"
+            },
+            "quote": "Reevo has allowed us, as a team, to focus on the human elements of sales.",
+            "name": "Adlon",
+            "role": "COO, Casca"
+          }
+        ],
+        "press": [
+          {
+            "logo": {
+              "assetRole": "press-logo",
+              "ref": "public/assets/bloomberg.svg"
+            },
+            "widthPx": 102,
+            "alt": "Bloomberg",
+            "href": "https://www.bloomberg.com/news/articles/2025-11-05/khosla-ventures-and-kleiner-perkins-back-ai-startup-reevo"
+          },
+          {
+            "logo": {
+              "assetRole": "press-logo",
+              "ref": "public/assets/yahoo-finance.svg"
+            },
+            "widthPx": 121,
+            "alt": "Yahoo Finance",
+            "href": "https://finance.yahoo.com/news/reevo-debuts-80-million-funding-171500872.html"
+          },
+          {
+            "logo": {
+              "assetRole": "press-logo",
+              "ref": "public/assets/revenuebrew.svg"
+            },
+            "widthPx": 125,
+            "alt": "Revenue Brew",
+            "href": "https://www.revenuebrew.com/stories/2025/11/14/reevo-launches-with-funding"
+          },
+          {
+            "logo": {
+              "assetRole": "press-logo",
+              "ref": "public/assets/sfbt.svg"
+            },
+            "widthPx": 101,
+            "alt": "San Francisco Business Times",
+            "href": "https://www.bizjournals.com/sanfrancisco/news/2025/11/06/sfbt-digest-thursday-pelosi-retire-doordash-elf-sf.html"
+          },
+          {
+            "logo": {
+              "assetRole": "press-logo",
+              "ref": "public/assets/wsj.svg"
+            },
+            "widthPx": 172,
+            "alt": "The Wall Street Journal",
+            "href": "https://venturecapital.cmail20.com/t/d-e-gjttukk-ihtrmdkuu-t/"
+          }
+        ],
+        "pressCaption": "As seen in"
+      },
+      "motion": {
+        "pattern": "dialog-overlay",
+        "reducedMotionFallback": "instant",
+        "durationMs": 200,
+        "easing": "cubic-bezier(.4,0,.2,1)"
+      }
+    },
+    {
+      "section": "interactive.ask-reevo-carousel",
+      "content": {
+        "label": "Foundation",
+        "headline": "Built on one source of truth.",
+        "intro": "Every interaction, workflow, and record lives in a single memory layer so context compounds instead of scattering across tools.",
+        "subhead": "Meet Ask Reevo.",
+        "detail": "Type a question about pipeline, deal health, objections, or next steps. Reevo reasons across everything your team knows and cites the exact call, email, or record behind every answer. It lives in Slack too. Mention it in any channel and get the same cited answers where your team already works.",
+        "slides": [
+          {
+            "image": {
+              "assetRole": "product-screenshot",
+              "ref": "public/assets/reevo-alerts.jpg"
+            },
+            "alt": "Slack conversation where a rep asks Reevo which deals are at risk this quarter and Reevo replies naming three at-risk deals with the reasons"
+          },
+          {
+            "image": {
+              "assetRole": "product-screenshot",
+              "ref": "public/assets/summary.jpg"
+            },
+            "alt": "Ask Reevo activity summary of a deal's pricing and ROI concerns, with an insight and recommended next steps"
+          },
+          {
+            "image": {
+              "assetRole": "product-screenshot",
+              "ref": "public/assets/output.jpg"
+            },
+            "alt": "Ask Reevo naming the team's strongest seller for an objection and laying out their step-by-step talk track"
+          }
+        ],
+        "patternStrip": {
+          "assetRole": "decorative-pattern",
+          "ref": "public/assets/images/patterns/pattern-04.png"
+        }
+      },
+      "motion": {
+        "pattern": "progress-carousel",
+        "reducedMotionFallback": "pause",
+        "durationMs": 200,
+        "easing": "linear",
+        "intervalMs": 5000
+      },
+      "variant": "default"
+    },
+    {
+      "section": "social-proof.testimonial",
+      "content": {
+        "variant": "home-dark-card",
+        "photo": {
+          "assetRole": "person-portrait",
+          "ref": "public/assets/nate.jpg"
+        },
+        "photoAlt": "Nate",
+        "quote": "Coming from HubSpot, Reevo was truly a breath of fresh air. Their vertically integrated platform for outbound sales and AI-first workflow has made spinning up campaigns a breeze for us, and we're booking meetings at a steady clip with their outbound tools. The Reevo team has been the best vendor we've ever worked with, and they continue to ship huge updates at breakneck pace. The future is bright for these guys.",
+        "name": "Nate",
+        "role": "Digital Marketing Manager, nClarity",
+        "patternStrips": {
+          "assetRole": "decorative-pattern",
+          "ref": "public/assets/images/testimonials/patterns/pattern-top-neutral.png"
+        }
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "none-needed"
+      },
+      "variant": "home-dark-card"
+    },
+    {
+      "section": "conversion.cta-band",
+      "content": {
+        "headline": "Every workflow. Full context. Compounding results.",
+        "lede": "Onboarding is easy. Get up and running in minutes.",
+        "ctas": [
+          {
+            "label": "Get started",
+            "href": "/get-started",
+            "variant": "primary"
+          },
+          {
+            "label": "See Reevo",
+            "href": "/product-tour",
+            "variant": "outline"
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "hover-color-transition",
+        "reducedMotionFallback": "instant",
+        "durationMs": 200
+      },
+      "variant": "shared-cta"
+    },
+    {
+      "section": "shell.footer",
+      "content": {
+        "mark": {
+          "assetRole": "brand-mark",
+          "ref": "src/components/svgPaths.js#FOOTERMARK_PATHS"
+        },
+        "groups": [
+          {
+            "title": "Products",
+            "links": [
+              {
+                "label": "Find",
+                "href": "/products/find",
+                "dot": "bg-orange-8"
+              },
+              {
+                "label": "Connect",
+                "href": "/products/connect",
+                "dot": "bg-pink-9"
+              },
+              {
+                "label": "Sell",
+                "href": "/products/sell",
+                "dot": "bg-green-8"
+              },
+              {
+                "label": "Manage",
+                "href": "/products/manage",
+                "dot": "bg-yellow-8"
+              },
+              {
+                "label": "Foundation",
+                "href": "/products/foundation",
+                "dot": "bg-blue-8"
+              }
+            ]
+          },
+          {
+            "title": "Platform",
+            "links": [
+              {
+                "label": "Pricing",
+                "href": "/pricing"
+              },
+              {
+                "label": "Blog",
+                "href": "/blog"
+              },
+              {
+                "label": "Product Tour",
+                "href": "/product-tour"
+              },
+              {
+                "label": "Login",
+                "href": "http://app.reevo.ai"
+              }
+            ]
+          },
+          {
+            "title": "Company",
+            "links": [
+              {
+                "label": "About us",
+                "href": "/about"
+              },
+              {
+                "label": "Careers",
+                "href": "/careers"
+              },
+              {
+                "label": "Startup Program",
+                "href": "/startups"
+              },
+              {
+                "label": "Become a Partner",
+                "href": "/partners"
+              },
+              {
+                "label": "Release Notes",
+                "href": "/release-notes"
+              },
+              {
+                "label": "Newsletter",
+                "href": "/newsletter"
+              }
+            ]
+          },
+          {
+            "title": "Social",
+            "links": [
+              {
+                "label": "LinkedIn",
+                "href": "https://www.linkedin.com/company/reevo-ai/"
+              },
+              {
+                "label": "X/Twitter",
+                "href": "https://x.com/reevo_ai"
+              }
+            ]
+          }
+        ],
+        "legalLinks": [
+          {
+            "label": "Privacy Notice",
+            "href": "https://reevo.ai/privacy"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "https://reevo.ai/terms"
+          }
+        ],
+        "privacyChoiceLabel": "Do Not Sell or Share My Personal Information",
+        "copyright": "© 2026 Reevo, Inc.",
+        "complianceChips": [
+          "SOC2 Compliant",
+          "AICPA SOC Trusted",
+          "ISO 27001 Certified"
+        ]
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "none-needed"
+      }
+    }
+  ]
+}

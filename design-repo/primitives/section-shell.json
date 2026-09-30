@@ -1,0 +1,58 @@
+{
+  "id": "section-shell",
+  "kind": "primitive",
+  "purpose": "The single section wrapper (Section in ui.jsx): relative, vertical padding, optional pattern strip, Container, vertical stack rhythm (overridable through the stack prop).",
+  "measuredFrom": [
+    "src/components/ui.jsx:126-137",
+    "src/components/ui.jsx:8"
+  ],
+  "props": {
+    "id": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    },
+    "pattern": {
+      "type": "assetRef",
+      "assetRole": "decorative-pattern",
+      "description": "Optional pattern image URL for the top strip"
+    },
+    "stack": {
+      "type": "string",
+      "default": "space-y-10 md:space-y-16 lg:space-y-20 xl:space-y-24",
+      "description": "Tailwind classes for the vertical rhythm between the blocks inside the section; defaults to the exported STACK constant"
+    }
+  },
+  "variants": [
+    {
+      "name": "without-pattern",
+      "description": "py-16 md:py-24 lg:py-32; content stack space-y-10 md:16 lg:20 xl:24 (or the stack prop); no top offset",
+      "measuredFrom": [
+        "src/components/ui.jsx:128-137"
+      ]
+    },
+    {
+      "name": "with-pattern",
+      "description": "Same padding and stack; the pattern strip is rendered absolutely at the top and the content stack gains pt-6 md:pt-0, only when a pattern is set",
+      "measuredFrom": [
+        "src/components/ui.jsx:131",
+        "src/components/ui.jsx:133"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "16",
+    "24",
+    "32",
+    "10"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/ui.jsx:128-137"
+    ]
+  }
+}

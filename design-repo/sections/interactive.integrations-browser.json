@@ -1,0 +1,82 @@
+{
+  "id": "interactive.integrations-browser",
+  "kind": "section",
+  "category": "interactive",
+  "purpose": "Let a visitor check whether the tool they already use is supported, by browsing or searching a catalogue of about 1,300 integrations grouped by the five product pillars. It backs the page's '1,300+ tools' claim with a searchable list and lets a filtered view be shared by URL.",
+  "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:112-285"],
+  "behaviour": [
+    { "note": "Catalogue: 1338 rows of [name, pillar, category, website, featured?] in src/components/pricing/integrationsData.js, grouped by 5 pillars (Find, Connect, Sell, Manage, Foundation) and 25 pillar/sub-category pairs; 20 rows are flagged featured. The catalogue is data, not copy: it must be supplied by the content source and can grow.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:6-9", "src/components/pricing/IntegrationsBrowser.jsx:18-36", "src/components/pricing/integrationsData.js:1-4"] },
+    { "note": "Default view (pillar All, no sub-category, empty search): two blocks, 'Featured' (the flagged rows, in source order) then 'All tools' (remaining rows sorted by name, numeric and case-insensitive). Any filter or search shows a single flat grid sorted by name.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:25-27", "src/components/pricing/IntegrationsBrowser.jsx:130", "src/components/pricing/IntegrationsBrowser.jsx:235-245", "src/components/pricing/IntegrationsBrowser.jsx:268-270"] },
+    { "note": "Filters: a left rail of pillar buttons (All plus 5), each with a count in parentheses. Choosing a pillar (other than All) shows a pillar description and a row of sub-category pills (All plus that pillar's sub-categories, with counts); choosing a pill filters to that sub-category. Selecting a pillar resets the sub-category.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:77-110", "src/components/pricing/IntegrationsBrowser.jsx:121-124", "src/components/pricing/IntegrationsBrowser.jsx:205-210", "src/components/pricing/IntegrationsBrowser.jsx:221-231"] },
+    { "note": "Search: a text input filtering by tool name OR website hostname (case-insensitive substring). Typing a non-empty query resets the pillar to All and replaces the heading with a 'Results for' heading; a clear (X) button appears once there is text. Search ignores the pillar and sub-category filters.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:125-140", "src/components/pricing/IntegrationsBrowser.jsx:156", "src/components/pricing/IntegrationsBrowser.jsx:170-190"] },
+    { "note": "Paging: 60 per step (PAGE = 60). A 'Load more' outline button appends 60 more and a 'Showing X of Y' caption shows progress; there is no infinite scroll and no numbered pages. In the default view the first 60 slots include the 20 featured rows, so 40 'All tools' rows show at first. The limit resets to 60 whenever the pillar, sub-category or search text changes.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:8", "src/components/pricing/IntegrationsBrowser.jsx:117", "src/components/pricing/IntegrationsBrowser.jsx:142", "src/components/pricing/IntegrationsBrowser.jsx:151-157", "src/components/pricing/IntegrationsBrowser.jsx:272-281"] },
+    { "note": "URL sync: ?category=<pillar, lower case>&subcategory=<slug> is read on first render and written with history.replaceState (no history entries, no navigation) whenever the pillar or sub-category changes. The search text is NOT synced to the URL. Unknown values fall back to All.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:38", "src/components/pricing/IntegrationsBrowser.jsx:50-54", "src/components/pricing/IntegrationsBrowser.jsx:113-116", "src/components/pricing/IntegrationsBrowser.jsx:143-149"] },
+    { "note": "Empty state: bordered box with an Inbox icon, a 'no integrations match' message and a 'Clear filters' link that resets pillar to All and clears the query.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:246-267"] },
+    { "note": "Tool card: 40px logo tile plus the tool name, truncated to one line. Logos are lazy-loaded and the alt text is the website plus 'logo'. Logo source: 20 tools have a locally stored override file (integration-logo role); every other logo is fetched from a third-party logo service by hostname (third-party-embed role, must-not-reuse-live-endpoint). The request includes a publishable token; it is not reproduced here and must not be shipped (see src/components/pricing/IntegrationsBrowser.jsx:48). A clone must render a neutral local placeholder tile for these logos.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:46-49", "src/components/pricing/IntegrationsBrowser.jsx:56-65", "src/components/pricing/integrationsData.js:1345-1351"] },
+    { "note": "Below md the filter rail collapses: the search input has a 'Filters' toggle button beside it (plus/minus icon, aria-expanded) that shows or hides the pillar list; from md the list is always visible and the rail is sticky.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:161", "src/components/pricing/IntegrationsBrowser.jsx:191-204"] },
+    { "note": "Hosting: the page wraps the component in a gray-1 section with the site's standard section padding, followed by the CTA band. The header above it is the page header with the '1,300+ tools' headline.", "measuredFrom": ["src/pages/Integrations.jsx:47-52", "src/pages/Integrations.jsx:9-28"] }
+  ],
+  "variants": [
+    { "name": "default", "description": "Pillar All, no sub-category, empty search: a Featured block then an All tools block.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:130", "src/components/pricing/IntegrationsBrowser.jsx:235-245"] },
+    { "name": "pillar-filtered", "description": "One pillar selected (optionally one sub-category): heading is the pillar name, description paragraph and sub-category pills shown, one flat grid.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:156", "src/components/pricing/IntegrationsBrowser.jsx:221-231", "src/components/pricing/IntegrationsBrowser.jsx:268-270"] },
+    { "name": "search-results", "description": "Non-empty query: 'Results for' heading, no pillar copy or pills, one flat grid.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:129", "src/components/pricing/IntegrationsBrowser.jsx:156"] },
+    { "name": "empty", "description": "No rows match: bordered empty state with a clear-filters link.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:246-267"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "searchPlaceholderTemplate": { "type": "string", "required": true, "maxWords": 3, "note": "Search input placeholder built from the catalogue size (the word 'Search', the total count formatted with thousands separator, and 'tools').", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:174"] },
+      "pillars": {
+        "type": "array", "required": true, "minItems": 5, "maxItems": 5,
+        "note": "The five product pillars in fixed order (Find, Connect, Sell, Manage, Foundation). Each has a one-sentence description shown only when that pillar is selected.",
+        "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:9-16"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "name": { "type": "string", "required": true, "maxWords": 1, "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:9"] },
+            "description": { "type": "string", "required": true, "maxWords": 24, "note": "Observed up to about 22 words.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:10-16"] }
+          }
+        }
+      },
+      "integrations": {
+        "type": "array", "required": true, "minItems": 1,
+        "note": "The catalogue rows. Observed 1338 rows, 20 flagged featured, 25 distinct pillar/sub-category pairs. Real third-party product names and websites; never fabricate.",
+        "measuredFrom": ["src/components/pricing/integrationsData.js:1-4", "src/components/pricing/IntegrationsBrowser.jsx:18-24"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "name": { "type": "string", "required": true, "maxWords": 9, "note": "Tool name, truncated to one line in the card. Observed up to 9 words.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:62"] },
+            "pillar": { "type": "enum", "required": true, "values": ["Find", "Connect", "Sell", "Manage", "Foundation"], "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:9", "src/components/pricing/IntegrationsBrowser.jsx:33"] },
+            "category": { "type": "string", "required": true, "maxWords": 4, "note": "Sub-category within the pillar (25 pairs observed). Observed up to 4 words.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:34-35"] },
+            "website": { "type": "route-or-url", "required": true, "note": "The tool's own site. Used only to derive the hostname for search and for the logo lookup; the card is not a link.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:39-49", "src/components/pricing/IntegrationsBrowser.jsx:56-65"] },
+            "featured": { "type": "boolean", "required": false, "note": "Shows the row in the Featured block of the default view.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:23", "src/components/pricing/IntegrationsBrowser.jsx:26"] },
+            "logo": { "type": "assetRef", "required": false, "assetRole": "integration-logo", "note": "Optional local override file for tools whose logo is stored locally (20 observed). Existing real file only.", "measuredFrom": ["src/components/pricing/integrationsData.js:1345-1351", "src/components/pricing/IntegrationsBrowser.jsx:47"] },
+            "remoteLogo": { "type": "assetRef", "required": false, "assetRole": "third-party-embed", "note": "All other logos come from a third-party logo service keyed by hostname. Do not embed the live URL or its token; render a neutral placeholder tile.", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:47-49"] }
+          }
+        }
+      }
+    }
+  },
+  "mediaFields": [
+    { "field": "integrations[].logo", "assetRole": "integration-logo" },
+    { "field": "integrations[].remoteLogo", "assetRole": "third-party-embed" }
+  ],
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Only colour transitions on filter buttons and pills (hover and active states); results swap instantly with no animation. The source has no prefers-reduced-motion handling, so none-needed is a proposal.",
+    "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:86-89", "src/components/pricing/IntegrationsBrowser.jsx:102-104", "src/components/pricing/IntegrationsBrowser.jsx:183"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "single column; filter rail on top with a Filters toggle that shows or hides the pillar list; tool cards in 2 columns", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:69", "src/components/pricing/IntegrationsBrowser.jsx:161", "src/components/pricing/IntegrationsBrowser.jsx:196", "src/components/pricing/IntegrationsBrowser.jsx:204"] },
+      { "at": "md", "change": "rail becomes a sticky left column of 4 columns, always expanded; results take 8 columns", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:161", "src/components/pricing/IntegrationsBrowser.jsx:215"] },
+      { "at": "lg", "change": "rail 6 columns, results 17 columns starting at column 8", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:161", "src/components/pricing/IntegrationsBrowser.jsx:215"] },
+      { "at": "xl", "change": "rail 5 columns from column 2 with larger sticky offset; tool cards in 3 columns with more padding", "measuredFrom": ["src/components/pricing/IntegrationsBrowser.jsx:58", "src/components/pricing/IntegrationsBrowser.jsx:69", "src/components/pricing/IntegrationsBrowser.jsx:161"] }
+    ]
+  },
+  "usedOnRoutes": ["/integrations"],
+  "tokensUsed": ["semanticColor.text.strong", "semanticColor.text.muted", "semanticColor.border.default", "semanticColor.surface.background", "color.gray.1", "fontSize.display-xl", "fontSize.sm", "fontSize.xs", "borderRadius.full", "borderRadius.lg"]
+}

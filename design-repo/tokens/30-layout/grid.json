@@ -1,0 +1,47 @@
+{
+  "$description": "24-column responsive grid (GRID in ui.jsx). Below md the 12-col layout is NOT active; everything stacks on a 6-col grid (CLONE_SPEC.md:281).",
+  "category": "layout",
+  "grid": {
+    "gap": {
+      "value": "1rem (16px)",
+      "measuredFrom": "src/components/ui.jsx:5",
+      "classes": "gap-4"
+    },
+    "columns-base": {
+      "value": 6,
+      "measuredFrom": "src/components/ui.jsx:5",
+      "classes": "grid-cols-6"
+    },
+    "columns-md": {
+      "value": 12,
+      "measuredFrom": "src/components/ui.jsx:5",
+      "breakpoint": "{breakpoint.md}"
+    },
+    "columns-lg": {
+      "value": 24,
+      "measuredFrom": "src/components/ui.jsx:5",
+      "breakpoint": "{breakpoint.lg}",
+      "tailwindDef": "tailwind.config.js:79"
+    },
+    "colLabel": {
+      "value": "col-span-6 md:col-span-12 lg:col-span-24 xl:col-span-22 xl:col-start-2",
+      "measuredFrom": "src/components/ui.jsx:11"
+    },
+    "colHeadline": {
+      "value": "col-span-6 md:col-span-9 lg:col-span-14 xl:col-span-12 xl:col-start-2",
+      "measuredFrom": "src/components/ui.jsx:12"
+    },
+    "colText": {
+      "value": "col-span-6 md:col-span-5 lg:col-span-9 xl:col-span-8 xl:col-start-2",
+      "measuredFrom": "src/components/ui.jsx:13"
+    },
+    "colImage": {
+      "value": "col-span-6 md:col-span-6 md:col-start-7 md:row-start-1 lg:col-span-14 lg:col-start-11",
+      "measuredFrom": "src/components/ui.jsx:14"
+    },
+    "extraSpans": {
+      "value": "col-span-13..24 and col-start-14..25 are added to the theme",
+      "measuredFrom": "tailwind.config.js:80-81"
+    }
+  }
+}

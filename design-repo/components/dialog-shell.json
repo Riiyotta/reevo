@@ -1,0 +1,74 @@
+{
+  "id": "dialog-shell",
+  "kind": "component",
+  "purpose": "Modal: 50% black overlay plus a centred rounded panel, Escape closes, body scroll locked. One shared module (dialog.jsx) holds useModal (Escape, scroll lock, optional focus on open), MediaDialog (animated video/iframe dialog, portalled, scale/translate fade-in) and CardDialog (static centred card with a top-right close button).",
+  "measuredFrom": [
+    "src/components/dialog.jsx:7-20",
+    "src/components/dialog.jsx:37-74",
+    "src/components/dialog.jsx:76-100",
+    "src/components/Customers.jsx:72-85",
+    "src/components/pricing/TourDemo.jsx:7-34"
+  ],
+  "props": {
+    "open": {
+      "type": "boolean",
+      "required": true
+    },
+    "onClose": {
+      "type": "string",
+      "description": "Close callback"
+    },
+    "title": {
+      "type": "string",
+      "description": "aria-label (passed to MediaDialog as `label`; CardDialog takes `labelledBy`, the id of its title, instead)"
+    }
+  },
+  "variants": [
+    {
+      "name": "video",
+      "description": "MediaDialog with aspect-video, width min(90vw,1240px,...), video with controls, round close button top-right (VideoDialog in Customers.jsx)",
+      "measuredFrom": [
+        "src/components/Customers.jsx:72-85",
+        "src/components/dialog.jsx:62-70"
+      ]
+    },
+    {
+      "name": "embed",
+      "description": "MediaDialog with an iframe demo; aspect 3/4 below md, 16/9 at md+ (DemoDialog in TourDemo.jsx)",
+      "measuredFrom": [
+        "src/components/pricing/TourDemo.jsx:9-14"
+      ]
+    },
+    {
+      "name": "card",
+      "description": "CardDialog: static (unanimated, no portal) centred card, p-6 md:p-8, max width set by panelClassName, close button top-right without a round background; used by the app-download dialog (blog/MobileSections.jsx) and the scheduler shell (pricing/GetStartedForm.jsx)",
+      "measuredFrom": [
+        "src/components/dialog.jsx:76-100",
+        "src/components/blog/MobileSections.jsx:17-21",
+        "src/components/pricing/GetStartedForm.jsx:55-61"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "diffused",
+    "overlay-enter",
+    "base-200",
+    "standard"
+  ],
+  "motion": {
+    "pattern": "dialog-overlay",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only.",
+    "hiddenFrame": "opacity 0, translateY(8px), scale(.96)",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": [
+      "src/components/dialog.jsx:22-26",
+      "src/components/dialog.jsx:42-54",
+      "src/components/dialog.jsx:50-60"
+    ]
+  },
+  "composes": [
+    "presence"
+  ]
+}

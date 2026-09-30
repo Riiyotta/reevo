@@ -1,0 +1,41 @@
+{
+  "id": "hero.page-header",
+  "kind": "section",
+  "category": "hero",
+  "purpose": "Plain text page opener for utility-style pages: a small mono label, a large all-caps title and an optional one-sentence lede. Sets the page topic before the main content (plans, demo, post list).",
+  "measuredFrom": ["src/components/pricing/shared.jsx:12-28", "src/pages/Blog.jsx:41-52", "src/pages/Pricing.jsx:11-14", "src/pages/ProductTour.jsx:43-46"],
+  "variants": [
+    { "name": "with-lede", "description": "Shared PageHeader component: label, title and lede. Used by pricing and product tour.", "measuredFrom": ["src/components/pricing/shared.jsx:14-28", "src/pages/Pricing.jsx:11-14", "src/pages/ProductTour.jsx:43-46"] },
+    { "name": "no-lede", "description": "Blog copy: the same markup written inline in the page with no lede paragraph. It is a separate duplicate, not the shared component.", "measuredFrom": ["src/pages/Blog.jsx:41-52"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "label": { "type": "string", "required": true, "maxWords": 2, "note": "Mono uppercase eyebrow. Semantic inversion: it is the h1.", "measuredFrom": ["src/components/pricing/shared.jsx:20"] },
+      "title": { "type": "string", "required": true, "maxWords": 8, "note": "Display-3xl heading font, uppercase, balanced. Semantic inversion: it is the h2. Observed 3 to 6 words.", "measuredFrom": ["src/components/pricing/shared.jsx:21"] },
+      "lede": { "type": "string", "required": false, "maxWords": 20, "note": "Optional; absent in the no-lede variant. Observed 17 words on both pages that use it.", "measuredFrom": ["src/components/pricing/shared.jsx:23-25"] }
+    }
+  },
+  "mediaFields": [],
+  "behaviour": [
+    { "note": "No background colour and no media.", "measuredFrom": ["src/components/pricing/shared.jsx:16-28"] },
+    { "note": "Heading order is inverted: the small label is the h1 and the large title is the h2.", "measuredFrom": ["src/components/pricing/shared.jsx:20-21", "src/pages/Blog.jsx:46-49"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Static; no animation in either implementation.",
+    "measuredFrom": ["src/components/pricing/shared.jsx:14-28"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to xl", "change": "vertical padding 40 / 48 (md) / 56 (xl)", "measuredFrom": ["src/components/pricing/shared.jsx:16"] },
+      { "at": "sm to lg", "change": "label bottom margin grows 20 / 24 (sm) / 32 (lg)", "measuredFrom": ["src/components/pricing/shared.jsx:20"] },
+      { "at": "md to xl", "change": "title column spans 6, 12 (md), 22 (lg), 20 from col 2 (xl); lede column 6, 9 (md), 14 (lg), 12 from col 2 (xl)", "measuredFrom": ["src/components/pricing/shared.jsx:19", "src/components/pricing/shared.jsx:23"] }
+    ]
+  },
+  "usedOnRoutes": ["/pricing", "/product-tour", "/blog"],
+  "tokensUsed": ["fontFamily.mono", "fontFamily.heading", "fontSize.display-xs", "fontSize.display-3xl", "fontSize.lg", "semanticColor.text.strong", "semanticTypography.eyebrow"]
+}

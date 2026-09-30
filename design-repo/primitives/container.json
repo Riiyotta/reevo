@@ -1,0 +1,36 @@
+{
+  "id": "container",
+  "kind": "primitive",
+  "purpose": "Page-width gutter wrapper: full width with responsive side padding, inner content capped at 1400px.",
+  "measuredFrom": [
+    "src/components/ui.jsx:21-25"
+  ],
+  "props": {
+    "className": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "w-full px-6 sm:px-8 md:px-10 lg:px-12; inner mx-auto max-w-[1400px]",
+      "measuredFrom": [
+        "src/components/ui.jsx:23-24"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "6",
+    "8",
+    "10",
+    "12"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/ui.jsx:21-25"
+    ]
+  }
+}

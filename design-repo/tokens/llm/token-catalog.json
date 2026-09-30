@@ -1,0 +1,285 @@
+{
+  "$description": "Referenceable token catalog. Keys are the real top-level category keys of the token files; each list holds the referenceable token names. Reference syntax in tokens: {<catalogKey>.<name>} (colour: {color.<family>.<step>}).",
+  "catalogVersion": "1.0.0",
+  "color": {
+    "source": "tokens/00-foundation/color.json",
+    "names": [
+      "black",
+      "white",
+      "gray.1",
+      "gray.2",
+      "gray.3",
+      "gray.4",
+      "gray.5",
+      "gray.6",
+      "gray.7",
+      "gray.8",
+      "gray.9",
+      "gray.10",
+      "yellow.1",
+      "yellow.3",
+      "yellow.5",
+      "yellow.8",
+      "yellow.9",
+      "yellow.10",
+      "yellow.12",
+      "green.1",
+      "green.2",
+      "green.3",
+      "green.4",
+      "green.5",
+      "green.6",
+      "green.8",
+      "green.9",
+      "green.10",
+      "green.11",
+      "green.13",
+      "green.15",
+      "orange.1",
+      "orange.2",
+      "orange.3",
+      "orange.8",
+      "orange.9",
+      "orange.13",
+      "blue.1",
+      "blue.2",
+      "blue.3",
+      "blue.7",
+      "blue.8",
+      "blue.13",
+      "blue.15",
+      "pink.1",
+      "pink.2",
+      "pink.3",
+      "pink.4",
+      "pink.9",
+      "pink.11",
+      "pink.13",
+      "pink.15",
+      "teal.1",
+      "teal.2",
+      "teal.4",
+      "teal.6",
+      "teal.8",
+      "teal.9",
+      "teal.13",
+      "teal.14",
+      "teal.15"
+    ]
+  },
+  "fontFamily": {
+    "source": "tokens/00-foundation/typography.json",
+    "names": [
+      "sans",
+      "heading",
+      "mono"
+    ]
+  },
+  "fontSize": {
+    "source": "tokens/00-foundation/typography.json",
+    "names": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl",
+      "3xl",
+      "display-xs",
+      "display-md",
+      "display-lg",
+      "display-lg-2",
+      "display-xl",
+      "display-2xl",
+      "display-3xl"
+    ]
+  },
+  "fontWeight": {
+    "source": "tokens/00-foundation/typography.json",
+    "names": [
+      "regular",
+      "medium",
+      "bold",
+      "extrabold",
+      "black"
+    ]
+  },
+  "lineHeight": {
+    "source": "tokens/00-foundation/typography.json",
+    "names": [
+      "lh-105",
+      "lh-110",
+      "lh-115",
+      "lh-135",
+      "lh-80"
+    ]
+  },
+  "letterSpacing": {
+    "source": "tokens/00-foundation/typography.json",
+    "names": [
+      "tight-1",
+      "zero",
+      "tight-2",
+      "wide-15"
+    ]
+  },
+  "borderRadius": {
+    "source": "tokens/00-foundation/radius.json",
+    "names": [
+      "none",
+      "xs",
+      "DEFAULT",
+      "sm",
+      "lg",
+      "2xl",
+      "full"
+    ]
+  },
+  "spacing": {
+    "source": "tokens/00-foundation/spacing.json",
+    "names": [
+      "unit",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "8",
+      "10",
+      "12",
+      "16",
+      "20",
+      "24",
+      "32"
+    ]
+  },
+  "breakpoint": {
+    "source": "tokens/00-foundation/breakpoint.json",
+    "names": [
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl"
+    ]
+  },
+  "elevation": {
+    "source": "tokens/00-foundation/elevation.json",
+    "names": [
+      "none",
+      "diffused"
+    ]
+  },
+  "iconSize": {
+    "source": "tokens/00-foundation/icon-size.json",
+    "names": [
+      "xs-13",
+      "3",
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "footer-mark-29"
+    ]
+  },
+  "duration": {
+    "source": "tokens/00-foundation/motion.json",
+    "names": [
+      "fast-180",
+      "base-200",
+      "fade-250",
+      "slow-300",
+      "marquee-fade-in-700",
+      "hover-intent-open-200",
+      "hover-intent-close-150",
+      "stepper-linear-200",
+      "notification-interval-2600",
+      "carousel-advance-5000",
+      "marquee-cycle-51833"
+    ]
+  },
+  "easing": {
+    "source": "tokens/00-foundation/motion.json",
+    "names": [
+      "standard",
+      "ease-out",
+      "linear"
+    ]
+  },
+  "speed": {
+    "source": "tokens/00-foundation/motion.json",
+    "names": [
+      "marquee-px-per-second"
+    ]
+  },
+  "semanticColor": {
+    "source": "tokens/10-semantic/color.json",
+    "names": [
+      "text.strong",
+      "text.body",
+      "text.secondary",
+      "text.muted",
+      "text.on-primary",
+      "surface.background",
+      "surface.primary",
+      "surface.subtle",
+      "surface.section-alt",
+      "surface.section-deep",
+      "surface.inverse",
+      "border.default",
+      "border.card",
+      "accent.find",
+      "accent.connect",
+      "accent.sell",
+      "accent.manage",
+      "accent.progress",
+      "accent.feature-chip"
+    ]
+  },
+  "semanticTypography": {
+    "source": "tokens/10-semantic/typography.json",
+    "names": [
+      "body",
+      "eyebrow",
+      "hero-heading",
+      "hero-sub",
+      "section-headline",
+      "section-lede",
+      "product-heading",
+      "button-lg",
+      "button-sm",
+      "footer-link",
+      "footer-caption"
+    ]
+  },
+  "semanticRadius": {
+    "source": "tokens/10-semantic/radius.json",
+    "names": [
+      "control-lg",
+      "control-sm",
+      "tag",
+      "panel",
+      "avatar-round"
+    ]
+  },
+  "semanticMotion": {
+    "source": "tokens/10-semantic/motion.json",
+    "names": [
+      "interaction",
+      "overlay-enter",
+      "hero-presence",
+      "marquee",
+      "carousel-advance",
+      "notification-cycle"
+    ]
+  },
+  "theme": {
+    "source": "tokens/themes",
+    "names": [
+      "light",
+      "dark"
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "$description": "Semantic colour roles. The 8 themed roles are the real CSS variables (light in :root, dark under .dark, applied to #problem). Non-themed roles are constant palette picks used by named components. Values are references into 00-foundation/color.json.",
+  "category": "semantic-color",
+  "semantic": {
+    "text": {
+      "strong": {
+        "value": "{color.gray.10}",
+        "type": "color",
+        "cssVar": "--color-strong",
+        "themed": true,
+        "darkValue": "{color.white}",
+        "note": "Headlines, eyebrows, footer links. Tailwind: text-strong",
+        "measuredFrom": "src/index.css:28 ; dark src/index.css:45"
+      },
+      "body": {
+        "value": "{color.gray.9}",
+        "type": "color",
+        "cssVar": "--color-foreground",
+        "themed": true,
+        "darkValue": "{color.gray.2}",
+        "note": "Body copy, section ledes. Tailwind: text-foreground (also body colour, index.css:53)",
+        "measuredFrom": "src/index.css:27 ; dark src/index.css:44"
+      },
+      "secondary": {
+        "value": "{color.gray.9}",
+        "type": "color",
+        "cssVar": "--color-secondary-foreground",
+        "themed": true,
+        "darkValue": "{color.white}",
+        "note": "Outline button text and border. Tailwind: text-secondary-foreground",
+        "measuredFrom": "src/index.css:31 ; dark src/index.css:49"
+      },
+      "muted": {
+        "value": "{color.gray.5}",
+        "type": "color",
+        "cssVar": "--color-muted-foreground",
+        "themed": false,
+        "darkValue": null,
+        "note": "Footer group titles, compliance chips. Not overridden in .dark",
+        "measuredFrom": "src/index.css:32"
+      },
+      "on-primary": {
+        "value": "{color.white}",
+        "type": "color",
+        "cssVar": "--color-primary-foreground",
+        "themed": true,
+        "darkValue": "{color.gray.10}",
+        "note": "Text on primary (filled) button",
+        "measuredFrom": "src/index.css:30 ; dark src/index.css:48"
+      }
+    },
+    "surface": {
+      "background": {
+        "value": "{color.white}",
+        "type": "color",
+        "cssVar": "--color-background",
+        "themed": true,
+        "darkValue": "{color.gray.10}",
+        "note": "Page / header / footer background. Tailwind: bg-background",
+        "measuredFrom": "src/index.css:26 ; dark src/index.css:43"
+      },
+      "primary": {
+        "value": "{color.gray.10}",
+        "type": "color",
+        "cssVar": "--color-primary",
+        "themed": true,
+        "darkValue": "{color.white}",
+        "note": "Filled button. Tailwind: bg-primary",
+        "measuredFrom": "src/index.css:29 ; dark src/index.css:47"
+      },
+      "subtle": {
+        "value": "{color.gray.1}",
+        "type": "color",
+        "themed": false,
+        "note": "Nav item and dropdown row hover background",
+        "measuredFrom": "CLONE_SPEC.md:292"
+      },
+      "section-alt": {
+        "value": "{color.gray.2}",
+        "type": "color",
+        "themed": false,
+        "note": "Section background (Built Different)",
+        "measuredFrom": "src/components/BuiltDifferent.jsx:7"
+      },
+      "section-deep": {
+        "value": "{color.gray.3}",
+        "type": "color",
+        "themed": false,
+        "note": "Section background (Customers)",
+        "measuredFrom": "src/components/Customers.jsx:97"
+      },
+      "inverse": {
+        "value": "{color.gray.10}",
+        "type": "color",
+        "themed": false,
+        "note": "Hero play button background (bg-gray-10)",
+        "measuredFrom": "src/components/Hero.jsx:85"
+      }
+    },
+    "border": {
+      "default": {
+        "value": "{color.gray.3}",
+        "type": "color",
+        "cssVar": "--color-border",
+        "themed": true,
+        "darkValue": "{color.gray.7}",
+        "note": "Hairlines, tags, hr (index.css:57). Tailwind: border-border",
+        "measuredFrom": "src/index.css:33 ; dark src/index.css:46"
+      },
+      "card": {
+        "value": "{color.gray.4}",
+        "type": "color",
+        "themed": false,
+        "note": "Mobile card border #a8a6a4",
+        "measuredFrom": "CLONE_SPEC.md:283"
+      }
+    },
+    "accent": {
+      "find": {
+        "value": "{color.orange.2}",
+        "type": "color",
+        "themed": false,
+        "note": "Product pill Find",
+        "measuredFrom": "src/components/Solution.jsx:7"
+      },
+      "connect": {
+        "value": "{color.pink.2}",
+        "type": "color",
+        "themed": false,
+        "note": "Product pill Connect",
+        "measuredFrom": "src/components/Solution.jsx:13"
+      },
+      "sell": {
+        "value": "{color.green.3}",
+        "type": "color",
+        "themed": false,
+        "note": "Product pill Sell",
+        "measuredFrom": "src/components/Solution.jsx:19"
+      },
+      "manage": {
+        "value": "{color.yellow.3}",
+        "type": "color",
+        "themed": false,
+        "note": "Product pill Manage",
+        "measuredFrom": "src/components/Solution.jsx:25"
+      },
+      "progress": {
+        "value": "{color.orange.8}",
+        "type": "color",
+        "themed": false,
+        "note": "Ask Reevo carousel progress fill",
+        "measuredFrom": "CLONE_SPEC.md:290"
+      },
+      "feature-chip": {
+        "value": "{color.blue.3}",
+        "type": "color",
+        "themed": false,
+        "note": "Feature list chip background",
+        "measuredFrom": "CLONE_SPEC.md:180"
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "submit-button",
+  "kind": "primitive",
+  "purpose": "Primary lg submit button with trailing ChevronRight.",
+  "measuredFrom": [
+    "src/components/company/Form.jsx:92-101"
+  ],
+  "props": {
+    "children": {
+      "type": "string",
+      "required": true,
+      "maxWords": 4
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "buttonClass primary lg + size-4 chevron",
+      "measuredFrom": [
+        "src/components/company/Form.jsx:94-98"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "button-lg"
+  ],
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "none-needed",
+    "durationMs": 200,
+    "measuredFrom": [
+      "src/components/ui.jsx:43-46"
+    ]
+  }
+}

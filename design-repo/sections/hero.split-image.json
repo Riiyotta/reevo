@@ -1,0 +1,54 @@
+{
+  "id": "hero.split-image",
+  "kind": "section",
+  "category": "hero",
+  "purpose": "Hero for informational landing pages: mono eyebrow, large all-caps headline, a lede and one or two CTAs on the left, with a square supporting image on the right at md and up. Used to frame a comparison or the integrations catalogue before detailed content.",
+  "measuredFrom": ["src/components/compare/CompareSections.jsx:23-61", "src/pages/Integrations.jsx:9-46"],
+  "variants": [
+    { "name": "compare", "description": "CompareHero: eyebrow, headline built from the competitor name, rich lede (bold sentence inside), two CTAs (primary and outline) side by side from sm; the image is a product screenshot with descriptive alt text.", "measuredFrom": ["src/components/compare/CompareSections.jsx:23-61"] },
+    { "name": "integrations", "description": "Page-local header: eyebrow, longer headline, lede with a bold lead, a single full-width Talk to sales button; the image is decorative (empty alt).", "measuredFrom": ["src/pages/Integrations.jsx:9-46"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "eyebrow": { "type": "string", "required": true, "maxWords": 4, "measuredFrom": ["src/components/compare/CompareSections.jsx:29", "src/pages/Integrations.jsx:13"] },
+      "headline": { "type": "string", "required": true, "maxWords": 12, "note": "Compare: 'Reevo vs.' plus a competitor name. Integrations: about 10 words. Rendered as h1, uppercase heading font.", "measuredFrom": ["src/components/compare/CompareSections.jsx:30", "src/pages/Integrations.jsx:14-16"] },
+      "body": { "type": "richtext-inline", "required": true, "maxWords": 80, "note": "Compare: 50 to 74 words across seven competitors; integrations about 39. One bold lead segment is used in both.", "measuredFrom": ["src/components/compare/CompareSections.jsx:45-47", "src/pages/Integrations.jsx:31-35"] },
+      "image": { "type": "assetRef", "required": true, "assetRole": "product-screenshot", "note": "Square (1:1), object-cover.", "measuredFrom": ["src/components/compare/CompareSections.jsx:34-39", "src/pages/Integrations.jsx:20-26"] },
+      "imageAlt": { "type": "string", "required": false, "maxWords": 8, "note": "Descriptive on compare, empty on integrations.", "measuredFrom": ["src/components/compare/CompareSections.jsx:37", "src/pages/Integrations.jsx:23"] },
+      "ctas": {
+        "type": "array", "required": true, "minItems": 1, "maxItems": 2,
+        "items": { "type": "object", "fields": {
+          "label": { "type": "string", "maxWords": 3 },
+          "href": { "type": "string", "kind": "route-or-url" },
+          "variant": { "type": "enum", "values": ["primary", "outline"] }
+        } },
+        "measuredFrom": ["src/components/compare/CompareSections.jsx:50-57", "src/pages/Integrations.jsx:38-42"]
+      }
+    }
+  },
+  "mediaFields": [ { "field": "image", "assetRole": "product-screenshot" } ],
+  "behaviour": [
+    { "note": "Compare hero is a data-driven template: the competitor name (and intro copy) come from a per-competitor data object, not the component.", "measuredFrom": ["src/components/compare/CompareSections.jsx:23-30", "src/components/compare/CompareSections.jsx:45-47"] },
+    { "note": "The image sits in the right column and spans three grid rows from md; below md it appears between the headline and the lede.", "measuredFrom": ["src/components/compare/CompareSections.jsx:32", "src/pages/Integrations.jsx:18"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Static; the only motion is the shared button hover.",
+    "measuredFrom": ["src/components/compare/CompareSections.jsx:23-61", "src/pages/Integrations.jsx:9-46"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to xl", "change": "vertical padding 40 / 48 (md) / 56 (xl); bottom padding drops to 0 at xl so the next section starts flush", "measuredFrom": ["src/components/compare/CompareSections.jsx:25", "src/pages/Integrations.jsx:9"] },
+      { "at": "below md", "change": "single column: eyebrow and headline, then image (with 8px vertical padding), then lede, then CTAs", "measuredFrom": ["src/components/compare/CompareSections.jsx:32-33", "src/components/compare/CompareSections.jsx:44"] },
+      { "at": "md and up", "change": "image column 5 cols from col 8 at md, 9 from col 15 at lg, 8 from col 15 at xl, spanning three rows; lede spans 12 cols at lg, 11 at xl", "measuredFrom": ["src/components/compare/CompareSections.jsx:32", "src/components/compare/CompareSections.jsx:44"] },
+      { "at": "sm and up", "change": "compare CTAs sit side by side capped at 400px; below sm they stack. Integrations button is always full width.", "measuredFrom": ["src/components/compare/CompareSections.jsx:50", "src/pages/Integrations.jsx:39"] },
+      { "at": "xl", "change": "CTA block gains 56px bottom padding", "measuredFrom": ["src/components/compare/CompareSections.jsx:49", "src/pages/Integrations.jsx:37"] }
+    ]
+  },
+  "usedOnRoutes": ["/compare/:competitor", "/integrations"],
+  "tokensUsed": ["fontFamily.mono", "fontFamily.heading", "fontSize.display-3xl", "fontSize.lg", "semanticColor.text.strong", "semanticTypography.eyebrow"]
+}

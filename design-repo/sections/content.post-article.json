@@ -1,0 +1,134 @@
+{
+  "id": "content.post-article",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Present one blog article as a readable long-form page: title block, square cover, the article body in a prose column, a conversion prompt at the foot, and a sticky left sidebar (author and share links, key takeaways, table of contents, newsletter signup) that helps the reader navigate and subscribe while reading.",
+  "measuredFrom": ["src/pages/BlogPost.jsx:13-75", "src/components/blog/PostAside.jsx:9-183", "src/components/blog/PlaceholderBody.jsx:53-176", "src/components/blog/FaqBlock.jsx:8-45"],
+  "behaviour": [
+    { "note": "PLACEHOLDER BODY: in this clone the article body is a fixed lorem-ipsum placeholder, identical for all 43 slugs. The real articles are copyrighted and are not reproduced. Do not treat the body text, the 7 h2 headings, the 5 FAQ questions or the takeaway bullets as content to copy; the contract below records the SET OF PROSE ELEMENTS the original articles use, as a closed list of blocks with no body copy. The key takeaways in the sidebar are placeholder text too, only their count (0, 2 or 3) comes from the real post data.", "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:3-5", "src/components/blog/PlaceholderBody.jsx:14-21", "src/components/blog/PlaceholderBody.jsx:44-47", "src/pages/BlogPost.jsx:44-46", "src/pages/BlogPost.jsx:67", "src/data/blog.js:1-4"] },
+    { "note": "Header data (title, category, one-sentence excerpt, author, date, cover) is real per-post metadata from the shared post record. An unknown slug falls back to the first post rather than a 404. Excerpt has its last two words joined by a non-breaking space. The date here is formatted in UTC (the index uses local time).", "measuredFrom": ["src/pages/BlogPost.jsx:14-17", "src/pages/BlogPost.jsx:27-32", "src/data/blog.js:67-70"] },
+    { "note": "Hero-less by design: there is no separate hero section. The category chip, h1 title, excerpt, mobile author row and the 1760px square cover are the top of the article. The h1 is the only h1 on the page.", "measuredFrom": ["src/pages/BlogPost.jsx:21-43"] },
+    { "note": "Layout: from lg the article column sits on the right (14 of 24 columns starting at column 10; 13 at xl) and the sidebar on the left (8 columns, 7 at xl starting at column 2). Below lg the article is a single column capped at 800px and centred, and the whole sidebar is hidden.", "measuredFrom": ["src/pages/BlogPost.jsx:24-25", "src/pages/BlogPost.jsx:55"] },
+    { "note": "STICKY SIDEBAR: the sidebar stack is position sticky, top 112px (top 128px at xl), so it stays in view while the long article scrolls. Order top to bottom: Back to blog link, author meta with share links, Key takeaways, On this page (table of contents), newsletter box. Children are separated by 32px (40px at xl).", "measuredFrom": ["src/pages/BlogPost.jsx:55-70"] },
+    { "note": "Because the sidebar is hidden below lg, phones and tablets lose the key takeaways, the table of contents and the newsletter box; only the author meta and share row is repeated inline under the excerpt (shown lg:hidden).", "measuredFrom": ["src/pages/BlogPost.jsx:31", "src/pages/BlogPost.jsx:55"] },
+    { "note": "TABLE OF CONTENTS: one link per h2 in the body (h3s are not listed), built from the body's h2 texts and ids (id is a slug of the heading text; each h2 has scroll-margin-top 6rem so anchors clear the header). The active entry is the LAST h2 whose top edge has crossed 205px from the top of the viewport; the switch happens at about 205px (measured on the original: a heading at 210px leaves the previous entry active, at 200px it becomes active). It is recomputed on scroll and resize, and is -1 (nothing active) before the first heading crosses. The active entry gets the strong text colour and a 5px blue dot that scales from 0 to 1 over 400ms with cubic-bezier(.22,1,.36,1).", "measuredFrom": ["src/components/blog/PostAside.jsx:86-88", "src/components/blog/PostAside.jsx:96-112", "src/components/blog/PostAside.jsx:132-151", "src/components/blog/PlaceholderBody.jsx:7-12", "src/components/blog/PlaceholderBody.jsx:24-27", "src/pages/BlogPost.jsx:11"] },
+    { "note": "TOC MAX HEIGHT: the list scrolls inside a fixed-height box; the max height is 188px when the post has key takeaways (takeaways is non-zero, so 2 or 3) and 252px when it has none. Top and bottom 48px gradient fades appear (opacity 0 to 1 over 200ms) only when the list can scroll further in that direction.", "measuredFrom": ["src/pages/BlogPost.jsx:68", "src/components/blog/PostAside.jsx:90-91", "src/components/blog/PostAside.jsx:114-119", "src/components/blog/PostAside.jsx:125-131", "src/components/blog/PostAside.jsx:154-158"] },
+    { "note": "KEY TAKEAWAYS: renders a bold heading and a bullet list with a blue chevron per item, hidden entirely when the count is 0. Post data has takeaways of 0, 2 or 3 (the placeholder supplies up to 3 lines and the sidebar slices to the count).", "measuredFrom": ["src/components/blog/PostAside.jsx:67-84", "src/pages/BlogPost.jsx:67", "src/components/blog/PlaceholderBody.jsx:44-47"] },
+    { "note": "AUTHOR META: 40px portrait (48px at lg, requested at 96px), author name and date in mono uppercase (date at 80% opacity), plus three 32px square share links: X/Twitter intent, LinkedIn share and a mailto with a prefilled subject and body. All three open in a new tab and are built from the post's canonical URL on the original site.", "measuredFrom": ["src/components/blog/PostAside.jsx:7-63"] },
+    { "note": "NEWSLETTER BOX: tinted blue-2 card with a fixed heading, one email field and an outline Subscribe button. In this clone the form does not submit anywhere (submit is prevented); it is a visual stub.", "measuredFrom": ["src/components/blog/PostAside.jsx:164-182"] },
+    { "note": "INLINE CTA at the foot of the article: a blue-2 panel with a fixed one-sentence claim and a primary Get started button to /get-started. This section has its own CTA, so the page does not end with the shared cta-band; the related-posts section follows and then the footer.", "measuredFrom": ["src/pages/BlogPost.jsx:47-52", "src/pages/BlogPost.jsx:75-76"] },
+    { "note": "IN-ARTICLE FAQ CARD (last block of the body): a bordered card titled Frequently Asked Questions holding a single-open, collapsible accordion. Clicking a question toggles it; clicking the open one closes it (so all can be closed, unlike the product accordion). The body animates height 0 to auto with opacity, about 200ms, and the chevron rotates 180deg over 200ms.", "measuredFrom": ["src/components/blog/FaqBlock.jsx:6-45", "src/components/blog/FaqBlock.jsx:27-29", "src/components/motion.jsx:62-102"] },
+    { "note": "Prose styling comes from one shared stylesheet applied by the Prose wrapper; tables and the FAQ card opt out of it (not-prose) and carry their own classes. The table header uses the pink tint with a pink border, cells use the default border.", "measuredFrom": ["src/components/blog/Prose.jsx:1-10", "src/components/blog/prose.css:1-247", "src/components/blog/PlaceholderBody.jsx:50-51", "src/components/blog/PlaceholderBody.jsx:79-113"] }
+  ],
+  "themeDependency": {
+    "requires": "light",
+    "how": "Default light theme. The sidebar edge fades use a gradient from the background colour, so they only blend on the plain background; the newsletter box and inline CTA use the blue-2 tint with strong text.",
+    "measuredFrom": ["src/components/blog/PostAside.jsx:126", "src/components/blog/PostAside.jsx:166", "src/pages/BlogPost.jsx:47"]
+  },
+  "variants": [
+    { "name": "takeaways-3", "description": "Three key takeaways shown; table of contents max height 188px.", "measuredFrom": ["src/pages/BlogPost.jsx:67-68", "src/components/blog/PostAside.jsx:131"] },
+    { "name": "takeaways-2", "description": "Two key takeaways shown; table of contents max height 188px.", "measuredFrom": ["src/pages/BlogPost.jsx:67-68", "src/components/blog/PostAside.jsx:131"] },
+    { "name": "takeaways-0", "description": "No key takeaways block; table of contents grows to max height 252px.", "measuredFrom": ["src/components/blog/PostAside.jsx:68", "src/pages/BlogPost.jsx:68"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "category": { "type": "enum", "required": true, "values": ["Company", "Tips", "Tech", "Customer Story"], "note": "Category chip above the title.", "measuredFrom": ["src/pages/BlogPost.jsx:28", "src/data/blog.js:13"] },
+      "title": { "type": "string", "required": true, "maxWords": 25, "note": "The h1 and the cover alt text. Observed up to 23 words.", "measuredFrom": ["src/pages/BlogPost.jsx:29", "src/pages/BlogPost.jsx:35"] },
+      "excerpt": { "type": "string", "required": true, "maxWords": 34, "note": "One sentence under the title; also used in the share text. Observed up to 31 words.", "measuredFrom": ["src/pages/BlogPost.jsx:30", "src/components/blog/PostAside.jsx:12-13"] },
+      "author": { "type": "enum", "required": true, "values": ["Hugh Willoughby", "Justin Herrick", "Ross Walden", "Clement Fang", "David Zhu"], "note": "Must be a known author so the portrait resolves.", "measuredFrom": ["src/data/blog.js:6-11", "src/components/blog/PostAside.jsx:20-21"] },
+      "authorPortrait": { "type": "assetRef", "required": true, "assetRole": "person-portrait", "note": "Author portrait, 96px request, shown 40px (48px at lg).", "measuredFrom": ["src/components/blog/PostAside.jsx:18-29"] },
+      "date": { "type": "string", "required": true, "note": "ISO timestamp; displayed in UTC as short month, day, year.", "measuredFrom": ["src/pages/BlogPost.jsx:16", "src/data/blog.js:69"] },
+      "cover": { "type": "assetRef", "required": true, "assetRole": "blog-cover", "note": "Square 1760px article cover shown full column width; alt text is the title.", "measuredFrom": ["src/pages/BlogPost.jsx:33-43"] },
+      "takeaways": { "type": "array", "required": false, "minItems": 0, "maxItems": 3, "note": "Sidebar bullets; 0, 2 or 3 in the data (0 hides the block and widens the TOC box). Each a short sentence; placeholder text in this clone. Observed up to 17 words each.", "measuredFrom": ["src/pages/BlogPost.jsx:67", "src/components/blog/PostAside.jsx:67-84", "src/data/blog.js:4"], "items": { "type": "string", "maxWords": 20 } },
+      "body": {
+        "type": "array", "required": true, "minItems": 1, "maxItems": 80,
+        "note": "Ordered list of prose blocks. CLOSED SET of allowed block types below; no other elements are permitted. In this clone the real copy is replaced by lorem-ipsum placeholders, so no body text is recorded here. Word budgets are set from the placeholder shape only and are not a limit on real articles.",
+        "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:53-176", "src/components/blog/PlaceholderBody.jsx:3-5"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "block": { "type": "enum", "required": true, "values": ["p", "h2", "h3", "ol", "ul", "table", "blockquote", "figure", "code-inline", "faq-accordion"], "note": "code-inline is an inline run inside a p, not a block of its own; a and strong and em are inline marks inside p and li." }
+          }
+        },
+        "allowedBlocks": [
+          { "block": "p", "description": "Paragraph. Inline marks allowed: link (a), strong, em, inline code. Opens the article and separates other blocks. Placeholder paragraphs run 16 to 41 words.", "maxWords": 45, "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:56-63", "src/components/blog/PlaceholderBody.jsx:56-63"] },
+          { "block": "h2", "description": "Section heading. Gets an id equal to a slug of its text (lowercase, punctuation stripped, spaces to hyphens) and scroll-margin-top 6rem; every h2 becomes a table-of-contents entry. The placeholder has 7.", "maxWords": 8, "toc": true, "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:7-12", "src/components/blog/PlaceholderBody.jsx:14-21", "src/components/blog/PlaceholderBody.jsx:24-27"] },
+          { "block": "h3", "description": "Sub-heading under an h2; numbered in the placeholder pattern (1., 2., 3.). Not in the table of contents and has no id. The placeholder has 3.", "maxWords": 8, "toc": false, "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:77", "src/components/blog/PlaceholderBody.jsx:115", "src/components/blog/PlaceholderBody.jsx:132"] },
+          { "block": "ol", "description": "Ordered list of short items. Placeholder has one list of 5 items, each up to 5 words.", "maxWords": 10, "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:69-75"] },
+          { "block": "ul", "description": "Bulleted list; items may start with a bold lead-in ending in a colon. Placeholder has two lists (3 and 4 items).", "maxWords": 16, "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:117-130", "src/components/blog/PlaceholderBody.jsx:160-164"] },
+          { "block": "table", "description": "Two-column data table, opted out of prose styling: header row with bold cells on the pink-2 tint, body rows with bold first cell. Placeholder has 4 body rows, cells up to 12 words. Full width.", "maxWords": 14, "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:79-113", "src/components/blog/PlaceholderBody.jsx:50-51"] },
+          { "block": "blockquote", "description": "Pull quote. One in the placeholder, 18 words.", "maxWords": 30, "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:134-137"] },
+          { "block": "figure", "description": "Centred image with a caption underneath. In this clone it reuses the post cover at 400px wide (max 100%) with an empty alt and a 4-word caption; real articles would supply their own blog-cover image.", "maxWords": 8, "assetRole": "blog-cover", "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:141-155"] },
+          { "block": "code-inline", "description": "Inline monospace run inside a paragraph. There is no code block (pre) in the element set.", "maxWords": 3, "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:165-167"] },
+          { "block": "faq-accordion", "description": "Final block only: a titled card (default title Frequently Asked Questions) with up to 5 questions; each question up to 8 words, each answer up to 55 words. Single-open, collapsible, all closed initially.", "maxWords": 55, "onlyLast": true, "measuredFrom": ["src/components/blog/PlaceholderBody.jsx:37-41", "src/components/blog/PlaceholderBody.jsx:176", "src/components/blog/FaqBlock.jsx:8-45"] }
+        ]
+      },
+      "inlineCta": {
+        "type": "object", "required": true,
+        "note": "Fixed panel after the body; the same one on every article.",
+        "measuredFrom": ["src/pages/BlogPost.jsx:47-52"],
+        "fields": {
+          "text": { "type": "string", "required": true, "maxWords": 8, "note": "Single sentence, 6 words observed." },
+          "cta": { "type": "object", "fields": { "label": { "type": "string", "maxWords": 3, "note": "Observed 2 words." }, "href": { "type": "string", "kind": "route-or-url" } } }
+        }
+      },
+      "newsletter": {
+        "type": "object", "required": true,
+        "note": "Sidebar signup card; fixed copy, visual stub only.",
+        "measuredFrom": ["src/components/blog/PostAside.jsx:164-182"],
+        "fields": {
+          "heading": { "type": "string", "maxWords": 8, "note": "Observed 6 words." },
+          "placeholder": { "type": "string", "maxWords": 5, "note": "Input placeholder, 4 words observed." },
+          "buttonLabel": { "type": "string", "maxWords": 2 }
+        }
+      }
+    }
+  },
+  "mediaFields": [
+    { "field": "cover", "assetRole": "blog-cover" },
+    { "field": "authorPortrait", "assetRole": "person-portrait" },
+    { "field": "body[figure]", "assetRole": "blog-cover" }
+  ],
+  "constraints": { "onePerPage": true, "mustBeFollowedBy": "content.related-posts" },
+  "motion": {
+    "pattern": "accordion-height-opacity",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only; the code has no prefers-reduced-motion handling. Proposed: open and close the FAQ items and toggle the TOC dot with no transition.",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": ["src/components/blog/FaqBlock.jsx:27-39", "src/components/motion.jsx:7-8", "src/components/motion.jsx:20-28"]
+  },
+  "additionalMotion": [
+    {
+      "context": "table-of-contents active marker: a 5px dot scales from 0 to 1 on the newly active entry (400ms, springy out-curve). Closest enum value is popover-fade-scale; it has no fade here, only scale, so this is an approximation.",
+      "pattern": "popover-fade-scale",
+      "reducedMotionFallback": "instant",
+      "reducedMotionNote": "Proposal only; no prefers-reduced-motion handling exists. Proposed: show the dot without scaling.",
+      "durationMs": 400,
+      "easing": "cubic-bezier(.22,1,.36,1)",
+      "measuredFrom": ["src/components/blog/PostAside.jsx:138-148"]
+    },
+    {
+      "context": "table-of-contents top and bottom edge fades and link colour: opacity 0 to 1 over 200ms as the list becomes scrollable; entry text colour transitions on hover and when active. Scroll-driven state change, closest enum value hover-color-transition.",
+      "pattern": "hover-color-transition",
+      "reducedMotionFallback": "instant",
+      "reducedMotionNote": "Proposal only; no prefers-reduced-motion handling exists.",
+      "durationMs": 200,
+      "easing": "ease",
+      "measuredFrom": ["src/components/blog/PostAside.jsx:126-128", "src/components/blog/PostAside.jsx:136", "src/components/blog/PostAside.jsx:155-157"]
+    }
+  ],
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below lg", "change": "sidebar hidden entirely (no key takeaways, table of contents or newsletter box); author meta and share row appear inline under the excerpt; article column capped at 800px and centred", "measuredFrom": ["src/pages/BlogPost.jsx:24", "src/pages/BlogPost.jsx:31", "src/pages/BlogPost.jsx:55"] },
+      { "at": "sm", "change": "author row switches from a column to a row with the share links at the right; inline CTA panel switches from a column to a row with the button beside the sentence; padding 32px; vertical rhythm between blocks grows 24 to 32px", "measuredFrom": ["src/components/blog/PostAside.jsx:16", "src/pages/BlogPost.jsx:26", "src/pages/BlogPost.jsx:47"] },
+      { "at": "md", "change": "section padding 48px and block spacing 40px", "measuredFrom": ["src/pages/BlogPost.jsx:22", "src/pages/BlogPost.jsx:26"] },
+      { "at": "lg", "change": "two columns: sidebar 8 of 24 on the left (sticky, top 112px), article 14 columns from column 10; top padding 80px; block spacing 48px; CTA panel padding 40px; author portrait 48px", "measuredFrom": ["src/pages/BlogPost.jsx:22", "src/pages/BlogPost.jsx:25-26", "src/pages/BlogPost.jsx:47", "src/pages/BlogPost.jsx:55-56", "src/components/blog/PostAside.jsx:18"] },
+      { "at": "xl", "change": "article 13 columns from column 10, sidebar 7 columns from column 2, sidebar sticky top 128px and its gaps 40px; top padding 88px; block spacing 64px", "measuredFrom": ["src/pages/BlogPost.jsx:22", "src/pages/BlogPost.jsx:25-26", "src/pages/BlogPost.jsx:55-56"] }
+    ]
+  },
+  "usedOnRoutes": ["/blog/:slug"],
+  "tokensUsed": ["surface.background", "text.strong", "blue.2", "blue.8", "pink.2", "pink.4", "border.default", "display-xl", "display-lg", "display-lg-2", "display-xs", "mono", "text.muted"]
+}

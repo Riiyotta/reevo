@@ -1,0 +1,86 @@
+{
+  "$description": "Tag, chips and small badges.",
+  "category": "component",
+  "tag": {
+    "height": {
+      "value": "21px",
+      "measuredFrom": "src/components/ui.jsx:36"
+    },
+    "padding-x": {
+      "value": ".5rem",
+      "measuredFrom": "src/components/ui.jsx:36"
+    },
+    "radius": {
+      "value": "{borderRadius.DEFAULT}",
+      "measuredFrom": "src/components/ui.jsx:36"
+    },
+    "border": {
+      "value": "1px {semanticColor.border.default}",
+      "measuredFrom": "src/components/ui.jsx:36"
+    },
+    "font": {
+      "value": "{semanticTypography.eyebrow}",
+      "measuredFrom": "src/components/ui.jsx:36"
+    }
+  },
+  "complianceChip": {
+    "height": {
+      "value": "28px",
+      "measuredFrom": "src/components/Footer.jsx:75"
+    },
+    "radius": {
+      "value": "{borderRadius.sm}",
+      "measuredFrom": "CLONE_SPEC.md:272"
+    },
+    "icon": {
+      "value": "{iconSize.3}",
+      "measuredFrom": "src/components/Footer.jsx:77"
+    }
+  },
+  "sectionLabelBox": {
+    "size": {
+      "value": "{iconSize.6}",
+      "measuredFrom": "src/components/ui.jsx:106"
+    },
+    "background": {
+      "value": "{semanticColor.text.strong}",
+      "measuredFrom": "src/components/ui.jsx:106"
+    },
+    "foreground": {
+      "value": "{semanticColor.surface.background}",
+      "measuredFrom": "src/components/ui.jsx:106"
+    },
+    "icon": {
+      "value": "{iconSize.3}",
+      "measuredFrom": "src/components/ui.jsx:107"
+    }
+  },
+  "featureChip": {
+    "size": {
+      "value": "{iconSize.8}",
+      "measuredFrom": "src/components/ui.jsx:149"
+    },
+    "radius": {
+      "value": "{borderRadius.DEFAULT}",
+      "measuredFrom": "src/components/ui.jsx:149"
+    },
+    "icon": {
+      "value": "{iconSize.4}",
+      "measuredFrom": "src/components/ui.jsx:150"
+    }
+  },
+  "testimonialNameTag": {
+    "height": {
+      "value": "3.5rem (56px)",
+      "measuredFrom": "src/components/Testimonials.jsx:44"
+    },
+    "padding-x": {
+      "value": "2rem",
+      "measuredFrom": "src/components/Testimonials.jsx:44"
+    },
+    "background": {
+      "value": "white",
+      "measuredFrom": "src/components/Testimonials.jsx:44"
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "$description": "Type roles composed from foundation typography. lineHeight/letterSpacing come from each fontSize's paired values (typography.json fontSize.*.pairedLineHeight / pairedLetterSpacing).",
+  "category": "semantic-typography",
+  "typography": {
+    "body": {
+      "fontFamily": "{fontFamily.sans}",
+      "fontSize": "{fontSize.md}",
+      "fontWeight": "{fontWeight.regular}",
+      "measuredFrom": "src/index.css:53"
+    },
+    "eyebrow": {
+      "fontFamily": "{fontFamily.mono}",
+      "fontSize": "{fontSize.display-xs}",
+      "fontWeight": "{fontWeight.regular}",
+      "textTransform": "uppercase",
+      "measuredFrom": "src/components/ui.jsx:30"
+    },
+    "hero-heading": {
+      "fontFamily": "{fontFamily.heading}",
+      "fontSize": "{fontSize.display-3xl}",
+      "fontWeight": "{fontWeight.black}",
+      "textTransform": "uppercase",
+      "measuredFrom": "CLONE_SPEC.md:70"
+    },
+    "hero-sub": {
+      "fontFamily": "{fontFamily.sans}",
+      "fontSize": "{fontSize.display-lg-2}",
+      "fontWeight": "{fontWeight.bold}",
+      "measuredFrom": "CLONE_SPEC.md:72"
+    },
+    "section-headline": {
+      "fontFamily": "{fontFamily.sans}",
+      "fontSize": "{fontSize.2xl}",
+      "fontWeight": "{fontWeight.regular}",
+      "note": "last phrase in <strong> weight 700 (CLONE_SPEC.md:73)",
+      "measuredFrom": "src/components/ui.jsx:119"
+    },
+    "section-lede": {
+      "fontFamily": "{fontFamily.sans}",
+      "fontSize": "{fontSize.lg}",
+      "fontWeight": "{fontWeight.regular}",
+      "measuredFrom": "src/components/ui.jsx:120"
+    },
+    "product-heading": {
+      "fontFamily": "{fontFamily.heading}",
+      "fontSize": "{fontSize.display-2xl}",
+      "fontWeight": "{fontWeight.extrabold}",
+      "textTransform": "uppercase",
+      "measuredFrom": "CLONE_SPEC.md:75"
+    },
+    "button-lg": {
+      "fontFamily": "{fontFamily.sans}",
+      "fontSize": "{fontSize.sm}",
+      "fontWeight": "{fontWeight.medium}",
+      "measuredFrom": "src/components/ui.jsx:50"
+    },
+    "button-sm": {
+      "fontFamily": "{fontFamily.sans}",
+      "fontSize": "{fontSize.xs}",
+      "fontWeight": "{fontWeight.medium}",
+      "measuredFrom": "src/components/ui.jsx:51"
+    },
+    "footer-link": {
+      "fontFamily": "{fontFamily.sans}",
+      "fontSize": "{fontSize.sm}",
+      "fontWeight": "{fontWeight.regular}",
+      "measuredFrom": "CLONE_SPEC.md:263"
+    },
+    "footer-caption": {
+      "fontFamily": "{fontFamily.sans}",
+      "fontSize": "{fontSize.xs}",
+      "fontWeight": "{fontWeight.regular}",
+      "measuredFrom": "CLONE_SPEC.md:263"
+    }
+  }
+}

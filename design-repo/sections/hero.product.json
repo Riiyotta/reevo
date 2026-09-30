@@ -1,0 +1,45 @@
+{
+  "id": "hero.product",
+  "kind": "section",
+  "category": "hero",
+  "purpose": "Product-page hero: headline, one bold-led lede and a single Get started button on a gray band, with a wide product screenshot and a decorative pattern that straddle into the white section below.",
+  "measuredFrom": ["src/components/products/ProductHero.jsx:5-54", "src/components/products/ProductPage.jsx:22-32"],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "headline": { "type": "string", "required": true, "maxWords": 8, "note": "Rendered as h1, uppercase, balanced. Observed 4 to 7 words across the five product pages.", "measuredFrom": ["src/components/products/ProductHero.jsx:12-14"] },
+      "lede": { "type": "richtext-inline", "required": true, "maxWords": 45, "note": "HTML string rendered as h2; the first sentence is wrapped in strong. Observed 23 to 42 words.", "measuredFrom": ["src/components/products/ProductHero.jsx:17"] },
+      "screenshot": { "type": "assetRef", "required": true, "assetRole": "product-screenshot", "note": "Wide UI screenshot, 1282 by 688 (aspect 1282/688).", "measuredFrom": ["src/components/products/ProductHero.jsx:33-34"] },
+      "screenshotAlt": { "type": "string", "required": true, "maxWords": 40, "note": "Descriptive alt text; observed alts are long sentences.", "measuredFrom": ["src/components/products/ProductHero.jsx:34"] },
+      "pattern": { "type": "assetRef", "required": true, "assetRole": "decorative-pattern", "note": "Decorative pattern image, 1046 by 816, presentation only (empty alt, aria-hidden).", "measuredFrom": ["src/components/products/ProductHero.jsx:38-46"] }
+    }
+  },
+  "mediaFields": [
+    { "field": "screenshot", "assetRole": "product-screenshot" },
+    { "field": "pattern", "assetRole": "decorative-pattern" }
+  ],
+  "behaviour": [
+    { "note": "The Get started button (primary, full width, chevron) is fixed in the component; it is not a content field and always links to the get-started page.", "measuredFrom": ["src/components/products/ProductHero.jsx:19-23"] },
+    { "note": "Layout trick: gray-2 top band with an absolutely positioned white slab across its bottom 64/96/128px, so the screenshot appears to straddle into the following white section. The band pulls the next section up with a negative bottom margin from md.", "measuredFrom": ["src/components/products/ProductHero.jsx:7", "src/components/products/ProductHero.jsx:26", "src/components/products/ProductHero.jsx:32"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true, "mustBeFollowedBy": "white" },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No animation code in the component.",
+    "measuredFrom": ["src/components/products/ProductHero.jsx:5-54"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to xl", "change": "band vertical padding 24 / 32 (sm) / 48 (md) / 56 (xl)", "measuredFrom": ["src/components/products/ProductHero.jsx:8"] },
+      { "at": "md and up", "change": "band overlaps the next section by 96px (md) and 128px (lg) via negative bottom margin; white slab grows 64 / 96 / 128px", "measuredFrom": ["src/components/products/ProductHero.jsx:7", "src/components/products/ProductHero.jsx:26"] },
+      { "at": "below md", "change": "screenshot bleeds off the left edge (-24px, -32px from sm); from md it aligns to the grid", "measuredFrom": ["src/components/products/ProductHero.jsx:32"] },
+      { "at": "md to xl", "change": "lede spans 10 cols at md, 14 at lg, 12 from col 2 at xl; button spans 5 cols at md, 6 at lg", "measuredFrom": ["src/components/products/ProductHero.jsx:16", "src/components/products/ProductHero.jsx:19"] },
+      { "at": "md and up", "change": "pattern column appears on the right (6 cols from col 8 at md, cols 14 to 24 at lg) and bleeds to the edge below md; from xl it extends 96px below the image", "measuredFrom": ["src/components/products/ProductHero.jsx:38-46"] }
+    ]
+  },
+  "usedOnRoutes": ["/products/*"],
+  "tokensUsed": ["color.gray.2", "semanticColor.surface.background", "semanticColor.text.strong", "semanticTypography.product-heading", "semanticTypography.section-lede"]
+}

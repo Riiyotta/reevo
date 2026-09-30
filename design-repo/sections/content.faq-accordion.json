@@ -1,0 +1,63 @@
+{
+  "id": "content.faq-accordion",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Answer the objections and basic questions a buyer has just before the closing call to action, with a fixed 'Frequently asked questions' heading on the left and a ruled list of question/answer rows on the right. Answers stay hidden until asked so the section stays short while still carrying searchable copy.",
+  "measuredFrom": ["src/components/faq.jsx:19-86", "src/components/products/ProductPage.jsx:12", "src/components/blog/MobileSections.jsx:514-516"],
+  "behaviour": [
+    { "note": "ONE shared component, FaqSection, renders every FAQ: /pricing and /product-tour call it directly, the five product pages reach it through the ProductFaq wrapper (html option), and /apps/mobile through the thin MobileFaq wrapper (single option). Modelled as one contract with three variants.", "measuredFrom": ["src/components/faq.jsx:58", "src/components/products/ProductPage.jsx:12", "src/components/blog/MobileSections.jsx:514-516"] },
+    { "note": "Heading is the fixed text 'Frequently asked questions' (h2, heading font, uppercase, balanced) in the left columns; the section carries id=faq so the page can link to it. It is not a content field.", "measuredFrom": ["src/components/faq.jsx:67", "src/components/faq.jsx:71-73"] },
+    { "note": "Row: question is a button inside an h3 (medium weight, up to 50ch wide) with a chevron on the right that rotates 180 degrees when open (200ms). Rows are separated by 1px rules with a rule above the first and below the last.", "measuredFrom": ["src/components/faq.jsx:24-41", "src/components/faq.jsx:76"] },
+    { "note": "Open/close: the answer panel animates height 0 to auto and opacity 0 to 1 over 200ms with cubic-bezier(.4,0,.2,1) (measured on /pricing: 0 to 88.9px), via the shared Collapse helper. Answer text is capped at 60ch with 20px bottom padding and extra right padding from md.", "measuredFrom": ["src/components/faq.jsx:12-18", "src/components/faq.jsx:42-50", "src/components/motion.jsx:62-102"] },
+    { "note": "Open behaviour is set by the single option: by default (pricing, tour and product pages) rows are multi-open (any number can be open, all start closed); with single (apps/mobile) opening one closes the other, and clicking the open row closes it.", "measuredFrom": ["src/components/faq.jsx:55-57", "src/components/faq.jsx:58-65", "src/components/blog/MobileSections.jsx:515"] },
+    { "note": "Answers may contain inline links (strong colour, normal weight, underlined): JSX links (FaqLink) in the pricing data, HTML strings with <p> and <a> in product data (html option), JSX in mobile. Plain-text questions and answers get their last two words glued with a non-breaking space by the nb helper (widow control); HTML strings carry their own.", "measuredFrom": ["src/components/pricing/shared.jsx:3-10", "src/components/pricing/pricingData.jsx:102-135", "src/components/faq.jsx:8-10", "src/components/faq.jsx:34", "src/components/faq.jsx:43-49", "src/components/text.js:1-5", "src/components/blog/MobileSections.jsx:492-494"] },
+    { "note": "Item counts observed: pricing 5, product tour 5, products 5/5/5/5/6 (find, connect, sell, manage, foundation), apps/mobile 7. Question length up to 13 words, answers up to 51 words.", "measuredFrom": ["src/components/pricing/pricingData.jsx:102-135", "src/pages/ProductTour.jsx:5-41", "src/components/products/data.js:42", "src/components/products/data.js:84", "src/components/products/data.js:115", "src/components/products/data.js:155", "src/components/products/data.js:198", "src/components/blog/MobileSections.jsx:456-509"] },
+    { "note": "Placement: directly above the CTA band on /pricing and the product pages; the last section on /product-tour (no CTA band after it); on /apps/mobile it precedes that page's own CTA (MobileCTA).", "measuredFrom": ["src/pages/Pricing.jsx:18-19", "src/pages/ProductTour.jsx:49", "src/components/products/ProductPage.jsx:30-32", "src/pages/AppsMobile.jsx:85-86"] },
+    { "note": "FaqSection can drop its top padding (noPt option) when it directly follows a block that already supplies spacing; observed on the manage product page only.", "measuredFrom": ["src/components/faq.jsx:58", "src/components/faq.jsx:67", "src/components/products/data.js:155"] }
+  ],
+  "variants": [
+    { "name": "multi-open-plain", "description": "/pricing and /product-tour: multi-open, answers are plain text or JSX with inline links, Collapse height/opacity animation.", "measuredFrom": ["src/components/faq.jsx:19-53", "src/components/faq.jsx:58-86"] },
+    { "name": "multi-open-html", "description": "Product pages: multi-open, answers are HTML strings (paragraph with links) rendered through the html option (ProductFaq wrapper), optional noPt.", "measuredFrom": ["src/components/faq.jsx:43-45", "src/components/products/ProductPage.jsx:12"] },
+    { "name": "single-open", "description": "/apps/mobile: only one row open at a time.", "measuredFrom": ["src/components/faq.jsx:62", "src/components/blog/MobileSections.jsx:514-516"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "openMode": { "type": "enum", "required": true, "values": ["multi", "single"], "note": "multi for pricing, tour and products; single for apps/mobile.", "measuredFrom": ["src/components/faq.jsx:58", "src/components/faq.jsx:62"] },
+      "removeTopPadding": { "type": "boolean", "required": false, "note": "Drops the top padding (products noPt flag).", "measuredFrom": ["src/components/faq.jsx:58", "src/components/faq.jsx:67"] },
+      "items": {
+        "type": "array", "required": true, "minItems": 5, "maxItems": 7,
+        "note": "Observed 5 to 7 rows per instance.",
+        "measuredFrom": ["src/components/faq.jsx:77-79"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "question": { "type": "string", "required": true, "maxWords": 14, "note": "Row label. Observed up to 13 words.", "measuredFrom": ["src/components/faq.jsx:34"] },
+            "answer": { "type": "richtext-inline", "required": true, "maxWords": 55, "note": "Answer, one paragraph with optional inline links. Observed up to 51 words.", "measuredFrom": ["src/components/faq.jsx:43-49"] }
+          }
+        }
+      }
+    }
+  },
+  "mediaFields": [],
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "accordion-height-opacity",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only: toggle height and opacity instantly and skip the chevron rotation. The source has no prefers-reduced-motion handling.",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": ["src/components/faq.jsx:17-18", "src/components/faq.jsx:36-38", "src/components/motion.jsx:65-102"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "heading stacked above the list, both full width (32px row gap)", "measuredFrom": ["src/components/faq.jsx:69", "src/components/faq.jsx:70", "src/components/faq.jsx:75"] },
+      { "at": "md", "change": "two columns: heading 5 columns, list 7 columns starting at column 6; answers get extra right padding", "measuredFrom": ["src/components/faq.jsx:15", "src/components/faq.jsx:70", "src/components/faq.jsx:75"] },
+      { "at": "lg", "change": "heading 9 columns, list 13 columns starting at column 12; section padding grows to 128px", "measuredFrom": ["src/components/faq.jsx:67", "src/components/faq.jsx:70", "src/components/faq.jsx:75"] },
+      { "at": "xl", "change": "heading 8 columns from column 2, list 12 columns from column 12", "measuredFrom": ["src/components/faq.jsx:70", "src/components/faq.jsx:75"] }
+    ]
+  },
+  "usedOnRoutes": ["/pricing", "/product-tour", "/products/find", "/products/connect", "/products/sell", "/products/manage", "/products/foundation", "/apps/mobile"],
+  "tokensUsed": ["semanticColor.surface.background", "semanticColor.text.strong", "semanticColor.text.muted", "semanticColor.border.default", "fontFamily.heading", "fontSize.display-2xl", "fontSize.md", "duration.base-200", "easing.standard"]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "callout-banner-card",
+  "kind": "component",
+  "purpose": "Bordered horizontal banner with image, two paragraphs and two buttons (Startup Program strip on pricing).",
+  "measuredFrom": [
+    "src/components/pricing/PricingPlans.jsx:94-120"
+  ],
+  "props": {
+    "image": {
+      "type": "assetRef",
+      "description": "96px to 128px square rounded image"
+    },
+    "title": {
+      "type": "string",
+      "maxWords": 20
+    },
+    "body": {
+      "type": "string",
+      "maxWords": 30
+    },
+    "ctas": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "fields": {
+          "label": {
+            "type": "string",
+            "maxWords": 4
+          },
+          "href": {
+            "type": "route-or-url"
+          },
+          "variant": {
+            "type": "enum",
+            "values": [
+              "primary",
+              "outline"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "border gray-4, p-6, stacks below md, row at md",
+      "measuredFrom": [
+        "src/components/pricing/PricingPlans.jsx:94"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "gray.4",
+    "lg"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/pricing/PricingPlans.jsx:94-120"
+    ]
+  },
+  "composes": [
+    "button"
+  ]
+}

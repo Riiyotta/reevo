@@ -1,0 +1,49 @@
+{
+  "id": "job-row",
+  "kind": "component",
+  "purpose": "Open-role row: title, location, chevron tile; the whole row is a link to the applicant system.",
+  "measuredFrom": [
+    "src/pages/Careers.jsx:50-71"
+  ],
+  "props": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxWords": 8
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "id": {
+      "type": "string",
+      "required": true,
+      "description": "Applicant-system posting id appended to a base URL"
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "border-t border-border, last:border-b, py-4; chevron in 28px gray-2 tile",
+      "measuredFrom": [
+        "src/pages/Careers.jsx:52",
+        "src/pages/Careers.jsx:68-70"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "border.default",
+    "gray.2",
+    "eyebrow"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/pages/Careers.jsx:50-71"
+    ]
+  },
+  "composes": [
+    "eyebrow"
+  ]
+}

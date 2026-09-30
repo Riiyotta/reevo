@@ -1,0 +1,73 @@
+{
+  "id": "presence",
+  "kind": "primitive",
+  "purpose": "Mount/unmount wrapper animating between initial/animate/exit style frames via WAAPI; base for dialog, overlay and accordion motion.",
+  "measuredFrom": [
+    "src/components/motion.jsx:20-56",
+    "src/components/motion.jsx:8-9"
+  ],
+  "props": {
+    "show": {
+      "type": "boolean",
+      "required": true
+    },
+    "initial": {
+      "type": "object",
+      "required": true,
+      "description": "Style frame"
+    },
+    "animate": {
+      "type": "object",
+      "required": true
+    },
+    "exit": {
+      "type": "object",
+      "description": "Defaults to initial"
+    },
+    "duration": {
+      "type": "number",
+      "default": 200,
+      "unit": "ms"
+    },
+    "easing": {
+      "type": "string",
+      "default": "cubic-bezier(.4,0,.2,1)"
+    },
+    "as": {
+      "type": "string",
+      "default": "div"
+    }
+  },
+  "variants": [
+    {
+      "name": "standard",
+      "description": "200ms cubic-bezier(.4,0,.2,1) (EASE_STANDARD)",
+      "measuredFrom": [
+        "src/components/motion.jsx:8-26"
+      ]
+    },
+    {
+      "name": "easeOut",
+      "description": "EASE_OUT cubic-bezier(0,0,.58,1) exported for 700ms marquee fade",
+      "measuredFrom": [
+        "src/components/motion.jsx:9"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "base-200",
+    "standard",
+    "ease-out",
+    "overlay-enter"
+  ],
+  "motion": {
+    "pattern": "popover-fade-scale",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only; source has no prefers-reduced-motion handling.",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": [
+      "src/components/motion.jsx:3-9"
+    ]
+  }
+}

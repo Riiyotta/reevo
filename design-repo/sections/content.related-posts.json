@@ -1,0 +1,78 @@
+{
+  "id": "content.related-posts",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Keep a reader in the blog after finishing an article: a titled strip with a View all link, followed by two related article cards in the same layout as the blog index, so the next read is one click away.",
+  "measuredFrom": ["src/pages/BlogPost.jsx:76-98", "src/components/blog/PostCard.jsx:35-90"],
+  "behaviour": [
+    { "note": "Conditional render: shown only when the post has at least one resolvable related post (related list, mapped through the post lookup with missing ones dropped). Every one of the 43 posts has exactly 2 related slugs, so in practice it always shows 2 cards.", "measuredFrom": ["src/pages/BlogPost.jsx:17", "src/pages/BlogPost.jsx:76", "src/data/blog.js:17-59"] },
+    { "note": "Cards reuse PostCard in its standard (non-featured) form; the first card is not featured here, unlike the blog index. They are identical to index cards: cover (blog-cover), category chip, title link, excerpt, date and author avatar (person-portrait), hairline divider, and the cover fades to 90% on hover over 200ms.", "measuredFrom": ["src/pages/BlogPost.jsx:93-94", "src/components/blog/PostCard.jsx:35-90", "src/components/blog/PostCard.jsx:54"] },
+    { "note": "Dates in this section use UTC (like the article page), not the viewer's local time zone as the index does.", "measuredFrom": ["src/pages/BlogPost.jsx:94", "src/data/blog.js:67-70"] },
+    { "note": "The heading strip is a bold heading on the left and a small underlined View all link to /blog on the right, above a full-width rule. The heading text is a fixed phrase, not authored per post.", "measuredFrom": ["src/pages/BlogPost.jsx:80-90"] },
+    { "note": "Follows the article section directly and is the last block before the shared footer; the article carries its own inline call to action so no closing cta-band is used on this route.", "measuredFrom": ["src/pages/BlogPost.jsx:47-52", "src/pages/BlogPost.jsx:75-98"] },
+    { "note": "Related post choice is stored per post as two slugs in the data, not computed from category or date.", "measuredFrom": ["src/data/blog.js:1-4", "src/pages/BlogPost.jsx:17"] }
+  ],
+  "themeDependency": {
+    "requires": "light",
+    "how": "Default light theme on the plain background; the link uses the primary colour and a current-colour underline.",
+    "measuredFrom": ["src/pages/BlogPost.jsx:83-88"]
+  },
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "heading": { "type": "string", "required": true, "maxWords": 5, "note": "Fixed heading. Observed 4 words.", "measuredFrom": ["src/pages/BlogPost.jsx:82"] },
+      "viewAll": {
+        "type": "object", "required": true,
+        "note": "Text link to the blog index.",
+        "measuredFrom": ["src/pages/BlogPost.jsx:83-88"],
+        "fields": {
+          "label": { "type": "string", "maxWords": 3, "note": "Observed 2 words." },
+          "href": { "type": "string", "kind": "route-or-url" }
+        }
+      },
+      "posts": {
+        "type": "array", "required": true, "minItems": 1, "maxItems": 3,
+        "note": "Observed 2 for every post. Same record shape as content.post-list posts; each rendered with the standard PostCard.",
+        "measuredFrom": ["src/pages/BlogPost.jsx:17", "src/pages/BlogPost.jsx:93-94"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "slug": { "type": "string", "required": true, "note": "Must be a slug of an existing post.", "measuredFrom": ["src/pages/BlogPost.jsx:17"] },
+            "title": { "type": "string", "required": true, "maxWords": 25, "note": "Observed up to 23 words.", "measuredFrom": ["src/components/blog/PostCard.jsx:71"] },
+            "category": { "type": "enum", "required": true, "values": ["Company", "Tips", "Tech", "Customer Story"], "measuredFrom": ["src/components/blog/PostCard.jsx:68"] },
+            "date": { "type": "string", "required": true, "note": "ISO timestamp, shown in UTC.", "measuredFrom": ["src/pages/BlogPost.jsx:94"] },
+            "author": { "type": "enum", "required": true, "values": ["Hugh Willoughby", "Justin Herrick", "Ross Walden", "Clement Fang", "David Zhu"], "measuredFrom": ["src/components/blog/PostCard.jsx:79"] },
+            "cover": { "type": "assetRef", "required": true, "assetRole": "blog-cover", "note": "Square cover, existing file only.", "measuredFrom": ["src/components/blog/PostCard.jsx:46-55"] },
+            "authorAvatar": { "type": "assetRef", "required": true, "assetRole": "person-portrait", "note": "Author portrait shown at 24px.", "measuredFrom": ["src/components/blog/PostCard.jsx:18-30"] },
+            "excerpt": { "type": "string", "required": true, "maxWords": 34, "note": "Observed up to 31 words.", "measuredFrom": ["src/components/blog/PostCard.jsx:76"] }
+          }
+        }
+      }
+    }
+  },
+  "mediaFields": [
+    { "field": "posts[].cover", "assetRole": "blog-cover" },
+    { "field": "posts[].authorAvatar", "assetRole": "person-portrait" }
+  ],
+  "constraints": { "onePerPage": true, "mustFollow": "content.post-article", "mustPrecedeFooter": true },
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only; the code has no prefers-reduced-motion handling. Proposed: no 200ms image fade.",
+    "durationMs": 200,
+    "easing": "ease",
+    "measuredFrom": ["src/components/blog/PostCard.jsx:54"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "md", "change": "section gains 16px top padding; cards go side by side with the image (4 of 12) and text (8 of 12)", "measuredFrom": ["src/pages/BlogPost.jsx:77", "src/components/blog/PostCard.jsx:43", "src/components/blog/PostCard.jsx:63"] },
+      { "at": "lg", "change": "top padding 32px; 24-column grid, image 6 and text 18; heading strip spans all 24 columns; heading bottom margin grows to 32px", "measuredFrom": ["src/pages/BlogPost.jsx:77", "src/pages/BlogPost.jsx:80-81", "src/components/blog/PostCard.jsx:43", "src/components/blog/PostCard.jsx:63"] },
+      { "at": "xl", "change": "top padding 40px; heading strip and cards inset to columns 2 to 23", "measuredFrom": ["src/pages/BlogPost.jsx:77", "src/pages/BlogPost.jsx:80", "src/components/blog/PostCard.jsx:43"] },
+      { "at": "below md", "change": "cards stack: image above text, footer of date and avatar in a column", "measuredFrom": ["src/components/blog/PostCard.jsx:43", "src/components/blog/PostCard.jsx:63", "src/components/blog/PostCard.jsx:76"] }
+    ]
+  },
+  "usedOnRoutes": ["/blog/:slug"],
+  "tokensUsed": ["surface.background", "text.strong", "border.default", "display-lg", "display-xs", "mono", "tag"]
+}

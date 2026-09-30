@@ -1,0 +1,498 @@
+{
+  "version": "1.0.0",
+  "description": "Rhythm rules JSON Schema cannot express, checked against templates/templates.json. `category` is the section-id prefix. Rules are enforced on PageSpec node sequences by schema/semantic_validate.py (check ids in `enforcedBy.check`); compatibility/verify_rules.py proves every real template satisfies every error rule or is a named exception. `tone` on template instances is white|tinted|dark, read from the source section classes.",
+  "measuredFrom": [
+    "src/App.jsx:73-106"
+  ],
+  "rules": [
+    {
+      "id": "ONE_HERO",
+      "severity": "error",
+      "description": "At most one hero.* section per page, and exactly one unless the template is one of the named hero-less templates (h1 lives inside the first content section).",
+      "measuredFrom": [
+        "src/pages/Home.jsx:14-15",
+        "src/pages/GetStarted.jsx:16",
+        "src/components/blog/DocPage.jsx:13",
+        "src/pages/BlogPost.jsx:29"
+      ],
+      "params": {
+        "category": "hero",
+        "max": 1
+      },
+      "exceptions": [
+        {
+          "template": "form-page",
+          "reason": "h1 lives inside the form section, no hero section",
+          "measuredFrom": [
+            "src/pages/GetStarted.jsx:16",
+            "src/pages/Partners.jsx:36",
+            "src/pages/StartupsApply.jsx:47"
+          ]
+        },
+        {
+          "template": "doc-page",
+          "reason": "h1 lives inside the DocPage section",
+          "measuredFrom": [
+            "src/components/blog/DocPage.jsx:13"
+          ]
+        },
+        {
+          "template": "changelog",
+          "reason": "same DocPage shell with prose={false}",
+          "measuredFrom": [
+            "src/pages/ReleaseNotes.jsx:103",
+            "src/components/blog/DocPage.jsx:13"
+          ]
+        },
+        {
+          "template": "blog-post",
+          "reason": "title and cover live inside the article",
+          "measuredFrom": [
+            "src/pages/BlogPost.jsx:29"
+          ]
+        }
+      ],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_one_hero"
+      }
+    },
+    {
+      "id": "SHELL_ONE_PER_PAGE",
+      "severity": "error",
+      "description": "shell.navbar and shell.footer each appear exactly once per page; they are rendered globally in App.jsx, never by a page.",
+      "measuredFrom": [
+        "src/App.jsx:76",
+        "src/App.jsx:105"
+      ],
+      "params": {
+        "sections": [
+          "shell.navbar",
+          "shell.footer"
+        ]
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_shell_one_per_page"
+      }
+    },
+    {
+      "id": "SHELL_FIRST_LAST",
+      "severity": "error",
+      "description": "shell.navbar is the first node and shell.footer is the last node of every page.",
+      "measuredFrom": [
+        "src/App.jsx:76",
+        "src/App.jsx:105"
+      ],
+      "params": {
+        "first": "shell.navbar",
+        "last": "shell.footer"
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_shell_first_last"
+      }
+    },
+    {
+      "id": "HERO_FOLLOWS_NAV",
+      "severity": "error",
+      "description": "A hero.* section directly follows the navbar; on product pages the sticky nav.product-tabs bar sits between navbar and hero.product.",
+      "measuredFrom": [
+        "src/components/products/ProductPage.jsx:26-28",
+        "src/pages/Home.jsx:13-14"
+      ],
+      "params": {
+        "category": "hero",
+        "allowedPredecessors": [
+          "shell.navbar",
+          "nav.product-tabs"
+        ]
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_hero_follows_nav"
+      }
+    },
+    {
+      "id": "MUST_IMMEDIATELY_FOLLOW",
+      "severity": "error",
+      "description": "Sections that are only meaningful directly after a specific predecessor (pairs are [predecessor, section]).",
+      "measuredFrom": [
+        "src/components/products/ProductPage.jsx:26-29",
+        "src/pages/Pricing.jsx:16-17",
+        "src/pages/Compare.jsx:26-29",
+        "src/pages/BlogPost.jsx:76",
+        "src/pages/Blog.jsx:41-58",
+        "src/pages/Integrations.jsx:52-53",
+        "src/pages/About.jsx:115",
+        "src/pages/Careers.jsx:104"
+      ],
+      "params": {
+        "pairs": [
+          [
+            "shell.navbar",
+            "nav.product-tabs"
+          ],
+          [
+            "nav.product-tabs",
+            "hero.product"
+          ],
+          [
+            "hero.product",
+            "content.product-features"
+          ],
+          [
+            "content.pricing-plans",
+            "content.plan-compare-table"
+          ],
+          [
+            "hero.eyebrow-title-banner",
+            "content.lead-statement"
+          ],
+          [
+            "hero.split-image",
+            "compare.quick-table"
+          ],
+          [
+            "compare.quick-table",
+            "compare.reasons"
+          ],
+          [
+            "compare.reasons",
+            "compare.feature-table"
+          ],
+          [
+            "content.post-article",
+            "content.related-posts"
+          ],
+          [
+            "hero.page-header",
+            "content.post-list"
+          ],
+          [
+            "conversion.cta-band",
+            "content.footnote-attribution"
+          ]
+        ]
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_must_immediately_follow"
+      }
+    },
+    {
+      "id": "MUST_BE_IMMEDIATELY_FOLLOWED_BY",
+      "severity": "error",
+      "description": "Sections that must be directly followed by a specific successor (pairs are [section, successor]).",
+      "measuredFrom": [
+        "src/pages/Startups.jsx:105",
+        "src/pages/Newsletter.jsx:8-54"
+      ],
+      "params": {
+        "pairs": [
+          [
+            "hero.title-cta",
+            "media.photo-pattern-collage"
+          ],
+          [
+            "hero.form-split",
+            "conversion.cta-band"
+          ]
+        ]
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_must_be_followed_by"
+      }
+    },
+    {
+      "id": "CTA_BAND_BEFORE_FOOTER",
+      "severity": "error",
+      "description": "conversion.cta-band appears at most once and, when present, sits directly before shell.footer (white on white, no seam).",
+      "measuredFrom": [
+        "src/components/CTA.jsx:6",
+        "src/components/Footer.jsx:41"
+      ],
+      "params": {
+        "section": "conversion.cta-band",
+        "followedBy": "shell.footer",
+        "max": 1,
+        "allowedBetween": [
+          "content.footnote-attribution"
+        ]
+      },
+      "exceptions": [
+        {
+          "template": "integrations",
+          "reason": "a Logo.dev credit strip (content.footnote-attribution) is inserted between the CTA band and the footer; the only such page",
+          "measuredFrom": [
+            "src/pages/Integrations.jsx:52-65"
+          ]
+        }
+      ],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_cta_before_footer"
+      }
+    },
+    {
+      "id": "PRODUCT_FEATURES_FOLLOWED_BY_DARK",
+      "severity": "error",
+      "description": "content.product-features draws a gray-10 slab that bleeds into the next section, so the next section must be a dark one (a dark accordion-showcase, or a dark product-cards).",
+      "measuredFrom": [
+        "src/components/products/ProductFeatures.jsx:50-57",
+        "src/components/products/data.js:25,70,108,140,184"
+      ],
+      "params": {
+        "section": "content.product-features",
+        "nextMayBe": [
+          "interactive.accordion-showcase",
+          "content.product-cards"
+        ],
+        "requiredTone": "dark"
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_product_features_then_dark"
+      }
+    },
+    {
+      "id": "STRADDLE_FOLLOWED_BY_WHITE",
+      "severity": "error",
+      "description": "hero.product and media.photo-pattern-collage carry a coloured band plus a bg-background bottom slab so the image straddles into the next section; that next section must be white.",
+      "measuredFrom": [
+        "src/components/products/ProductHero.jsx:7,26",
+        "src/pages/Startups.jsx:53-56",
+        "src/components/blog/MobileSections.jsx:410-413"
+      ],
+      "params": {
+        "sections": [
+          "hero.product",
+          "media.photo-pattern-collage"
+        ],
+        "requiredTone": "white"
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_straddle_then_white"
+      }
+    },
+    {
+      "id": "ACCORDION_SHOWCASE_MAX_3",
+      "severity": "error",
+      "description": "interactive.accordion-showcase appears at most 3 times per page (observed: 1-2 on product pages, 3 on /apps/mobile).",
+      "measuredFrom": [
+        "src/components/products/data.js:24-206",
+        "src/pages/AppsMobile.jsx:11-70"
+      ],
+      "params": {
+        "section": "interactive.accordion-showcase",
+        "max": 3
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_accordion_max"
+      }
+    },
+    {
+      "id": "ACCORDION_ADJACENT_ALTERNATE",
+      "severity": "error",
+      "description": "Directly adjacent accordion-showcase sections alternate sides (`flip` differs).",
+      "measuredFrom": [
+        "src/pages/AppsMobile.jsx:13,33",
+        "src/components/products/data.js:25,31,184,189"
+      ],
+      "params": {
+        "section": "interactive.accordion-showcase"
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_accordion_alternate"
+      }
+    },
+    {
+      "id": "NO_ADJACENT_SAME_SECTION",
+      "severity": "error",
+      "description": "The same section id must not appear twice in a row (non-adjacent repeats such as careers principle-rows are fine).",
+      "measuredFrom": [
+        "src/pages/Careers.jsx:123-177"
+      ],
+      "params": {},
+      "exceptions": [
+        {
+          "template": "apps-mobile",
+          "reason": "three feature showcases are rendered back-to-back from one data array, alternating sides",
+          "measuredFrom": [
+            "src/pages/AppsMobile.jsx:11-70",
+            "src/pages/AppsMobile.jsx:80-81"
+          ]
+        },
+        {
+          "template": "product-detail",
+          "reason": "/products/foundation renders two accordion showcases back-to-back (dark then light+reverse)",
+          "measuredFrom": [
+            "src/components/products/data.js:184-193"
+          ],
+          "instanceRoutes": [
+            "/products/foundation"
+          ]
+        }
+      ],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_no_adjacent_same_section"
+      }
+    },
+    {
+      "id": "NO_ADJACENT_SAME_CATEGORY",
+      "severity": "warn",
+      "description": "Avoid two adjacent sections of the same category (the id prefix). The content.* and compare.* families are exempt because those pages are made of consecutive sections of the family by design; the remaining repeats are named exceptions.",
+      "measuredFrom": [
+        "src/pages/Home.jsx:14-22",
+        "src/pages/Compare.jsx:26-29"
+      ],
+      "params": {
+        "exemptCategories": [
+          "content",
+          "compare"
+        ]
+      },
+      "exceptions": [
+        {
+          "template": "apps-mobile",
+          "reason": "three adjacent interactive.accordion-showcase",
+          "measuredFrom": [
+            "src/pages/AppsMobile.jsx:80-81"
+          ]
+        },
+        {
+          "template": "product-detail",
+          "reason": "/products/foundation has two adjacent accordion showcases",
+          "measuredFrom": [
+            "src/components/products/data.js:184-193"
+          ],
+          "instanceRoutes": [
+            "/products/foundation"
+          ]
+        }
+      ],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_no_adjacent_same_category"
+      }
+    },
+    {
+      "id": "ONE_PER_PAGE_SECTIONS",
+      "severity": "error",
+      "description": "These sections appear at most once per page.",
+      "measuredFrom": [
+        "src/pages/Home.jsx:14-22",
+        "src/pages/Careers.jsx:123-177"
+      ],
+      "params": {
+        "sections": [
+          "social-proof.logo-marquee",
+          "interactive.ask-reevo-carousel",
+          "conversion.cta-band",
+          "nav.product-tabs",
+          "interactive.scroll-story",
+          "content.tour-demo",
+          "interactive.integrations-browser",
+          "content.post-article",
+          "content.product-features",
+          "content.product-cards",
+          "social-proof.testimonial",
+          "content.faq-accordion",
+          "content.post-list",
+          "content.job-board"
+        ]
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_one_per_page"
+      }
+    },
+    {
+      "id": "NO_CONSECUTIVE_SCROLL_STAGES",
+      "severity": "error",
+      "description": "A scroll stage is a section that is 5x viewport tall with a sticky child (interactive.scroll-story). Never two adjacent, and at most one per page.",
+      "measuredFrom": [
+        "src/components/company/ScrollStory.jsx:91-96"
+      ],
+      "params": {
+        "stageSections": [
+          "interactive.scroll-story"
+        ],
+        "maxPerPage": 1
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_no_consecutive_scroll_stages"
+      }
+    },
+    {
+      "id": "MOTION_BUDGET",
+      "severity": "warn",
+      "description": "Sections with continuous or timer-driven motion (marquee, auto-advancing carousel or accordion, notification stack, scroll-linked story) per page. The cap of 4 is the observed maximum (/apps/mobile), a proposal rather than a measured perceptual limit.",
+      "measuredFrom": [
+        "src/components/LogoMarquee.jsx:5-7",
+        "src/components/Foundation.jsx:34-43",
+        "src/components/products/ProductAccordion.jsx:74",
+        "src/components/blog/MobileSections.jsx:17-61",
+        "src/components/company/ScrollStory.jsx:91-96"
+      ],
+      "params": {
+        "ambientSections": [
+          "social-proof.logo-marquee",
+          "interactive.ask-reevo-carousel",
+          "interactive.accordion-showcase",
+          "hero.mobile-app",
+          "interactive.scroll-story"
+        ],
+        "maxAmbient": 4
+      },
+      "exceptions": [],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_motion_budget"
+      }
+    },
+    {
+      "id": "FAQ_FOLLOWED_BY_CTA",
+      "severity": "warn",
+      "description": "content.faq-accordion is followed by the CTA band wherever the page has one.",
+      "measuredFrom": [
+        "src/pages/Pricing.jsx:19",
+        "src/pages/AppsMobile.jsx:85-86"
+      ],
+      "params": {
+        "section": "content.faq-accordion",
+        "followedBy": "conversion.cta-band"
+      },
+      "exceptions": [
+        {
+          "template": "product-tour",
+          "reason": "the tour ends on its FAQ; the demo section carries its own callout instead of the CTA band",
+          "measuredFrom": [
+            "src/pages/ProductTour.jsx:42-50"
+          ]
+        }
+      ],
+      "enforcedBy": {
+        "file": "schema/semantic_validate.py",
+        "check": "check_faq_followed_by_cta"
+      }
+    }
+  ]
+}

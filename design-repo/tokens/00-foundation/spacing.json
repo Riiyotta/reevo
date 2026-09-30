@@ -1,0 +1,103 @@
+{
+  "$description": "Spacing base unit plus the steps evidenced in shared primitives (src/components/ui.jsx). Step values are multiples of the base unit (n x .25rem); only steps with a cited usage site are listed. Tailwind's default spacing scale is compatible (CLONE_SPEC.md:314).",
+  "category": "spacing",
+  "spacing": {
+    "unit": {
+      "value": ".25rem",
+      "type": "spacing",
+      "cssVar": "--spacing",
+      "measuredFrom": "CLONE_SPEC.md:44"
+    },
+    "1": {
+      "value": ".25rem",
+      "type": "spacing",
+      "px": 4,
+      "usedAt": "src/components/ui.jsx:51 (gap-1)",
+      "measuredFrom": "CLONE_SPEC.md:44"
+    },
+    "2": {
+      "value": ".5rem",
+      "type": "spacing",
+      "px": 8,
+      "usedAt": "px-2",
+      "measuredFrom": "src/components/ui.jsx:36"
+    },
+    "3": {
+      "value": ".75rem",
+      "type": "spacing",
+      "px": 12,
+      "usedAt": "px-3, mt-3 (src/components/ui.jsx:120)",
+      "measuredFrom": "src/components/ui.jsx:51"
+    },
+    "4": {
+      "value": "1rem",
+      "type": "spacing",
+      "px": 16,
+      "usedAt": "grid gap-4",
+      "measuredFrom": "src/components/ui.jsx:5"
+    },
+    "5": {
+      "value": "1.25rem",
+      "type": "spacing",
+      "px": 20,
+      "usedAt": "px-5",
+      "measuredFrom": "src/components/ui.jsx:50"
+    },
+    "6": {
+      "value": "1.5rem",
+      "type": "spacing",
+      "px": 24,
+      "usedAt": "px-6, pt-6 (src/components/ui.jsx:133)",
+      "measuredFrom": "src/components/ui.jsx:23"
+    },
+    "8": {
+      "value": "2rem",
+      "type": "spacing",
+      "px": 32,
+      "usedAt": "sm:px-8",
+      "measuredFrom": "src/components/ui.jsx:23"
+    },
+    "10": {
+      "value": "2.5rem",
+      "type": "spacing",
+      "px": 40,
+      "usedAt": "md:px-10, space-y-10 (src/components/ui.jsx:8)",
+      "measuredFrom": "src/components/ui.jsx:23"
+    },
+    "12": {
+      "value": "3rem",
+      "type": "spacing",
+      "px": 48,
+      "usedAt": "lg:px-12",
+      "measuredFrom": "src/components/ui.jsx:23"
+    },
+    "16": {
+      "value": "4rem",
+      "type": "spacing",
+      "px": 64,
+      "usedAt": "py-16",
+      "measuredFrom": "src/components/ui.jsx:130"
+    },
+    "20": {
+      "value": "5rem",
+      "type": "spacing",
+      "px": 80,
+      "usedAt": "lg:space-y-20",
+      "measuredFrom": "src/components/ui.jsx:8"
+    },
+    "24": {
+      "value": "6rem",
+      "type": "spacing",
+      "px": 96,
+      "usedAt": "md:py-24 (src/components/ui.jsx:130), xl:space-y-24 (src/components/ui.jsx:8)",
+      "measuredFrom": "src/components/ui.jsx:130"
+    },
+    "32": {
+      "value": "8rem",
+      "type": "spacing",
+      "px": 128,
+      "usedAt": "lg:py-32",
+      "measuredFrom": "src/components/ui.jsx:130"
+    }
+  }
+}

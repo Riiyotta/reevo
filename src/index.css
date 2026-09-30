@@ -1,0 +1,76 @@
+/* Fonts: hash-to-weight map from CLONE_SPEC.md section 0 */
+@font-face { font-family: 'Metrify'; src: url('/fonts/5a1939b990a8ae92-s.p.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Metrify'; src: url('/fonts/a5cdf4507e05b80a-s.p.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Metrify'; src: url('/fonts/48fefe2276517d74-s.p.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Metrify'; src: url('/fonts/cdb4207d9156d056-s.p.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Metrify'; src: url('/fonts/7467bd508c427a2b-s.p.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Haltung'; src: url('/fonts/adf06ed147ff8f4c-s.p.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Haltung'; src: url('/fonts/e2b20310cd2df4ae-s.p.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Haltung'; src: url('/fonts/5f099d1fc3ece706-s.p.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Haltung'; src: url('/fonts/7b61ee17c1b12113-s.p.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Haltung'; src: url('/fonts/416f91833d5cd616-s.p.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'GTAmericaMono'; src: url('/fonts/ec10966dde464df8-s.p.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+
+/* Metric-matched fallbacks (from 6e20e8068aab9870.css) */
+@font-face { font-family: 'Metrify Fallback'; src: local('Arial'); ascent-override: 127.51%; descent-override: 31.88%; line-gap-override: 31.88%; size-adjust: 62.74%; }
+@font-face { font-family: 'Haltung Fallback'; src: local('Arial'); ascent-override: 96.37%; descent-override: 25.36%; line-gap-override: 0%; size-adjust: 98.58%; }
+@font-face { font-family: 'GTAmericaMono Fallback'; src: local('Arial'); ascent-override: 73.60%; descent-override: 18.99%; line-gap-override: 0%; size-adjust: 135.87%; }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Semantic colour tokens as RGB channels so Tailwind opacity modifiers work */
+  :root {
+    --color-background: 255 255 255;           /* #fff */
+    --color-foreground: 60 60 60;              /* #3c3c3c */
+    --color-strong: 18 18 18;                  /* #121212 */
+    --color-primary: 18 18 18;                 /* #121212 */
+    --color-primary-foreground: 255 255 255;   /* #fff */
+    --color-secondary-foreground: 60 60 60;    /* #3c3c3c */
+    --color-muted-foreground: 146 145 143;     /* #92918f */
+    --color-border: 231 231 222;               /* #e7e7de */
+
+    --radius: 2px;
+    --nav-height-mobile: 64px;
+    --nav-height-desktop: 72px;
+    --button-height: 46px;
+    --button-height-sm: 36px;
+  }
+
+  .dark {
+    --color-background: 18 18 18;              /* #121212 */
+    --color-foreground: 242 242 234;           /* #f2f2ea */
+    --color-strong: 255 255 255;               /* #fff */
+    --color-border: 103 102 101;               /* #676665 */
+    --color-primary: 255 255 255;              /* #fff */
+    --color-primary-foreground: 18 18 18;      /* #121212 */
+    --color-secondary-foreground: 255 255 255; /* #fff */
+  }
+
+  body {
+    @apply bg-background font-sans text-md text-foreground antialiased;
+  }
+
+  hr {
+    @apply border-border;
+  }
+}
+
+@layer utilities {
+  /* mask-x-from-90%: 10% fade at each horizontal edge */
+  .mask-x-from-90 {
+    -webkit-mask-image: linear-gradient(to right, #000 90%, transparent 100%), linear-gradient(to left, #000 90%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, #000 90%, transparent 100%), linear-gradient(to left, #000 90%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* react-fast-marquee pause behaviour */
+  .marquee:hover .marquee-track,
+  .marquee:active .marquee-track { animation-play-state: paused; }
+}

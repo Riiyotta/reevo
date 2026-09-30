@@ -1,0 +1,57 @@
+{
+  "id": "shell.footer",
+  "kind": "section",
+  "category": "shell",
+  "purpose": "Global site footer: brand mark, four link groups (Products, Platform, Company, Social), legal links, copyright and three compliance chips. Always the last node on every route.",
+  "measuredFrom": ["src/components/Footer.jsx:39-88", "src/components/Footer.jsx:90-113", "src/App.jsx:105"],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "note": "No props; GROUPS and CHIPS are module constants. Fields below describe them.",
+    "fields": {
+      "mark": { "type": "assetRef", "required": true, "assetRole": "brand-mark" },
+      "groups": {
+        "type": "array", "required": true, "minItems": 4, "maxItems": 4,
+        "note": "Products, Platform, Company, Social. Only the Products group carries a colour dot per link.",
+        "items": { "type": "object", "fields": {
+          "title": { "type": "string", "maxWords": 1 },
+          "links": { "type": "array", "minItems": 2, "maxItems": 6, "items": { "type": "object", "fields": {
+            "label": { "type": "string", "maxWords": 3 },
+            "href": { "type": "string", "kind": "route-or-url" },
+            "dot": { "type": "enum", "values": ["bg-orange-8", "bg-pink-9", "bg-green-8", "bg-yellow-8", "bg-blue-8"] }
+          } } }
+        } },
+        "measuredFrom": ["src/components/Footer.jsx:5-29", "src/components/Footer.jsx:97-108"]
+      },
+      "legalLinks": { "type": "array", "required": true, "minItems": 2, "maxItems": 2, "items": { "type": "object", "fields": { "label": { "type": "string", "maxWords": 3 }, "href": { "type": "string", "kind": "route-or-url" } } }, "measuredFrom": ["src/components/Footer.jsx:59-63"] },
+      "privacyChoiceLabel": { "type": "string", "required": true, "maxWords": 8, "note": "Rendered as a button with no handler.", "measuredFrom": ["src/components/Footer.jsx:64-66"] },
+      "copyright": { "type": "string", "required": true, "maxWords": 4, "measuredFrom": ["src/components/Footer.jsx:70"] },
+      "complianceChips": { "type": "array", "required": true, "minItems": 3, "maxItems": 3, "items": { "type": "string", "maxWords": 4 }, "note": "Each chip pairs a lucide icon with a label.", "measuredFrom": ["src/components/Footer.jsx:31-35", "src/components/Footer.jsx:73-82"] }
+    }
+  },
+  "mediaFields": [ { "field": "mark", "assetRole": "brand-mark" } ],
+  "behaviour": [
+    { "note": "Background is always white (bg-white), so a white CTA band directly above it leaves no seam.", "measuredFrom": ["src/components/Footer.jsx:41"] },
+    { "note": "The 'Do Not Sell or Share My Personal Information' control is a button with no click handler.", "measuredFrom": ["src/components/Footer.jsx:64-66"] },
+    { "note": "External links (http prefix) open in a new tab with rel noopener noreferrer.", "measuredFrom": ["src/components/Footer.jsx:102"] }
+  ],
+  "constraints": { "onePerPage": true, "mustBeLast": true },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No transitions are declared in Footer.jsx; links have no hover styles in the source.",
+    "measuredFrom": ["src/components/Footer.jsx:39-113"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to xl", "change": "vertical padding steps 40 / 56 (md) / 64 (lg) / 80 (xl) px", "measuredFrom": ["src/components/Footer.jsx:41"] },
+      { "at": "below lg", "change": "brand mark takes its own row; link groups sit two per row (3 of 6 columns); spacer column hidden", "measuredFrom": ["src/components/Footer.jsx:37", "src/components/Footer.jsx:44", "src/components/Footer.jsx:94"] },
+      { "at": "lg and up", "change": "mark and four groups sit on one 24-column row separated by 1-column spacers; xl starts the mark at column 2", "measuredFrom": ["src/components/Footer.jsx:44", "src/components/Footer.jsx:94"] },
+      { "at": "base to xl", "change": "gap between link block and legal row is 40px, 192px from lg, 256px from xl", "measuredFrom": ["src/components/Footer.jsx:54"] },
+      { "at": "lg and up", "change": "legal row becomes a single row with legal links at right, copyright in the middle, chips at far right; below lg the three blocks stack", "measuredFrom": ["src/components/Footer.jsx:56-84"] }
+    ]
+  },
+  "usedOnRoutes": ["all"],
+  "tokensUsed": ["semanticColor.surface.background", "semanticColor.text.strong", "semanticColor.text.muted", "semanticColor.border.default", "semanticTypography.footer-link", "semanticTypography.footer-caption", "borderRadius.sm"]
+}

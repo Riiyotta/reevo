@@ -1,0 +1,633 @@
+{
+  "$comment": "Derived from the verified design-repo (templates, routes and section contracts) of the local Reevo clone; every section, template and route count comes from that measured data. Hand-edit this file only; IA.md and matrix.csv are generated.",
+  "meta": {
+    "source": "Reevo marketing site (reevo.ai), as rebuilt in this project's src/ (React + Vite + Tailwind v3)",
+    "status": "measured-from-clone",
+    "productionApproved": false,
+    "totalRoutes": 71,
+    "totalTemplates": 16,
+    "generatedBy": "derived from design-repo/templates/*.json and design-repo/sections/*.json"
+  },
+  "categories": {
+    "SHELL": "Chrome rendered once outside the router and present on every route: the sticky header and the footer.",
+    "HERO": "The page-opening header block: headline, lede and calls to action, sometimes with a video, image or form beside it.",
+    "NAV": "Secondary in-page navigation that sits between the site header and the page body.",
+    "SOCIAL-PROOF": "Evidence that other companies use the product: logo strips and grids, customer video cards, testimonials.",
+    "CONTENT": "The substantive body of a page: feature and product explanation, pricing, principles, team, jobs, articles and lists.",
+    "INTERACTIVE": "Blocks whose main job is a behaviour: carousels, auto-advancing accordions, a scroll-linked story, a filterable catalogue.",
+    "COMPARE": "Competitor comparison blocks used only on the /compare/* pages.",
+    "MEDIA": "Image-led presentation blocks with little copy.",
+    "FORM": "Forms. None of them submit anywhere in this clone; they validate in the browser only.",
+    "DOC": "Long-form instruction or changelog page body.",
+    "CONVERSION": "The closing call-to-action band that ends a page before the footer."
+  },
+  "sections": {
+    "compare.feature-table": {
+      "category": "COMPARE",
+      "description": "Let a deep-diving buyer verify the comparison feature by feature: a dark table of grouped capabilities with a yes or no mark for Reevo and for the competitor, collapsed to the first three groups until the visitor asks for more.",
+      "scope": "Carried by the Compare a competitor template (7 routes).",
+      "implementedBy": "src/components/compare/CompareSections.jsx"
+    },
+    "compare.quick-table": {
+      "category": "COMPARE",
+      "description": "Give a comparison-page visitor the answer in four rows: a three-column table that sets Reevo against one named competitor on best-for, system of record, AI capability and ideal team, so the decision is visible before any longer argument.",
+      "scope": "Carried by the Compare a competitor template (7 routes).",
+      "implementedBy": "src/components/compare/CompareSections.jsx"
+    },
+    "compare.reasons": {
+      "category": "COMPARE",
+      "description": "Explain in prose why a buyer would pick Reevo over this one competitor: an intro paragraph, three (or four) short reason pairs of a title and an explanation, and for two competitors a colour-accented callout that frames the competitor as a product of an earlier era.",
+      "scope": "Carried by the Compare a competitor template (7 routes).",
+      "implementedBy": "src/components/compare/CompareSections.jsx"
+    },
+    "content.dark-problem": {
+      "category": "CONTENT",
+      "description": "Frame the problem before the product: on a dark background, name why fragmented sales tools lose context and back it with three pain-point cards, creating contrast and tension ahead of the solution section.",
+      "scope": "Carried by the Home template (1 routes).",
+      "implementedBy": "src/components/Problem.jsx"
+    },
+    "content.event-timeline": {
+      "category": "CONTENT",
+      "description": "Tell a day-in-the-life story on a dark background: three timestamped moments at a conference show how the product captures every conversation, presented as a horizontal timeline with tick marks.",
+      "scope": "Carried by the Mobile app template (1 routes).",
+      "implementedBy": "src/components/blog/MobileSections.jsx"
+    },
+    "content.faq-accordion": {
+      "category": "CONTENT",
+      "description": "Answer the objections and basic questions a buyer has just before the closing call to action, with a fixed 'Frequently asked questions' heading on the left and a ruled list of question/answer rows on the right. Answers stay hidden until asked so the section stays short while still carrying searchable copy.",
+      "scope": "Carried by the Mobile app, Product detail, Pricing, Product tour templates (8 routes).",
+      "implementedBy": "src/components/faq.jsx (+2 more)"
+    },
+    "content.footnote-attribution": {
+      "category": "CONTENT",
+      "description": "A quiet strip between the closing call to action and the footer that credits the third-party data provider whose logos appear on the page, as required for attribution.",
+      "scope": "Carried by the Integrations template (1 routes).",
+      "implementedBy": "src/pages/Integrations.jsx"
+    },
+    "content.job-board": {
+      "category": "CONTENT",
+      "description": "Turn careers interest into applications: list every open role grouped by team, with a sticky team index for jumping, each row linking straight to its external posting.",
+      "scope": "Carried by the Careers template (1 routes).",
+      "implementedBy": "src/pages/Careers.jsx (+1 more)"
+    },
+    "content.lead-statement": {
+      "category": "CONTENT",
+      "description": "Right after a company-page hero, state the mission or point of view in one large paragraph with a bold opening phrase, then hand the visitor straight to the next action.",
+      "scope": "Carried by the About, Careers templates (2 routes).",
+      "implementedBy": "src/pages/About.jsx (+2 more)"
+    },
+    "content.plan-compare-table": {
+      "category": "CONTENT",
+      "description": "Give a buyer the detailed Core vs Pro entitlement comparison, grouped by product pillar, that the plan cards only summarise. It is the anchor target for the plan cards' 'Show full plan comparison' link and lets a buyer verify allowances before contacting sales.",
+      "scope": "Carried by the Pricing template (1 routes).",
+      "implementedBy": "src/components/pricing/ComparePlans.jsx"
+    },
+    "content.platform-columns": {
+      "category": "CONTENT",
+      "description": "Show the whole product surface at a glance: four product-pillar columns (Find, Connect, Sell, Manage) with feature chips, plus a Foundation band underneath, so visitors see one platform rather than four tools.",
+      "scope": "Carried by the Home, Startup program templates (2 routes).",
+      "implementedBy": "src/components/BuiltDifferent.jsx (+1 more)"
+    },
+    "content.post-article": {
+      "category": "CONTENT",
+      "description": "Present one blog article as a readable long-form page: title block, square cover, the article body in a prose column, a conversion prompt at the foot, and a sticky left sidebar (author and share links, key takeaways, table of contents, newsletter signup) that helps the reader navigate and subscribe while reading.",
+      "scope": "Carried by the Blog post template (43 routes).",
+      "implementedBy": "src/pages/BlogPost.jsx (+3 more)"
+    },
+    "content.post-list": {
+      "category": "CONTENT",
+      "description": "Let a reader browse every blog article, newest first, and narrow the list by category: a filter row followed by a vertical list of article cards, the first one drawn larger as the featured article.",
+      "scope": "Carried by the Blog index template (1 routes).",
+      "implementedBy": "src/pages/Blog.jsx (+1 more)"
+    },
+    "content.pricing-plans": {
+      "category": "CONTENT",
+      "description": "Present the three commercial plans side by side without publishing prices, so every plan card routes the visitor to a sales conversation (work-email capture) instead of a checkout. A startup-programme banner underneath offers a discount path to a specific audience.",
+      "scope": "Carried by the Pricing template (1 routes).",
+      "implementedBy": "src/components/pricing/PricingPlans.jsx"
+    },
+    "content.principle-rows": {
+      "category": "CONTENT",
+      "description": "Communicate how the company operates and what it values as a list of short titled statements, each a two-column row (bold title left, explanatory sentence right), so culture reads as clear commitments rather than a paragraph.",
+      "scope": "Carried by the Careers template (1 routes).",
+      "implementedBy": "src/pages/Careers.jsx (+1 more)"
+    },
+    "content.product-cards": {
+      "category": "CONTENT",
+      "description": "On a product page, show two to four benefit cards, each pairing a short benefit statement with a screenshot of the feature, to make the value tangible after the accordion walkthrough.",
+      "scope": "Carried by the Product detail template (5 routes).",
+      "implementedBy": "src/components/products/ProductCards.jsx"
+    },
+    "content.product-features": {
+      "category": "CONTENT",
+      "description": "On each product page, lay out the capabilities of that product as a scannable grid of icon, name and one-sentence description, with a See Reevo call to action, before the deeper accordion showcases.",
+      "scope": "Carried by the Product detail template (5 routes).",
+      "implementedBy": "src/components/products/ProductFeatures.jsx"
+    },
+    "content.qualification-terms": {
+      "category": "CONTENT",
+      "description": "Close the startups offer: state who qualifies (size and investor-backing criteria), show the accepted investors as a logo wall, give one action to apply, and list the terms in small print.",
+      "scope": "Carried by the Startup program template (1 routes).",
+      "implementedBy": "src/pages/Startups.jsx"
+    },
+    "content.related-posts": {
+      "category": "CONTENT",
+      "description": "Keep a reader in the blog after finishing an article: a titled strip with a View all link, followed by two related article cards in the same layout as the blog index, so the next read is one click away.",
+      "scope": "Carried by the Blog post template (43 routes).",
+      "implementedBy": "src/pages/BlogPost.jsx"
+    },
+    "content.release-entry": {
+      "category": "CONTENT",
+      "description": "Record one product release in a changelog timeline: a dated, linkable heading with an optional italic subtitle, then either a short bullet list or one summary sentence, and optionally one or two screenshots. Repeated once per release so a reader can scan what changed and when.",
+      "scope": "Carried by the Release notes template (1 routes).",
+      "implementedBy": "src/pages/ReleaseNotes.jsx"
+    },
+    "content.solution-rows": {
+      "category": "CONTENT",
+      "description": "Walk through the four product pillars (Find, Connect, Sell, Manage) as alternating image and text rows, each tying a customer outcome to a product screenshot and a Learn more link to the pillar page.",
+      "scope": "Carried by the Home template (1 routes).",
+      "implementedBy": "src/components/Solution.jsx"
+    },
+    "content.team-cards": {
+      "category": "CONTENT",
+      "description": "Put real faces and credentials on the company: four founder cards (photo, name, role) that reveal a short bio on hover, introduced by a paragraph on where the team's experience comes from.",
+      "scope": "Carried by the About template (1 routes).",
+      "implementedBy": "src/pages/About.jsx"
+    },
+    "content.tour-demo": {
+      "category": "CONTENT",
+      "description": "Let a visitor try the product hands-on without talking to sales: a looping teaser video with a 'Try the interactive demo' button opens a self-guided demo in a modal, and a follow-up callout below converts people who liked it into a custom-demo booking.",
+      "scope": "Carried by the Product tour template (1 routes).",
+      "implementedBy": "src/components/pricing/TourDemo.jsx"
+    },
+    "conversion.cta-band": {
+      "category": "CONVERSION",
+      "description": "Closing conversion band directly above the footer: an all-caps headline, one line of reassurance and a stacked primary Get started plus outline See Reevo button pair.",
+      "scope": "Carried by the Home, Mobile app, Product detail, Compare a competitor, Release notes, Pricing, Integrations, Newsletter templates (18 routes).",
+      "implementedBy": "src/components/CTA.jsx (+1 more)"
+    },
+    "doc.prose-page": {
+      "category": "DOC",
+      "description": "Long-form reference page in a narrow reading column: an all-caps title followed by rich-text instructions (setup guides) or a caller-supplied list (release notes). Optimised for reading, with no hero or imagery.",
+      "scope": "Carried by the Setup instructions, Release notes templates (3 routes).",
+      "implementedBy": "src/components/blog/DocPage.jsx (+2 more)"
+    },
+    "form.centered-form": {
+      "category": "FORM",
+      "description": "Whole-page lead-capture form: a heading, one or two intro lines and a single centred column of labelled fields ending in a wide submit button. Used for demo booking, startup-programme applications and partner enquiries.",
+      "scope": "Carried by the Form page template (3 routes).",
+      "implementedBy": "src/pages/GetStarted.jsx (+4 more)"
+    },
+    "hero.eyebrow-title-banner": {
+      "category": "HERO",
+      "description": "Company-page opener: a mono eyebrow (the h1), a large all-caps statement and a full-width decorative banner (a pattern strip or a wide pattern image) that gives the page a brand-colour anchor before the story content.",
+      "scope": "Carried by the About, Careers templates (2 routes).",
+      "implementedBy": "src/pages/About.jsx (+1 more)"
+    },
+    "hero.form-split": {
+      "category": "HERO",
+      "description": "Newsletter sign-up hero: headline, short pitch and a one-field email form with a consent line on the left, a square photo on the right. Turns the page visit into a subscription ask.",
+      "scope": "Carried by the Newsletter template (1 routes).",
+      "implementedBy": "src/pages/Newsletter.jsx"
+    },
+    "hero.marketing-video": {
+      "category": "HERO",
+      "description": "Home-page hero: a tag, an all-caps headline, a supporting sentence, two CTAs and a 16:9 promo video that plays a muted looping teaser until the visitor presses play, then swaps to the full video.",
+      "scope": "Carried by the Home template (1 routes).",
+      "implementedBy": "src/components/Hero.jsx"
+    },
+    "hero.mobile-app": {
+      "category": "HERO",
+      "description": "Mobile-app landing hero: tag, headline with a coloured emphasis span, bold-led pitch and two CTAs (talk to sales, or open a QR install dialog), beside a square photo with a looping stack of sample notification cards that demonstrates what the app surfaces.",
+      "scope": "Carried by the Mobile app template (1 routes).",
+      "implementedBy": "src/components/blog/MobileSections.jsx"
+    },
+    "hero.page-header": {
+      "category": "HERO",
+      "description": "Plain text page opener for utility-style pages: a small mono label, a large all-caps title and an optional one-sentence lede. Sets the page topic before the main content (plans, demo, post list).",
+      "scope": "Carried by the Blog index, Pricing, Product tour templates (3 routes).",
+      "implementedBy": "src/components/pricing/shared.jsx (+1 more)"
+    },
+    "hero.product": {
+      "category": "HERO",
+      "description": "Product-page hero: headline, one bold-led lede and a single Get started button on a gray band, with a wide product screenshot and a decorative pattern that straddle into the white section below.",
+      "scope": "Carried by the Product detail template (5 routes).",
+      "implementedBy": "src/components/products/ProductHero.jsx"
+    },
+    "hero.split-image": {
+      "category": "HERO",
+      "description": "Hero for informational landing pages: mono eyebrow, large all-caps headline, a lede and one or two CTAs on the left, with a square supporting image on the right at md and up. Used to frame a comparison or the integrations catalogue before detailed content.",
+      "scope": "Carried by the Compare a competitor, Integrations templates (8 routes).",
+      "implementedBy": "src/components/compare/CompareSections.jsx (+1 more)"
+    },
+    "hero.title-cta": {
+      "category": "HERO",
+      "description": "Text-only hero for the startup programme page: an all-caps headline, a one-sentence pitch and two CTAs (apply, and see the product). No media; the image collage follows it.",
+      "scope": "Carried by the Startup program template (1 routes).",
+      "implementedBy": "src/pages/Startups.jsx"
+    },
+    "interactive.accordion-showcase": {
+      "category": "INTERACTIVE",
+      "description": "Explain one product capability area through a headline, an optional lede, a single-open accordion of 2 to 4 benefit items and a square screenshot that changes with the open item. The section advances itself so a visitor sees each benefit paired with its screenshot without clicking.",
+      "scope": "Carried by the Mobile app, Product detail templates (6 routes).",
+      "implementedBy": "src/components/products/ProductAccordion.jsx (+1 more)"
+    },
+    "interactive.ask-reevo-carousel": {
+      "category": "INTERACTIVE",
+      "description": "Show, on a single square stage, three real Ask Reevo answers (Slack conversation, deal summary, best-seller talk track) that cycle on their own, so a visitor sees the AI answering with cited context without having to click. Sits under a 'Foundation' label with a one-source-of-truth headline.",
+      "scope": "Carried by the Home template (1 routes).",
+      "implementedBy": "src/components/Foundation.jsx"
+    },
+    "interactive.integrations-browser": {
+      "category": "INTERACTIVE",
+      "description": "Let a visitor check whether the tool they already use is supported, by browsing or searching a catalogue of about 1,300 integrations grouped by the five product pillars. It backs the page's '1,300+ tools' claim with a searchable list and lets a filtered view be shared by URL.",
+      "scope": "Carried by the Integrations template (1 routes).",
+      "implementedBy": "src/components/pricing/IntegrationsBrowser.jsx"
+    },
+    "interactive.scroll-story": {
+      "category": "INTERACTIVE",
+      "description": "Deliver a five-part company manifesto one statement at a time. The section is five viewport-heights tall with a sticky stage, so the visitor's own scrolling paces the reading and each statement replaces the last in place, making a long statement feel like a guided story instead of a wall of text.",
+      "scope": "Carried by the About template (1 routes).",
+      "implementedBy": "src/components/company/ScrollStory.jsx"
+    },
+    "media.photo-pattern-collage": {
+      "category": "MEDIA",
+      "description": "Full-bleed image moment between a hero and the content below: a wide photograph overlapped by a decorative pattern block, standing on a coloured band that hands over to white so the photo appears to straddle the section boundary.",
+      "scope": "Carried by the Startup program, Mobile app templates (2 routes).",
+      "implementedBy": "src/pages/Startups.jsx (+1 more)"
+    },
+    "nav.product-tabs": {
+      "category": "NAV",
+      "description": "Product-page tab strip listing the five products (Find, Connect, Sell, Manage, Foundation) with the current one highlighted by its brand-colour dot, so visitors can move between product pages.",
+      "scope": "Carried by the Product detail template (5 routes).",
+      "implementedBy": "src/components/products/ProductTabs.jsx"
+    },
+    "shell.footer": {
+      "category": "SHELL",
+      "description": "Global site footer: brand mark, four link groups (Products, Platform, Company, Social), legal links, copyright and three compliance chips. Always the last node on every route.",
+      "scope": "Carried by every template (71 routes).",
+      "implementedBy": "src/components/Footer.jsx"
+    },
+    "shell.navbar": {
+      "category": "SHELL",
+      "description": "Global sticky header: brand mark, primary navigation (three dropdown panels plus two direct links), a persistent Get started CTA and a Log in link, collapsing to a full-screen accordion menu below lg. It is the always-present route into pricing, tour and sign-up.",
+      "scope": "Carried by every template (71 routes).",
+      "implementedBy": "src/components/Navbar.jsx"
+    },
+    "social-proof.customer-video-cards": {
+      "category": "SOCIAL-PROOF",
+      "description": "Let real customers make the case: three video testimonial cards (hover-to-play teaser, click for the full video in a dialog) followed by an As seen on press row that links to real coverage.",
+      "scope": "Carried by the Home template (1 routes).",
+      "implementedBy": "src/components/Customers.jsx"
+    },
+    "social-proof.logo-grid": {
+      "category": "SOCIAL-PROOF",
+      "description": "Prove credibility with a static wall of real third-party logos: who backs the company (About, Startups) or where the team has worked before (Careers).",
+      "scope": "Carried by the About, Careers templates (2 routes).",
+      "implementedBy": "src/pages/About.jsx (+2 more)"
+    },
+    "social-proof.logo-marquee": {
+      "category": "SOCIAL-PROOF",
+      "description": "Immediately under the hero, reassure visitors that real companies already run on the platform, using a slow ambient row of customer logos with a one-line caption.",
+      "scope": "Carried by the Home template (1 routes).",
+      "implementedBy": "src/components/LogoMarquee.jsx"
+    },
+    "social-proof.testimonial": {
+      "category": "SOCIAL-PROOF",
+      "description": "Put one real customer's face, quote, name and role at full width so a visitor sees a peer vouching for a specific outcome. One layout, implemented three times in the source (home, /startups, product pages).",
+      "scope": "Carried by the Home, Startup program, Product detail templates (7 routes).",
+      "implementedBy": "src/components/Testimonials.jsx (+2 more)"
+    }
+  },
+  "templates": [
+    {
+      "id": "template.home",
+      "name": "Home",
+      "routeCount": 1,
+      "routes": [
+        "/"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.marketing-video",
+        "social-proof.logo-marquee",
+        "content.platform-columns",
+        "content.dark-problem",
+        "content.solution-rows",
+        "social-proof.customer-video-cards",
+        "interactive.ask-reevo-carousel",
+        "social-proof.testimonial",
+        "conversion.cta-band",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.company-about",
+      "name": "About",
+      "routeCount": 1,
+      "routes": [
+        "/about"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.eyebrow-title-banner",
+        "content.lead-statement",
+        "interactive.scroll-story",
+        "content.team-cards",
+        "social-proof.logo-grid",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.company-careers",
+      "name": "Careers",
+      "routeCount": 1,
+      "routes": [
+        "/careers"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.eyebrow-title-banner",
+        "content.lead-statement",
+        "content.principle-rows",
+        "social-proof.logo-grid",
+        "content.job-board",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.company-startups",
+      "name": "Startup program",
+      "routeCount": 1,
+      "routes": [
+        "/startups"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.title-cta",
+        "media.photo-pattern-collage",
+        "content.platform-columns",
+        "social-proof.testimonial",
+        "content.qualification-terms",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.apps-mobile",
+      "name": "Mobile app",
+      "routeCount": 1,
+      "routes": [
+        "/apps/mobile"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.mobile-app",
+        "interactive.accordion-showcase",
+        "content.event-timeline",
+        "media.photo-pattern-collage",
+        "content.faq-accordion",
+        "conversion.cta-band",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-detail",
+      "name": "Product detail",
+      "routeCount": 5,
+      "routes": [
+        "/products/find",
+        "/products/connect",
+        "/products/sell",
+        "/products/manage",
+        "/products/foundation"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "nav.product-tabs",
+        "hero.product",
+        "content.product-features",
+        "interactive.accordion-showcase",
+        "social-proof.testimonial",
+        "content.product-cards",
+        "content.faq-accordion",
+        "conversion.cta-band",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.compare-competitor",
+      "name": "Compare a competitor",
+      "routeCount": 7,
+      "routes": [
+        "/compare/apollo",
+        "/compare/attio",
+        "/compare/fireflies",
+        "/compare/gong",
+        "/compare/hubspot",
+        "/compare/outreach",
+        "/compare/salesforce"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.split-image",
+        "compare.quick-table",
+        "compare.reasons",
+        "compare.feature-table",
+        "conversion.cta-band",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.blog-post",
+      "name": "Blog post",
+      "routeCount": 43,
+      "routes": [
+        "/blog/ai-crm-features",
+        "/blog/ai-crm-real-intelligence",
+        "/blog/ai-native-crm-guide",
+        "/blog/ai-sales-prospecting",
+        "/blog/api-integration-sales-motion",
+        "/blog/ask-reevo-slack-artifacts-custom-views",
+        "/blog/autonomous-sales-pipeline",
+        "/blog/b2b-sales-funnel",
+        "/blog/best-power-dialer-software",
+        "/blog/casca",
+        "/blog/cold-calling-scripts",
+        "/blog/cold-email-template",
+        "/blog/crm-data-enrichment",
+        "/blog/crm-migration",
+        "/blog/data-enrichment-tools",
+        "/blog/data-janitor-revenue-architect",
+        "/blog/discovery-call-guide",
+        "/blog/discovery-call-questions",
+        "/blog/email-deliverability-sender-reputation",
+        "/blog/email-subject-lines",
+        "/blog/future-revenue-stackless",
+        "/blog/go-to-market-strategy-gtm-meaning",
+        "/blog/high-intent-prospecting-checklist",
+        "/blog/hubspot-alternatives",
+        "/blog/more-dials-mentality-sales-outreach",
+        "/blog/pipeline-review-questions",
+        "/blog/propel",
+        "/blog/redefining-how-companies-go-to-market",
+        "/blog/revenue-operating-system",
+        "/blog/sales-cadence-guide",
+        "/blog/sales-email-templates",
+        "/blog/sales-forecasting-techniques",
+        "/blog/sales-pipeline-metrics",
+        "/blog/sales-pre-call-cheat-sheet",
+        "/blog/sales-prospecting-techniques",
+        "/blog/sales-sequence-guide",
+        "/blog/sales-stack-consolidation",
+        "/blog/sales-team-admin-work",
+        "/blog/sales-team-motivation",
+        "/blog/salesforce-alternatives",
+        "/blog/system-of-record-revenue-operating-system",
+        "/blog/tam-sourcing",
+        "/blog/will-ai-replace-sales-jobs"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "content.post-article",
+        "content.related-posts",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.blog-index",
+      "name": "Blog index",
+      "routeCount": 1,
+      "routes": [
+        "/blog"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "content.post-list",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.doc-page",
+      "name": "Setup instructions",
+      "routeCount": 2,
+      "routes": [
+        "/bot-for-slack-setup",
+        "/zoom-setup"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "doc.prose-page",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.changelog",
+      "name": "Release notes",
+      "routeCount": 1,
+      "routes": [
+        "/release-notes"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "doc.prose-page",
+        "content.release-entry",
+        "conversion.cta-band",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.form-page",
+      "name": "Form page",
+      "routeCount": 3,
+      "routes": [
+        "/get-started",
+        "/partners",
+        "/startups-apply-now"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "form.centered-form",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.pricing",
+      "name": "Pricing",
+      "routeCount": 1,
+      "routes": [
+        "/pricing"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "content.pricing-plans",
+        "content.plan-compare-table",
+        "content.faq-accordion",
+        "conversion.cta-band",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-tour",
+      "name": "Product tour",
+      "routeCount": 1,
+      "routes": [
+        "/product-tour"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "content.tour-demo",
+        "content.faq-accordion",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.integrations",
+      "name": "Integrations",
+      "routeCount": 1,
+      "routes": [
+        "/integrations"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.split-image",
+        "interactive.integrations-browser",
+        "conversion.cta-band",
+        "content.footnote-attribution",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.newsletter",
+      "name": "Newsletter",
+      "routeCount": 1,
+      "routes": [
+        "/newsletter"
+      ],
+      "routePattern": null,
+      "sections": [
+        "shell.navbar",
+        "hero.form-split",
+        "conversion.cta-band",
+        "shell.footer"
+      ]
+    }
+  ]
+}

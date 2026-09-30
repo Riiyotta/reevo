@@ -1,0 +1,43 @@
+{
+  "id": "section-label",
+  "kind": "primitive",
+  "purpose": "Section eyebrow: 24px inverse square holding a 12px lucide icon, then an h2 eyebrow.",
+  "measuredFrom": [
+    "src/components/ui.jsx:102-111"
+  ],
+  "props": {
+    "icon": {
+      "type": "string",
+      "required": true,
+      "description": "lucide icon component"
+    },
+    "children": {
+      "type": "string",
+      "required": true,
+      "maxWords": 7
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "GRID > COL_LABEL flex gap-4; square size-6 bg-strong text-background; icon size-3",
+      "measuredFrom": [
+        "src/components/ui.jsx:105-109"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "text.strong",
+    "surface.background",
+    "eyebrow",
+    "4",
+    "6"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/ui.jsx:102-111"
+    ]
+  }
+}

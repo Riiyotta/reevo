@@ -1,0 +1,42 @@
+{
+  "id": "headline",
+  "kind": "primitive",
+  "purpose": "Section lead statement: text-2xl paragraph with optional lede below.",
+  "measuredFrom": [
+    "src/components/ui.jsx:115-122"
+  ],
+  "props": {
+    "children": {
+      "type": "richtext-inline",
+      "required": true,
+      "description": "May contain <strong>"
+    },
+    "lede": {
+      "type": "string",
+      "description": "Optional text-lg paragraph, mt-3"
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "COL_HEADLINE; p text-pretty text-2xl text-strong; lede text-lg text-foreground",
+      "measuredFrom": [
+        "src/components/ui.jsx:118-120"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "section-headline",
+    "section-lede",
+    "text.strong",
+    "2xl",
+    "lg"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/ui.jsx:115-122"
+    ]
+  }
+}

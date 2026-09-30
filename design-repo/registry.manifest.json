@@ -1,0 +1,94 @@
+{
+  "repositoryId": "reevo-design-repo",
+  "status": "design-review-pending",
+  "productionApproved": false,
+  "repositoryVersion": "0.1.0",
+  "pageSpecVersion": "1.0.0",
+  "allowlistVersion": "0.1.0",
+  "versionFieldNote": "Only allowlistVersion is machine-checked: extraction/verify_all.py fails if it differs from tokens/llm/component-allowlist.json. repositoryVersion and pageSpecVersion are hand-maintained documentation markers; nothing checks them automatically.",
+  "defaultTheme": "light",
+  "schemaValidatedThemes": [
+    "light",
+    "dark"
+  ],
+  "counts": {
+    "tokens": {
+      "foundation": 144,
+      "semantic": 24,
+      "component": 56,
+      "layout": 25,
+      "total": 249,
+      "themeResolved": {
+        "dark": 19,
+        "light": 19
+      }
+    },
+    "primitives": 26,
+    "components": 13,
+    "sections": 46,
+    "templates": 16,
+    "routes": 24,
+    "routePatterns": 2,
+    "concreteUrls": 71,
+    "rules": 17,
+    "assetRoles": 17,
+    "allowlistEntries": 85
+  },
+  "countsNote": "Recomputed from the files by extraction/verify_all.py (--update-counts rewrites this block; the normal run fails if it drifts).",
+  "entryPoints": {
+    "manifest": "registry.manifest.json",
+    "readme": "README.md",
+    "schema": "schema/pagespec.schema.json",
+    "exampleInstance": "schema/example.pagespec.json",
+    "semanticValidator": "schema/semantic_validate.py",
+    "templates": "templates/templates.json",
+    "routes": "templates/routes.json",
+    "compatibilityGraph": "compatibility/graph.json",
+    "ruleVerifier": "compatibility/verify_rules.py",
+    "routeVerifier": "templates/verify_routes.py",
+    "tokenCatalog": "tokens/llm/token-catalog.json",
+    "tokenPolicy": "tokens/llm/token-policy.json",
+    "componentAllowlist": "tokens/llm/component-allowlist.json",
+    "assetRoles": "assets/asset-roles.json",
+    "themes": [
+      "tokens/themes/light.json",
+      "tokens/themes/dark.json"
+    ],
+    "contractDirectories": [
+      "primitives",
+      "components",
+      "sections"
+    ],
+    "tokenDirectories": [
+      "tokens/00-foundation",
+      "tokens/10-semantic",
+      "tokens/20-component",
+      "tokens/30-layout"
+    ],
+    "verification": [
+      "extraction/verify_all.py",
+      "extraction/prove_drift.py",
+      "extraction/build_schema.py"
+    ],
+    "citationLedger": "extraction/measured-values.json"
+  },
+  "sourceProject": {
+    "description": "External evidence, not part of this package: the Vite SPA clone one folder above design-repo/ (src/, package.json, tailwind.config.js, CLONE_SPEC.md). Citations in the contracts are relative to that folder.",
+    "framework": {
+      "react": "18.3.1",
+      "react-router-dom": "6.30.6",
+      "vite": "5.4.21",
+      "tailwindcss": "3.4.19"
+    },
+    "declaredRanges": {
+      "react": "^18.3.1",
+      "react-router-dom": "^6.30.6",
+      "vite": "^5.4.11",
+      "tailwindcss": "^3.4.17"
+    },
+    "versionsReadFrom": "the source project's package.json (declared ranges) and its installed node_modules package.json files (resolved versions); external evidence, not shipped in this package",
+    "snapshotDate": "2026-09-30",
+    "snapshotNote": "A snapshot, not a living mirror: re-diff these versions and the counts against the source if it has changed since the snapshot date."
+  },
+  "sourceNote": "The source is a real, live company's site (Reevo). This repository is for local/internal use only and must never be published. Generators must never reproduce real logos, real people's photos or real proprietary content; see globalProhibitions in assets/asset-roles.json."
+}

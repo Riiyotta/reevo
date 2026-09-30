@@ -1,0 +1,72 @@
+{
+  "id": "content.plan-compare-table",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Give a buyer the detailed Core vs Pro entitlement comparison, grouped by product pillar, that the plan cards only summarise. It is the anchor target for the plan cards' 'Show full plan comparison' link and lets a buyer verify allowances before contacting sales.",
+  "measuredFrom": ["src/components/pricing/ComparePlans.jsx:8-145", "src/components/pricing/pricingData.jsx:38-100"],
+  "behaviour": [
+    { "note": "No <section> wrapper: the block is a bare div with id=compare-plans (scroll-mt-24 so it clears the sticky nav) inside main, containing a container and the grid. It sits between the plan cards and the FAQ on /pricing.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:120-145", "src/pages/Pricing.jsx:16-17"] },
+    { "note": "Fixed heading 'Compare plans.' (2xl bold) above six separate tables, one per group, each with its own header row showing the group icon, the group title and the two plan column heads 'Core' and 'Pro'. Groups observed: Find (5 rows), Connect (4), Sell (3), Manage (3), Foundation (7), Onboarding & Support (3) = 25 rows.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:69-93", "src/components/pricing/ComparePlans.jsx:127", "src/components/pricing/pricingData.jsx:38-100"] },
+    { "note": "Each row is [feature label, Core value, Pro value, optional tooltip, optional Soon flag]. A cell value is true (check icon), false (X icon), null (dimmed minus icon, 'not applicable') or a string (rendered as text, e.g. an allowance). Rows with the Soon flag show a 'Soon' tag next to the label.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:57-65", "src/components/pricing/ComparePlans.jsx:96-113", "src/components/pricing/pricingData.jsx:38-100"] },
+    { "note": "Tooltip: rows with tip text show an info icon; hover or focus opens a dark (gray-9) tooltip to the right of the icon, max 250px wide, instantly (no animation) and hides on leave or blur. The info icon is hidden entirely below lg (max-lg:hidden), so tooltips are desktop-only.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:11-53", "src/components/pricing/ComparePlans.jsx:104"] },
+    { "note": "Accessibility: each table has a screen-reader caption; a group may override it with a caption field (only Onboarding & Support does), otherwise it is derived from the group title.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:72-74", "src/components/pricing/pricingData.jsx:93"] },
+    { "note": "Below the tables: a small note with the last-updated date and a support email link. The date and address are hard-coded in the component, not data.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:133-138"] },
+    { "note": "Must directly follow content.pricing-plans (its cards link to #compare-plans).", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:72", "src/components/pricing/ComparePlans.jsx:122"] }
+  ],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "heading": { "type": "string", "required": true, "maxWords": 3, "note": "Observed 2 words.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:127"] },
+      "planColumns": { "type": "array", "required": true, "minItems": 2, "maxItems": 2, "note": "Column heads. The header labels 'Core' and 'Pro' are hard-coded in the table component.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:87-92"], "items": { "type": "string", "maxWords": 1 } },
+      "groups": {
+        "type": "array", "required": true, "minItems": 1, "maxItems": 6,
+        "note": "Observed exactly 6 groups.",
+        "measuredFrom": ["src/components/pricing/ComparePlans.jsx:130-131", "src/components/pricing/pricingData.jsx:38-100"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": { "type": "string", "required": true, "maxWords": 3, "note": "Group title in display-xl bold. Observed up to 3 words.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:84"] },
+            "icon": { "type": "assetRef", "required": false, "assetRole": "nav-thumbnail", "note": "32px product icon in the group header; present on the five pillar groups, absent on Onboarding & Support.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:79-82", "src/components/pricing/pricingData.jsx:41", "src/components/pricing/pricingData.jsx:80", "src/components/pricing/pricingData.jsx:92"] },
+            "caption": { "type": "string", "required": false, "maxWords": 12, "note": "Optional screen-reader table caption override.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:73", "src/components/pricing/pricingData.jsx:93"] },
+            "rows": {
+              "type": "array", "required": true, "minItems": 1, "maxItems": 7,
+              "measuredFrom": ["src/components/pricing/ComparePlans.jsx:96-113"],
+              "items": {
+                "type": "object",
+                "fields": {
+                  "label": { "type": "string", "required": true, "maxWords": 6, "note": "Feature name. Observed up to about 5 words.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:101"] },
+                  "core": { "type": "string", "required": true, "maxWords": 22, "note": "Core cell: boolean check/X, null (not applicable) or an allowance string. Model as a string, or the literal true, false or null. Longest observed allowance string is about 19 words.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:57-65", "src/components/pricing/ComparePlans.jsx:107-109"] },
+                  "pro": { "type": "string", "required": true, "maxWords": 22, "note": "Pro cell, same value kinds as core.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:57-65", "src/components/pricing/ComparePlans.jsx:110-112"] },
+                  "tooltip": { "type": "string", "required": false, "maxWords": 36, "note": "Info-icon tooltip text (desktop only). Observed up to about 32 words; present on most rows.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:104", "src/components/pricing/pricingData.jsx:42-47"] },
+                  "soon": { "type": "boolean", "required": false, "note": "Shows a 'Soon' tag by the label. Observed on 3 rows.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:102", "src/components/pricing/pricingData.jsx:47", "src/components/pricing/pricingData.jsx:75", "src/components/pricing/pricingData.jsx:88"] }
+                }
+              }
+            }
+          }
+        }
+      },
+      "footnote": { "type": "richtext-inline", "required": true, "maxWords": 16, "note": "Last-updated line with a support email link. Observed about 12 words.", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:133-138"] }
+    }
+  },
+  "mediaFields": [ { "field": "groups[].icon", "assetRole": "nav-thumbnail" } ],
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "The tooltip opens instantly with no animation and nothing else moves, so no fallback is needed; the source has no prefers-reduced-motion handling.",
+    "measuredFrom": ["src/components/pricing/ComparePlans.jsx:11-12", "src/components/pricing/ComparePlans.jsx:37-51"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below lg", "change": "tooltip info icons are hidden; feature column is 40% and each plan column 30%", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:22", "src/components/pricing/ComparePlans.jsx:77-91"] },
+      { "at": "below md", "change": "tables bleed 16px past the container edges (-mx-4); cell padding is 16px by 12px", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:8", "src/components/pricing/ComparePlans.jsx:128"] },
+      { "at": "md", "change": "cell padding grows to 24px by 16px; gap between tables 40px", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:8", "src/components/pricing/ComparePlans.jsx:129"] },
+      { "at": "lg", "change": "three equal columns (one third each); rows and header rows grow from 50px to 60px", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:76-91", "src/components/pricing/ComparePlans.jsx:97"] },
+      { "at": "xl", "change": "grid narrows to 22 columns from column 2; gap between tables 48px", "measuredFrom": ["src/components/pricing/ComparePlans.jsx:125", "src/components/pricing/ComparePlans.jsx:129"] }
+    ]
+  },
+  "usedOnRoutes": ["/pricing"],
+  "tokensUsed": ["semanticColor.border.default", "semanticColor.text.strong", "color.gray.9", "fontSize.display-xl", "fontSize.xs", "fontSize.sm", "fontSize.2xl"]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "content.tour-demo",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Let a visitor try the product hands-on without talking to sales: a looping teaser video with a 'Try the interactive demo' button opens a self-guided demo in a modal, and a follow-up callout below converts people who liked it into a custom-demo booking.",
+  "measuredFrom": ["src/components/pricing/TourDemo.jsx:6-96"],
+  "behaviour": [
+    { "note": "The teaser is a 16:9 muted, looping, autoplaying inline video (playsInline). A transparent button covers it with the primary 'Try the interactive demo' button pinned bottom-right; clicking opens the demo dialog (aria-haspopup=dialog, aria-expanded reflects state).", "measuredFrom": ["src/components/pricing/TourDemo.jsx:44-66"] },
+    { "note": "The interactive demo is a THIRD-PARTY embed (Storylane) shown in an iframe inside the dialog. Desktop (md and up) and mobile (below md) load DIFFERENT demos, each in its own lazy iframe with title 'Interactive Demo'. Demo URLs and ids are account-bound live endpoints and are deliberately not recorded in this contract; a clone must render a neutral local placeholder (third-party-embed role, must-not-reuse-live-endpoint). Source lines with the two src values: src/components/pricing/TourDemo.jsx:19 and :28.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:6", "src/components/pricing/TourDemo.jsx:16-33"] },
+    { "note": "Dialog: portalled to body; a black/50 full-screen overlay plus a centred panel sized min(90vw, 1240px, aspect-ratio-constrained width), aspect 3/4 on mobile switching at md. Panel has role=dialog, aria-modal, an sr-only 'Interactive Demo' heading and a round close button top-right. Closes on Escape, overlay click or the close button; body scroll is locked while open.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:9-14", "src/components/dialog.jsx:7-20", "src/components/dialog.jsx:38-74"] },
+    { "note": "Dialog enter (measured on the original): opacity 0 to 1, scale .96 to 1 and y +8px to 0 over about 200ms with cubic-bezier(.4,0,.2,1); the overlay fades with it. The exit is ASSUMED to be the reverse (not measured).", "measuredFrom": ["src/components/dialog.jsx:22-26", "src/components/dialog.jsx:42-54"] },
+    { "note": "Callout below the video: rounded blue-1 panel with a bold heading, a short paragraph and a full-width primary 'Schedule your custom demo' button (338px wide from lg) linking to /product-tour/post-interactive-demo. That route is NOT defined in the router and falls through to the catch-all.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:69-91"] },
+    { "note": "Bare <section> with no background or padding of its own; the page header above and the FAQ below supply spacing. One per page; on /product-tour it is followed by content.faq-accordion.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:41", "src/pages/ProductTour.jsx:43-48"] }
+  ],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "teaserVideo": { "type": "assetRef", "required": true, "assetRole": "video-teaser", "note": "Muted looping autoplay mp4, 16:9. Existing real footage only; never synthesise.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:47-51"] },
+      "openButtonLabel": { "type": "string", "required": true, "maxWords": 5, "note": "Primary button over the teaser with a pointer icon. Observed 4 words.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:59-64"] },
+      "dialogTitle": { "type": "string", "required": true, "maxWords": 3, "note": "Screen-reader dialog heading and iframe title. Observed 2 words.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:12", "src/components/pricing/TourDemo.jsx:15", "src/components/pricing/TourDemo.jsx:21"] },
+      "demoDesktop": { "type": "assetRef", "required": true, "assetRole": "third-party-embed", "note": "Interactive demo iframe shown at md and up. Reference by role only; do not ship the live URL or demo id.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:16-24"] },
+      "demoMobile": { "type": "assetRef", "required": true, "assetRole": "third-party-embed", "note": "Different interactive demo iframe shown below md. Reference by role only; do not ship the live URL or demo id.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:25-33"] },
+      "callout": {
+        "type": "object", "required": true,
+        "measuredFrom": ["src/components/pricing/TourDemo.jsx:69-91"],
+        "fields": {
+          "heading": { "type": "string", "required": true, "maxWords": 5, "note": "Bold display-xl line. Observed 3 words.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:73"] },
+          "body": { "type": "string", "required": true, "maxWords": 24, "note": "Observed about 19 to 22 words.", "measuredFrom": ["src/components/pricing/TourDemo.jsx:74-77"] },
+          "cta": {
+            "type": "object", "required": true,
+            "measuredFrom": ["src/components/pricing/TourDemo.jsx:80-87"],
+            "fields": {
+              "label": { "type": "string", "maxWords": 5, "note": "Observed 4 words." },
+              "href": { "type": "string", "kind": "route-or-url" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "mediaFields": [
+    { "field": "teaserVideo", "assetRole": "video-teaser" },
+    { "field": "demoDesktop", "assetRole": "third-party-embed" },
+    { "field": "demoMobile", "assetRole": "third-party-embed" }
+  ],
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "dialog-overlay",
+    "reducedMotionFallback": "static",
+    "reducedMotionNote": "Proposal only: no autoplay for the teaser (show its first frame) and open the modal without the scale/translate transform. The source has no prefers-reduced-motion handling.",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": ["src/components/dialog.jsx:22-26", "src/components/dialog.jsx:42-54"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "dialog uses the mobile demo iframe with a 3:4 portrait aspect; desktop iframe is hidden; callout stacks centred", "measuredFrom": ["src/components/pricing/TourDemo.jsx:13", "src/components/pricing/TourDemo.jsx:18", "src/components/pricing/TourDemo.jsx:27", "src/components/pricing/TourDemo.jsx:71"] },
+      { "at": "md", "change": "dialog switches to the desktop demo iframe and a wider aspect; vertical spacing between video and callout grows", "measuredFrom": ["src/components/pricing/TourDemo.jsx:13", "src/components/pricing/TourDemo.jsx:18", "src/components/pricing/TourDemo.jsx:43"] },
+      { "at": "lg", "change": "callout becomes a row (text left, button right, 338px button, left-aligned text); grid spans 24 columns", "measuredFrom": ["src/components/pricing/TourDemo.jsx:70-71", "src/components/pricing/TourDemo.jsx:79-84"] },
+      { "at": "xl", "change": "grid narrows to 22 columns from column 2; spacing between blocks 96px", "measuredFrom": ["src/components/pricing/TourDemo.jsx:43", "src/components/pricing/TourDemo.jsx:45"] }
+    ]
+  },
+  "usedOnRoutes": ["/product-tour"],
+  "tokensUsed": ["color.blue.1", "semanticColor.text.strong", "fontSize.display-xl", "elevation.diffused", "duration.base-200", "easing.standard", "semanticMotion.overlay-enter", "borderRadius.DEFAULT"]
+}

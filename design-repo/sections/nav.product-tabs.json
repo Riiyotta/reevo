@@ -1,0 +1,42 @@
+{
+  "id": "nav.product-tabs",
+  "kind": "section",
+  "category": "nav",
+  "purpose": "Product-page tab strip listing the five products (Find, Connect, Sell, Manage, Foundation) with the current one highlighted by its brand-colour dot, so visitors can move between product pages.",
+  "measuredFrom": ["src/components/products/ProductTabs.jsx:28-63", "src/components/products/ProductTabs.jsx:10-26", "src/components/products/ProductPage.jsx:22-32", "src/components/products/data.js:211-217"],
+  "variants": [
+    { "name": "desktop-tab-bar", "description": "lg and up: five equal-width tabs, 48px tall, 2px apart; the active one is a plain span on gray-2 with a colour dot, the others are links on gray-3 with a dimmed placeholder square. Sticky under the navbar from md.", "measuredFrom": ["src/components/products/ProductTabs.jsx:32-54"] },
+    { "name": "mobile-current-chip", "description": "Below lg: a single half-width chip on gray-2 showing only the current product name and dot; no way to switch tabs from this strip.", "measuredFrom": ["src/components/products/ProductTabs.jsx:55-60"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "active": { "type": "enum", "required": true, "values": ["find", "connect", "sell", "manage", "foundation"], "measuredFrom": ["src/components/products/ProductTabs.jsx:28-29", "src/components/products/data.js:211-217"] },
+      "dot": { "type": "enum", "required": true, "values": ["bg-orange-8", "bg-pink-9", "bg-green-6", "bg-yellow-9", "bg-blue-8"], "note": "Colour class per product: find, connect, sell, manage, foundation in that order.", "measuredFrom": ["src/components/products/data.js:10", "src/components/products/data.js:54", "src/components/products/data.js:96", "src/components/products/data.js:127", "src/components/products/data.js:167"] },
+      "tabs": { "type": "array", "required": true, "minItems": 5, "maxItems": 5, "note": "Fixed list PRODUCT_TABS; not overridable per page.", "items": { "type": "object", "fields": { "slug": { "type": "string" }, "label": { "type": "string", "maxWords": 1 } } }, "measuredFrom": ["src/components/products/data.js:211-217"] }
+    }
+  },
+  "mediaFields": [],
+  "behaviour": [
+    { "note": "Inactive tabs are plain anchors (full page load), not router links.", "measuredFrom": ["src/components/products/ProductTabs.jsx:42-46"] },
+    { "note": "Sticky: from md the bar is `sticky` at the navbar height with z-40, under the z-50 navbar. It is only rendered visible at lg+.", "measuredFrom": ["src/components/products/ProductTabs.jsx:32"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true, "mustBeFollowedBy": "hero" },
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only: no prefers-reduced-motion handling. Tab background and text colour transition over 200ms on hover; the active dot pops in on mount (opacity 0 and scale .75 to 1, 200ms cubic-bezier(.4,0,.2,1)).",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": ["src/components/products/ProductTabs.jsx:12-20", "src/components/products/ProductTabs.jsx:45"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below lg", "change": "tab bar hidden; half-width current-product chip shown instead", "measuredFrom": ["src/components/products/ProductTabs.jsx:32", "src/components/products/ProductTabs.jsx:55-56"] },
+      { "at": "md and up", "change": "tab bar becomes sticky below the navbar (only visible from lg)", "measuredFrom": ["src/components/products/ProductTabs.jsx:32"] }
+    ]
+  },
+  "usedOnRoutes": ["/products/*"],
+  "tokensUsed": ["color.gray.2", "color.gray.3", "color.gray.10", "semanticColor.surface.background", "duration.base-200", "easing.standard"]
+}

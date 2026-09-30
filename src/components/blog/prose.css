@@ -1,0 +1,247 @@
+/*
+ * Rich-text ("prose") styles. Replicates the original's Tailwind Typography v4 output
+ * for the class list used on every reevo.ai rich-text block (blog posts, release notes,
+ * setup pages):
+ *   prose prose-blockquote:border-strong prose-p:text-md prose-pre:rounded prose-h2:mt-[1.5em]
+ *   prose-headings:text-strong prose-img:rounded-[4px] prose-a:text-strong prose-a:font-normal
+ *   prose-h2:text-display-xl prose-h3:text-display-lg-2 prose-h4:text-display-lg
+ *   prose-li:marker:text-foreground prose-ul:text-md prose-ul:pl-[1.25em] prose-ol:text-md
+ *   prose-ol:pl-[1.25em] prose-blockquote:text-md prose-pre:bg-gray-1 prose-pre:text-foreground
+ *   prose-pre:whitespace-pre-wrap prose-pre:break-words prose-ol:[&>li]:marker:text-inherit
+ *   max-w-none leading-[140%] text-inherit
+ * Utility overrides are folded into the base rules (same specificity, later in cascade on
+ * the original). Tailwind v3 in this project has no typography plugin, so this lives here.
+ */
+
+/* Zero-specificity container rule so utilities on the same element (e.g. max-w-[60ch]) win,
+   as they do on the original. */
+:where(.reevo-prose) {
+  --tw-prose-body: oklch(37.3% .034 259.733);
+  --tw-prose-headings: oklch(21% .034 264.665);
+  --tw-prose-lead: oklch(44.6% .03 256.802);
+  --tw-prose-links: oklch(21% .034 264.665);
+  --tw-prose-bold: oklch(21% .034 264.665);
+  --tw-prose-counters: oklch(55.1% .027 264.364);
+  --tw-prose-bullets: oklch(87.2% .01 258.338);
+  --tw-prose-hr: oklch(92.8% .006 264.531);
+  --tw-prose-quotes: oklch(21% .034 264.665);
+  --tw-prose-quote-borders: oklch(92.8% .006 264.531);
+  --tw-prose-captions: oklch(55.1% .027 264.364);
+  --tw-prose-code: oklch(21% .034 264.665);
+  --tw-prose-th-borders: oklch(87.2% .01 258.338);
+  --tw-prose-td-borders: oklch(92.8% .006 264.531);
+  --prose-text-md: clamp(1rem, .949rem + .2041vw, 1.125rem);
+  /* max-w-none, leading-[140%], text-inherit */
+  max-width: none;
+  font-size: 1rem;
+  line-height: 140%;
+  color: inherit;
+}
+
+.reevo-prose :where(p):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  font-size: var(--prose-text-md);
+  line-height: 135%;
+  letter-spacing: 0;
+}
+.reevo-prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: rgb(var(--color-strong));
+  font-weight: 400;
+  text-decoration: underline;
+}
+.reevo-prose :where(strong):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: var(--tw-prose-bold);
+  font-weight: 600;
+}
+.reevo-prose :where(a strong, blockquote strong, thead th strong):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: inherit;
+}
+.reevo-prose :where(ol):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-inline-start: 1.625em;
+  list-style-type: decimal;
+  padding-left: 1.25em;
+  font-size: var(--prose-text-md);
+  line-height: 135%;
+  letter-spacing: 0;
+}
+.reevo-prose :where(ol[type='A']):not(:where([class~='not-prose'], [class~='not-prose'] *)) { list-style-type: upper-alpha; }
+.reevo-prose :where(ol[type='a']):not(:where([class~='not-prose'], [class~='not-prose'] *)) { list-style-type: lower-alpha; }
+.reevo-prose :where(ol[type='I']):not(:where([class~='not-prose'], [class~='not-prose'] *)) { list-style-type: upper-roman; }
+.reevo-prose :where(ol[type='i']):not(:where([class~='not-prose'], [class~='not-prose'] *)) { list-style-type: lower-roman; }
+.reevo-prose :where(ol[type='1']):not(:where([class~='not-prose'], [class~='not-prose'] *)) { list-style-type: decimal; }
+.reevo-prose :where(ul):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-inline-start: 1.625em;
+  list-style-type: disc;
+  padding-left: 1.25em;
+  font-size: var(--prose-text-md);
+  line-height: 135%;
+  letter-spacing: 0;
+}
+.reevo-prose :where(ol > li):not(:where([class~='not-prose'], [class~='not-prose'] *))::marker {
+  color: var(--tw-prose-counters);
+  font-weight: 400;
+}
+.reevo-prose :where(ul > li):not(:where([class~='not-prose'], [class~='not-prose'] *))::marker {
+  color: var(--tw-prose-bullets);
+}
+/* prose-li:marker:text-foreground */
+.reevo-prose :where(li):not(:where([class~='not-prose'], [class~='not-prose'] *))::marker {
+  color: rgb(var(--color-foreground));
+}
+/* prose-ol:[&>li]:marker:text-inherit */
+.reevo-prose :where(ol):not(:where([class~='not-prose'], [class~='not-prose'] *)) > li::marker {
+  color: inherit;
+}
+.reevo-prose :where(hr):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  border-color: var(--tw-prose-hr);
+  border-top-width: 1px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+.reevo-prose :where(blockquote):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: var(--tw-prose-quotes);
+  border-inline-start-width: 0.25rem;
+  border-inline-start-style: solid;
+  border-inline-start-color: var(--tw-prose-quote-borders);
+  quotes: '\201C' '\201D' '\2018' '\2019';
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-inline-start: 1em;
+  font-style: italic;
+  font-weight: 500;
+  /* prose-blockquote:border-strong, prose-blockquote:text-md */
+  border-color: rgb(var(--color-strong));
+  font-size: var(--prose-text-md);
+  line-height: 135%;
+  letter-spacing: 0;
+}
+.reevo-prose :where(blockquote p:first-of-type):not(:where([class~='not-prose'], [class~='not-prose'] *))::before { content: open-quote; }
+.reevo-prose :where(blockquote p:last-of-type):not(:where([class~='not-prose'], [class~='not-prose'] *))::after { content: close-quote; }
+.reevo-prose :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: rgb(var(--color-strong));
+  margin-top: 0;
+  margin-bottom: 0.888889em;
+  font-size: 2.25em;
+  font-weight: 800;
+  line-height: 1.11111;
+}
+.reevo-prose :where(h1 strong):not(:where([class~='not-prose'], [class~='not-prose'] *)) { color: inherit; font-weight: 900; }
+.reevo-prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: rgb(var(--color-strong));
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+  font-weight: 700;
+  /* prose-h2:text-display-xl */
+  font-size: clamp(1.5rem, 1.2959rem + .8163vw, 2rem);
+  line-height: 105%;
+  letter-spacing: -.02em;
+}
+.reevo-prose :where(h2 strong):not(:where([class~='not-prose'], [class~='not-prose'] *)) { color: inherit; font-weight: 800; }
+.reevo-prose :where(h3):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: rgb(var(--color-strong));
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  font-weight: 600;
+  /* prose-h3:text-display-lg-2 */
+  font-size: clamp(1.25rem, 1.0969rem + .6122vw, 1.625rem);
+  line-height: 110%;
+  letter-spacing: -.02em;
+}
+.reevo-prose :where(h3 strong):not(:where([class~='not-prose'], [class~='not-prose'] *)) { color: inherit; font-weight: 700; }
+.reevo-prose :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: rgb(var(--color-strong));
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  /* prose-h4:text-display-lg */
+  font-size: clamp(1.125rem, 1.074rem + .2041vw, 1.25rem);
+  line-height: 115%;
+  letter-spacing: -.02em;
+}
+.reevo-prose :where(h4 strong):not(:where([class~='not-prose'], [class~='not-prose'] *)) { color: inherit; font-weight: 700; }
+.reevo-prose :where(h5, h6, th):not(:where([class~='not-prose'], [class~='not-prose'] *)) { color: rgb(var(--color-strong)); }
+.reevo-prose :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 4px;
+}
+.reevo-prose :where(picture):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 2em; margin-bottom: 2em; display: block; }
+.reevo-prose :where(video):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 2em; margin-bottom: 2em; }
+.reevo-prose :where(code):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: var(--tw-prose-code);
+  font-size: 0.875em;
+  font-weight: 600;
+}
+.reevo-prose :where(code):not(:where([class~='not-prose'], [class~='not-prose'] *))::before,
+.reevo-prose :where(code):not(:where([class~='not-prose'], [class~='not-prose'] *))::after { content: '`'; }
+.reevo-prose :where(a code, h1 code):not(:where([class~='not-prose'], [class~='not-prose'] *)) { color: inherit; }
+.reevo-prose :where(h2 code):not(:where([class~='not-prose'], [class~='not-prose'] *)) { color: inherit; font-size: 0.875em; }
+.reevo-prose :where(h3 code):not(:where([class~='not-prose'], [class~='not-prose'] *)) { color: inherit; font-size: 0.9em; }
+.reevo-prose :where(blockquote code, h4 code, thead th code):not(:where([class~='not-prose'], [class~='not-prose'] *)) { color: inherit; }
+.reevo-prose :where(pre):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  padding-top: 0.857143em;
+  padding-inline: 1.14286em;
+  padding-bottom: 0.857143em;
+  margin-top: 1.71429em;
+  margin-bottom: 1.71429em;
+  font-size: 0.875em;
+  font-weight: 400;
+  line-height: 1.71429;
+  overflow-x: auto;
+  /* prose-pre:rounded / bg-gray-1 / text-foreground / whitespace-pre-wrap / break-words */
+  border-radius: var(--radius);
+  background-color: #f7f7f0;
+  color: rgb(var(--color-foreground));
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+.reevo-prose :where(pre code):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  font-weight: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  background-color: transparent;
+  border-width: 0;
+  border-radius: 0;
+  padding: 0;
+}
+.reevo-prose :where(pre code):not(:where([class~='not-prose'], [class~='not-prose'] *))::before,
+.reevo-prose :where(pre code):not(:where([class~='not-prose'], [class~='not-prose'] *))::after { content: none; }
+.reevo-prose :where(table):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  table-layout: auto;
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.875em;
+  line-height: 1.71429;
+}
+.reevo-prose :where(figure > *:not(figcaption[class])):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 0; margin-bottom: 0; }
+/* Unclassed captions only: on the original, utility classes on a figcaption (text-sm,
+   text-muted-foreground, mt-2.5) win over this rule; here unlayered CSS would win instead. */
+.reevo-prose :where(figcaption:not([class])):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: var(--tw-prose-captions);
+  margin-top: 0.857143em;
+  font-size: 0.875em;
+  line-height: 1.42857;
+}
+.reevo-prose :where(picture > img):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 0; margin-bottom: 0; }
+.reevo-prose :where(li):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 0.5em; margin-bottom: 0.5em; }
+.reevo-prose :where(ol > li, ul > li):not(:where([class~='not-prose'], [class~='not-prose'] *)) { padding-inline-start: 0.375em; }
+.reevo-prose :where(.reevo-prose > ul > li p):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 0.75em; margin-bottom: 0.75em; }
+.reevo-prose :where(.reevo-prose > ul > li > p:first-child, .reevo-prose > ol > li > p:first-child):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 1.25em; }
+.reevo-prose :where(.reevo-prose > ul > li > p:last-child, .reevo-prose > ol > li > p:last-child):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-bottom: 1.25em; }
+.reevo-prose :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 0.75em; margin-bottom: 0.75em; }
+.reevo-prose :where(h2 + *, h3 + *, h4 + *, hr + *):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 0; }
+.reevo-prose :where(figure):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 2em; margin-bottom: 2em; }
+.reevo-prose :where(.reevo-prose > :first-child):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 0; }
+.reevo-prose :where(.reevo-prose > :last-child):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-bottom: 0; }
+
+/* prose-h2:mt-[1.5em] is a variant utility on the original, so it lands after the
+   base :first-child reset and wins over it (first h2 keeps its 1.5em top margin). */
+.reevo-prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) { margin-top: 1.5em; }

@@ -1,0 +1,538 @@
+{
+  "$description": "Citation ledger by decision family. Paths are relative to the SOURCE PROJECT (the folder above design-repo/), i.e. external evidence that is not part of this package. Contract-level detail lives in each contract's own measuredFrom; this file summarises by family and points at the key sources. extraction/verify_all.py resolves these citations when the sibling source tree is present and degrades to a warning when it is not.",
+  "sourceTreeRelativeTo": "design-repo/..",
+  "families": {
+    "tokens": {
+      "keyEvidence": [
+        {
+          "what": "global tokens: breakpoints, fonts, colours, fluid type scale, type roles, shared components",
+          "measuredFrom": "CLONE_SPEC.md:11-106"
+        },
+        {
+          "what": "custom Tailwind theme (colours, breakpoints, radius, fonts)",
+          "measuredFrom": "tailwind.config.js:1-94"
+        },
+        {
+          "what": "themed CSS variables (:root and .dark) and utilities",
+          "measuredFrom": "src/index.css:1-76"
+        },
+        {
+          "what": "shared UI primitives (button, chips, sizes)",
+          "measuredFrom": "src/components/ui.jsx:3-151"
+        },
+        {
+          "what": "suggested Tailwind v3 mapping",
+          "measuredFrom": "CLONE_SPEC.md:310-315"
+        }
+      ],
+      "contractPointer": "tokens/**/*.json (per-token measuredFrom/usedAt)",
+      "mostCitedSourceFiles": [
+        {
+          "file": "tailwind.config.js",
+          "citations": 105
+        },
+        {
+          "file": "src/components/ui.jsx",
+          "citations": 84
+        },
+        {
+          "file": "src/index.css",
+          "citations": 57
+        },
+        {
+          "file": "CLONE_SPEC.md",
+          "citations": 24
+        },
+        {
+          "file": "src/components/Navbar.jsx",
+          "citations": 13
+        },
+        {
+          "file": "src/components/Solution.jsx",
+          "citations": 12
+        },
+        {
+          "file": "src/components/blog/MobileSections.jsx",
+          "citations": 5
+        },
+        {
+          "file": "src/components/Hero.jsx",
+          "citations": 5
+        },
+        {
+          "file": "src/components/LogoMarquee.jsx",
+          "citations": 5
+        },
+        {
+          "file": "src/components/Foundation.jsx",
+          "citations": 4
+        },
+        {
+          "file": "src/components/Customers.jsx",
+          "citations": 4
+        },
+        {
+          "file": "src/components/motion.jsx",
+          "citations": 3
+        }
+      ],
+      "distinctSourceFiles": 19,
+      "totalCitations": 334
+    },
+    "assetRoles": {
+      "keyEvidence": [
+        {
+          "what": "asset manifest: present locally, missing locally, inline SVG",
+          "measuredFrom": "CLONE_ASSETS.md:1-85"
+        },
+        {
+          "what": "Reevo brand-mark inline SVG path data",
+          "measuredFrom": "src/components/svgPaths.js:1-39"
+        }
+      ],
+      "contractPointer": "assets/asset-roles.json (usage sites)",
+      "mostCitedSourceFiles": [
+        {
+          "file": "src/components/Customers.jsx",
+          "citations": 8
+        },
+        {
+          "file": "src/pages/About.jsx",
+          "citations": 5
+        },
+        {
+          "file": "src/components/products/data.js",
+          "citations": 5
+        },
+        {
+          "file": "src/components/blog/MobileSections.jsx",
+          "citations": 5
+        },
+        {
+          "file": "src/components/Navbar.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/Startups.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/data/compare.js",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/Careers.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/components/compare/CompareSections.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/components/LogoMarquee.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/components/pricing/IntegrationsBrowser.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/components/Testimonials.jsx",
+          "citations": 2
+        }
+      ],
+      "distinctSourceFiles": 32,
+      "totalCitations": 66
+    },
+    "sections": {
+      "keyEvidence": [
+        {
+          "what": "home page section-by-section measurements (header/nav through footer)",
+          "measuredFrom": "CLONE_SPEC.md:107-277"
+        },
+        {
+          "what": "mobile (390) and tablet (768) summary",
+          "measuredFrom": "CLONE_SPEC.md:278-286"
+        }
+      ],
+      "contractPointer": "sections/*.json (behaviour[], content.fields[], responsive)",
+      "mostCitedSourceFiles": [
+        {
+          "file": "src/components/compare/CompareSections.jsx",
+          "citations": 135
+        },
+        {
+          "file": "src/components/blog/MobileSections.jsx",
+          "citations": 90
+        },
+        {
+          "file": "src/pages/Careers.jsx",
+          "citations": 87
+        },
+        {
+          "file": "src/components/products/data.js",
+          "citations": 81
+        },
+        {
+          "file": "src/pages/Startups.jsx",
+          "citations": 66
+        },
+        {
+          "file": "src/pages/BlogPost.jsx",
+          "citations": 66
+        },
+        {
+          "file": "src/components/pricing/IntegrationsBrowser.jsx",
+          "citations": 65
+        },
+        {
+          "file": "src/pages/About.jsx",
+          "citations": 55
+        },
+        {
+          "file": "src/components/blog/PostCard.jsx",
+          "citations": 52
+        },
+        {
+          "file": "src/components/Navbar.jsx",
+          "citations": 47
+        },
+        {
+          "file": "src/components/pricing/PricingPlans.jsx",
+          "citations": 41
+        },
+        {
+          "file": "src/pages/ReleaseNotes.jsx",
+          "citations": 40
+        }
+      ],
+      "distinctSourceFiles": 72,
+      "totalCitations": 1799
+    },
+    "templates": {
+      "keyEvidence": [
+        {
+          "what": "route table that decides which page component (template) serves each path",
+          "measuredFrom": "src/App.jsx:1-106"
+        }
+      ],
+      "contractPointer": "templates/templates.json",
+      "mostCitedSourceFiles": [
+        {
+          "file": "src/App.jsx",
+          "citations": 18
+        },
+        {
+          "file": "src/components/products/data.js",
+          "citations": 6
+        },
+        {
+          "file": "src/components/blog/DocPage.jsx",
+          "citations": 4
+        },
+        {
+          "file": "src/pages/GetStarted.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/Partners.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/StartupsApply.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/ReleaseNotes.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/BlogPost.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/AppsMobile.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/Compare.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/Home.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/pages/About.jsx",
+          "citations": 2
+        }
+      ],
+      "distinctSourceFiles": 24,
+      "totalCitations": 75
+    },
+    "routes": {
+      "keyEvidence": [
+        {
+          "what": "real <Route> declarations; verified live by templates/verify_routes.py",
+          "measuredFrom": "src/App.jsx:1-106"
+        },
+        {
+          "what": "blog post slugs (43 concrete /blog/:slug URLs)",
+          "measuredFrom": "src/data/blog.js:1-70"
+        },
+        {
+          "what": "competitor slugs (7 concrete /compare/:competitor URLs)",
+          "measuredFrom": "src/data/compare.js:1-541"
+        }
+      ],
+      "contractPointer": "templates/routes.json",
+      "mostCitedSourceFiles": [
+        {
+          "file": "src/App.jsx",
+          "citations": 27
+        },
+        {
+          "file": "src/components/Footer.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/components/pricing/TourDemo.jsx",
+          "citations": 1
+        }
+      ],
+      "distinctSourceFiles": 3,
+      "totalCitations": 30
+    },
+    "graphRules": {
+      "keyEvidence": [
+        {
+          "what": "rhythm and ordering evidence lives in the page components each rule cites; see compatibility/graph.json rules[].measuredFrom",
+          "measuredFrom": "src/App.jsx:1-106"
+        }
+      ],
+      "contractPointer": "compatibility/graph.json",
+      "mostCitedSourceFiles": [
+        {
+          "file": "src/pages/AppsMobile.jsx",
+          "citations": 6
+        },
+        {
+          "file": "src/App.jsx",
+          "citations": 5
+        },
+        {
+          "file": "src/components/products/data.js",
+          "citations": 5
+        },
+        {
+          "file": "src/pages/Home.jsx",
+          "citations": 4
+        },
+        {
+          "file": "src/components/blog/DocPage.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/BlogPost.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/Careers.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/pages/GetStarted.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/components/products/ProductPage.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/pages/Pricing.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/pages/Compare.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/pages/Integrations.jsx",
+          "citations": 2
+        }
+      ],
+      "distinctSourceFiles": 29,
+      "totalCitations": 59
+    },
+    "motion": {
+      "keyEvidence": [
+        {
+          "what": "motion inventory (durations, easing, triggers)",
+          "measuredFrom": "CLONE_SPEC.md:287-301"
+        }
+      ],
+      "contractPointer": "motion blocks in sections/components/primitives and tokens/*/motion.json",
+      "mostCitedSourceFiles": [
+        {
+          "file": "src/components/ui.jsx",
+          "citations": 16
+        },
+        {
+          "file": "src/components/Customers.jsx",
+          "citations": 10
+        },
+        {
+          "file": "src/components/motion.jsx",
+          "citations": 9
+        },
+        {
+          "file": "src/components/pricing/shared.jsx",
+          "citations": 9
+        },
+        {
+          "file": "src/pages/Careers.jsx",
+          "citations": 7
+        },
+        {
+          "file": "src/components/blog/MobileSections.jsx",
+          "citations": 7
+        },
+        {
+          "file": "src/components/Navbar.jsx",
+          "citations": 7
+        },
+        {
+          "file": "src/components/company/Form.jsx",
+          "citations": 6
+        },
+        {
+          "file": "src/components/compare/CompareSections.jsx",
+          "citations": 5
+        },
+        {
+          "file": "src/components/LogoMarquee.jsx",
+          "citations": 5
+        },
+        {
+          "file": "src/components/blog/PostAside.jsx",
+          "citations": 4
+        },
+        {
+          "file": "src/pages/About.jsx",
+          "citations": 4
+        }
+      ],
+      "distinctSourceFiles": 46,
+      "totalCitations": 159
+    },
+    "primitives": {
+      "keyEvidence": [],
+      "contractPointer": "primitives/*.json",
+      "mostCitedSourceFiles": [
+        {
+          "file": "src/components/ui.jsx",
+          "citations": 49
+        },
+        {
+          "file": "src/components/company/Form.jsx",
+          "citations": 27
+        },
+        {
+          "file": "src/components/pricing/shared.jsx",
+          "citations": 9
+        },
+        {
+          "file": "src/components/products/primitives.jsx",
+          "citations": 6
+        },
+        {
+          "file": "src/components/company/shared.jsx",
+          "citations": 6
+        },
+        {
+          "file": "src/components/motion.jsx",
+          "citations": 5
+        },
+        {
+          "file": "src/components/svgPaths.js",
+          "citations": 3
+        },
+        {
+          "file": "src/components/company/QuoteTestimonial.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/components/blog/PostCard.jsx",
+          "citations": 2
+        },
+        {
+          "file": "src/components/products/ProductAccordion.jsx",
+          "citations": 1
+        },
+        {
+          "file": "src/components/products/ProductTestimonial.jsx",
+          "citations": 1
+        }
+      ],
+      "distinctSourceFiles": 11,
+      "totalCitations": 111
+    },
+    "components": {
+      "keyEvidence": [],
+      "contractPointer": "components/*.json",
+      "mostCitedSourceFiles": [
+        {
+          "file": "src/components/Customers.jsx",
+          "citations": 11
+        },
+        {
+          "file": "src/components/blog/PostCard.jsx",
+          "citations": 10
+        },
+        {
+          "file": "src/components/pricing/shared.jsx",
+          "citations": 8
+        },
+        {
+          "file": "src/components/pricing/PricingPlans.jsx",
+          "citations": 8
+        },
+        {
+          "file": "src/components/LogoMarquee.jsx",
+          "citations": 6
+        },
+        {
+          "file": "src/components/products/ProductTabs.jsx",
+          "citations": 6
+        },
+        {
+          "file": "src/components/products/ProductCards.jsx",
+          "citations": 4
+        },
+        {
+          "file": "src/pages/Careers.jsx",
+          "citations": 4
+        },
+        {
+          "file": "src/components/products/ProductAccordion.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/components/company/QuoteTestimonial.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/components/pricing/TourDemo.jsx",
+          "citations": 3
+        },
+        {
+          "file": "src/index.css",
+          "citations": 1
+        }
+      ],
+      "distinctSourceFiles": 13,
+      "totalCitations": 68
+    }
+  },
+  "summaryNote": "mostCitedSourceFiles, distinctSourceFiles and totalCitations are a snapshot summary of the contracts' own citations at build time (informational, not machine-compared); keyEvidence ranges are machine-resolved by verify_all.py."
+}

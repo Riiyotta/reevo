@@ -1,0 +1,71 @@
+{
+  "$description": "How generators may use tokens. Category names under rawValueRestrictions are exactly the keys of token-catalog.json.",
+  "policyVersion": "1.0.0",
+  "catalog": "tokens/llm/token-catalog.json",
+  "rawValueRestrictions": {
+    "color": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name.",
+      "forbiddenPatterns": [
+        "#[0-9a-fA-F]{3,8}",
+        "rgb\\(",
+        "hsl\\("
+      ]
+    },
+    "fontSize": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "fontWeight": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "fontFamily": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "lineHeight": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "letterSpacing": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "borderRadius": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "spacing": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "breakpoint": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "elevation": {
+      "policy": "reference-only",
+      "note": "Only elevation.diffused and elevation.none exist; do not invent shadows."
+    },
+    "iconSize": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "duration": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "easing": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    },
+    "speed": {
+      "policy": "reference-only",
+      "note": "Raw literal values are not allowed; reference a catalog name."
+    }
+  },
+  "semanticPreferred": "Prefer semantic roles (semanticColor, semanticTypography, semanticRadius, semanticMotion) over foundation tokens where a role exists. Themed colour roles must be used (not fixed hex) so the .dark override on #problem works.",
+  "unknownTokens": "A reference to a name absent from token-catalog.json is invalid; do not add new tokens while generating.",
+  "overrides": "PageSpecs carry no per-instance style or token-override field. Styling is fully owned by the section/component contracts, so there is nothing at the PageSpec layer to validate or mutate for tokens. Token drift is therefore checked at the catalog/policy layer only (policy category names must resolve to catalog keys; every catalog name must exist in the token files)."
+}

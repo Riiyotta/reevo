@@ -1,0 +1,37 @@
+{
+  "$description": "Motion roles.",
+  "category": "semantic-motion",
+  "motion": {
+    "interaction": {
+      "duration": "{duration.base-200}",
+      "easing": "{easing.standard}",
+      "note": "hover/colour/opacity transitions",
+      "measuredFrom": "src/components/ui.jsx:44"
+    },
+    "overlay-enter": {
+      "duration": "{duration.base-200}",
+      "easing": "{easing.standard}",
+      "note": "nav popover, dialog, accordion",
+      "measuredFrom": "src/components/motion.jsx:7"
+    },
+    "hero-presence": {
+      "duration": "{duration.slow-300}",
+      "easing": "{easing.ease-out}",
+      "measuredFrom": "src/components/Hero.jsx:77-78"
+    },
+    "marquee": {
+      "speed": "{speed.marquee-px-per-second}",
+      "fadeIn": "{duration.marquee-fade-in-700}",
+      "easing": "{easing.ease-out}",
+      "measuredFrom": "src/components/LogoMarquee.jsx:47-49"
+    },
+    "carousel-advance": {
+      "duration": "{duration.carousel-advance-5000}",
+      "measuredFrom": "src/components/Foundation.jsx:5"
+    },
+    "notification-cycle": {
+      "duration": "{duration.notification-interval-2600}",
+      "measuredFrom": "src/components/blog/MobileSections.jsx:71"
+    }
+  }
+}

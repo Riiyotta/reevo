@@ -1,0 +1,59 @@
+{
+  "id": "social-proof.logo-marquee",
+  "kind": "section",
+  "category": "social-proof",
+  "purpose": "Immediately under the hero, reassure visitors that real companies already run on the platform, using a slow ambient row of customer logos with a one-line caption.",
+  "measuredFrom": ["src/components/LogoMarquee.jsx:39-77", "src/components/LogoMarquee.jsx:22-37", "src/pages/Home.jsx:14-16"],
+  "behaviour": [
+    { "note": "Loop: two duplicated tracks translate X from 0 to -100%, linear, infinite. animation-duration = measured track width / 30 px/s, recomputed by a ResizeObserver on resize (51.83s at 1440). The second track is aria-hidden with empty alt text.", "measuredFrom": ["src/components/LogoMarquee.jsx:5-7", "src/components/LogoMarquee.jsx:22-37", "src/components/LogoMarquee.jsx:50-57", "tailwind.config.js:87-89"] },
+    { "note": "Pause on hover: the animation is paused while the marquee is hovered or pressed (active).", "measuredFrom": ["src/index.css:73-75"] },
+    { "note": "Edge mask: 10% fade to transparent at both horizontal edges (mask-x-from-90).", "measuredFrom": ["src/components/LogoMarquee.jsx:66", "src/index.css:62-68"] },
+    { "note": "Mount fade: wrapper opacity 0 to 1 once on mount, 700ms, ease-out cubic-bezier(0,0,.58,1). motion.durationMs records this fade; the loop duration is derived from track width, not fixed.", "measuredFrom": ["src/components/LogoMarquee.jsx:47-49", "src/components/motion.jsx:9"] },
+    { "note": "Placement: rendered directly under the hero on Home only; the section has no background of its own. One hard-wired logo list, so at most one per page.", "measuredFrom": ["src/pages/Home.jsx:14-16", "src/components/LogoMarquee.jsx:61"] }
+  ],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "caption": { "type": "string", "required": true, "maxWords": 8, "note": "Small centered line above the logo row. Observed copy is 7 words.", "measuredFrom": ["src/components/LogoMarquee.jsx:65"] },
+      "logos": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 9,
+        "note": "Monochrome SVG customer logos, each with a rendered width in px at 1440 (observed 80-133), scaled by --logo-scale (.85 below md, 1 from md). Observed count is 9.",
+        "items": {
+          "type": "object",
+          "fields": {
+            "file": { "type": "assetRef", "required": true, "assetRole": "customer-logo" },
+            "widthPx": { "type": "number", "required": true, "note": "Rendered width at 1440, observed 80-133." },
+            "alt": { "type": "string", "required": true, "maxWords": 2, "note": "Company name; the duplicate track uses an empty alt." }
+          }
+        },
+        "measuredFrom": ["src/components/LogoMarquee.jsx:10-20", "src/components/LogoMarquee.jsx:25-33"]
+      }
+    }
+  },
+  "mediaFields": [{ "field": "logos[].file", "assetRole": "customer-logo" }],
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "marquee",
+    "reducedMotionFallback": "static",
+    "reducedMotionNote": "Proposal only: the code has no prefers-reduced-motion handling (none found in src/). Fallback would render a static wrapped row of logos.",
+    "durationMs": 700,
+    "easing": "linear",
+    "speedPxPerSec": 30,
+    "measuredFrom": ["src/components/LogoMarquee.jsx:5-7", "src/components/LogoMarquee.jsx:47-57", "tailwind.config.js:87-89", "src/index.css:73-75"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "logo scale .85 and tighter logo gap (mx-5); section padding py-10", "measuredFrom": ["src/components/LogoMarquee.jsx:26", "src/components/LogoMarquee.jsx:61", "src/components/LogoMarquee.jsx:66"] },
+      { "at": "md", "change": "logo scale 1, gap mx-6, padding py-12, content spans 12 columns", "measuredFrom": ["src/components/LogoMarquee.jsx:26", "src/components/LogoMarquee.jsx:61", "src/components/LogoMarquee.jsx:64"] },
+      { "at": "lg", "change": "content spans 22 columns starting at column 2", "measuredFrom": ["src/components/LogoMarquee.jsx:64"] },
+      { "at": "xl", "change": "logo gap mx-8, padding py-14", "measuredFrom": ["src/components/LogoMarquee.jsx:26", "src/components/LogoMarquee.jsx:61"] }
+    ]
+  },
+  "usedOnRoutes": ["/", "*"],
+  "tokensUsed": ["surface.background", "text.strong", "marquee", "marquee-fade-in-700", "marquee-px-per-second", "linear", "ease-out", "xs"]
+}

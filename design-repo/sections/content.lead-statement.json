@@ -1,0 +1,51 @@
+{
+  "id": "content.lead-statement",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Right after a company-page hero, state the mission or point of view in one large paragraph with a bold opening phrase, then hand the visitor straight to the next action.",
+  "measuredFrom": ["src/pages/About.jsx:116-135", "src/pages/Careers.jsx:104-120", "src/components/company/shared.jsx:3-15"],
+  "behaviour": [
+    { "note": "Sits directly after the page hero on both routes (About: after the teal hero header; Careers: after the header with the pattern image).", "measuredFrom": ["src/pages/About.jsx:114", "src/pages/Careers.jsx:78-102"] },
+    { "note": "About variant is built from the shared Section, SectionLabel and Lead helpers with an id of mission and the background colour; the Lead column is wide (10/18/16 columns). Careers variant is a plain section (no label, no pattern) with a larger text size (text-3xl) and one CTA that jumps to the openings anchor.", "measuredFrom": ["src/pages/About.jsx:116-135", "src/components/company/shared.jsx:3-13", "src/pages/Careers.jsx:104-118"] }
+  ],
+  "variants": [
+    { "name": "about-mission", "description": "Labelled section (icon plus eyebrow), Lead paragraph at text-2xl, two CTAs side by side from sm (primary and outline).", "measuredFrom": ["src/pages/About.jsx:116-135"] },
+    { "name": "careers-brutal", "description": "Unlabelled plain section with a text-3xl paragraph and a single primary CTA linking to an in-page anchor.", "measuredFrom": ["src/pages/Careers.jsx:104-120"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "variant": { "type": "enum", "required": true, "values": ["about-mission", "careers-brutal"] },
+      "label": { "type": "string", "required": false, "maxWords": 3, "note": "Eyebrow label with an icon; about-mission only. Observed 2 words.", "measuredFrom": ["src/pages/About.jsx:117"] },
+      "lead": { "type": "richtext-inline", "required": true, "maxWords": 55, "note": "Bold opening phrase followed by plain text. Observed: about-mission 49 words, careers-brutal 26 words (own count; the inventory's 31 to 58 was not reproduced).", "measuredFrom": ["src/pages/About.jsx:118-122", "src/pages/Careers.jsx:108-111"] },
+      "ctas": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 2,
+        "items": { "type": "object", "fields": { "label": { "type": "string", "maxWords": 3 }, "href": { "type": "string", "kind": "route-or-url" }, "variant": { "type": "enum", "values": ["primary", "outline"] } } },
+        "note": "about-mission: two (See open roles primary, Get started outline). careers-brutal: one (View openings primary, anchor href).",
+        "measuredFrom": ["src/pages/About.jsx:123-134", "src/pages/Careers.jsx:113-117"]
+      }
+    }
+  },
+  "mediaFields": [],
+  "constraints": {},
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No motion in the source; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": ["src/pages/About.jsx:116-135", "src/pages/Careers.jsx:104-120"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below sm", "change": "CTAs stack full width", "measuredFrom": ["src/pages/About.jsx:125-126", "src/pages/Careers.jsx:113-114"] },
+      { "at": "sm", "change": "about-mission CTAs sit side by side; careers CTA takes 3 of 6 columns", "measuredFrom": ["src/pages/About.jsx:125", "src/pages/Careers.jsx:113"] },
+      { "at": "md / lg / xl (lead column)", "change": "about lead spans 10, 18, 16 columns (from column 2 at xl); careers lead spans 12, 20, 19 columns", "measuredFrom": ["src/components/company/shared.jsx:14", "src/pages/Careers.jsx:107"] },
+      { "at": "md / lg (spacing)", "change": "careers row gap grows 24, 32, 40px", "measuredFrom": ["src/pages/Careers.jsx:106"] }
+    ]
+  },
+  "usedOnRoutes": ["/about", "/careers"],
+  "tokensUsed": ["surface.background", "text.strong", "2xl", "3xl"]
+}

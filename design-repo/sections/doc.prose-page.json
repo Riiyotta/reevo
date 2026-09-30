@@ -1,0 +1,40 @@
+{
+  "id": "doc.prose-page",
+  "kind": "section",
+  "category": "doc",
+  "purpose": "Long-form reference page in a narrow reading column: an all-caps title followed by rich-text instructions (setup guides) or a caller-supplied list (release notes). Optimised for reading, with no hero or imagery.",
+  "measuredFrom": ["src/components/blog/DocPage.jsx:6-21", "src/components/blog/Prose.jsx:4-10", "src/components/blog/prose.css:1-247"],
+  "variants": [
+    { "name": "prose", "description": "Default (prose=true): children are wrapped in the reevo-prose rich-text block, so bare h2, h3, ul, ol, code, a and strong elements are styled automatically. Used by the Zoom and Slack setup pages.", "measuredFrom": ["src/components/blog/DocPage.jsx:14", "src/pages/ZoomSetup.jsx:6", "src/pages/BotForSlackSetup.jsx:6"] },
+    { "name": "custom-children", "description": "prose=false: the title is followed by whatever the caller renders, unstyled by the prose block (release notes wraps its own entry list).", "measuredFrom": ["src/components/blog/DocPage.jsx:14", "src/pages/ReleaseNotes.jsx:103-109"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "title": { "type": "string", "required": true, "maxWords": 5, "note": "Rendered as h1, display-2xl, extrabold, uppercase. Observed 2 to 4 words.", "measuredFrom": ["src/components/blog/DocPage.jsx:13", "src/pages/ZoomSetup.jsx:6", "src/pages/BotForSlackSetup.jsx:6", "src/pages/ReleaseNotes.jsx:103"] },
+      "body": { "type": "richtext-inline", "required": true, "note": "Rich HTML: h2, h3, ordered and unordered lists, inline code, links, bold. No maxWords budget is set because the body is unbounded documentation; observed about 57 words (Zoom setup) and about 555 words (Slack setup). The prose stylesheet also styles hr, blockquote, pre, table, img, figure and video, but no current page uses them.", "measuredFrom": ["src/pages/ZoomSetup.jsx:6-29", "src/pages/BotForSlackSetup.jsx:6-141", "src/components/blog/prose.css:100-247"] }
+    }
+  },
+  "mediaFields": [],
+  "behaviour": [
+    { "note": "Hero-less: the h1 lives inside this section. The column is a fixed 880px max width, not the 24-column grid; title and body are stacked with a large vertical gap (40 / 64 / 80 / 96px, the shared STACK constant from ui.jsx).", "measuredFrom": ["src/components/blog/DocPage.jsx:11-15"] },
+    { "note": "Only the release-notes route is followed by the shared CTA band; the two setup pages are not.", "measuredFrom": ["src/pages/ReleaseNotes.jsx:110", "src/pages/ZoomSetup.jsx:29"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Static.",
+    "measuredFrom": ["src/components/blog/DocPage.jsx:6-21"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to lg", "change": "section vertical padding 64 / 96 (md) / 128 (lg); side gutters 24 / 32 (sm) / 40 (md) / 48 (lg)", "measuredFrom": ["src/components/blog/DocPage.jsx:8", "src/components/blog/DocPage.jsx:10"] },
+      { "at": "base to xl", "change": "gap between title and body steps 40 / 64 (md) / 80 (lg) / 96 (xl)", "measuredFrom": ["src/components/blog/DocPage.jsx:12", "src/components/ui.jsx:8"] },
+      { "at": "all", "change": "prose body font size is fluid, clamp(1rem, .949rem + .2041vw, 1.125rem)", "measuredFrom": ["src/components/blog/prose.css:26", "src/components/blog/prose.css:41-47"] }
+    ]
+  },
+  "usedOnRoutes": ["/zoom-setup", "/bot-for-slack-setup", "/release-notes"],
+  "tokensUsed": ["fontFamily.heading", "fontSize.display-2xl", "fontSize.display-xl", "fontSize.display-lg", "fontSize.md", "semanticColor.text.strong", "semanticColor.surface.background"]
+}

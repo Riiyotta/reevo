@@ -1,0 +1,70 @@
+{
+  "id": "grid",
+  "kind": "primitive",
+  "purpose": "Shared 6/12/24 column grid (gap-4) plus the standard column-span class constants used across sections.",
+  "measuredFrom": [
+    "src/components/ui.jsx:5-14"
+  ],
+  "props": {
+    "columnSpan": {
+      "type": "enum",
+      "values": [
+        "COL_LABEL",
+        "COL_HEADLINE",
+        "COL_TEXT",
+        "COL_IMAGE"
+      ],
+      "description": "Named span constants exported from ui.jsx"
+    }
+  },
+  "variants": [
+    {
+      "name": "GRID",
+      "description": "grid grid-cols-6 gap-4 md:grid-cols-12 lg:grid-cols-24",
+      "measuredFrom": [
+        "src/components/ui.jsx:5"
+      ]
+    },
+    {
+      "name": "COL_LABEL",
+      "description": "full below xl; xl:col-span-22 xl:col-start-2",
+      "measuredFrom": [
+        "src/components/ui.jsx:11"
+      ]
+    },
+    {
+      "name": "COL_HEADLINE",
+      "description": "md:9, lg:14, xl:12 start 2",
+      "measuredFrom": [
+        "src/components/ui.jsx:12"
+      ]
+    },
+    {
+      "name": "COL_TEXT",
+      "description": "md:5, lg:9, xl:8 start 2",
+      "measuredFrom": [
+        "src/components/ui.jsx:13"
+      ]
+    },
+    {
+      "name": "COL_IMAGE",
+      "description": "md:6 start 7 row 1, lg:14 start 11",
+      "measuredFrom": [
+        "src/components/ui.jsx:14"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "4",
+    "md",
+    "lg",
+    "xl"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/ui.jsx:5"
+    ]
+  }
+}

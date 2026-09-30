@@ -1,0 +1,195 @@
+{
+  "id": "content.dark-problem",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Frame the problem before the product: on a dark background, name why fragmented sales tools lose context and back it with three pain-point cards, creating contrast and tension ahead of the solution section.",
+  "measuredFrom": [
+    "src/components/Problem.jsx:25-53",
+    "src/components/Problem.jsx:4-23"
+  ],
+  "themeDependency": {
+    "requires": "dark",
+    "how": "The section root carries className dark bg-background, which re-scopes the semantic colour tokens (background, foreground, strong, border) to the dark values for everything inside it. Without the .dark scope the text is unreadable on the light theme.",
+    "measuredFrom": [
+      "src/components/Problem.jsx:27",
+      "src/index.css:42-48"
+    ]
+  },
+  "behaviour": [
+    {
+      "note": "Background rhythm on Home: it is the only full-section dark block, sandwiched between a gray-2 section (before) and a white section (after); tinted sections never touch it directly.",
+      "measuredFrom": [
+        "src/pages/Home.jsx:16-18",
+        "src/components/BuiltDifferent.jsx:7",
+        "src/components/Solution.jsx:37",
+        "src/components/Problem.jsx:27"
+      ]
+    },
+    {
+      "note": "Cards are square black-and-white photographs with a coloured overlay baked into the file, each with a bold title and short body underneath. Below md the three cards form a horizontal scroll-snap carousel.",
+      "measuredFrom": [
+        "src/components/Problem.jsx:4-23",
+        "src/components/Problem.jsx:34-48",
+        "src/components/ui.jsx:17-19"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "name": "dark",
+      "description": "Only variant: dark theme scope on the whole section with a top pattern strip (pattern-02).",
+      "measuredFrom": [
+        "src/components/Problem.jsx:27"
+      ]
+    }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "label": {
+        "type": "string",
+        "required": true,
+        "maxWords": 7,
+        "note": "Eyebrow label with an icon. Observed 6 words.",
+        "measuredFrom": [
+          "src/components/Problem.jsx:28"
+        ]
+      },
+      "headline": {
+        "type": "richtext-inline",
+        "required": true,
+        "maxWords": 10,
+        "note": "Plain part plus bold tail. Observed 9 words.",
+        "measuredFrom": [
+          "src/components/Problem.jsx:30"
+        ]
+      },
+      "lede": {
+        "type": "string",
+        "required": true,
+        "maxWords": 35,
+        "note": "Observed about 33 words.",
+        "measuredFrom": [
+          "src/components/Problem.jsx:29"
+        ]
+      },
+      "cards": {
+        "type": "array",
+        "required": true,
+        "minItems": 3,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "fields": {
+            "image": {
+              "type": "assetRef",
+              "required": true,
+              "assetRole": "editorial-photo",
+              "note": "Square black-and-white photo of people in a work scene with a colour overlay. Real files only; do not generate or restyle."
+            },
+            "alt": {
+              "type": "string",
+              "required": true,
+              "maxWords": 30,
+              "note": "Descriptive alt text; observed as long descriptions of the image."
+            },
+            "title": {
+              "type": "string",
+              "required": true,
+              "maxWords": 6
+            },
+            "body": {
+              "type": "string",
+              "required": true,
+              "maxWords": 35,
+              "note": "Observed up to about 34 words."
+            }
+          }
+        },
+        "measuredFrom": [
+          "src/components/Problem.jsx:4-23"
+        ]
+      },
+      "patternStrip": {
+        "type": "assetRef",
+        "required": false,
+        "assetRole": "decorative-pattern",
+        "measuredFrom": [
+          "src/components/Problem.jsx:27"
+        ]
+      }
+    }
+  },
+  "mediaFields": [
+    {
+      "field": "cards[].image",
+      "assetRole": "editorial-photo"
+    },
+    {
+      "field": "patternStrip",
+      "assetRole": "decorative-pattern"
+    }
+  ],
+  "constraints": {},
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No motion (no scroll reveals); below md native scroll-snap only. No prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": [
+      "src/components/Problem.jsx:34",
+      "src/components/ui.jsx:17-19"
+    ]
+  },
+  "responsive": {
+    "breakpointsPx": {
+      "sm": 600,
+      "md": 840,
+      "lg": 1140,
+      "xl": 1380
+    },
+    "changes": [
+      {
+        "at": "below md",
+        "change": "cards become a scroll-snap carousel, each 60vw wide",
+        "measuredFrom": [
+          "src/components/Problem.jsx:34",
+          "src/components/Problem.jsx:37",
+          "src/components/ui.jsx:17-19"
+        ]
+      },
+      {
+        "at": "md",
+        "change": "three equal-width cards in a row",
+        "measuredFrom": [
+          "src/components/Problem.jsx:37"
+        ]
+      },
+      {
+        "at": "lg / xl",
+        "change": "text right padding grows 24, 32, 48px",
+        "measuredFrom": [
+          "src/components/Problem.jsx:41"
+        ]
+      },
+      {
+        "at": "xl",
+        "change": "cards span 22 columns starting at column 2",
+        "measuredFrom": [
+          "src/components/Problem.jsx:33"
+        ]
+      }
+    ]
+  },
+  "usedOnRoutes": [
+    "/",
+    "*"
+  ],
+  "tokensUsed": [
+    "dark",
+    "surface.background",
+    "text.strong",
+    "text.body",
+    "border.default",
+    "display-lg"
+  ]
+}

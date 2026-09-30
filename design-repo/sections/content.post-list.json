@@ -1,0 +1,89 @@
+{
+  "id": "content.post-list",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Let a reader browse every blog article, newest first, and narrow the list by category: a filter row followed by a vertical list of article cards, the first one drawn larger as the featured article.",
+  "measuredFrom": ["src/pages/Blog.jsx:53-75", "src/components/blog/PostCard.jsx:35-90", "src/pages/Blog.jsx:6-25", "src/data/blog.js:14-59"],
+  "behaviour": [
+    { "note": "Data is a static snapshot of 43 articles (28 Tips, 12 Tech, 2 Customer Story, 1 Company), already ordered newest first; the list is not re-sorted in code. Excerpts in this clone are neutral one-line summaries written for the clone, not the original copy, and the article body pages use placeholder text.", "measuredFrom": ["src/data/blog.js:1-4", "src/data/blog.js:17-59"] },
+    { "note": "Category filter: All, Company, Tips, Tech, Customer Story, shown as radio-like square markers (filled square with a small white dot when active). The active category is kept in the URL as ?category=<lowercased label> (for example customer story with the space encoded); choosing All removes the parameter. Matching is case-insensitive on the post category. The URL is the only filter state, so a filtered view is linkable and survives reload.", "measuredFrom": ["src/pages/Blog.jsx:28-37", "src/pages/Blog.jsx:59-66", "src/data/blog.js:13"] },
+    { "note": "Changing the filter does not reset the page scroll position (preventScrollReset). An unrecognised category value yields an empty list with no empty-state message; the filter row then shows no active item.", "measuredFrom": ["src/pages/Blog.jsx:36", "src/pages/Blog.jsx:30", "src/pages/Blog.jsx:63"] },
+    { "note": "Filters are hidden below 600px (the sm breakpoint): on a phone there is no filter row and the full unfiltered list shows (a ?category= value in the URL still filters it, invisibly).", "measuredFrom": ["src/pages/Blog.jsx:55", "src/pages/Blog.jsx:29-30"] },
+    { "note": "Featured layout: the first card of the current (possibly filtered) list uses the featured layout (wider image column, larger 24px title, 1400px image request); every other card is standard (20px title, 900px image request). So with a filter active, the first match becomes the featured card.", "measuredFrom": ["src/pages/Blog.jsx:72", "src/components/blog/PostCard.jsx:39-43", "src/components/blog/PostCard.jsx:50-51", "src/components/blog/PostCard.jsx:60-63", "src/components/blog/PostCard.jsx:69"] },
+    { "note": "Each card: square cover image, a category chip, a bold title that is the link (the whole card is clickable through a stretched pseudo-element on the title link), a one-sentence excerpt, a mono uppercase date and a small square author avatar, then a hairline divider. Hovering the card fades the cover image to 90% over 200ms.", "measuredFrom": ["src/components/blog/PostCard.jsx:37-90", "src/components/blog/PostCard.jsx:54", "src/components/blog/PostCard.jsx:70"] },
+    { "note": "The last two words of every excerpt are joined with a non-breaking space to avoid a one-word last line. Dates on this index are formatted in the viewer's local time zone as short month, day, year; the article page uses UTC, so the same post can show a different day near midnight.", "measuredFrom": ["src/data/blog.js:67-70", "src/components/text.js:4-5", "src/components/blog/PostCard.jsx:76", "src/pages/Blog.jsx:72"] },
+    { "note": "Author avatar images come from the AUTHORS map (5 named authors) and use the person-portrait role; alt text is the author name plus the word photo. Cover images are the blog-cover role, one distinct file per post; the cover alt text is the post title.", "measuredFrom": ["src/data/blog.js:6-11", "src/components/blog/PostCard.jsx:18-30", "src/components/blog/PostCard.jsx:47-55"] },
+    { "note": "PostCard is shared: the same component renders the You might also like rows on article pages (see content.related-posts), always in standard, non-featured form.", "measuredFrom": ["src/pages/BlogPost.jsx:93-94"] },
+    { "note": "Sits directly under hero.page-header on /blog (an eyebrow, headline banner written inline in the page); it is the last block before the footer and has no closing call to action.", "measuredFrom": ["src/pages/Blog.jsx:39-76"] }
+  ],
+  "themeDependency": {
+    "requires": "light",
+    "how": "Default light theme on the plain background; filter markers use gray-2 (inactive) and the strong text colour (active), text turns from gray-6 to gray-8 on hover. No dark scope.",
+    "measuredFrom": ["src/pages/Blog.jsx:11-18"]
+  },
+  "variants": [
+    { "name": "featured-card", "description": "First card of the list: image column 5 of 12 at md, 8 of 24 at lg, 6 of 24 at xl; larger title.", "measuredFrom": ["src/components/blog/PostCard.jsx:39-43", "src/components/blog/PostCard.jsx:60-69"] },
+    { "name": "standard-card", "description": "All later cards: narrower image column (4 of 12 at md, 6 of 24 at lg, 4 of 24 at xl) and 20px title.", "measuredFrom": ["src/components/blog/PostCard.jsx:39-43", "src/components/blog/PostCard.jsx:60-69"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "categories": {
+        "type": "array", "required": true, "minItems": 2, "maxItems": 8,
+        "note": "Filter labels; the first is the All reset. Observed 5.",
+        "measuredFrom": ["src/data/blog.js:13", "src/pages/Blog.jsx:59-66"],
+        "items": { "type": "string", "maxWords": 2, "note": "Observed up to 2 words (Customer Story)." }
+      },
+      "posts": {
+        "type": "array", "required": true, "minItems": 1, "maxItems": 100,
+        "note": "Observed 43 posts, newest first.",
+        "measuredFrom": ["src/data/blog.js:16-59", "src/pages/Blog.jsx:71-73"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "slug": { "type": "string", "required": true, "note": "URL slug; the card links to /blog/<slug>.", "measuredFrom": ["src/components/blog/PostCard.jsx:70"] },
+            "title": { "type": "string", "required": true, "maxWords": 25, "note": "Bold card title and cover alt text. Observed up to 23 words.", "measuredFrom": ["src/components/blog/PostCard.jsx:48", "src/components/blog/PostCard.jsx:71"] },
+            "category": { "type": "enum", "required": true, "values": ["Company", "Tips", "Tech", "Customer Story"], "note": "Shown in the chip and matched by the filter.", "measuredFrom": ["src/data/blog.js:13", "src/components/blog/PostCard.jsx:68"] },
+            "date": { "type": "string", "required": true, "note": "ISO timestamp; rendered as short month, day, year.", "measuredFrom": ["src/data/blog.js:64-70"] },
+            "author": { "type": "enum", "required": true, "values": ["Hugh Willoughby", "Justin Herrick", "Ross Walden", "Clement Fang", "David Zhu"], "note": "Must be a key of the authors map so an avatar exists.", "measuredFrom": ["src/data/blog.js:6-11", "src/components/blog/PostCard.jsx:79"] },
+            "cover": { "type": "assetRef", "required": true, "assetRole": "blog-cover", "note": "Square article cover; existing real file only.", "measuredFrom": ["src/components/blog/PostCard.jsx:46-55"] },
+            "excerpt": { "type": "string", "required": true, "maxWords": 34, "note": "One-sentence summary. Observed up to 31 words.", "measuredFrom": ["src/components/blog/PostCard.jsx:76"] },
+            "takeaways": { "type": "number", "required": true, "note": "Not shown on the list; count of Key takeaways bullets on the article (0, 2 or 3). Belongs to the same record.", "measuredFrom": ["src/data/blog.js:4", "src/pages/BlogPost.jsx:67-68"] },
+            "related": { "type": "array", "required": true, "minItems": 2, "maxItems": 2, "note": "Not shown on the list; slugs of the 2 related posts used by the article page.", "measuredFrom": ["src/pages/BlogPost.jsx:17"], "items": { "type": "string" } }
+          }
+        }
+      },
+      "authorAvatars": {
+        "type": "array", "required": true, "minItems": 1, "maxItems": 10,
+        "note": "One portrait per named author (5 observed), used at 24px in the card footer.",
+        "measuredFrom": ["src/data/blog.js:6-11", "src/components/blog/PostCard.jsx:18-30"],
+        "items": { "type": "assetRef", "assetRole": "person-portrait" }
+      }
+    }
+  },
+  "mediaFields": [
+    { "field": "posts[].cover", "assetRole": "blog-cover" },
+    { "field": "authorAvatars[]", "assetRole": "person-portrait" }
+  ],
+  "constraints": { "onePerPage": true, "mustFollow": "hero.page-header", "mustPrecedeFooter": true },
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only; the code has no prefers-reduced-motion handling. Proposed: drop the 200ms fades and change state instantly.",
+    "durationMs": 200,
+    "easing": "ease",
+    "measuredFrom": ["src/components/blog/PostCard.jsx:54", "src/pages/Blog.jsx:11", "src/pages/Blog.jsx:16"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below sm", "change": "filter row is not rendered at all", "measuredFrom": ["src/pages/Blog.jsx:55"] },
+      { "at": "below md", "change": "cards stack: image full width, then title, excerpt, and a footer of date and avatar in a column with 20px gaps", "measuredFrom": ["src/components/blog/PostCard.jsx:42-43", "src/components/blog/PostCard.jsx:62-63", "src/components/blog/PostCard.jsx:76"] },
+      { "at": "md", "change": "image and text side by side on 12 columns (featured 5 and 7, standard 4 and 8); text column fills the image height with the excerpt pinned to the bottom; filter gap grows from 24 to 32px", "measuredFrom": ["src/components/blog/PostCard.jsx:42-43", "src/components/blog/PostCard.jsx:62-63", "src/components/blog/PostCard.jsx:66", "src/pages/Blog.jsx:58"] },
+      { "at": "lg", "change": "24-column grid (featured 8 and 16, standard 6 and 18); excerpt and date-with-avatar sit on one row, bottom-aligned", "measuredFrom": ["src/components/blog/PostCard.jsx:42-43", "src/components/blog/PostCard.jsx:62-63", "src/components/blog/PostCard.jsx:76"] },
+      { "at": "xl", "change": "content inset to columns 2 to 23; featured image 6 columns, standard 4", "measuredFrom": ["src/components/blog/PostCard.jsx:42-43", "src/pages/Blog.jsx:57"] }
+    ]
+  },
+  "usedOnRoutes": ["/blog"],
+  "tokensUsed": ["surface.background", "text.strong", "gray.2", "gray.6", "gray.8", "border.default", "display-xs", "mono", "tag"]
+}

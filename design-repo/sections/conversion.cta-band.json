@@ -1,0 +1,60 @@
+{
+  "id": "conversion.cta-band",
+  "kind": "section",
+  "category": "conversion",
+  "purpose": "Closing conversion band directly above the footer: an all-caps headline, one line of reassurance and a stacked primary Get started plus outline See Reevo button pair.",
+  "measuredFrom": ["src/components/CTA.jsx:4-27", "src/components/blog/MobileSections.jsx:521-554"],
+  "variants": [
+    {
+      "name": "shared-cta",
+      "description": "Component CTA.jsx. Takes no props; headline, lede and both buttons are hard-coded. Used on home, pricing, newsletter, compare, integrations, release notes and product pages.",
+      "measuredFrom": ["src/components/CTA.jsx:4-27", "src/pages/Home.jsx:22", "src/pages/Pricing.jsx:19", "src/pages/Newsletter.jsx:53", "src/pages/Compare.jsx:30", "src/pages/Integrations.jsx:52", "src/pages/ReleaseNotes.jsx:110", "src/components/products/ProductPage.jsx:1", "src/components/products/ProductPage.jsx:19"]
+    },
+    {
+      "name": "mobile-app-cta",
+      "description": "Page-local copy (MobileCTA) in a file misfiled under blog/. Same layout and same headline and buttons as the shared CTA, but a different lede (app-specific). The lede uses a non-breaking space before its last word. Only on /apps/mobile.",
+      "measuredFrom": ["src/components/blog/MobileSections.jsx:519-554", "src/pages/AppsMobile.jsx:4", "src/pages/AppsMobile.jsx:86"]
+    }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "headline": { "type": "string", "required": true, "maxWords": 8, "note": "Fixed in both implementations. Rendered as h2, uppercase, black-weight heading font.", "measuredFrom": ["src/components/CTA.jsx:9-11", "src/components/blog/MobileSections.jsx:527-529"] },
+      "lede": { "type": "string", "required": true, "maxWords": 15, "note": "Shared CTA: fixed short sentence (9 words). Mobile-app CTA: page-specific sentence (about 13 words).", "measuredFrom": ["src/components/CTA.jsx:12-14", "src/components/blog/MobileSections.jsx:532-534"] },
+      "ctas": {
+        "type": "array", "required": true, "minItems": 2, "maxItems": 2,
+        "items": { "type": "object", "fields": {
+          "label": { "type": "string", "maxWords": 2 },
+          "href": { "type": "string", "kind": "route-or-url" },
+          "variant": { "type": "enum", "values": ["primary", "outline"] }
+        } },
+        "measuredFrom": ["src/components/CTA.jsx:15-22", "src/components/blog/MobileSections.jsx:536-552"]
+      }
+    }
+  },
+  "mediaFields": [],
+  "behaviour": [
+    { "note": "Background is bg-background (white), matching the white footer so no seam shows between them.", "measuredFrom": ["src/components/CTA.jsx:6", "src/components/Footer.jsx:41"] },
+    { "note": "Both buttons are full width of a 6-column block (lg) and carry a trailing icon (chevron / video icon).", "measuredFrom": ["src/components/CTA.jsx:15-21"] },
+    { "note": "The two implementations are duplicated code, not one parameterised component; a generator should treat them as one contract with a swappable lede.", "measuredFrom": ["src/components/CTA.jsx:4-27", "src/components/blog/MobileSections.jsx:519-521"] }
+  ],
+  "constraints": { "onePerPage": true, "mustPrecedeFooter": true },
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only: no prefers-reduced-motion handling in the code. Only motion is button hover: primary drops to opacity .8, outline gains a tinted background, 200ms.",
+    "durationMs": 200,
+    "measuredFrom": ["src/components/ui.jsx:43-47"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to lg", "change": "vertical padding 64 / 96 (md) / 128 (lg)", "measuredFrom": ["src/components/CTA.jsx:6"] },
+      { "at": "md to xl", "change": "row gap steps 24 / 32 (md) / 40 (lg) / 56 (xl)", "measuredFrom": ["src/components/CTA.jsx:8"] },
+      { "at": "md to xl", "change": "headline spans 6 cols, then 12, then 22, then 21 starting at column 2 at xl", "measuredFrom": ["src/components/CTA.jsx:9"] },
+      { "at": "lg and up", "change": "button stack is limited to 6 columns (full width below lg); starts at column 2 at xl", "measuredFrom": ["src/components/CTA.jsx:15"] }
+    ]
+  },
+  "usedOnRoutes": ["/", "*", "/apps/mobile", "/compare/:competitor", "/integrations", "/newsletter", "/pricing", "/products/*", "/release-notes"],
+  "tokensUsed": ["semanticColor.surface.background", "semanticColor.text.strong", "semanticTypography.section-lede", "duration.base-200"]
+}

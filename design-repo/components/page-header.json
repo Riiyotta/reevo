@@ -1,0 +1,50 @@
+{
+  "id": "page-header",
+  "kind": "component",
+  "purpose": "Page header: mono eyebrow (h1), display-3xl title (h2) and lede.",
+  "measuredFrom": [
+    "src/components/pricing/shared.jsx:12-28"
+  ],
+  "props": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "maxWords": 2
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxWords": 6
+    },
+    "lede": {
+      "type": "string",
+      "maxWords": 19
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "py-10 md:py-12 xl:py-14",
+      "measuredFrom": [
+        "src/components/pricing/shared.jsx:16"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "eyebrow",
+    "display-3xl",
+    "text.strong",
+    "lg"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/pricing/shared.jsx:14-28"
+    ]
+  },
+  "composes": [
+    "container",
+    "grid"
+  ]
+}

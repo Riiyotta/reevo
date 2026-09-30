@@ -1,0 +1,61 @@
+{
+  "id": "tab-bar",
+  "kind": "component",
+  "purpose": "Product page tab strip: equal-width tabs, active tab shows a coloured dot; sticky below nav at md+, active label only below lg.",
+  "measuredFrom": [
+    "src/components/products/ProductTabs.jsx:6-63"
+  ],
+  "props": {
+    "active": {
+      "type": "enum",
+      "values": [
+        "find",
+        "connect",
+        "sell",
+        "manage",
+        "foundation"
+      ],
+      "required": true
+    },
+    "dot": {
+      "type": "string",
+      "required": true,
+      "description": "bg colour class for the active dot"
+    }
+  },
+  "variants": [
+    {
+      "name": "active",
+      "description": "bg gray-2, dot pops in (opacity 0, scale .75 to 1) in 200ms",
+      "measuredFrom": [
+        "src/components/products/ProductTabs.jsx:37",
+        "src/components/products/ProductTabs.jsx:13-18"
+      ]
+    },
+    {
+      "name": "inactive",
+      "description": "bg gray-3, text 60%, hover bg gray-2 in 200ms",
+      "measuredFrom": [
+        "src/components/products/ProductTabs.jsx:45"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "gray.2",
+    "gray.3",
+    "gray.10",
+    "accent.progress",
+    "base-200"
+  ],
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Proposal only.",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": [
+      "src/components/products/ProductTabs.jsx:18",
+      "src/components/products/ProductTabs.jsx:45"
+    ]
+  }
+}

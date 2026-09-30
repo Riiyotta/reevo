@@ -1,0 +1,54 @@
+{
+  "$description": "Icon / glyph box sizes actually used (Tailwind size-N = N x .25rem).",
+  "category": "iconSize",
+  "iconSize": {
+    "xs-13": {
+      "value": "13px",
+      "type": "iconSize",
+      "usedAt": "mobile nav mark size-[13px]",
+      "measuredFrom": "src/components/Navbar.jsx:11"
+    },
+    "3": {
+      "value": "12px",
+      "type": "iconSize",
+      "usedAt": "icon inside section-label chip (size-3)",
+      "measuredFrom": "src/components/ui.jsx:107"
+    },
+    "4": {
+      "value": "16px",
+      "type": "iconSize",
+      "usedAt": "button trailing icon (size-4)",
+      "measuredFrom": "src/components/ui.jsx:65"
+    },
+    "6": {
+      "value": "24px",
+      "type": "iconSize",
+      "usedAt": "section-label chip box (size-6)",
+      "measuredFrom": "src/components/ui.jsx:106"
+    },
+    "8": {
+      "value": "32px",
+      "type": "iconSize",
+      "usedAt": "feature chip box (size-8)",
+      "measuredFrom": "src/components/ui.jsx:149"
+    },
+    "10": {
+      "value": "40px",
+      "type": "iconSize",
+      "usedAt": "integration logo box (size-10)",
+      "measuredFrom": "src/components/pricing/IntegrationsBrowser.jsx:59"
+    },
+    "12": {
+      "value": "48px",
+      "type": "iconSize",
+      "usedAt": "feature icon box (size-12)",
+      "measuredFrom": "src/components/products/ProductFeatures.jsx:23"
+    },
+    "footer-mark-29": {
+      "value": "29px",
+      "type": "iconSize",
+      "usedAt": "footer Reevo mark width w-[29px]",
+      "measuredFrom": "src/components/Footer.jsx:46"
+    }
+  }
+}

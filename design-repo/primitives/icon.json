@@ -1,0 +1,64 @@
+{
+  "id": "icon",
+  "kind": "primitive",
+  "purpose": "lucide-react icon usage convention: icons are imported per component and sized with size-* utilities, wrapped in a size-matching span.",
+  "measuredFrom": [
+    "src/components/ui.jsx:62-66",
+    "src/components/ui.jsx:107",
+    "src/components/ui.jsx:151",
+    "src/components/faq.jsx:36-38",
+    "src/components/company/Form.jsx:70-72"
+  ],
+  "props": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "lucide-react component name (e.g. ChevronDown, ChevronRight, Check, X)"
+    },
+    "size": {
+      "type": "enum",
+      "values": [
+        "size-3",
+        "size-4"
+      ],
+      "default": "size-4",
+      "description": "Only these two sizes appear in the primitives"
+    }
+  },
+  "variants": [
+    {
+      "name": "button trailing",
+      "description": "size-4 inside inline-flex size-4 span",
+      "measuredFrom": [
+        "src/components/ui.jsx:63-66"
+      ]
+    },
+    {
+      "name": "section-label glyph",
+      "description": "size-3 shrink-0",
+      "measuredFrom": [
+        "src/components/ui.jsx:107"
+      ]
+    },
+    {
+      "name": "chevron rotate",
+      "description": "ChevronDown rotates 180deg with transition-transform duration-200",
+      "measuredFrom": [
+        "src/components/faq.jsx:36-38"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "3",
+    "4"
+  ],
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Proposal only.",
+    "durationMs": 200,
+    "measuredFrom": [
+      "src/components/faq.jsx:37"
+    ]
+  }
+}

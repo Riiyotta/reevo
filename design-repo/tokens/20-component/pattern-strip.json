@@ -1,0 +1,26 @@
+{
+  "$description": "Decorative pattern strip at the top of a section (ui.jsx PatternStrip).",
+  "category": "component",
+  "patternStrip": {
+    "height-base": {
+      "value": "60px",
+      "measuredFrom": "src/components/ui.jsx:92"
+    },
+    "height-md": {
+      "value": "120px",
+      "measuredFrom": "src/components/ui.jsx:92"
+    },
+    "background-size-base": {
+      "value": "auto 60px",
+      "measuredFrom": "src/components/ui.jsx:92"
+    },
+    "background-size-md": {
+      "value": "auto 120px",
+      "measuredFrom": "src/components/ui.jsx:92"
+    },
+    "repeat": {
+      "value": "repeat, left aligned",
+      "measuredFrom": "src/components/ui.jsx:92"
+    }
+  }
+}

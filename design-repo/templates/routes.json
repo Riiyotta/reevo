@@ -1,0 +1,271 @@
+{
+  "version": "1.0.0",
+  "description": "Every route pattern declared in src/App.jsx:79-102, each bound to exactly one template in templates.json.",
+  "measuredFrom": [
+    "src/App.jsx:79-102"
+  ],
+  "retrievalEligibleDefinition": "true when the pattern serves at least one distinct concrete URL (concreteUrlCount > 0), i.e. it can be used as a real exemplar of its template. false for the `*` catch-all, which renders the same <Home/> as `/` (src/App.jsx:102) and serves none of the 71 sitemap URLs. This definition is a proposal; the source has no such flag.",
+  "concreteUrlTotals": {
+    "nonBlog": 28,
+    "blog": 43,
+    "total": 71
+  },
+  "routes": [
+    {
+      "path": "/",
+      "template": "home",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:79"
+      ]
+    },
+    {
+      "path": "/about",
+      "template": "company-about",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:80"
+      ]
+    },
+    {
+      "path": "/apps/mobile",
+      "template": "apps-mobile",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:81"
+      ]
+    },
+    {
+      "path": "/blog",
+      "template": "blog-index",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:82"
+      ]
+    },
+    {
+      "path": "/blog/:slug",
+      "template": "blog-post",
+      "concreteUrlCount": 43,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:83"
+      ]
+    },
+    {
+      "path": "/bot-for-slack-setup",
+      "template": "doc-page",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:84"
+      ]
+    },
+    {
+      "path": "/careers",
+      "template": "company-careers",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:85"
+      ]
+    },
+    {
+      "path": "/compare/:competitor",
+      "template": "compare-competitor",
+      "concreteUrlCount": 7,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:86"
+      ]
+    },
+    {
+      "path": "/get-started",
+      "template": "form-page",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:87"
+      ]
+    },
+    {
+      "path": "/integrations",
+      "template": "integrations",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:88"
+      ]
+    },
+    {
+      "path": "/newsletter",
+      "template": "newsletter",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:89"
+      ]
+    },
+    {
+      "path": "/partners",
+      "template": "form-page",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:90"
+      ]
+    },
+    {
+      "path": "/pricing",
+      "template": "pricing",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:91"
+      ]
+    },
+    {
+      "path": "/product-tour",
+      "template": "product-tour",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:92"
+      ]
+    },
+    {
+      "path": "/products/find",
+      "template": "product-detail",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:93"
+      ]
+    },
+    {
+      "path": "/products/connect",
+      "template": "product-detail",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:94"
+      ]
+    },
+    {
+      "path": "/products/sell",
+      "template": "product-detail",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:95"
+      ]
+    },
+    {
+      "path": "/products/manage",
+      "template": "product-detail",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:96"
+      ]
+    },
+    {
+      "path": "/products/foundation",
+      "template": "product-detail",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:97"
+      ]
+    },
+    {
+      "path": "/release-notes",
+      "template": "changelog",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:98"
+      ]
+    },
+    {
+      "path": "/startups",
+      "template": "company-startups",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:99"
+      ]
+    },
+    {
+      "path": "/startups-apply-now",
+      "template": "form-page",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:100"
+      ]
+    },
+    {
+      "path": "/zoom-setup",
+      "template": "doc-page",
+      "concreteUrlCount": 1,
+      "retrievalEligible": true,
+      "measuredFrom": [
+        "src/App.jsx:101"
+      ]
+    },
+    {
+      "path": "*",
+      "template": "home",
+      "concreteUrlCount": 0,
+      "retrievalEligible": false,
+      "measuredFrom": [
+        "src/App.jsx:102"
+      ]
+    }
+  ],
+  "nonRoutes": [
+    {
+      "path": "/privacy",
+      "status": "external",
+      "resolvesTo": "https://reevo.ai/privacy",
+      "template": null,
+      "measuredFrom": [
+        "src/components/Footer.jsx:60"
+      ]
+    },
+    {
+      "path": "/terms",
+      "status": "external",
+      "resolvesTo": "https://reevo.ai/terms",
+      "template": null,
+      "measuredFrom": [
+        "src/components/Footer.jsx:62"
+      ]
+    },
+    {
+      "path": "/thank-you",
+      "status": "unbuilt",
+      "resolvesTo": "falls through to `*` (renders Home)",
+      "template": null,
+      "measuredFrom": [
+        "src/App.jsx:102"
+      ],
+      "groundingNote": "No reference to /thank-you exists in src/ or CLONE_SPEC.md; listed because the build brief documents it as an unbuilt non-route. Its fall-through behaviour follows from the `*` route (src/App.jsx:102)."
+    },
+    {
+      "path": "/product-tour/post-interactive-demo",
+      "status": "unbuilt",
+      "resolvesTo": "falls through to `*` (renders Home)",
+      "template": null,
+      "measuredFrom": [
+        "src/components/pricing/TourDemo.jsx:81",
+        "src/App.jsx:102"
+      ]
+    }
+  ]
+}

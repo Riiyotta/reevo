@@ -1,0 +1,61 @@
+{
+  "id": "hero.marketing-video",
+  "kind": "section",
+  "category": "hero",
+  "purpose": "Home-page hero: a tag, an all-caps headline, a supporting sentence, two CTAs and a 16:9 promo video that plays a muted looping teaser until the visitor presses play, then swaps to the full video.",
+  "measuredFrom": ["src/components/Hero.jsx:26-96", "src/components/Hero.jsx:6-24", "src/pages/Home.jsx:14"],
+  "variants": [
+    { "name": "teaser-playing", "description": "Default: muted, looping teaser video with poster; a play button overlay centred on it (15% of video width, 10% from lg).", "measuredFrom": ["src/components/Hero.jsx:6-24", "src/components/Hero.jsx:69-90"] },
+    { "name": "started", "description": "After click: the full video mounts with autoplay and native controls (unmuted, no loop) and the play overlay fades out and unmounts.", "measuredFrom": ["src/components/Hero.jsx:32", "src/components/Hero.jsx:60-68", "src/components/Hero.jsx:72-89"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "tag": { "type": "string", "required": true, "maxWords": 5, "measuredFrom": ["src/components/Hero.jsx:37-39"] },
+      "headline": { "type": "string", "required": true, "maxWords": 10, "note": "Rendered as h1, uppercase, black-weight heading font.", "measuredFrom": ["src/components/Hero.jsx:41-43"] },
+      "subheadline": { "type": "string", "required": true, "maxWords": 28, "note": "Rendered as h2, balanced wrap.", "measuredFrom": ["src/components/Hero.jsx:44-47"] },
+      "ctas": {
+        "type": "array", "required": true, "minItems": 2, "maxItems": 2,
+        "items": { "type": "object", "fields": {
+          "label": { "type": "string", "maxWords": 3 },
+          "href": { "type": "string", "kind": "route-or-url" },
+          "variant": { "type": "enum", "values": ["primary", "outline"] }
+        } },
+        "measuredFrom": ["src/components/Hero.jsx:50-55"]
+      },
+      "teaserVideo": { "type": "assetRef", "required": true, "assetRole": "video-teaser", "note": "Muted looping mp4 shown before play.", "measuredFrom": ["src/components/Hero.jsx:15"] },
+      "teaserPoster": { "type": "assetRef", "required": true, "assetRole": "video-teaser", "note": "Poster image for the teaser.", "measuredFrom": ["src/components/Hero.jsx:16"] },
+      "fullVideo": { "type": "assetRef", "required": true, "assetRole": "video-teaser", "note": "Played with controls after the play button is pressed.", "measuredFrom": ["src/components/Hero.jsx:63"] }
+    }
+  },
+  "mediaFields": [
+    { "field": "teaserVideo", "assetRole": "video-teaser" },
+    { "field": "teaserPoster", "assetRole": "video-teaser" },
+    { "field": "fullVideo", "assetRole": "video-teaser" }
+  ],
+  "behaviour": [
+    { "note": "The video area is a plain <video> pair, not a third-party embed. The play button is an inline-SVG triangle (PlayTriangle) on a solid gray-10 rectangle; it is the only overlay.", "measuredFrom": ["src/components/Hero.jsx:59-89", "src/components/ui.jsx:143"] },
+    { "note": "The teaser has no autoplay attribute; play() is called on mount and failures are swallowed.", "measuredFrom": ["src/components/Hero.jsx:8-11"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true },
+  "motion": {
+    "pattern": "dialog-overlay",
+    "reducedMotionFallback": "first-frame",
+    "reducedMotionNote": "Proposal only: the code has no prefers-reduced-motion handling. Pattern is the closest fit in the closed enum: the play overlay exits with opacity 1 to 0 over 300ms easeOut (cubic-bezier(0,0,.58,1)) on click; the play button hover is opacity .8 over 200ms. The teaser loop itself is video playback, not a UI transition.",
+    "durationMs": 300,
+    "easing": "cubic-bezier(0,0,.58,1)",
+    "measuredFrom": ["src/components/Hero.jsx:29-31", "src/components/Hero.jsx:72-78", "src/components/Hero.jsx:85", "src/components/motion.jsx:9"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to xl", "change": "top padding steps 40 / 48 (md) / 56 (xl); tag bottom margin 20 / 24 (sm) / 32 (lg)", "measuredFrom": ["src/components/Hero.jsx:35", "src/components/Hero.jsx:37"] },
+      { "at": "below md", "change": "video is placed second in the grid, directly after the tag and before the headline text", "measuredFrom": ["src/components/Hero.jsx:58"] },
+      { "at": "md to xl", "change": "headline spans full width (12 cols at md, 22 from col 2 at lg); subheadline narrows to 8 cols at md, 16 at lg, 14 at xl", "measuredFrom": ["src/components/Hero.jsx:41", "src/components/Hero.jsx:44"] },
+      { "at": "sm and up", "change": "CTAs sit side by side, capped at 400px wide; below sm they stack full width", "measuredFrom": ["src/components/Hero.jsx:49"] },
+      { "at": "lg and up", "change": "play button shrinks from 15% to 10% of video width", "measuredFrom": ["src/components/Hero.jsx:85"] }
+    ]
+  },
+  "usedOnRoutes": ["/", "*"],
+  "tokensUsed": ["semanticTypography.hero-heading", "semanticTypography.hero-sub", "semanticTypography.eyebrow", "semanticColor.text.strong", "semanticColor.surface.inverse", "duration.slow-300", "duration.base-200", "easing.ease-out", "semanticMotion.hero-presence"]
+}

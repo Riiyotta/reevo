@@ -1,0 +1,67 @@
+{
+  "id": "accordion-item",
+  "kind": "component",
+  "purpose": "Disclosure row with title button and collapsible body.",
+  "measuredFrom": [
+    "src/components/faq.jsx:19-53",
+    "src/components/products/ProductAccordion.jsx:93-112"
+  ],
+  "props": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxWords": 12
+    },
+    "body": {
+      "type": "richtext-inline",
+      "maxWords": 51
+    },
+    "open": {
+      "type": "boolean"
+    },
+    "soon": {
+      "type": "boolean",
+      "description": "Adds a Soon tag (product variant)"
+    }
+  },
+  "variants": [
+    {
+      "name": "faq",
+      "description": "divide-y rows, py-5, ChevronDown rotates 180 when open, multiple can be open",
+      "measuredFrom": [
+        "src/components/faq.jsx:24-41",
+        "src/components/faq.jsx:58-65"
+      ]
+    },
+    {
+      "name": "product",
+      "description": "left border 1px (strong when open), one open at a time, auto-advances every 5000ms",
+      "measuredFrom": [
+        "src/components/products/ProductAccordion.jsx:96",
+        "src/components/products/ProductAccordion.jsx:44-46"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "border.default",
+    "text.strong",
+    "base-200",
+    "standard"
+  ],
+  "motion": {
+    "pattern": "accordion-height-opacity",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only. Product variant uses 175ms EASE_OUT_CUBIC (ProductAccordion.jsx:12,109) and advances every 5000ms (ProductAccordion.jsx:11,44).",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": [
+      "src/components/faq.jsx:17-18",
+      "src/components/faq.jsx:42"
+    ]
+  },
+  "composes": [
+    "collapse",
+    "tag",
+    "icon"
+  ]
+}

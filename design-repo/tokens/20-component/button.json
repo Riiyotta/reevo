@@ -1,0 +1,80 @@
+{
+  "$description": "Button component values (src/components/ui.jsx BUTTON_*).",
+  "category": "component",
+  "button": {
+    "height-lg": {
+      "value": "46px",
+      "measuredFrom": "src/index.css:38",
+      "cssVar": "--button-height",
+      "tailwindClass": "h-button"
+    },
+    "height-sm": {
+      "value": "36px",
+      "measuredFrom": "src/index.css:39",
+      "cssVar": "--button-height-sm",
+      "tailwindClass": "h-button-sm"
+    },
+    "radius-lg": {
+      "value": "{borderRadius.lg}",
+      "measuredFrom": "src/components/ui.jsx:50"
+    },
+    "radius-sm": {
+      "value": "{borderRadius.sm}",
+      "measuredFrom": "src/components/ui.jsx:51"
+    },
+    "padding-x-lg": {
+      "value": "1.25rem",
+      "measuredFrom": "src/components/ui.jsx:50",
+      "classes": "px-5"
+    },
+    "padding-x-sm": {
+      "value": ".75rem",
+      "measuredFrom": "src/components/ui.jsx:51",
+      "classes": "px-3"
+    },
+    "gap-lg": {
+      "value": "1.5 x .25rem = 6px",
+      "measuredFrom": "src/components/ui.jsx:50",
+      "classes": "gap-1.5"
+    },
+    "gap-sm": {
+      "value": "4px",
+      "measuredFrom": "src/components/ui.jsx:51",
+      "classes": "gap-1"
+    },
+    "font-lg": {
+      "value": "{fontSize.sm}",
+      "measuredFrom": "src/components/ui.jsx:50"
+    },
+    "font-sm": {
+      "value": "{fontSize.xs}",
+      "measuredFrom": "src/components/ui.jsx:51"
+    },
+    "font-weight": {
+      "value": "{fontWeight.medium}",
+      "measuredFrom": "src/components/ui.jsx:44"
+    },
+    "primary-hover-opacity": {
+      "value": ".8",
+      "measuredFrom": "src/components/ui.jsx:46",
+      "classes": "hover:opacity-80"
+    },
+    "outline-border": {
+      "value": "{semanticColor.text.secondary}",
+      "measuredFrom": "src/components/ui.jsx:47"
+    },
+    "outline-hover-bg": {
+      "value": "text.secondary at 10% alpha",
+      "measuredFrom": "src/components/ui.jsx:47",
+      "classes": "hover:bg-secondary-foreground/10"
+    },
+    "transition": {
+      "value": "all 200ms {easing.standard}",
+      "measuredFrom": "src/components/ui.jsx:44"
+    },
+    "trailing-icon": {
+      "value": "{iconSize.4}",
+      "measuredFrom": "src/components/ui.jsx:64"
+    }
+  }
+}

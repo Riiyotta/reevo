@@ -1,0 +1,58 @@
+{
+  "id": "collapse",
+  "kind": "primitive",
+  "purpose": "Height plus opacity collapse used by accordions (FAQ, in-article FAQ card, product and feature accordions, mobile nav accordion); first render does not animate. One shared helper in the motion module.",
+  "measuredFrom": [
+    "src/components/motion.jsx:62-102"
+  ],
+  "props": {
+    "open": {
+      "type": "boolean",
+      "required": true
+    },
+    "duration": {
+      "type": "number",
+      "default": 200,
+      "unit": "ms"
+    },
+    "easing": {
+      "type": "string",
+      "default": "cubic-bezier(.4,0,.2,1)"
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "variants": [
+    {
+      "name": "standard",
+      "description": "200ms EASE_STANDARD",
+      "measuredFrom": [
+        "src/components/motion.jsx:65"
+      ]
+    },
+    {
+      "name": "product accordion",
+      "description": "175ms with EASE_OUT_CUBIC cubic-bezier(.33,1,.68,1)",
+      "measuredFrom": [
+        "src/components/motion.jsx:59-60",
+        "src/components/products/ProductAccordion.jsx:109"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "base-200",
+    "standard"
+  ],
+  "motion": {
+    "pattern": "accordion-height-opacity",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only.",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": [
+      "src/components/motion.jsx:72-94"
+    ]
+  }
+}

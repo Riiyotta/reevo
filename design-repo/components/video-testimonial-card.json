@@ -1,0 +1,71 @@
+{
+  "id": "video-testimonial-card",
+  "kind": "component",
+  "purpose": "Customer card: muted looping teaser video with logo and play button, large quote and name/role caption. Opens a video dialog.",
+  "measuredFrom": [
+    "src/components/Customers.jsx:50-67",
+    "src/components/Customers.jsx:107-137"
+  ],
+  "props": {
+    "video": {
+      "type": "assetRef",
+      "assetRole": "video-teaser"
+    },
+    "Logo": {
+      "type": "assetRef",
+      "description": "Inline SVG logo"
+    },
+    "quote": {
+      "type": "string",
+      "required": true,
+      "maxWords": 16
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "maxWords": 5
+    }
+  },
+  "variants": [
+    {
+      "name": "playing",
+      "description": "teaser plays only on the last-hovered card (card 0 by default); others paused",
+      "measuredFrom": [
+        "src/components/Customers.jsx:50-58",
+        "src/components/Customers.jsx:107"
+      ]
+    },
+    {
+      "name": "preview styling",
+      "description": "video grayscale, brightness and contrast 1.15",
+      "measuredFrom": [
+        "src/components/Customers.jsx:67"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "white",
+    "display-lg",
+    "text.strong",
+    "base-200"
+  ],
+  "motion": {
+    "pattern": "hover-preview-video",
+    "reducedMotionFallback": "first-frame",
+    "reducedMotionNote": "Proposal only.",
+    "property": "play button hover:opacity-80 200ms; video plays on mouseenter",
+    "durationMs": 200,
+    "measuredFrom": [
+      "src/components/Customers.jsx:107",
+      "src/components/Customers.jsx:121"
+    ]
+  },
+  "composes": [
+    "inline-svg",
+    "dialog-shell"
+  ]
+}

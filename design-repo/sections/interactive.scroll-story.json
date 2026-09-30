@@ -1,0 +1,51 @@
+{
+  "id": "interactive.scroll-story",
+  "kind": "section",
+  "category": "interactive",
+  "purpose": "Deliver a five-part company manifesto one statement at a time. The section is five viewport-heights tall with a sticky stage, so the visitor's own scrolling paces the reading and each statement replaces the last in place, making a long statement feel like a guided story instead of a wall of text.",
+  "measuredFrom": ["src/components/company/ScrollStory.jsx:4-128"],
+  "behaviour": [
+    { "note": "SCROLL-LINKED, NOT TIME-BASED: there is no timer and no autoplay. Progress p = scrolled distance / (section height minus viewport height), clamped 0 to 1, recomputed in a requestAnimationFrame on scroll and resize. Every value below is a pure function of p.", "measuredFrom": ["src/components/company/ScrollStory.jsx:54-88"] },
+    { "note": "Section height is 5 x --slide-h (calc(var(--slide-h) * 5)). --slide-h is 65vh below md and 100vh from md up, so the scroll distance is 5 x 65vh on phones and 5 x 100vh on tablet and desktop. The stage is a sticky viewport (top = nav height, height = 100vh minus nav height) with overflow hidden.", "measuredFrom": ["src/components/company/ScrollStory.jsx:22", "src/components/company/ScrollStory.jsx:91-96", "src/index.css:36-37"] },
+    { "note": "Each statement i owns the progress segment [i/5, (i+1)/5]. It fades IN over the first 6% of progress (FADE = 0.06 of the whole range, measured from the start of its own fifth): opacity 0 to 1 while translateY goes from +28px to 0. It fades OUT over the last 6% of its fifth: opacity 1 to 0 while translateY goes 0 to -28px. Between those it sits at opacity 1, no offset. Linear, no easing curve.", "measuredFrom": ["src/components/company/ScrollStory.jsx:7-9", "src/components/company/ScrollStory.jsx:23-26", "src/components/company/ScrollStory.jsx:29-41"] },
+    { "note": "Edge cases: the FIRST statement starts fully visible (no fade-in) and the LAST statement never fades out (stays visible to the end of the section). Statements are absolutely stacked in the same centred spot; only one is meaningfully visible at a time, with a brief cross-fade at each boundary. aria-hidden flips at opacity .5.", "measuredFrom": ["src/components/company/ScrollStory.jsx:32-40", "src/components/company/ScrollStory.jsx:66-68", "src/components/company/ScrollStory.jsx:98-104"] },
+    { "note": "Pagination dots (5) sit centred near the bottom of the stage. The active dot widens 6px to 24px and goes opacity .3 to 1; the weight crossfades over +-5% of progress (DOT = 0.05) around each boundary. Dot 0 starts active, the last dot stays active.", "measuredFrom": ["src/components/company/ScrollStory.jsx:9", "src/components/company/ScrollStory.jsx:25", "src/components/company/ScrollStory.jsx:43-47", "src/components/company/ScrollStory.jsx:70-75", "src/components/company/ScrollStory.jsx:115-124"] },
+    { "note": "Dark section (class 'dark' on the root), with a pattern-01 strip inside the stage. Text is centred, text-balance, 2xl size, strong colour. Statements may contain bold spans (the first is bold in full; the last ends with a bold phrase).", "measuredFrom": ["src/components/company/ScrollStory.jsx:11", "src/components/company/ScrollStory.jsx:15-19", "src/components/company/ScrollStory.jsx:93", "src/components/company/ScrollStory.jsx:97", "src/components/company/ScrollStory.jsx:109"] },
+    { "note": "On /about it sits after a company section and before the team section. Its height depends on the --nav-height-mobile (64px) and --nav-height-desktop (72px) CSS variables.", "measuredFrom": ["src/pages/About.jsx:135-139", "src/index.css:36-37"] }
+  ],
+  "variants": [
+    { "name": "default", "description": "Only one variant: dark stage, pattern strip, five statements, five dots.", "measuredFrom": ["src/components/company/ScrollStory.jsx:49-128"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "statements": {
+        "type": "array", "required": true, "minItems": 5, "maxItems": 5,
+        "note": "Exactly five: the scroll maths and section height are hard-coded to N = 5 (statements.length), and the observed content has 5. Statement 1 is a short bold line; 2 to 5 are longer paragraphs. Real company voice; never fabricate.",
+        "measuredFrom": ["src/components/company/ScrollStory.jsx:10-22"],
+        "items": { "type": "richtext-inline", "maxWords": 62, "note": "Observed 14 to 59 words for statements 2 to 5 and about 9 words for statement 1. Supports strong spans.", "measuredFrom": ["src/components/company/ScrollStory.jsx:11-19"] }
+      },
+      "patternStrip": { "type": "assetRef", "required": false, "assetRole": "decorative-pattern", "note": "Pattern-01 strip inside the sticky stage.", "measuredFrom": ["src/components/company/ScrollStory.jsx:97"] }
+    }
+  },
+  "mediaFields": [ { "field": "patternStrip", "assetRole": "decorative-pattern" } ],
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "scroll-linked-sticky-story",
+    "reducedMotionFallback": "static",
+    "reducedMotionNote": "Proposal only: render the five statements stacked as ordinary static paragraphs (no sticky stage, no height multiplier, no dots). The source has no prefers-reduced-motion handling.",
+    "easing": "linear",
+    "measuredFrom": ["src/components/company/ScrollStory.jsx:4-9", "src/components/company/ScrollStory.jsx:22-47", "src/components/company/ScrollStory.jsx:54-88"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "each of the five segments is 65vh tall (total 325vh); the sticky stage sits under the 64px mobile nav; statements span all 6 columns; dots 32px from the bottom", "measuredFrom": ["src/components/company/ScrollStory.jsx:93-96", "src/components/company/ScrollStory.jsx:108", "src/components/company/ScrollStory.jsx:115"] },
+      { "at": "md", "change": "each segment becomes 100vh (total 500vh); stage sits under the 72px desktop nav; statements span 12 columns; dots 40px from the bottom", "measuredFrom": ["src/components/company/ScrollStory.jsx:93-96", "src/components/company/ScrollStory.jsx:108", "src/components/company/ScrollStory.jsx:115"] },
+      { "at": "lg", "change": "statements narrow to 20 columns starting at column 3; dots 48px from the bottom", "measuredFrom": ["src/components/company/ScrollStory.jsx:108", "src/components/company/ScrollStory.jsx:115"] },
+      { "at": "xl", "change": "statements narrow to 18 columns starting at column 4", "measuredFrom": ["src/components/company/ScrollStory.jsx:108"] }
+    ]
+  },
+  "usedOnRoutes": ["/about"],
+  "tokensUsed": ["semanticColor.text.strong", "semanticColor.surface.background", "fontSize.2xl", "theme.dark", "easing.linear"]
+}

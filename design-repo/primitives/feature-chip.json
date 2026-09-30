@@ -1,0 +1,41 @@
+{
+  "id": "feature-chip",
+  "kind": "primitive",
+  "purpose": "32px rounded square holding a 16px icon on a product/pillar colour.",
+  "measuredFrom": [
+    "src/components/ui.jsx:147-151"
+  ],
+  "props": {
+    "icon": {
+      "type": "string",
+      "required": true
+    },
+    "color": {
+      "type": "string",
+      "required": true,
+      "description": "Tailwind bg class (e.g. bg-blue-3)"
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "size-8 rounded text-gray-10 + colour bg; icon size-4",
+      "measuredFrom": [
+        "src/components/ui.jsx:149-150"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "accent.feature-chip",
+    "gray.10",
+    "4",
+    "8"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/ui.jsx:147-151"
+    ]
+  }
+}

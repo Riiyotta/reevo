@@ -1,0 +1,68 @@
+{
+  "id": "interactive.ask-reevo-carousel",
+  "kind": "section",
+  "category": "interactive",
+  "purpose": "Show, on a single square stage, three real Ask Reevo answers (Slack conversation, deal summary, best-seller talk track) that cycle on their own, so a visitor sees the AI answering with cited context without having to click. Sits under a 'Foundation' label with a one-source-of-truth headline.",
+  "measuredFrom": ["src/components/Foundation.jsx:22-134"],
+  "behaviour": [
+    { "note": "Auto-advances every 5000ms through slides 1, 2, 3 and back to 1 (loop). A 16ms setInterval computes elapsed/5000 as a 0-100 progress per slide; at 100 the timer stops, the next slide becomes current, both progress values reset to 0 and the timer restarts.", "measuredFrom": ["src/components/Foundation.jsx:5", "src/components/Foundation.jsx:28-44"] },
+    { "note": "Slide swap is INSTANT: only the current tabpanel is rendered visible (others use the hidden attribute); there is no cross-fade or slide transition on the images.", "measuredFrom": ["src/components/Foundation.jsx:70-84"] },
+    { "note": "Clicking a numbered tab jumps to that slide and restarts the 5000ms timer from zero (the clicked tab's bar starts empty).", "measuredFrom": ["src/components/Foundation.jsx:46-54", "src/components/Foundation.jsx:104"] },
+    { "note": "Progress bar: a 5px-high track (gray-3) with an orange-8 fill scaled on X from 0 to 1 (origin-left). Only the active tab's fill is visible (opacity 1), inactive fills are opacity 0. Fill transitions transform and opacity over 200ms linear, retargeted on every 16ms tick, which is what makes the bar look continuous.", "measuredFrom": ["src/components/Foundation.jsx:112-123"] },
+    { "note": "Tab label is a zero-padded two-digit number (01, 02, 03) in mono uppercase; inactive labels are opacity .4, active is 1, hover restores 1; label opacity transitions over 200ms (default easing).", "measuredFrom": ["src/components/Foundation.jsx:107-111"] },
+    { "note": "The timer never pauses (no hover pause, no in-view gating, no visibility handling); it runs from mount to unmount. Contrast with interactive.accordion-showcase, which only advances while in view.", "measuredFrom": ["src/components/Foundation.jsx:46-49"] },
+    { "note": "Accessibility structure: tablist of buttons with role=tab / aria-selected / aria-controls, and one role=tabpanel per slide. The headline is an h3 under a section label (unusual heading level) and the section has no id, unlike its siblings.", "measuredFrom": ["src/components/Foundation.jsx:57", "src/components/Foundation.jsx:61", "src/components/Foundation.jsx:71-83", "src/components/Foundation.jsx:93-103"] },
+    { "note": "Fixed structure: the section label reads 'Foundation' with a ToggleRight icon; the 'Meet Ask Reevo.' subhead is a display-lg bold paragraph. Only the headline, intro, detail paragraph and slides are the editable copy.", "measuredFrom": ["src/components/Foundation.jsx:58", "src/components/Foundation.jsx:87"] }
+  ],
+  "variants": [
+    { "name": "default", "description": "Only one variant exists: dark-on-background section with a pattern-04 strip, headline + intro on the left, square slide stage on the right, detail paragraph and tab strip below the intro.", "measuredFrom": ["src/components/Foundation.jsx:57-131"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "label": { "type": "string", "required": true, "maxWords": 1, "note": "Section label, observed as a single word with a ToggleRight icon.", "measuredFrom": ["src/components/Foundation.jsx:58"] },
+      "headline": { "type": "string", "required": true, "maxWords": 6, "note": "Rendered as an h3 in the heading font, uppercase. Observed 5 words.", "measuredFrom": ["src/components/Foundation.jsx:61-63"] },
+      "intro": { "type": "string", "required": true, "maxWords": 22, "note": "Paragraph under the headline. Observed 20 words.", "measuredFrom": ["src/components/Foundation.jsx:64-67"] },
+      "subhead": { "type": "string", "required": true, "maxWords": 4, "note": "Bold display-lg line above the detail paragraph. Observed 3 words.", "measuredFrom": ["src/components/Foundation.jsx:87"] },
+      "detail": { "type": "string", "required": true, "maxWords": 52, "note": "Paragraph under the subhead. Observed about 49 words.", "measuredFrom": ["src/components/Foundation.jsx:88-92"] },
+      "slides": {
+        "type": "array", "required": true, "minItems": 3, "maxItems": 3,
+        "note": "Exactly three observed. Tab count and progress bars are derived from the array length, so the layout would tolerate other lengths, but only 3 is grounded.",
+        "measuredFrom": ["src/components/Foundation.jsx:7-20", "src/components/Foundation.jsx:94-128"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "image": { "type": "assetRef", "required": true, "assetRole": "product-screenshot", "note": "Square (aspect-square) Ask Reevo or Slack UI screenshot, object-cover. Existing real file only.", "measuredFrom": ["src/components/Foundation.jsx:8-19", "src/components/Foundation.jsx:70", "src/components/Foundation.jsx:81"] },
+            "alt": { "type": "string", "required": true, "maxWords": 28, "note": "Descriptive alt text of the screenshot's conversation. Observed up to about 25 words.", "measuredFrom": ["src/components/Foundation.jsx:10", "src/components/Foundation.jsx:14", "src/components/Foundation.jsx:18"] }
+          }
+        }
+      },
+      "patternStrip": { "type": "assetRef", "required": false, "assetRole": "decorative-pattern", "note": "Section pattern strip (pattern-04).", "measuredFrom": ["src/components/Foundation.jsx:57"] }
+    }
+  },
+  "mediaFields": [
+    { "field": "slides[].image", "assetRole": "product-screenshot" },
+    { "field": "patternStrip", "assetRole": "decorative-pattern" }
+  ],
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "progress-carousel",
+    "reducedMotionFallback": "pause",
+    "reducedMotionNote": "Proposal only: with reduced motion, do not auto-advance; show slide 1 with manual tab controls and drop the progress fill. The source has no prefers-reduced-motion handling.",
+    "intervalMs": 5000,
+    "durationMs": 200,
+    "easing": "linear",
+    "measuredFrom": ["src/components/Foundation.jsx:5", "src/components/Foundation.jsx:34-43", "src/components/Foundation.jsx:107-122", "CLONE_SPEC.md:290"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "single column stack: headline + intro, square slide stage, then subhead + detail + tab strip", "measuredFrom": ["src/components/Foundation.jsx:59-70", "src/components/Foundation.jsx:86"] },
+      { "at": "md", "change": "slide stage spans 6 columns starting at column 7 in row 1, beside the headline column", "measuredFrom": ["src/components/Foundation.jsx:70"] },
+      { "at": "lg", "change": "slide stage widens to 14 columns from column 11 and spans two rows; subhead/detail column moves to row 2 under the headline", "measuredFrom": ["src/components/Foundation.jsx:70", "src/components/Foundation.jsx:86"] },
+      { "at": "sm and up", "change": "tab strip is capped at 338px wide; its top margin grows 24 to 32 to 40 to 56px across sm, lg, xl", "measuredFrom": ["src/components/Foundation.jsx:93"] }
+    ]
+  },
+  "usedOnRoutes": ["/", "*"],
+  "tokensUsed": ["color.gray.3", "color.orange.8", "fontFamily.heading", "fontFamily.mono", "fontSize.display-2xl", "fontSize.display-lg", "fontSize.display-xs", "semanticColor.text.strong", "duration.carousel-advance-5000", "duration.base-200", "easing.linear", "semanticMotion.carousel-advance"]
+}

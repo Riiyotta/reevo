@@ -1,0 +1,92 @@
+{
+  "id": "button",
+  "kind": "primitive",
+  "purpose": "Call-to-action control rendered as <a> when href is given, else <button type=button>.",
+  "measuredFrom": [
+    "src/components/ui.jsx:43-80"
+  ],
+  "props": {
+    "href": {
+      "type": "route-or-url",
+      "required": false,
+      "description": "When set, renders an anchor"
+    },
+    "variant": {
+      "type": "enum",
+      "values": [
+        "primary",
+        "outline"
+      ],
+      "default": "primary"
+    },
+    "size": {
+      "type": "enum",
+      "values": [
+        "lg",
+        "sm"
+      ],
+      "default": "lg",
+      "description": "The source key is lg; it is the \"default\" size"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Optional lucide icon component rendered in a size-4 span after the label (e.g. ChevronRight)"
+    },
+    "children": {
+      "type": "string",
+      "maxWords": 3,
+      "description": "Label"
+    }
+  },
+  "variants": [
+    {
+      "name": "primary",
+      "description": "bg-primary text-primary-foreground, hover:opacity-80",
+      "measuredFrom": [
+        "src/components/ui.jsx:46"
+      ]
+    },
+    {
+      "name": "outline",
+      "description": "1px border secondary-foreground, transparent bg, hover:bg secondary-foreground at 10%",
+      "measuredFrom": [
+        "src/components/ui.jsx:47"
+      ]
+    },
+    {
+      "name": "lg",
+      "description": "h-button, justify-between, gap-1.5, rounded-lg, px-5, text-sm",
+      "measuredFrom": [
+        "src/components/ui.jsx:50"
+      ]
+    },
+    {
+      "name": "sm",
+      "description": "h-button-sm, justify-center, gap-1, rounded-sm, px-3, text-xs",
+      "measuredFrom": [
+        "src/components/ui.jsx:51"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "text.on-primary",
+    "control-lg",
+    "control-sm",
+    "button-lg",
+    "button-sm",
+    "base-200"
+  ],
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Source has no prefers-reduced-motion handling; proposal only.",
+    "property": "all (transition-all), hover opacity .8 (primary) / 10% fill (outline)",
+    "durationMs": 200,
+    "measuredFrom": [
+      "src/components/ui.jsx:43-47"
+    ]
+  },
+  "notes": [
+    "buttonClass({variant,size,className}) returns the same class string for non-Button elements such as submit buttons and navbar links (ui.jsx:52-54; Form.jsx:94)."
+  ]
+}

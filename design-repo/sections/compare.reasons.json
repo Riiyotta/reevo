@@ -1,0 +1,79 @@
+{
+  "id": "compare.reasons",
+  "kind": "section",
+  "category": "compare",
+  "purpose": "Explain in prose why a buyer would pick Reevo over this one competitor: an intro paragraph, three (or four) short reason pairs of a title and an explanation, and for two competitors a colour-accented callout that frames the competitor as a product of an earlier era.",
+  "measuredFrom": ["src/components/compare/CompareSections.jsx:115-169", "src/pages/Compare.jsx:28"],
+  "behaviour": [
+    { "note": "Two visual variants driven by data, not by a prop the author chooses: HubSpot and Salesforce carry an accent colour and a callout; the other five (apollo, attio, fireflies, gong, outreach) are plain. The accent colour tints only the reason titles and the callout box background; everything else is unchanged.", "measuredFrom": ["src/components/compare/CompareSections.jsx:116", "src/components/compare/CompareSections.jsx:137", "src/components/compare/CompareSections.jsx:146", "src/components/compare/CompareSections.jsx:162", "src/data/compare.js:407-411", "src/data/compare.js:530-534"] },
+    { "note": "The accent is that competitor's own brand colour (a hex value per competitor); it is a per-competitor data value, not a design token. Callout text is white on the accent, so the accent must stay dark enough for white text.", "measuredFrom": ["src/data/compare.js:407", "src/data/compare.js:530", "src/components/compare/CompareSections.jsx:164"] },
+    { "note": "Reason count is 3 for six competitors and 4 for gong (a fourth reason appears there only).", "measuredFrom": ["src/data/compare.js:311-315", "src/components/compare/CompareSections.jsx:134"] },
+    { "note": "Callout: square image in the left columns beside a coloured text box. The image is a competitor logo card (an existing PNG per competitor, real third-party mark); it is hidden below md so on phones only the coloured text box shows. The text box overlaps the image by 16px from md.", "measuredFrom": ["src/components/compare/CompareSections.jsx:146-167", "src/data/compare.js:408-411", "src/data/compare.js:531-534"] },
+    { "note": "Sits on the white background with the pattern-02 decorative strip, after the quick-table. The eyebrow label is fixed text; the headline is one bold sentence per competitor.", "measuredFrom": ["src/components/compare/CompareSections.jsx:118-123"] },
+    { "note": "Data quirks carried over from the original and worth knowing: the Fireflies headline names the wrong competitor, and the HubSpot and Salesforce intro paragraph mentions a third competitor. These are copy defects in the source data, not contract rules; do not replicate them for a new competitor.", "measuredFrom": ["src/data/compare.js:1-4", "src/data/compare.js:217"] },
+    { "note": "All text is competitor-comparison copy written by the original author; it is deliberately not reproduced here. Author new competitors with the budgets below and factual, verifiable statements only.", "measuredFrom": ["src/data/compare.js:1-4"] }
+  ],
+  "themeDependency": {
+    "requires": "light",
+    "how": "Default light scope (bg-background). The callout box uses a fixed white text colour on an arbitrary accent background, so it would not survive being placed inside a dark scope unless the accent were re-checked.",
+    "measuredFrom": ["src/components/compare/CompareSections.jsx:118", "src/components/compare/CompareSections.jsx:162-164"]
+  },
+  "variants": [
+    { "name": "plain", "description": "No accent, no callout: intro paragraph and reasons only. Used for apollo, attio, fireflies, gong and outreach.", "measuredFrom": ["src/components/compare/CompareSections.jsx:116", "src/components/compare/CompareSections.jsx:146"] },
+    { "name": "accent-with-callout", "description": "accent hex present: reason titles take the accent colour, and a callout row (logo card image plus white text on an accent-coloured box) closes the section. Used for hubspot and salesforce only.", "measuredFrom": ["src/components/compare/CompareSections.jsx:137", "src/components/compare/CompareSections.jsx:146-167", "src/data/compare.js:407-411", "src/data/compare.js:530-534"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "headline": { "type": "string", "required": true, "maxWords": 9, "note": "Bold h2 question naming the competitor. Observed up to 7 words.", "measuredFrom": ["src/components/compare/CompareSections.jsx:121-123", "src/data/compare.js:31"] },
+      "intro": {
+        "type": "array", "required": true, "minItems": 1, "maxItems": 2,
+        "note": "Intro paragraphs under the headline; every competitor has exactly 1.",
+        "measuredFrom": ["src/components/compare/CompareSections.jsx:126-129", "src/data/compare.js:32"],
+        "items": { "type": "richtext-inline", "maxWords": 60, "note": "Observed up to 55 words; text plus optional bold segments." }
+      },
+      "reasons": {
+        "type": "array", "required": true, "minItems": 3, "maxItems": 4,
+        "note": "3 reasons for six competitors, 4 for gong. Each is a title in the left columns and a body in the right columns.",
+        "measuredFrom": ["src/components/compare/CompareSections.jsx:134-144", "src/data/compare.js:311-315"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": { "type": "string", "required": true, "maxWords": 8, "note": "Large bold title. Observed up to 7 words.", "measuredFrom": ["src/components/compare/CompareSections.jsx:137-139"] },
+            "body": { "type": "string", "required": true, "maxWords": 45, "note": "Explanation, plain text. Observed up to 42 words.", "measuredFrom": ["src/components/compare/CompareSections.jsx:142"] }
+          }
+        }
+      },
+      "accent": { "type": "string", "required": false, "note": "Hex colour for reason titles and the callout background. Present only when a callout is present (hubspot, salesforce).", "measuredFrom": ["src/components/compare/CompareSections.jsx:116", "src/data/compare.js:407", "src/data/compare.js:530"] },
+      "callout": {
+        "type": "object", "required": false,
+        "note": "Present only on hubspot and salesforce, and only together with accent.",
+        "measuredFrom": ["src/components/compare/CompareSections.jsx:146-167", "src/data/compare.js:408-411"],
+        "fields": {
+          "image": { "type": "assetRef", "required": true, "assetRole": "competitor-logo", "note": "Square lazy-loaded image (object-cover) of the competitor's logo card; existing real file only.", "measuredFrom": ["src/components/compare/CompareSections.jsx:149-155", "src/data/compare.js:409"] },
+          "alt": { "type": "string", "required": true, "maxWords": 4, "note": "Alt text. Observed 2 words.", "measuredFrom": ["src/components/compare/CompareSections.jsx:152", "src/data/compare.js:410"] },
+          "text": { "type": "string", "required": true, "maxWords": 110, "note": "White text on the accent box. Observed about 103 words in both callouts.", "measuredFrom": ["src/components/compare/CompareSections.jsx:164", "src/data/compare.js:411"] }
+        }
+      }
+    }
+  },
+  "mediaFields": [ { "field": "callout.image", "assetRole": "competitor-logo" } ],
+  "constraints": { "onePerPage": true, "mustFollow": "compare.quick-table" },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No animation; the code has no prefers-reduced-motion handling.",
+    "measuredFrom": ["src/components/compare/CompareSections.jsx:115-169"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "reason title stacks above its body, each full width; callout image is hidden and only the coloured text box shows (24px padding)", "measuredFrom": ["src/components/compare/CompareSections.jsx:136", "src/components/compare/CompareSections.jsx:141", "src/components/compare/CompareSections.jsx:148", "src/components/compare/CompareSections.jsx:161"] },
+      { "at": "md", "change": "title takes 4 of 12 columns, body 8; callout image 4 columns and the text box 8, overlapping the image by 16px and vertically centred; box padding 32px", "measuredFrom": ["src/components/compare/CompareSections.jsx:136", "src/components/compare/CompareSections.jsx:141", "src/components/compare/CompareSections.jsx:148", "src/components/compare/CompareSections.jsx:159-161"] },
+      { "at": "lg", "change": "title 5 of 24 columns, body 15 starting at column 9; callout image 6 columns, text box 17; box padding 40px", "measuredFrom": ["src/components/compare/CompareSections.jsx:136", "src/components/compare/CompareSections.jsx:141", "src/components/compare/CompareSections.jsx:148", "src/components/compare/CompareSections.jsx:159", "src/components/compare/CompareSections.jsx:161"] },
+      { "at": "xl", "change": "title 6 columns from column 2, body 13 from column 11; callout image 5, text box 18; box padding 48px", "measuredFrom": ["src/components/compare/CompareSections.jsx:136", "src/components/compare/CompareSections.jsx:141", "src/components/compare/CompareSections.jsx:148", "src/components/compare/CompareSections.jsx:159", "src/components/compare/CompareSections.jsx:161"] }
+    ]
+  },
+  "usedOnRoutes": ["/compare/:competitor"],
+  "tokensUsed": ["surface.background", "text.strong", "display-lg", "white"]
+}

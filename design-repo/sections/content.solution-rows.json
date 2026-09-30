@@ -1,0 +1,243 @@
+{
+  "id": "content.solution-rows",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Walk through the four product pillars (Find, Connect, Sell, Manage) as alternating image and text rows, each tying a customer outcome to a product screenshot and a Learn more link to the pillar page.",
+  "measuredFrom": [
+    "src/components/Solution.jsx:35-79",
+    "src/components/Solution.jsx:5-30"
+  ],
+  "behaviour": [
+    {
+      "note": "Every row uses the same layout: square product screenshot on the right, text column on the left (image column is placed first in the DOM and forced to row 1 from md). Rows are separated by a horizontal rule.",
+      "measuredFrom": [
+        "src/components/Solution.jsx:42-75",
+        "src/components/ui.jsx:13-14"
+      ]
+    },
+    {
+      "note": "Pillar pill (coloured label: Find, Connect, Sell, Manage) appears above the image below md and above the text from md; the pill colour encodes the pillar.",
+      "measuredFrom": [
+        "src/components/Solution.jsx:52-56",
+        "src/components/Solution.jsx:62-66",
+        "src/components/Solution.jsx:7",
+        "src/components/Solution.jsx:13",
+        "src/components/Solution.jsx:19",
+        "src/components/Solution.jsx:25"
+      ]
+    },
+    {
+      "note": "Longest section on Home (about 4057px at 1440 per the clone spec); no sticky or parallax behaviour.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:197",
+        "CLONE_SPEC.md:211-212"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "name": "image-right",
+      "description": "Only variant: text left, image right on every row, rows separated by a rule; section has a top pattern strip (pattern-03).",
+      "measuredFrom": [
+        "src/components/Solution.jsx:37",
+        "src/components/Solution.jsx:50-73"
+      ]
+    }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "label": {
+        "type": "string",
+        "required": true,
+        "maxWords": 8,
+        "note": "Eyebrow label with an icon. Observed 7 words.",
+        "measuredFrom": [
+          "src/components/Solution.jsx:38"
+        ]
+      },
+      "headline": {
+        "type": "richtext-inline",
+        "required": true,
+        "maxWords": 6,
+        "note": "Contains a bold word. Observed 5 words.",
+        "measuredFrom": [
+          "src/components/Solution.jsx:40"
+        ]
+      },
+      "lede": {
+        "type": "string",
+        "required": true,
+        "maxWords": 38,
+        "note": "Observed 36 words.",
+        "measuredFrom": [
+          "src/components/Solution.jsx:39"
+        ]
+      },
+      "rows": {
+        "type": "array",
+        "required": true,
+        "minItems": 4,
+        "maxItems": 4,
+        "items": {
+          "type": "object",
+          "fields": {
+            "pillLabel": {
+              "type": "enum",
+              "required": true,
+              "values": [
+                "Find",
+                "Connect",
+                "Sell",
+                "Manage"
+              ]
+            },
+            "pillColor": {
+              "type": "enum",
+              "required": true,
+              "values": [
+                "orange-2",
+                "pink-2",
+                "green-3",
+                "yellow-3"
+              ],
+              "note": "Observed pairing: Find orange-2, Connect pink-2, Sell green-3, Manage yellow-3."
+            },
+            "image": {
+              "type": "assetRef",
+              "required": true,
+              "assetRole": "product-screenshot",
+              "note": "Square product screenshot (828px source), object-cover. Real UI only; do not generate."
+            },
+            "alt": {
+              "type": "string",
+              "required": true,
+              "maxWords": 35,
+              "note": "Long descriptive alt text; observed up to about 33 words."
+            },
+            "title": {
+              "type": "string",
+              "required": true,
+              "maxWords": 6,
+              "note": "Rendered uppercase in the heading font. Observed up to 5 words."
+            },
+            "body": {
+              "type": "string",
+              "required": true,
+              "maxWords": 38,
+              "note": "Observed up to about 35 words."
+            },
+            "href": {
+              "type": "string",
+              "required": true,
+              "kind": "route-or-url",
+              "note": "Pillar product page."
+            }
+          }
+        },
+        "measuredFrom": [
+          "src/components/Solution.jsx:5-30"
+        ]
+      },
+      "ctaLabel": {
+        "type": "string",
+        "required": true,
+        "maxWords": 3,
+        "note": "Same outline button label on every row; observed 2 words.",
+        "measuredFrom": [
+          "src/components/Solution.jsx:69-71"
+        ]
+      },
+      "patternStrip": {
+        "type": "assetRef",
+        "required": false,
+        "assetRole": "decorative-pattern",
+        "measuredFrom": [
+          "src/components/Solution.jsx:37"
+        ]
+      }
+    }
+  },
+  "mediaFields": [
+    {
+      "field": "rows[].image",
+      "assetRole": "product-screenshot"
+    },
+    {
+      "field": "patternStrip",
+      "assetRole": "decorative-pattern"
+    }
+  ],
+  "constraints": {},
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No motion in the source; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:211-212"
+    ]
+  },
+  "responsive": {
+    "breakpointsPx": {
+      "sm": 600,
+      "md": 840,
+      "lg": 1140,
+      "xl": 1380
+    },
+    "changes": [
+      {
+        "at": "below md",
+        "change": "each row stacks: pill, image, then text; CTA button is full width",
+        "measuredFrom": [
+          "src/components/Solution.jsx:50-56",
+          "src/components/Solution.jsx:69"
+        ]
+      },
+      {
+        "at": "sm",
+        "change": "CTA button auto width with min width 196px",
+        "measuredFrom": [
+          "src/components/Solution.jsx:69"
+        ]
+      },
+      {
+        "at": "md",
+        "change": "two columns: text 5 columns, image 6 columns starting at column 7; pill moves above the text",
+        "measuredFrom": [
+          "src/components/ui.jsx:13-14",
+          "src/components/Solution.jsx:52",
+          "src/components/Solution.jsx:62"
+        ]
+      },
+      {
+        "at": "lg",
+        "change": "text 9 columns, image 14 columns starting at column 11",
+        "measuredFrom": [
+          "src/components/ui.jsx:13-14"
+        ]
+      },
+      {
+        "at": "md / xl",
+        "change": "row stack spacing 40, 48, 56px at base, md, xl",
+        "measuredFrom": [
+          "src/components/Solution.jsx:42"
+        ]
+      }
+    ]
+  },
+  "usedOnRoutes": [
+    "/",
+    "*"
+  ],
+  "tokensUsed": [
+    "surface.background",
+    "text.strong",
+    "border.default",
+    "orange.2",
+    "pink.2",
+    "green.3",
+    "yellow.3",
+    "display-2xl",
+    "display-xs"
+  ]
+}

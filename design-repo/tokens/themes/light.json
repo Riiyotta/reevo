@@ -1,0 +1,121 @@
+{
+  "$description": "Light theme: every semantic colour token resolved to a foundation value (:root in src/index.css:25-40).",
+  "theme": "light",
+  "appliedTo": "document root",
+  "tokens": {
+    "text.strong": {
+      "ref": "{color.gray.10}",
+      "foundation": "color.gray.10",
+      "resolved": "#121212",
+      "measuredFrom": "src/index.css:28"
+    },
+    "text.body": {
+      "ref": "{color.gray.9}",
+      "foundation": "color.gray.9",
+      "resolved": "#3c3c3c",
+      "measuredFrom": "src/index.css:27"
+    },
+    "text.secondary": {
+      "ref": "{color.gray.9}",
+      "foundation": "color.gray.9",
+      "resolved": "#3c3c3c",
+      "measuredFrom": "src/index.css:31"
+    },
+    "text.muted": {
+      "ref": "{color.gray.5}",
+      "foundation": "color.gray.5",
+      "resolved": "#92918f",
+      "measuredFrom": "src/index.css:32"
+    },
+    "text.on-primary": {
+      "ref": "{color.white}",
+      "foundation": "color.white",
+      "resolved": "#fff",
+      "measuredFrom": "src/index.css:30"
+    },
+    "surface.background": {
+      "ref": "{color.white}",
+      "foundation": "color.white",
+      "resolved": "#fff",
+      "measuredFrom": "src/index.css:26"
+    },
+    "surface.primary": {
+      "ref": "{color.gray.10}",
+      "foundation": "color.gray.10",
+      "resolved": "#121212",
+      "measuredFrom": "src/index.css:29"
+    },
+    "surface.subtle": {
+      "ref": "{color.gray.1}",
+      "foundation": "color.gray.1",
+      "resolved": "#f7f7f0",
+      "measuredFrom": "CLONE_SPEC.md:292"
+    },
+    "surface.section-alt": {
+      "ref": "{color.gray.2}",
+      "foundation": "color.gray.2",
+      "resolved": "#f2f2ea",
+      "measuredFrom": "src/components/BuiltDifferent.jsx:7"
+    },
+    "surface.section-deep": {
+      "ref": "{color.gray.3}",
+      "foundation": "color.gray.3",
+      "resolved": "#e7e7de",
+      "measuredFrom": "src/components/Customers.jsx:97"
+    },
+    "surface.inverse": {
+      "ref": "{color.gray.10}",
+      "foundation": "color.gray.10",
+      "resolved": "#121212",
+      "measuredFrom": "src/components/Hero.jsx:85"
+    },
+    "border.default": {
+      "ref": "{color.gray.3}",
+      "foundation": "color.gray.3",
+      "resolved": "#e7e7de",
+      "measuredFrom": "src/index.css:33"
+    },
+    "border.card": {
+      "ref": "{color.gray.4}",
+      "foundation": "color.gray.4",
+      "resolved": "#a8a6a4",
+      "measuredFrom": "CLONE_SPEC.md:283"
+    },
+    "accent.find": {
+      "ref": "{color.orange.2}",
+      "foundation": "color.orange.2",
+      "resolved": "#fedfce",
+      "measuredFrom": "src/components/Solution.jsx:7"
+    },
+    "accent.connect": {
+      "ref": "{color.pink.2}",
+      "foundation": "color.pink.2",
+      "resolved": "#ffe2f4",
+      "measuredFrom": "src/components/Solution.jsx:13"
+    },
+    "accent.sell": {
+      "ref": "{color.green.3}",
+      "foundation": "color.green.3",
+      "resolved": "#bef5dd",
+      "measuredFrom": "src/components/Solution.jsx:19"
+    },
+    "accent.manage": {
+      "ref": "{color.yellow.3}",
+      "foundation": "color.yellow.3",
+      "resolved": "#fffda7",
+      "measuredFrom": "src/components/Solution.jsx:25"
+    },
+    "accent.progress": {
+      "ref": "{color.orange.8}",
+      "foundation": "color.orange.8",
+      "resolved": "#fa7b34",
+      "measuredFrom": "CLONE_SPEC.md:290"
+    },
+    "accent.feature-chip": {
+      "ref": "{color.blue.3}",
+      "foundation": "color.blue.3",
+      "resolved": "#b4e0ff",
+      "measuredFrom": "CLONE_SPEC.md:180"
+    }
+  }
+}

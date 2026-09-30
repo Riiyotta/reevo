@@ -1,0 +1,65 @@
+{
+  "id": "post-card",
+  "kind": "component",
+  "purpose": "Blog list row: square cover, category tag, title link, excerpt, date and author avatar, divider.",
+  "measuredFrom": [
+    "src/components/blog/PostCard.jsx:34-90",
+    "src/components/blog/PostCard.jsx:18-30"
+  ],
+  "props": {
+    "post": {
+      "type": "object",
+      "required": true,
+      "description": "slug, title, category, cover, excerpt, author"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "dateText": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "variants": [
+    {
+      "name": "featured",
+      "description": "larger media column, text-2xl title, 1400px image",
+      "measuredFrom": [
+        "src/components/blog/PostCard.jsx:41-43",
+        "src/components/blog/PostCard.jsx:50"
+      ]
+    },
+    {
+      "name": "default",
+      "description": "smaller media column, text-xl title, 900px image",
+      "measuredFrom": [
+        "src/components/blog/PostCard.jsx:44",
+        "src/components/blog/PostCard.jsx:69"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "border.default",
+    "text.strong",
+    "tag",
+    "base-200"
+  ],
+  "motion": {
+    "pattern": "hover-color-transition",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Proposal only.",
+    "property": "cover image opacity to .9 on group hover",
+    "durationMs": 200,
+    "measuredFrom": [
+      "src/components/blog/PostCard.jsx:54"
+    ]
+  },
+  "composes": [
+    "tag",
+    "grid"
+  ],
+  "notes": [
+    "Whole row is clickable via an after:absolute after:inset-0 pseudo-element on the title link (PostCard.jsx:69)."
+  ]
+}

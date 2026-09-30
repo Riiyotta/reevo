@@ -1,0 +1,67 @@
+{
+  "id": "content.qualification-terms",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Close the startups offer: state who qualifies (size and investor-backing criteria), show the accepted investors as a logo wall, give one action to apply, and list the terms in small print.",
+  "measuredFrom": ["src/pages/Startups.jsx:138-183", "src/pages/Startups.jsx:93-97", "src/pages/Startups.jsx:7-16"],
+  "behaviour": [
+    { "note": "Centre-aligned block: heading, two bold criteria joined by a circular plus divider, a small note below the second criterion, the investor logo grid, the apply button; then a left-aligned Terms list with disc bullets. Criteria column is capped at 440px.", "measuredFrom": ["src/pages/Startups.jsx:138-183", "src/pages/Startups.jsx:139"] },
+    { "note": "The investor logo wall is embedded here rather than being its own section (see social-proof.logo-grid, variant investors-small-grid). 21 logos, PNG, 372x282, lazy loaded.", "measuredFrom": ["src/pages/Startups.jsx:7-10", "src/pages/Startups.jsx:154-164"] },
+    { "note": "Last section before the footer on /startups; it follows the coloured testimonial band.", "measuredFrom": ["src/pages/Startups.jsx:115-132", "src/pages/Startups.jsx:185"] }
+  ],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "heading": { "type": "string", "required": true, "maxWords": 4, "note": "Observed 3 words.", "measuredFrom": ["src/pages/Startups.jsx:138"] },
+      "criteria": {
+        "type": "array",
+        "required": true,
+        "minItems": 2,
+        "maxItems": 2,
+        "note": "Two bold requirement statements separated by a plus divider. Observed 8 and 11 words.",
+        "items": { "type": "string", "maxWords": 12 },
+        "measuredFrom": ["src/pages/Startups.jsx:140-149"]
+      },
+      "criteriaNote": { "type": "string", "required": false, "maxWords": 24, "note": "Small print under the second criterion. Observed about 22 words.", "measuredFrom": ["src/pages/Startups.jsx:146-149"] },
+      "investors": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 21,
+        "note": "Accepted investor and accelerator logos. Observed 21.",
+        "items": { "type": "object", "fields": { "logo": { "type": "assetRef", "required": true, "assetRole": "investor-logo" }, "alt": { "type": "string", "required": true, "maxWords": 3 } } },
+        "measuredFrom": ["src/pages/Startups.jsx:7-10", "src/pages/Startups.jsx:157-160"]
+      },
+      "cta": { "type": "object", "required": true, "fields": { "label": { "type": "string", "maxWords": 5 }, "href": { "type": "string", "kind": "route-or-url" }, "variant": { "type": "enum", "values": ["primary"] } }, "note": "Observed 4-word label to the apply page.", "measuredFrom": ["src/pages/Startups.jsx:166-168"] },
+      "termsLabel": { "type": "string", "required": true, "maxWords": 1, "measuredFrom": ["src/pages/Startups.jsx:172"] },
+      "terms": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 3,
+        "note": "Bullet sentences. Observed 3, each up to about 16 words.",
+        "items": { "type": "string", "maxWords": 18 },
+        "measuredFrom": ["src/pages/Startups.jsx:13-16", "src/pages/Startups.jsx:173-181"]
+      }
+    }
+  },
+  "mediaFields": [{ "field": "investors[].logo", "assetRole": "investor-logo" }],
+  "constraints": { "onePerPage": true, "mustPrecedeFooter": true },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No motion in the source; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": ["src/pages/Startups.jsx:138-183"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base / sm / md / lg", "change": "investor grid uses 3, 4, 5, then 7 columns", "measuredFrom": ["src/pages/Startups.jsx:156"] },
+      { "at": "lg", "change": "criteria stack spacing grows from 24 to 32px", "measuredFrom": ["src/pages/Startups.jsx:141", "src/pages/Startups.jsx:144"] },
+      { "at": "xl", "change": "logo wall and terms span 20 of 24 columns starting at column 3", "measuredFrom": ["src/pages/Startups.jsx:155", "src/pages/Startups.jsx:170"] }
+    ]
+  },
+  "usedOnRoutes": ["/startups"],
+  "tokensUsed": ["surface.background", "text.strong", "teal.8", "display-lg", "2xl", "xs", "md"]
+}

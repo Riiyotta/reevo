@@ -1,0 +1,44 @@
+{
+  "id": "label",
+  "kind": "primitive",
+  "purpose": "Form field label.",
+  "measuredFrom": [
+    "src/components/company/Form.jsx:14-20"
+  ],
+  "props": {
+    "htmlFor": {
+      "type": "string"
+    },
+    "as": {
+      "type": "enum",
+      "values": [
+        "label"
+      ],
+      "default": "label"
+    },
+    "children": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "block w-full select-none text-xs font-medium",
+      "measuredFrom": [
+        "src/components/company/Form.jsx:16"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "xs",
+    "medium"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/company/Form.jsx:14-20"
+    ]
+  }
+}

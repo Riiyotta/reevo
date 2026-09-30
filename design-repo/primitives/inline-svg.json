@@ -1,0 +1,49 @@
+{
+  "id": "inline-svg",
+  "kind": "primitive",
+  "purpose": "Renders vector path arrays inline with currentColor fill; decorative unless a label is passed.",
+  "measuredFrom": [
+    "src/components/svgPaths.js:18-38"
+  ],
+  "props": {
+    "viewBox": {
+      "type": "string",
+      "required": true
+    },
+    "paths": {
+      "type": "array",
+      "required": true,
+      "description": "SVG path d strings"
+    },
+    "evenOddFirst": {
+      "type": "boolean",
+      "default": false
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    },
+    "label": {
+      "type": "string",
+      "description": "Sets role=img and aria-label; otherwise aria-hidden"
+    }
+  },
+  "variants": [
+    {
+      "name": "play-triangle (PlayTriangle)",
+      "description": "viewBox 0 0 19 24 triangle, className-sized",
+      "measuredFrom": [
+        "src/components/ui.jsx:143-144",
+        "src/components/svgPaths.js:6-7"
+      ]
+    }
+  ],
+  "tokensUsed": [],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/svgPaths.js:18-38"
+    ]
+  }
+}

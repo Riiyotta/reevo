@@ -1,0 +1,62 @@
+{
+  "id": "form.centered-form",
+  "kind": "section",
+  "category": "form",
+  "purpose": "Whole-page lead-capture form: a heading, one or two intro lines and a single centred column of labelled fields ending in a wide submit button. Used for demo booking, startup-programme applications and partner enquiries.",
+  "measuredFrom": ["src/pages/GetStarted.jsx:9-27", "src/components/pricing/GetStartedForm.jsx:74-183", "src/pages/StartupsApply.jsx:37-111", "src/pages/Partners.jsx:26-91", "src/components/company/Form.jsx:14-108"],
+  "variants": [
+    { "name": "get-started", "description": "Demo booking: controlled inputs with inline validation errors (shown after the first submit attempt, then on change), a conditional extra question when the customer type is consumers, a phone field with a +1 prefix, and a scheduler dialog that opens after a valid submit.", "measuredFrom": ["src/pages/GetStarted.jsx:9-27", "src/components/pricing/GetStartedForm.jsx:27-38", "src/components/pricing/GetStartedForm.jsx:74-183"] },
+    { "name": "startups-apply", "description": "Startup application: native browser constraint validation, adds team size and a 22-option VC firm select, hidden honeypot field.", "measuredFrom": ["src/pages/StartupsApply.jsx:37-111", "src/pages/StartupsApply.jsx:84-95", "src/pages/StartupsApply.jsx:99"] },
+    { "name": "partners", "description": "Partner enquiry: two intro paragraphs, two field groups with sub-headings, checkbox fieldsets (customer segment, interest), a textarea, native validation and a hidden honeypot field.", "measuredFrom": ["src/pages/Partners.jsx:26-91", "src/pages/Partners.jsx:15-24", "src/pages/Partners.jsx:81"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "heading": { "type": "string", "required": true, "maxWords": 10, "note": "Rendered as h1 in display-xl bold. Observed 3 to 8 words.", "measuredFrom": ["src/pages/GetStarted.jsx:16", "src/pages/StartupsApply.jsx:47-49", "src/pages/Partners.jsx:36"] },
+      "intro": { "type": "array", "required": true, "minItems": 1, "maxItems": 2, "items": { "type": "string", "maxWords": 25 }, "note": "One line on get-started and startups-apply (11 and 14 words), two paragraphs on partners (18 and 23 words).", "measuredFrom": ["src/pages/GetStarted.jsx:17", "src/pages/StartupsApply.jsx:50-52", "src/pages/Partners.jsx:37-44"] },
+      "fields": {
+        "type": "array", "required": true, "minItems": 5, "maxItems": 12,
+        "items": { "type": "object", "fields": {
+          "name": { "type": "string" },
+          "label": { "type": "string", "maxWords": 12 },
+          "control": { "type": "enum", "values": ["text", "email", "tel", "number", "select", "checkbox-group", "textarea"] },
+          "required": { "type": "boolean" },
+          "placeholder": { "type": "string", "maxWords": 8 }
+        } },
+        "note": "Field names observed: get-started has first and last name, company, work email, optional phone, people-count select, customer-type select, optional conditional sales-process select, optional how-heard; startups-apply adds team size (number) and firm (select); partners has full name, email, job title, company, website, partner-type select, two checkbox groups and a description textarea.",
+        "measuredFrom": ["src/components/pricing/GetStartedForm.jsx:115-169", "src/pages/StartupsApply.jsx:56-98", "src/pages/Partners.jsx:46-80"]
+      },
+      "sectionHeadings": { "type": "array", "required": false, "maxItems": 2, "items": { "type": "string", "maxWords": 3 }, "note": "Partners only: sub-headings above the two field groups.", "measuredFrom": ["src/pages/Partners.jsx:48", "src/pages/Partners.jsx:66"] },
+      "submitLabel": { "type": "string", "required": true, "maxWords": 5, "note": "Primary button, full width, fixed 338px from lg, with a chevron.", "measuredFrom": ["src/pages/StartupsApply.jsx:100", "src/pages/Partners.jsx:82", "src/components/pricing/GetStartedForm.jsx:175-177"] },
+      "consentNote": { "type": "richtext-inline", "required": false, "maxWords": 45, "note": "Small muted SMS-consent paragraph with links to the privacy notice and terms; get-started and startups-apply only, both rendering the shared PhoneConsent component. Observed about 43 words.", "measuredFrom": ["src/components/PhoneConsent.jsx:1-17", "src/components/pricing/GetStartedForm.jsx:178", "src/pages/StartupsApply.jsx:101"] },
+      "schedulerFrame": { "type": "assetRef", "required": false, "assetRole": "third-party-embed", "note": "Get-started only: the dialog body that holds the scheduling iframe. The clone shows a fixed-height empty frame with a text placeholder and never loads or sends anything; a generator must not reproduce the live scheduler endpoint.", "measuredFrom": ["src/components/pricing/GetStartedForm.jsx:53-54", "src/components/pricing/GetStartedForm.jsx:66-68"] }
+    }
+  },
+  "mediaFields": [ { "field": "schedulerFrame", "assetRole": "third-party-embed" } ],
+  "behaviour": [
+    { "note": "Forms never submit. Startups-apply and partners run native constraint validation, then the submit handler calls preventDefault and does nothing. Get-started validates in JS, and on success only reveals the scheduler dialog shell; no request is ever made. No success or error state is sent or received.", "measuredFrom": ["src/components/company/Form.jsx:103-108", "src/components/pricing/GetStartedForm.jsx:100-106", "src/components/pricing/GetStartedForm.jsx:53-54"] },
+    { "note": "Honeypot: startups-apply and partners include a visually hidden 'website' input; get-started has the same hidden field and silently drops the submit if it is filled.", "measuredFrom": ["src/components/company/Form.jsx:83-90", "src/components/pricing/GetStartedForm.jsx:105", "src/components/pricing/GetStartedForm.jsx:170-174"] },
+    { "note": "Scheduler dialog (get-started): the shared static CardDialog from dialog.jsx (SchedulerShell): fixed full-screen overlay (black at 50%), centred panel with a close button, Escape and overlay click close it, body scroll locked while open (useModal). It appears and disappears with no transition.", "measuredFrom": ["src/components/pricing/GetStartedForm.jsx:53-72", "src/components/dialog.jsx:7-20", "src/components/dialog.jsx:76-100"] },
+    { "note": "Hero-less page: the h1 is the first content under the navbar; the whole page is this one section and no CTA band follows.", "measuredFrom": ["src/pages/GetStarted.jsx:10-24", "src/pages/StartupsApply.jsx:41-108", "src/pages/Partners.jsx:30-88"] },
+    { "note": "The get-started page may receive a prefilled work email from the pricing page through router state.", "measuredFrom": ["src/pages/GetStarted.jsx:6-7", "src/pages/GetStarted.jsx:19"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No animation on the page. The scheduler dialog is static (no Presence), so it does not use the dialog-overlay pattern; only the close-button opacity hover (70% to 100%) and button hover transition exist.",
+    "measuredFrom": ["src/components/pricing/GetStartedForm.jsx:53-72", "src/components/dialog.jsx:76-100", "src/components/dialog.jsx:92"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to lg", "change": "section vertical padding 64 / 96 (md) / 128 (lg); the form column is capped at max-w-lg and centred at every width", "measuredFrom": ["src/pages/GetStarted.jsx:10", "src/pages/GetStarted.jsx:14"] },
+      { "at": "base to xl", "change": "heading block bottom margin 24 / 32 (lg) / 40 (xl)", "measuredFrom": ["src/pages/GetStarted.jsx:15"] },
+      { "at": "sm and up", "change": "startups-apply team size and firm fields sit side by side (1:2 flex); below sm they stack", "measuredFrom": ["src/pages/StartupsApply.jsx:84-90"] },
+      { "at": "lg and up", "change": "submit button is 338px wide (full width below lg)", "measuredFrom": ["src/pages/StartupsApply.jsx:100", "src/components/pricing/GetStartedForm.jsx:175"] },
+      { "at": "md to xl", "change": "scheduler dialog frame height 440 / 520 (md) / 609 (lg) px; dialog width caps at 1060 (lg) / 1100 (xl) px", "measuredFrom": ["src/components/pricing/GetStartedForm.jsx:60", "src/components/pricing/GetStartedForm.jsx:66"] }
+    ]
+  },
+  "usedOnRoutes": ["/get-started", "/startups-apply-now", "/partners"],
+  "tokensUsed": ["fontSize.display-xl", "fontSize.display-lg", "color.gray.1", "semanticColor.text.strong", "semanticColor.text.muted", "semanticColor.surface.background", "semanticColor.border.default"]
+}

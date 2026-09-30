@@ -1,0 +1,67 @@
+{
+  "id": "social-proof.logo-grid",
+  "kind": "section",
+  "category": "social-proof",
+  "purpose": "Prove credibility with a static wall of real third-party logos: who backs the company (About, Startups) or where the team has worked before (Careers).",
+  "measuredFrom": ["src/pages/About.jsx:156-177", "src/pages/Careers.jsx:137-159", "src/pages/Startups.jsx:154-164"],
+  "behaviour": [
+    { "note": "Three different implementations of a static logo grid. About shows 2 large investor tiles (aspect 635/422, PNG, object-cover) on a gray-2 band with a pattern strip. Careers shows 16 employer SVG logos on a dark section (dark token scope) in a 3-column (4 from md) grid. Startups shows 21 investor PNG logos (372x282) in a 3/4/5/7-column grid, but only as a block inside content.qualification-terms, not as its own section.", "measuredFrom": ["src/pages/About.jsx:156-177", "src/pages/Careers.jsx:137-159", "src/pages/Startups.jsx:154-164"] },
+    { "note": "Careers variant is dark: the section carries the dark class so tokens flip; the logo files themselves are drawn for that background. Adjacent Careers sections are gray-2 (before) and gray-2 (after).", "measuredFrom": ["src/pages/Careers.jsx:137", "src/pages/Careers.jsx:122", "src/pages/Careers.jsx:162", "src/index.css:42"] },
+    { "note": "Logos are not links and have no hover state. Logos are real company trademarks; only reference existing files.", "measuredFrom": ["src/pages/About.jsx:164-172", "src/pages/Careers.jsx:145-154", "src/pages/Startups.jsx:157-160"] }
+  ],
+  "variants": [
+    { "name": "investors-2up", "description": "About. Two large investor tiles in a 2-column grid (1 column below sm) on a gray-2 band with a top pattern strip. Section label plus a short bold lead line.", "measuredFrom": ["src/pages/About.jsx:156-177", "src/pages/About.jsx:33-35"] },
+    { "name": "employers-dark-grid", "description": "Careers. Dark section: label, lead sentence, 16 employer logos in a 3-column (4 from md) grid, aspect 100/66 (100/60 from lg).", "measuredFrom": ["src/pages/Careers.jsx:32-34", "src/pages/Careers.jsx:137-159"] },
+    { "name": "investors-small-grid", "description": "Startups. 21 small investor logos in a 3/4/5/7-column grid. Not a standalone section: rendered inside content.qualification-terms.", "measuredFrom": ["src/pages/Startups.jsx:7-10", "src/pages/Startups.jsx:154-164"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "variant": { "type": "enum", "required": true, "values": ["investors-2up", "employers-dark-grid", "investors-small-grid"] },
+      "label": { "type": "string", "required": false, "maxWords": 4, "note": "Eyebrow label with an icon; present on About and Careers only. Observed 2 to 3 words.", "measuredFrom": ["src/pages/About.jsx:157", "src/pages/Careers.jsx:138"] },
+      "lead": { "type": "richtext-inline", "required": false, "maxWords": 10, "note": "Bold lead line; About observed 4 words, Careers 10 words. Absent in the startups block.", "measuredFrom": ["src/pages/About.jsx:158-160", "src/pages/Careers.jsx:139-141"] },
+      "investorLogos": {
+        "type": "array",
+        "required": false,
+        "minItems": 2,
+        "maxItems": 21,
+        "note": "Used by investors-2up (2 items) and investors-small-grid (21 items).",
+        "items": { "type": "object", "fields": { "logo": { "type": "assetRef", "required": true, "assetRole": "investor-logo" }, "alt": { "type": "string", "required": true, "maxWords": 4 } } },
+        "measuredFrom": ["src/pages/About.jsx:33-35", "src/pages/Startups.jsx:7-10"]
+      },
+      "employerLogos": {
+        "type": "array",
+        "required": false,
+        "minItems": 1,
+        "maxItems": 16,
+        "note": "Used by employers-dark-grid (16 items): logos of companies team members previously worked at.",
+        "items": { "type": "object", "fields": { "logo": { "type": "assetRef", "required": true, "assetRole": "employer-logo" }, "alt": { "type": "string", "required": true, "maxWords": 3 } } },
+        "measuredFrom": ["src/pages/Careers.jsx:32-34", "src/pages/Careers.jsx:145-154"]
+      },
+      "patternStrip": { "type": "assetRef", "required": false, "assetRole": "decorative-pattern", "note": "Top pattern strip on About (pattern-11) and Careers (pattern-08).", "measuredFrom": ["src/pages/About.jsx:156", "src/pages/Careers.jsx:137"] }
+    }
+  },
+  "mediaFields": [
+    { "field": "investorLogos[].logo", "assetRole": "investor-logo" },
+    { "field": "employerLogos[].logo", "assetRole": "employer-logo" },
+    { "field": "patternStrip", "assetRole": "decorative-pattern" }
+  ],
+  "constraints": {},
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No motion in the source; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": ["src/pages/About.jsx:156-177", "src/pages/Careers.jsx:137-159"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "sm (about)", "change": "investor tiles go from 1 column to 2 columns", "measuredFrom": ["src/pages/About.jsx:163"] },
+      { "at": "below md (careers)", "change": "3-column grid with gap 2, 4 from sm; 4 columns from md with gap 4, 6 from lg", "measuredFrom": ["src/pages/Careers.jsx:144"] },
+      { "at": "lg (careers)", "change": "tile aspect changes from 100/66 to 100/60", "measuredFrom": ["src/pages/Careers.jsx:147"] },
+      { "at": "sm / md / lg (startups)", "change": "grid columns 3 at base, 4 from sm, 5 from md, 7 from lg", "measuredFrom": ["src/pages/Startups.jsx:156"] }
+    ]
+  },
+  "usedOnRoutes": ["/about", "/careers", "/startups"],
+  "tokensUsed": ["gray.2", "surface.background", "text.strong"]
+}

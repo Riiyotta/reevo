@@ -1,0 +1,85 @@
+{
+  "id": "shell.navbar",
+  "kind": "section",
+  "category": "shell",
+  "purpose": "Global sticky header: brand mark, primary navigation (three dropdown panels plus two direct links), a persistent Get started CTA and a Log in link, collapsing to a full-screen accordion menu below lg. It is the always-present route into pricing, tour and sign-up.",
+  "measuredFrom": ["src/components/Navbar.jsx:255-392", "src/components/Navbar.jsx:88-139", "src/components/Navbar.jsx:168-251", "src/App.jsx:71-76"],
+  "behaviour": [
+    { "note": "Rendered once by App.jsx outside <Routes>, so it is global and not part of any page component. Sticky: header is `sticky top-0 z-50 bg-background`, always visible, no scroll-dependent change in size or colour.", "measuredFrom": ["src/App.jsx:76", "src/components/Navbar.jsx:314"] },
+    { "note": "Desktop hover model: a panel opens 200ms after the pointer enters a trigger when nothing is open; it opens instantly if another panel is open or within 300ms of a close; it closes 150ms after the pointer leaves trigger plus panel; click toggles; Escape and outside mousedown close. Only pointerType 'mouse' drives hover.", "measuredFrom": ["src/components/Navbar.jsx:67-69", "src/components/Navbar.jsx:260-311"] },
+    { "note": "Desktop panels cross-fade: the outgoing panel exits while the incoming one enters (each trigger owns its own Presence).", "measuredFrom": ["src/components/Navbar.jsx:62-63", "src/components/Navbar.jsx:345-355"] },
+    { "note": "Mobile menu (below lg) is a full-screen fixed panel below the header, shown/hidden instantly with no enter or exit animation. Its sections are a multi-open accordion (several can be open); tapping a link closes the menu.", "measuredFrom": ["src/components/Navbar.jsx:149", "src/components/Navbar.jsx:169-174", "src/components/Navbar.jsx:207", "src/components/Navbar.jsx:391"] },
+    { "note": "The mobile menu is rendered as a sibling after the header's Container row, inside the header element. The Get started button stays visible in the bar next to the Menu button below lg; Log in moves into the mobile panel footer.", "measuredFrom": ["src/components/Navbar.jsx:368-387", "src/components/Navbar.jsx:240-248"] }
+  ],
+  "variants": [
+    { "name": "desktop", "description": "lg and up: inline nav with Platform, Company and Resources triggers (chevron, mono uppercase label) opening absolutely positioned panels; Pricing and Tour are plain links; Log in (outline) and Get started (primary) on the right.", "measuredFrom": ["src/components/Navbar.jsx:323-373"] },
+    { "name": "mobile", "description": "below lg: nav hidden; Get started plus a 74px-wide Menu/Close outline toggle; opens the full-screen accordion menu with Log in and Get started stacked (side by side from md).", "measuredFrom": ["src/components/Navbar.jsx:323", "src/components/Navbar.jsx:374-391", "src/components/Navbar.jsx:168-251"] },
+    { "name": "platform-panel", "description": "590px wide panel: Products list (thumbnail, name, one-line description), a 210px Works-with column (link list with an optional tag chip), and a Trust Center footer row with three compliance labels.", "measuredFrom": ["src/components/Navbar.jsx:88-139"] },
+    { "name": "link-list-panel", "description": "232px wide panel of icon plus label links, used by Company (2 items) and Resources (6 items).", "measuredFrom": ["src/components/Navbar.jsx:73-84", "src/components/Navbar.jsx:143-146"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "note": "The component takes no props; content is module constants. The fields below describe those constants so a generator can re-skin them.",
+    "fields": {
+      "wordmark": { "type": "assetRef", "required": true, "assetRole": "brand-mark" },
+      "primaryLinks": { "type": "array", "required": true, "minItems": 2, "maxItems": 2, "note": "Direct links (Pricing, Tour).", "items": { "type": "object", "fields": { "label": { "type": "string", "maxWords": 1 }, "href": { "type": "string", "kind": "route-or-url" } } }, "measuredFrom": ["src/components/Navbar.jsx:50-55"] },
+      "menus": { "type": "array", "required": true, "minItems": 3, "maxItems": 3, "note": "Dropdown groups (Platform, Company, Resources).", "items": { "type": "object", "fields": { "label": { "type": "string", "maxWords": 1 }, "key": { "type": "enum", "values": ["platform", "company", "resources"] } } }, "measuredFrom": ["src/components/Navbar.jsx:50-55", "src/components/Navbar.jsx:143-146"] },
+      "platformProducts": { "type": "array", "required": true, "minItems": 5, "maxItems": 5, "items": { "type": "object", "fields": { "name": { "type": "string", "maxWords": 1 }, "href": { "type": "string", "kind": "route-or-url" }, "description": { "type": "string", "maxWords": 8 }, "thumbnail": { "type": "assetRef", "assetRole": "nav-thumbnail" } } }, "measuredFrom": ["src/components/Navbar.jsx:22-27"] },
+      "worksWith": { "type": "array", "required": true, "minItems": 3, "maxItems": 3, "items": { "type": "object", "fields": { "label": { "type": "string", "maxWords": 2 }, "href": { "type": "string", "kind": "route-or-url" }, "tag": { "type": "string", "maxWords": 1 } } }, "measuredFrom": ["src/components/Navbar.jsx:30-33"] },
+      "companyLinks": { "type": "array", "required": true, "minItems": 2, "maxItems": 2, "items": { "type": "object", "fields": { "label": { "type": "string", "maxWords": 2 }, "href": { "type": "string", "kind": "route-or-url" } } }, "measuredFrom": ["src/components/Navbar.jsx:36-38"] },
+      "resourceLinks": { "type": "array", "required": true, "minItems": 6, "maxItems": 6, "items": { "type": "object", "fields": { "label": { "type": "string", "maxWords": 2 }, "href": { "type": "string", "kind": "route-or-url" } } }, "measuredFrom": ["src/components/Navbar.jsx:41-47"] },
+      "trustLabels": { "type": "array", "required": true, "minItems": 3, "maxItems": 3, "items": { "type": "string", "maxWords": 2 }, "measuredFrom": ["src/components/Navbar.jsx:124-138"] },
+      "loginCta": { "type": "object", "required": true, "fields": { "label": { "type": "string", "maxWords": 2 }, "href": { "type": "string", "kind": "route-or-url" }, "variant": { "type": "enum", "values": ["outline"] } }, "measuredFrom": ["src/components/Navbar.jsx:368-370"] },
+      "primaryCta": { "type": "object", "required": true, "fields": { "label": { "type": "string", "maxWords": 2 }, "href": { "type": "string", "kind": "route-or-url" }, "variant": { "type": "enum", "values": ["primary"] } }, "measuredFrom": ["src/components/Navbar.jsx:371-373"] }
+    }
+  },
+  "mediaFields": [
+    { "field": "wordmark", "assetRole": "brand-mark" },
+    { "field": "platformProducts[].thumbnail", "assetRole": "nav-thumbnail" }
+  ],
+  "constraints": { "onePerPage": true, "mustBeFirst": true },
+  "motion": {
+    "pattern": "popover-fade-scale",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only: the code has no prefers-reduced-motion handling. Desktop panels enter from opacity 0, translateY(-4px), scale(.98), transform-origin top, to none; 200ms cubic-bezier(.4,0,.2,1); open delay 200ms, close delay 150ms, skip delay 300ms.",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": ["src/components/Navbar.jsx:62-69", "src/components/Navbar.jsx:345-355", "src/components/motion.jsx:7-8", "src/components/motion.jsx:20-26"]
+  },
+  "additionalMotion": [
+    {
+      "context": "mobile menu accordion sections (below lg): height 0 and opacity 0 to auto and 1",
+      "pattern": "accordion-height-opacity",
+      "reducedMotionFallback": "instant",
+      "reducedMotionNote": "Proposal only; no prefers-reduced-motion handling exists in the code.",
+      "durationMs": 200,
+      "easing": "cubic-bezier(.4,0,.2,1)",
+      "measuredFrom": ["src/components/Navbar.jsx:227-230", "src/components/motion.jsx:62-102"]
+    },
+    {
+      "context": "mobile menu container itself: appears and disappears instantly (popover, no transition)",
+      "pattern": "none",
+      "reducedMotionFallback": "none-needed",
+      "measuredFrom": ["src/components/Navbar.jsx:207", "src/components/Navbar.jsx:391"]
+    },
+    {
+      "context": "hover and open state on nav items and panel links: colour/background transition",
+      "pattern": "hover-color-transition",
+      "reducedMotionFallback": "instant",
+      "reducedMotionNote": "Proposal only.",
+      "durationMs": 200,
+      "measuredFrom": ["src/components/Navbar.jsx:58", "src/components/Navbar.jsx:70"]
+    }
+  ],
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "bar height 64px (nav-height-mobile); wordmark 90px wide", "measuredFrom": ["src/components/Navbar.jsx:316", "src/components/Navbar.jsx:319", "src/index.css:36"] },
+      { "at": "md and up", "change": "bar height 72px (nav-height-desktop); wordmark 98px, 104px from xl; mobile panel top offset follows", "measuredFrom": ["src/components/Navbar.jsx:316", "src/components/Navbar.jsx:319", "src/components/Navbar.jsx:207", "src/index.css:37"] },
+      { "at": "below lg", "change": "inline nav and Log in hidden; Menu toggle appears; desktop panels are unreachable and the full-screen accordion menu takes over", "measuredFrom": ["src/components/Navbar.jsx:323", "src/components/Navbar.jsx:368", "src/components/Navbar.jsx:381"] },
+      { "at": "md within mobile menu", "change": "Log in and Get started sit side by side (flex-1 each) instead of stacked", "measuredFrom": ["src/components/Navbar.jsx:241-247"] }
+    ]
+  },
+  "usedOnRoutes": ["all"],
+  "tokensUsed": ["semanticColor.surface.background", "semanticColor.text.strong", "semanticColor.text.muted", "semanticColor.border.default", "fontFamily.mono", "duration.base-200", "duration.hover-intent-open-200", "duration.hover-intent-close-150", "easing.standard"]
+}

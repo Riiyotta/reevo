@@ -1,0 +1,41 @@
+{
+  "id": "form-field",
+  "kind": "primitive",
+  "purpose": "Label plus control stack.",
+  "measuredFrom": [
+    "src/components/company/Form.jsx:48-55"
+  ],
+  "props": {
+    "id": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "children": {
+      "type": "object",
+      "description": "Control (input/select/textarea)"
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "space-y-2",
+      "measuredFrom": [
+        "src/components/company/Form.jsx:50"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "2"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/company/Form.jsx:48-55"
+    ]
+  }
+}

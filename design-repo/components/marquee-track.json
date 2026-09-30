@@ -1,0 +1,53 @@
+{
+  "id": "marquee-track",
+  "kind": "component",
+  "purpose": "Auto-scrolling logo row: two identical tracks, second aria-hidden, speed 30 px/s, fades in over 700ms, pauses on hover/active.",
+  "measuredFrom": [
+    "src/components/LogoMarquee.jsx:5-58",
+    "src/components/LogoMarquee.jsx:66-70",
+    "src/index.css:73-75"
+  ],
+  "props": {
+    "logos": {
+      "type": "array",
+      "description": "[name, renderedWidthPx] pairs; 9 observed"
+    },
+    "speedPxPerSec": {
+      "type": "number",
+      "default": 30
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "logo margin mx-5 md:mx-6 xl:mx-8; scale .85 below md; edge mask",
+      "measuredFrom": [
+        "src/components/LogoMarquee.jsx:26",
+        "src/components/LogoMarquee.jsx:66"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "marquee",
+    "marquee-fade-in-700",
+    "ease-out",
+    "marquee-px-per-second"
+  ],
+  "motion": {
+    "pattern": "marquee",
+    "reducedMotionFallback": "pause",
+    "reducedMotionNote": "Proposal only.",
+    "speedPxPerSec": 30,
+    "easing": "linear",
+    "measuredFrom": [
+      "src/components/LogoMarquee.jsx:5-7",
+      "src/components/LogoMarquee.jsx:47-52",
+      "tailwind.config.js:87-89"
+    ]
+  },
+  "composes": [
+    "presence",
+    "container",
+    "grid"
+  ]
+}

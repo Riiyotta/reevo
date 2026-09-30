@@ -1,0 +1,103 @@
+{
+  "id": "social-proof.customer-video-cards",
+  "kind": "section",
+  "category": "social-proof",
+  "purpose": "Let real customers make the case: three video testimonial cards (hover-to-play teaser, click for the full video in a dialog) followed by an As seen on press row that links to real coverage.",
+  "measuredFrom": ["src/components/Customers.jsx:88-156", "src/components/Customers.jsx:72-85", "src/components/Customers.jsx:51-67", "src/components/Customers.jsx:21-47"],
+  "behaviour": [
+    { "note": "Hover-to-play: only one card teaser plays at a time. Card 0 plays by default; hovering a card (mouse enter) makes that card the playing one and pauses the others. Teasers are muted, looping, playsInline, preload metadata, rendered grayscale with brightness and contrast 1.15.", "measuredFrom": ["src/components/Customers.jsx:50-67", "src/components/Customers.jsx:89", "src/components/Customers.jsx:107"] },
+    { "note": "Click opens a modal dialog with the full video (autoplay, controls). Dialog is portalled to document.body, locks body scroll, closes on Escape, overlay click or the close button, and moves focus to the close button. The last video stays mounted while the dialog exits.", "measuredFrom": ["src/components/Customers.jsx:72-85", "src/components/dialog.jsx:7-20", "src/components/dialog.jsx:38-74", "src/components/Customers.jsx:90-94", "src/components/Customers.jsx:108-114"] },
+    { "note": "Dialog transition (both layers): overlay opacity 0 to 1; content opacity 0, y 8px, scale .96 to opacity 1, y 0, scale 1; 200ms cubic-bezier(.4,0,.2,1); content centred with -50%/-50%. Overlay is bg-black/50.", "measuredFrom": ["src/components/dialog.jsx:22-26", "src/components/dialog.jsx:42-54", "src/components/motion.jsx:7-8"] },
+    { "note": "The play-button chip on each card fades to 80% opacity on hover, 200ms.", "measuredFrom": ["src/components/Customers.jsx:121"] },
+    { "note": "Section sits on a gray-3 background between white sections and carries a top pattern strip.", "measuredFrom": ["src/components/Customers.jsx:97"] }
+  ],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "label": { "type": "string", "required": true, "maxWords": 4, "note": "Eyebrow label with a Heart icon. Observed 3 words.", "measuredFrom": ["src/components/Customers.jsx:98"] },
+      "headline": { "type": "richtext-inline", "required": true, "maxWords": 10, "note": "Plain lead-in plus a bold tail. Observed 8 words.", "measuredFrom": ["src/components/Customers.jsx:99-101"] },
+      "testimonials": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 3,
+        "note": "Observed 3 cards. Below md they become a scroll-snap carousel.",
+        "items": {
+          "type": "object",
+          "fields": {
+            "teaserVideo": { "type": "assetRef", "required": true, "assetRole": "testimonial-video", "note": "Short muted looping teaser." },
+            "fullVideo": { "type": "assetRef", "required": true, "assetRole": "testimonial-video", "note": "Full video shown in the dialog." },
+            "companyLogo": { "type": "assetRef", "required": true, "assetRole": "customer-logo", "note": "Inline SVG on the video. One observed logo is an investor (Khosla Ventures), whose role is investor-logo; both are real third-party trademarks and must not be redrawn." },
+            "quote": { "type": "string", "required": true, "maxWords": 18, "note": "Observed 13 to 15 words." },
+            "name": { "type": "string", "required": true, "maxWords": 1, "note": "First name only. Real person; do not invent." },
+            "role": { "type": "string", "required": true, "maxWords": 5, "note": "Title, company. Observed up to 5 words." }
+          }
+        },
+        "measuredFrom": ["src/components/Customers.jsx:21-38", "src/components/Customers.jsx:105-138"]
+      },
+      "press": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "maxItems": 5,
+        "note": "As seen on row. Each logo links to a real article opened in a new tab. Observed 5.",
+        "items": {
+          "type": "object",
+          "fields": {
+            "logo": { "type": "assetRef", "required": true, "assetRole": "press-logo" },
+            "widthPx": { "type": "number", "required": true, "note": "Rendered width at 1440, observed 101-172." },
+            "alt": { "type": "string", "required": true, "maxWords": 5 },
+            "href": { "type": "string", "required": true, "kind": "route-or-url" }
+          }
+        },
+        "measuredFrom": ["src/components/Customers.jsx:42-47", "src/components/Customers.jsx:143-154"]
+      },
+      "pressCaption": { "type": "string", "required": true, "maxWords": 3, "note": "Mono label before the press logos. Observed 3 words.", "measuredFrom": ["src/components/Customers.jsx:145"] }
+    }
+  },
+  "mediaFields": [
+    { "field": "testimonials[].teaserVideo", "assetRole": "testimonial-video" },
+    { "field": "testimonials[].fullVideo", "assetRole": "testimonial-video" },
+    { "field": "testimonials[].companyLogo", "assetRole": "customer-logo" },
+    { "field": "press[].logo", "assetRole": "press-logo" }
+  ],
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "dialog-overlay",
+    "reducedMotionFallback": "instant",
+    "reducedMotionNote": "Proposal only: the code has no prefers-reduced-motion handling. Proposed: dialog appears without transform.",
+    "durationMs": 200,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "measuredFrom": ["src/components/dialog.jsx:22-26", "src/components/dialog.jsx:42-54", "src/components/motion.jsx:7-8"]
+  },
+  "additionalMotion": [
+    {
+      "context": "card teaser: only the hovered (or default first) card plays its muted looping teaser, others paused",
+      "pattern": "hover-preview-video",
+      "reducedMotionFallback": "first-frame",
+      "reducedMotionNote": "Proposal only; no prefers-reduced-motion handling exists. Proposed: do not autoplay, show the first frame.",
+      "measuredFrom": ["src/components/Customers.jsx:50-58", "src/components/Customers.jsx:89", "src/components/Customers.jsx:107"]
+    },
+    {
+      "context": "play-chip opacity to 80% on hover",
+      "pattern": "hover-color-transition",
+      "reducedMotionFallback": "instant",
+      "reducedMotionNote": "Proposal only.",
+      "durationMs": 200,
+      "measuredFrom": ["src/components/Customers.jsx:121"]
+    }
+  ],
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "cards become a horizontal scroll-snap carousel, each card 75vw wide (55vw from sm), min height 440 (404 from sm)", "measuredFrom": ["src/components/ui.jsx:17-19", "src/components/Customers.jsx:107"] },
+      { "at": "md", "change": "cards sit in a flex row, equal width, full height", "measuredFrom": ["src/components/ui.jsx:17-19", "src/components/Customers.jsx:107"] },
+      { "at": "xl", "change": "card min height 470; grid spans 22 columns starting at column 2", "measuredFrom": ["src/components/Customers.jsx:103", "src/components/Customers.jsx:107"] },
+      { "at": "below md (press row)", "change": "press logos scale .85; row stacks (caption above logos), then side by side from lg", "measuredFrom": ["src/components/Customers.jsx:144", "src/components/Customers.jsx:146"] },
+      { "at": "lg", "change": "company logo on the video grows (28 to 35px, 16 to 20px, 18 to 22px high)", "measuredFrom": ["src/components/Customers.jsx:24", "src/components/Customers.jsx:30", "src/components/Customers.jsx:36"] }
+    ]
+  },
+  "usedOnRoutes": ["/", "*"],
+  "tokensUsed": ["gray.3", "text.strong", "display-lg", "display-xs", "overlay-enter", "base-200", "standard", "diffused", "black", "white"]
+}

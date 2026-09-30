@@ -1,0 +1,1600 @@
+{
+  "version": "1.0.0",
+  "description": "Page templates for the Reevo clone. Each node is a section id from sections/. shell.navbar and shell.footer are rendered globally in src/App.jsx:76 and :92 (outside <Routes>) and are listed explicitly as first and last node of every template.",
+  "measuredFrom": [
+    "src/App.jsx:73-106"
+  ],
+  "nodeFields": {
+    "section": "section id",
+    "required": "must appear",
+    "repeatable": "may appear more than once (see maxCount)",
+    "maxCount": "optional cap for repeatable nodes",
+    "group": "nodes sharing a group form an order-free pool between fixed prefix and suffix",
+    "condition": "data state under which an optional node appears",
+    "nestedIn": "node is rendered as children of another node but listed flat",
+    "note": "free text, not enforced"
+  },
+  "instanceFields": {
+    "routes": "concrete route patterns that render exactly this sequence",
+    "sequence": "the real, expanded section sequence with `tone` (white|tinted|dark background, verified from source classes) and, for accordion-showcase, `flip` (alternate side)",
+    "measuredFrom": "citations"
+  },
+  "heroless": [
+    "form-page",
+    "doc-page",
+    "changelog",
+    "blog-post"
+  ],
+  "herolessEvidence": {
+    "form-page": {
+      "reason": "h1 sits inside the form section",
+      "measuredFrom": [
+        "src/pages/GetStarted.jsx:16",
+        "src/pages/Partners.jsx:36",
+        "src/pages/StartupsApply.jsx:47"
+      ]
+    },
+    "doc-page": {
+      "reason": "h1 sits inside DocPage section",
+      "measuredFrom": [
+        "src/components/blog/DocPage.jsx:13"
+      ]
+    },
+    "changelog": {
+      "reason": "same DocPage shell, prose={false}",
+      "measuredFrom": [
+        "src/pages/ReleaseNotes.jsx:103",
+        "src/components/blog/DocPage.jsx:6-14"
+      ]
+    },
+    "blog-post": {
+      "reason": "title and cover live inside the article",
+      "measuredFrom": [
+        "src/pages/BlogPost.jsx:29"
+      ]
+    }
+  },
+  "templates": [
+    {
+      "id": "home",
+      "purpose": "Convert first-time visitors: state the category, prove it with logos and customers, argue the problem/solution, then ask for a demo.",
+      "measuredFrom": [
+        "src/pages/Home.jsx:13-23",
+        "src/App.jsx:79",
+        "src/App.jsx:102"
+      ],
+      "note": "The `*` catch-all renders the identical <Home/> component (src/App.jsx:102).",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.marketing-video",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "social-proof.logo-marquee",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.platform-columns",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.dark-problem",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.solution-rows",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "social-proof.customer-video-cards",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "interactive.ask-reevo-carousel",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "social-proof.testimonial",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "conversion.cta-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/",
+            "*"
+          ],
+          "measuredFrom": [
+            "src/pages/Home.jsx:14-22"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.marketing-video",
+              "tone": "white"
+            },
+            {
+              "section": "social-proof.logo-marquee",
+              "tone": "white"
+            },
+            {
+              "section": "content.platform-columns",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.dark-problem",
+              "tone": "dark"
+            },
+            {
+              "section": "content.solution-rows",
+              "tone": "white"
+            },
+            {
+              "section": "social-proof.customer-video-cards",
+              "tone": "tinted"
+            },
+            {
+              "section": "interactive.ask-reevo-carousel",
+              "tone": "white"
+            },
+            {
+              "section": "social-proof.testimonial",
+              "tone": "tinted"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "company-about",
+      "purpose": "Tell the company story: mission, an immersive scroll narrative, the team and the investors.",
+      "measuredFrom": [
+        "src/pages/About.jsx:113-178",
+        "src/App.jsx:80"
+      ],
+      "note": "No CTA band. team-cards and logo-grid are inline Section blocks (src/pages/About.jsx:139-177).",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.eyebrow-title-banner",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.lead-statement",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "interactive.scroll-story",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.team-cards",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "social-proof.logo-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/about"
+          ],
+          "measuredFrom": [
+            "src/pages/About.jsx:113-178"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.eyebrow-title-banner",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.lead-statement",
+              "tone": "white"
+            },
+            {
+              "section": "interactive.scroll-story",
+              "tone": "dark"
+            },
+            {
+              "section": "content.team-cards",
+              "tone": "white"
+            },
+            {
+              "section": "social-proof.logo-grid",
+              "tone": "tinted"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "company-careers",
+      "purpose": "Recruit: values, culture proof and a live job board.",
+      "measuredFrom": [
+        "src/pages/Careers.jsx:77-214",
+        "src/App.jsx:85"
+      ],
+      "note": "No CTA band.",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.eyebrow-title-banner",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.lead-statement",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.principle-rows",
+          "required": true,
+          "repeatable": false,
+          "note": "first use: 'How we operate' (Careers.jsx:122-135)"
+        },
+        {
+          "section": "social-proof.logo-grid",
+          "required": true,
+          "repeatable": false,
+          "note": "dark experience-logos variant (Careers.jsx:137-159)"
+        },
+        {
+          "section": "content.principle-rows",
+          "required": true,
+          "repeatable": false,
+          "note": "second use: 'Our core values' (Careers.jsx:161-178); same section id, non-adjacent"
+        },
+        {
+          "section": "content.job-board",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/careers"
+          ],
+          "measuredFrom": [
+            "src/pages/Careers.jsx:77-214"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.eyebrow-title-banner",
+              "tone": "white"
+            },
+            {
+              "section": "content.lead-statement",
+              "tone": "white"
+            },
+            {
+              "section": "content.principle-rows",
+              "tone": "tinted"
+            },
+            {
+              "section": "social-proof.logo-grid",
+              "tone": "dark"
+            },
+            {
+              "section": "content.principle-rows",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.job-board",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "company-startups",
+      "purpose": "Explain and qualify applicants for the startup program, ending with the application link.",
+      "measuredFrom": [
+        "src/pages/Startups.jsx:103-185",
+        "src/App.jsx:99"
+      ],
+      "note": "No CTA band; the qualification section carries the apply CTA (Startups.jsx:166).",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.title-cta",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "media.photo-pattern-collage",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.platform-columns",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "social-proof.testimonial",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.qualification-terms",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/startups"
+          ],
+          "measuredFrom": [
+            "src/pages/Startups.jsx:103-185"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.title-cta",
+              "tone": "white"
+            },
+            {
+              "section": "media.photo-pattern-collage",
+              "tone": "white"
+            },
+            {
+              "section": "content.platform-columns",
+              "tone": "white"
+            },
+            {
+              "section": "social-proof.testimonial",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.qualification-terms",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apps-mobile",
+      "purpose": "Sell the mobile app: notification-stack hero, three alternating feature showcases, timeline, photo band, FAQ, download CTA.",
+      "measuredFrom": [
+        "src/pages/AppsMobile.jsx:78-87",
+        "src/pages/AppsMobile.jsx:11-70",
+        "src/App.jsx:81"
+      ],
+      "note": "flip: false for entries 1 and 3, true for entry 2 (`imageRight`, AppsMobile.jsx:33). The photo band is a gray-10 band with a white bottom slab (MobileSections.jsx:441-444), so the FAQ after it is white.",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.mobile-app",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "interactive.accordion-showcase",
+          "required": true,
+          "repeatable": true,
+          "maxCount": 3,
+          "note": "rendered from a SECTIONS array (AppsMobile.jsx:81-83); observed count 3"
+        },
+        {
+          "section": "content.event-timeline",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "media.photo-pattern-collage",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq-accordion",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "conversion.cta-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/apps/mobile"
+          ],
+          "measuredFrom": [
+            "src/pages/AppsMobile.jsx:78-87"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.mobile-app",
+              "tone": "white"
+            },
+            {
+              "section": "interactive.accordion-showcase",
+              "tone": "white",
+              "flip": false
+            },
+            {
+              "section": "interactive.accordion-showcase",
+              "tone": "white",
+              "flip": true
+            },
+            {
+              "section": "interactive.accordion-showcase",
+              "tone": "white",
+              "flip": false
+            },
+            {
+              "section": "content.event-timeline",
+              "tone": "dark"
+            },
+            {
+              "section": "media.photo-pattern-collage",
+              "tone": "dark"
+            },
+            {
+              "section": "content.faq-accordion",
+              "tone": "white"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "product-detail",
+      "purpose": "Explain one of the five product pillars: tabbed nav, straddle hero, feature grid, data-driven body, FAQ and CTA.",
+      "measuredFrom": [
+        "src/components/products/ProductPage.jsx:26-34",
+        "src/components/products/data.js:24-206",
+        "src/pages/ProductFind.jsx:1-5",
+        "src/App.jsx:93-97"
+      ],
+      "bodyGrammar": {
+        "group": "data-driven-body",
+        "description": "Between content.product-features and content.faq-accordion the body is an ordered list read from products/data.js `sections[]` (ProductPage.jsx:39-42). The relative order of the group's nodes differs per route, so the group is an unordered pool bounded by each node's required/maxCount; the fixed prefix (navbar..product-features) and fixed suffix (faq, cta, footer) keep their order.",
+        "measuredFrom": [
+          "src/components/products/ProductPage.jsx:30-32",
+          "src/components/products/data.js:24-49,69-91,107-122,139-162,183-206"
+        ]
+      },
+      "note": "Five 5-line page files each render <ProductPage slug=.../> (ProductFind.jsx:1-5).",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "nav.product-tabs",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.product",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.product-features",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "interactive.accordion-showcase",
+          "required": true,
+          "repeatable": true,
+          "maxCount": 2,
+          "group": "data-driven-body",
+          "note": "first accordion is always dark on all 5 pages"
+        },
+        {
+          "section": "social-proof.testimonial",
+          "required": false,
+          "repeatable": false,
+          "group": "data-driven-body",
+          "condition": "present on find, connect, sell, manage; absent on foundation"
+        },
+        {
+          "section": "content.product-cards",
+          "required": false,
+          "repeatable": false,
+          "group": "data-driven-body",
+          "condition": "present on find, connect, manage, foundation; absent on sell"
+        },
+        {
+          "section": "content.faq-accordion",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "conversion.cta-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/products/find",
+            "/products/connect"
+          ],
+          "measuredFrom": [
+            "src/components/products/data.js:24-49 (find), 69-91 (connect)"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "nav.product-tabs",
+              "tone": "white"
+            },
+            {
+              "section": "hero.product",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.product-features",
+              "tone": "white"
+            },
+            {
+              "section": "interactive.accordion-showcase",
+              "tone": "dark",
+              "flip": false
+            },
+            {
+              "section": "social-proof.testimonial",
+              "tone": "tinted"
+            },
+            {
+              "section": "interactive.accordion-showcase",
+              "tone": "white",
+              "flip": true
+            },
+            {
+              "section": "content.product-cards",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.faq-accordion",
+              "tone": "white"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        },
+        {
+          "routes": [
+            "/products/sell"
+          ],
+          "measuredFrom": [
+            "src/components/products/data.js:107-122"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "nav.product-tabs",
+              "tone": "white"
+            },
+            {
+              "section": "hero.product",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.product-features",
+              "tone": "white"
+            },
+            {
+              "section": "interactive.accordion-showcase",
+              "tone": "dark",
+              "flip": false
+            },
+            {
+              "section": "social-proof.testimonial",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.faq-accordion",
+              "tone": "white"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        },
+        {
+          "routes": [
+            "/products/manage"
+          ],
+          "measuredFrom": [
+            "src/components/products/data.js:139-162"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "nav.product-tabs",
+              "tone": "white"
+            },
+            {
+              "section": "hero.product",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.product-features",
+              "tone": "white"
+            },
+            {
+              "section": "interactive.accordion-showcase",
+              "tone": "dark",
+              "flip": false
+            },
+            {
+              "section": "content.product-cards",
+              "tone": "dark"
+            },
+            {
+              "section": "social-proof.testimonial",
+              "tone": "tinted"
+            },
+            {
+              "section": "interactive.accordion-showcase",
+              "tone": "white",
+              "flip": false
+            },
+            {
+              "section": "content.faq-accordion",
+              "tone": "white"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        },
+        {
+          "routes": [
+            "/products/foundation"
+          ],
+          "measuredFrom": [
+            "src/components/products/data.js:183-206"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "nav.product-tabs",
+              "tone": "white"
+            },
+            {
+              "section": "hero.product",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.product-features",
+              "tone": "white"
+            },
+            {
+              "section": "interactive.accordion-showcase",
+              "tone": "dark",
+              "flip": false
+            },
+            {
+              "section": "interactive.accordion-showcase",
+              "tone": "white",
+              "flip": true
+            },
+            {
+              "section": "content.product-cards",
+              "tone": "tinted"
+            },
+            {
+              "section": "content.faq-accordion",
+              "tone": "white"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compare-competitor",
+      "purpose": "Position Reevo against one named competitor: quick table, reasons, optional deep feature table.",
+      "measuredFrom": [
+        "src/pages/Compare.jsx:25-31",
+        "src/data/compare.js:8,541",
+        "src/App.jsx:86"
+      ],
+      "note": "Unknown slug silently renders the default competitor (gong).",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.split-image",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "compare.quick-table",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "compare.reasons",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "compare.feature-table",
+          "required": false,
+          "repeatable": false,
+          "condition": "renders only when the competitor data has `features` (Compare.jsx:29): apollo, attio, fireflies, gong, outreach; absent for hubspot and salesforce, which carry callout+accent inside compare.reasons"
+        },
+        {
+          "section": "conversion.cta-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/compare/apollo",
+            "/compare/attio",
+            "/compare/fireflies",
+            "/compare/gong",
+            "/compare/outreach"
+          ],
+          "measuredFrom": [
+            "src/pages/Compare.jsx:25-31"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.split-image",
+              "tone": "white"
+            },
+            {
+              "section": "compare.quick-table",
+              "tone": "tinted"
+            },
+            {
+              "section": "compare.reasons",
+              "tone": "white"
+            },
+            {
+              "section": "compare.feature-table",
+              "tone": "dark"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        },
+        {
+          "routes": [
+            "/compare/hubspot",
+            "/compare/salesforce"
+          ],
+          "measuredFrom": [
+            "src/pages/Compare.jsx:25-31",
+            "src/data/compare.js"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.split-image",
+              "tone": "white"
+            },
+            {
+              "section": "compare.quick-table",
+              "tone": "tinted"
+            },
+            {
+              "section": "compare.reasons",
+              "tone": "white"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blog-post",
+      "purpose": "Read one article; hero-less, the title lives inside the article. Ends with related posts, no CTA band.",
+      "measuredFrom": [
+        "src/pages/BlogPost.jsx:20-100",
+        "src/App.jsx:83"
+      ],
+      "note": "43 concrete slugs share one composition.",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "content.post-article",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.related-posts",
+          "required": false,
+          "repeatable": false,
+          "condition": "BlogPost.jsx:75 renders only when related.length>0; true for all 43 posts",
+          "note": "required:false because the source renders it conditionally; always present in practice"
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/blog/:slug"
+          ],
+          "measuredFrom": [
+            "src/pages/BlogPost.jsx:20-100"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "content.post-article",
+              "tone": "white"
+            },
+            {
+              "section": "content.related-posts",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blog-index",
+      "purpose": "List all posts with a category filter under a page header.",
+      "measuredFrom": [
+        "src/pages/Blog.jsx:40-76",
+        "src/App.jsx:82"
+      ],
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.post-list",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/blog"
+          ],
+          "measuredFrom": [
+            "src/pages/Blog.jsx:40-76"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.page-header",
+              "tone": "white"
+            },
+            {
+              "section": "content.post-list",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "doc-page",
+      "purpose": "Narrow prose document (setup guides); hero-less, the h1 lives inside the section.",
+      "measuredFrom": [
+        "src/pages/ZoomSetup.jsx:5-30",
+        "src/pages/BotForSlackSetup.jsx:5-142",
+        "src/components/blog/DocPage.jsx:6-14",
+        "src/App.jsx:84,88"
+      ],
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "doc.prose-page",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/zoom-setup",
+            "/bot-for-slack-setup"
+          ],
+          "measuredFrom": [
+            "src/pages/ZoomSetup.jsx:5-30",
+            "src/pages/BotForSlackSetup.jsx:5-142"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "doc.prose-page",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "changelog",
+      "purpose": "Reverse-chronological release entries in the doc shell, closing with a CTA band.",
+      "measuredFrom": [
+        "src/pages/ReleaseNotes.jsx:102-111",
+        "src/components/blog/DocPage.jsx:6-14",
+        "src/App.jsx:98"
+      ],
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "doc.prose-page",
+          "required": true,
+          "repeatable": false,
+          "note": "prose={false} shell (ReleaseNotes.jsx:103)"
+        },
+        {
+          "section": "content.release-entry",
+          "required": true,
+          "repeatable": true,
+          "nestedIn": "doc.prose-page",
+          "note": "rendered 99x as children of doc.prose-page (ReleaseNotes.jsx:104-108), listed flat"
+        },
+        {
+          "section": "conversion.cta-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/release-notes"
+          ],
+          "measuredFrom": [
+            "src/pages/ReleaseNotes.jsx:102-111"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "doc.prose-page",
+              "tone": "white"
+            },
+            {
+              "section": "content.release-entry",
+              "tone": "white"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "form-page",
+      "purpose": "A single centred form page (demo request, partner and startup applications); hero-less, the h1 lives inside the form section.",
+      "measuredFrom": [
+        "src/pages/GetStarted.jsx:9-25",
+        "src/pages/Partners.jsx:29-89",
+        "src/pages/StartupsApply.jsx:40-109",
+        "src/App.jsx:87,77,87"
+      ],
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "form.centered-form",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/get-started",
+            "/partners",
+            "/startups-apply-now"
+          ],
+          "measuredFrom": [
+            "src/pages/GetStarted.jsx:9-25",
+            "src/pages/Partners.jsx:29-89",
+            "src/pages/StartupsApply.jsx:40-109"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "form.centered-form",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "purpose": "Present plans and a plan comparison, answer objections, close with a CTA.",
+      "measuredFrom": [
+        "src/pages/Pricing.jsx:10-20",
+        "src/App.jsx:91"
+      ],
+      "note": "Every section is on a white background.",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.pricing-plans",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.plan-compare-table",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq-accordion",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "conversion.cta-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/pricing"
+          ],
+          "measuredFrom": [
+            "src/pages/Pricing.jsx:10-20"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.page-header",
+              "tone": "white"
+            },
+            {
+              "section": "content.pricing-plans",
+              "tone": "white"
+            },
+            {
+              "section": "content.plan-compare-table",
+              "tone": "white"
+            },
+            {
+              "section": "content.faq-accordion",
+              "tone": "white"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "product-tour",
+      "purpose": "Self-guided interactive demo with an FAQ; no CTA band (the demo carries its own callout).",
+      "measuredFrom": [
+        "src/pages/ProductTour.jsx:42-50",
+        "src/App.jsx:92"
+      ],
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.tour-demo",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq-accordion",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/product-tour"
+          ],
+          "measuredFrom": [
+            "src/pages/ProductTour.jsx:42-50"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.page-header",
+              "tone": "white"
+            },
+            {
+              "section": "content.tour-demo",
+              "tone": "white"
+            },
+            {
+              "section": "content.faq-accordion",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "integrations",
+      "purpose": "Show the integration catalogue behind a split hero, then a CTA and a logo-credit footnote.",
+      "measuredFrom": [
+        "src/pages/Integrations.jsx:8-67",
+        "src/App.jsx:88"
+      ],
+      "note": "Only page where something sits between the CTA band and the footer (Integrations.jsx:52-65).",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.split-image",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "interactive.integrations-browser",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "conversion.cta-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.footnote-attribution",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/integrations"
+          ],
+          "measuredFrom": [
+            "src/pages/Integrations.jsx:8-67"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.split-image",
+              "tone": "white"
+            },
+            {
+              "section": "interactive.integrations-browser",
+              "tone": "tinted"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "content.footnote-attribution",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "newsletter",
+      "purpose": "Newsletter sign-up hero followed by the shared CTA band.",
+      "measuredFrom": [
+        "src/pages/Newsletter.jsx:8-54",
+        "src/App.jsx:89"
+      ],
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:76, outside <Routes>"
+        },
+        {
+          "section": "hero.form-split",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "conversion.cta-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false,
+          "note": "rendered globally at src/App.jsx:105, outside <Routes>"
+        }
+      ],
+      "instances": [
+        {
+          "routes": [
+            "/newsletter"
+          ],
+          "measuredFrom": [
+            "src/pages/Newsletter.jsx:8-54"
+          ],
+          "sequence": [
+            {
+              "section": "shell.navbar",
+              "tone": "white"
+            },
+            {
+              "section": "hero.form-split",
+              "tone": "white"
+            },
+            {
+              "section": "conversion.cta-band",
+              "tone": "white"
+            },
+            {
+              "section": "shell.footer",
+              "tone": "white"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

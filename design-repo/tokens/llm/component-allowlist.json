@@ -1,0 +1,949 @@
+{
+  "$description": "Closed list of ids the generator may instantiate. Stage 1b owns this file's id list.",
+  "allowlistVersion": "0.1.0",
+  "components": [
+    {
+      "id": "button",
+      "kind": "primitive",
+      "file": "primitives/button.json",
+      "settableProps": [
+        "href",
+        "variant",
+        "size",
+        "icon",
+        "children"
+      ]
+    },
+    {
+      "id": "carousel-row",
+      "kind": "primitive",
+      "file": "primitives/carousel-row.json",
+      "settableProps": [
+        "items"
+      ]
+    },
+    {
+      "id": "checkbox",
+      "kind": "primitive",
+      "file": "primitives/checkbox.json",
+      "settableProps": [
+        "name",
+        "value",
+        "label"
+      ]
+    },
+    {
+      "id": "collapse",
+      "kind": "primitive",
+      "file": "primitives/collapse.json",
+      "settableProps": [
+        "open",
+        "duration",
+        "easing",
+        "className"
+      ]
+    },
+    {
+      "id": "container",
+      "kind": "primitive",
+      "file": "primitives/container.json",
+      "settableProps": [
+        "className"
+      ]
+    },
+    {
+      "id": "eyebrow",
+      "kind": "primitive",
+      "file": "primitives/eyebrow.json",
+      "settableProps": [
+        "as",
+        "className"
+      ]
+    },
+    {
+      "id": "feature-chip",
+      "kind": "primitive",
+      "file": "primitives/feature-chip.json",
+      "settableProps": [
+        "icon",
+        "color"
+      ]
+    },
+    {
+      "id": "form-field",
+      "kind": "primitive",
+      "file": "primitives/form-field.json",
+      "settableProps": [
+        "id",
+        "label",
+        "children"
+      ]
+    },
+    {
+      "id": "grid",
+      "kind": "primitive",
+      "file": "primitives/grid.json",
+      "settableProps": [
+        "columnSpan"
+      ]
+    },
+    {
+      "id": "headline",
+      "kind": "primitive",
+      "file": "primitives/headline.json",
+      "settableProps": [
+        "children",
+        "lede"
+      ]
+    },
+    {
+      "id": "icon",
+      "kind": "primitive",
+      "file": "primitives/icon.json",
+      "settableProps": [
+        "name",
+        "size"
+      ]
+    },
+    {
+      "id": "inline-link",
+      "kind": "primitive",
+      "file": "primitives/inline-link.json",
+      "settableProps": [
+        "href",
+        "children"
+      ]
+    },
+    {
+      "id": "inline-svg",
+      "kind": "primitive",
+      "file": "primitives/inline-svg.json",
+      "settableProps": [
+        "viewBox",
+        "paths",
+        "evenOddFirst",
+        "className",
+        "label"
+      ]
+    },
+    {
+      "id": "input",
+      "kind": "primitive",
+      "file": "primitives/input.json",
+      "settableProps": [
+        "className",
+        "type"
+      ]
+    },
+    {
+      "id": "label",
+      "kind": "primitive",
+      "file": "primitives/label.json",
+      "settableProps": [
+        "htmlFor",
+        "as",
+        "children"
+      ]
+    },
+    {
+      "id": "lead-paragraph",
+      "kind": "primitive",
+      "file": "primitives/lead-paragraph.json",
+      "settableProps": [
+        "col",
+        "className"
+      ]
+    },
+    {
+      "id": "pattern-strip",
+      "kind": "primitive",
+      "file": "primitives/pattern-strip.json",
+      "settableProps": [
+        "src"
+      ]
+    },
+    {
+      "id": "presence",
+      "kind": "primitive",
+      "file": "primitives/presence.json",
+      "settableProps": [
+        "show",
+        "initial",
+        "animate",
+        "exit",
+        "duration",
+        "easing",
+        "as"
+      ]
+    },
+    {
+      "id": "rich-text",
+      "kind": "primitive",
+      "file": "primitives/rich-text.json",
+      "settableProps": [
+        "as",
+        "html"
+      ]
+    },
+    {
+      "id": "section-label",
+      "kind": "primitive",
+      "file": "primitives/section-label.json",
+      "settableProps": [
+        "icon",
+        "children"
+      ]
+    },
+    {
+      "id": "section-shell",
+      "kind": "primitive",
+      "file": "primitives/section-shell.json",
+      "settableProps": [
+        "id",
+        "className",
+        "pattern",
+        "stack"
+      ]
+    },
+    {
+      "id": "select",
+      "kind": "primitive",
+      "file": "primitives/select.json",
+      "settableProps": [
+        "options",
+        "className"
+      ]
+    },
+    {
+      "id": "submit-button",
+      "kind": "primitive",
+      "file": "primitives/submit-button.json",
+      "settableProps": [
+        "children",
+        "className"
+      ]
+    },
+    {
+      "id": "tag",
+      "kind": "primitive",
+      "file": "primitives/tag.json",
+      "settableProps": [
+        "children",
+        "className"
+      ]
+    },
+    {
+      "id": "textarea",
+      "kind": "primitive",
+      "file": "primitives/textarea.json",
+      "settableProps": [
+        "className"
+      ]
+    },
+    {
+      "id": "widow-control",
+      "kind": "primitive",
+      "file": "primitives/widow-control.json",
+      "settableProps": [
+        "text"
+      ]
+    },
+    {
+      "id": "accordion-item",
+      "kind": "component",
+      "file": "components/accordion-item.json",
+      "settableProps": [
+        "title",
+        "body",
+        "open",
+        "soon"
+      ]
+    },
+    {
+      "id": "author-avatar",
+      "kind": "component",
+      "file": "components/author-avatar.json",
+      "settableProps": [
+        "name",
+        "className"
+      ]
+    },
+    {
+      "id": "callout-banner-card",
+      "kind": "component",
+      "file": "components/callout-banner-card.json",
+      "settableProps": [
+        "image",
+        "title",
+        "body",
+        "ctas"
+      ]
+    },
+    {
+      "id": "dialog-shell",
+      "kind": "component",
+      "file": "components/dialog-shell.json",
+      "settableProps": [
+        "open",
+        "onClose",
+        "title"
+      ]
+    },
+    {
+      "id": "job-row",
+      "kind": "component",
+      "file": "components/job-row.json",
+      "settableProps": [
+        "title",
+        "location",
+        "id"
+      ]
+    },
+    {
+      "id": "marquee-track",
+      "kind": "component",
+      "file": "components/marquee-track.json",
+      "settableProps": [
+        "logos",
+        "speedPxPerSec"
+      ]
+    },
+    {
+      "id": "page-header",
+      "kind": "component",
+      "file": "components/page-header.json",
+      "settableProps": [
+        "label",
+        "title",
+        "lede"
+      ]
+    },
+    {
+      "id": "plan-card",
+      "kind": "component",
+      "file": "components/plan-card.json",
+      "settableProps": [
+        "name",
+        "tagline",
+        "features",
+        "dark",
+        "footer"
+      ]
+    },
+    {
+      "id": "post-card",
+      "kind": "component",
+      "file": "components/post-card.json",
+      "settableProps": [
+        "post",
+        "featured",
+        "dateText"
+      ]
+    },
+    {
+      "id": "product-card",
+      "kind": "component",
+      "file": "components/product-card.json",
+      "settableProps": [
+        "title",
+        "body",
+        "img",
+        "alt",
+        "bgImg",
+        "dark",
+        "light",
+        "wide",
+        "bg"
+      ]
+    },
+    {
+      "id": "quote-card",
+      "kind": "component",
+      "file": "components/quote-card.json",
+      "settableProps": [
+        "photo",
+        "photoAlt",
+        "quote",
+        "name",
+        "role",
+        "cardColor",
+        "quoteColor",
+        "sectionBg",
+        "patternTop",
+        "patternBottom"
+      ]
+    },
+    {
+      "id": "tab-bar",
+      "kind": "component",
+      "file": "components/tab-bar.json",
+      "settableProps": [
+        "active",
+        "dot"
+      ]
+    },
+    {
+      "id": "video-testimonial-card",
+      "kind": "component",
+      "file": "components/video-testimonial-card.json",
+      "settableProps": [
+        "video",
+        "Logo",
+        "quote",
+        "name",
+        "role"
+      ]
+    },
+    {
+      "id": "shell.navbar",
+      "kind": "section",
+      "file": "sections/shell.navbar.json",
+      "settableProps": [
+        "wordmark",
+        "primaryLinks",
+        "menus",
+        "platformProducts",
+        "worksWith",
+        "companyLinks",
+        "resourceLinks",
+        "trustLabels",
+        "loginCta",
+        "primaryCta"
+      ]
+    },
+    {
+      "id": "shell.footer",
+      "kind": "section",
+      "file": "sections/shell.footer.json",
+      "settableProps": [
+        "mark",
+        "groups",
+        "legalLinks",
+        "privacyChoiceLabel",
+        "copyright",
+        "complianceChips"
+      ]
+    },
+    {
+      "id": "hero.marketing-video",
+      "kind": "section",
+      "file": "sections/hero.marketing-video.json",
+      "settableProps": [
+        "tag",
+        "headline",
+        "subheadline",
+        "ctas",
+        "teaserVideo",
+        "teaserPoster",
+        "fullVideo"
+      ]
+    },
+    {
+      "id": "social-proof.logo-marquee",
+      "kind": "section",
+      "file": "sections/social-proof.logo-marquee.json",
+      "settableProps": [
+        "caption",
+        "logos"
+      ]
+    },
+    {
+      "id": "content.platform-columns",
+      "kind": "section",
+      "file": "sections/content.platform-columns.json",
+      "settableProps": [
+        "variant",
+        "label",
+        "headline",
+        "lede",
+        "columns",
+        "foundationBand",
+        "patternStrip"
+      ]
+    },
+    {
+      "id": "content.dark-problem",
+      "kind": "section",
+      "file": "sections/content.dark-problem.json",
+      "settableProps": [
+        "label",
+        "headline",
+        "lede",
+        "cards",
+        "patternStrip"
+      ]
+    },
+    {
+      "id": "content.solution-rows",
+      "kind": "section",
+      "file": "sections/content.solution-rows.json",
+      "settableProps": [
+        "label",
+        "headline",
+        "lede",
+        "rows",
+        "ctaLabel",
+        "patternStrip"
+      ]
+    },
+    {
+      "id": "social-proof.customer-video-cards",
+      "kind": "section",
+      "file": "sections/social-proof.customer-video-cards.json",
+      "settableProps": [
+        "label",
+        "headline",
+        "testimonials",
+        "press",
+        "pressCaption"
+      ]
+    },
+    {
+      "id": "interactive.ask-reevo-carousel",
+      "kind": "section",
+      "file": "sections/interactive.ask-reevo-carousel.json",
+      "settableProps": [
+        "label",
+        "headline",
+        "intro",
+        "subhead",
+        "detail",
+        "slides",
+        "patternStrip"
+      ]
+    },
+    {
+      "id": "social-proof.testimonial",
+      "kind": "section",
+      "file": "sections/social-proof.testimonial.json",
+      "settableProps": [
+        "variant",
+        "photo",
+        "photoAlt",
+        "quote",
+        "name",
+        "role",
+        "cardColor",
+        "sectionBackground",
+        "patternStrips"
+      ]
+    },
+    {
+      "id": "conversion.cta-band",
+      "kind": "section",
+      "file": "sections/conversion.cta-band.json",
+      "settableProps": [
+        "headline",
+        "lede",
+        "ctas"
+      ]
+    },
+    {
+      "id": "nav.product-tabs",
+      "kind": "section",
+      "file": "sections/nav.product-tabs.json",
+      "settableProps": [
+        "active",
+        "dot",
+        "tabs"
+      ]
+    },
+    {
+      "id": "hero.product",
+      "kind": "section",
+      "file": "sections/hero.product.json",
+      "settableProps": [
+        "headline",
+        "lede",
+        "screenshot",
+        "screenshotAlt",
+        "pattern"
+      ]
+    },
+    {
+      "id": "content.product-features",
+      "kind": "section",
+      "file": "sections/content.product-features.json",
+      "settableProps": [
+        "title",
+        "iconBackground",
+        "items",
+        "cta"
+      ]
+    },
+    {
+      "id": "interactive.accordion-showcase",
+      "kind": "section",
+      "file": "sections/interactive.accordion-showcase.json",
+      "settableProps": [
+        "theme",
+        "imageSide",
+        "removeBottomPadding",
+        "topDivider",
+        "headline",
+        "lede",
+        "items"
+      ]
+    },
+    {
+      "id": "content.product-cards",
+      "kind": "section",
+      "file": "sections/content.product-cards.json",
+      "settableProps": [
+        "dark",
+        "headline",
+        "lede",
+        "cards"
+      ]
+    },
+    {
+      "id": "content.faq-accordion",
+      "kind": "section",
+      "file": "sections/content.faq-accordion.json",
+      "settableProps": [
+        "openMode",
+        "removeTopPadding",
+        "items"
+      ]
+    },
+    {
+      "id": "hero.page-header",
+      "kind": "section",
+      "file": "sections/hero.page-header.json",
+      "settableProps": [
+        "label",
+        "title",
+        "lede"
+      ]
+    },
+    {
+      "id": "content.pricing-plans",
+      "kind": "section",
+      "file": "sections/content.pricing-plans.json",
+      "settableProps": [
+        "plans",
+        "emailPlaceholder",
+        "submitLabel",
+        "comparisonLinkLabel",
+        "startupBanner"
+      ]
+    },
+    {
+      "id": "content.plan-compare-table",
+      "kind": "section",
+      "file": "sections/content.plan-compare-table.json",
+      "settableProps": [
+        "heading",
+        "planColumns",
+        "groups",
+        "footnote"
+      ]
+    },
+    {
+      "id": "content.tour-demo",
+      "kind": "section",
+      "file": "sections/content.tour-demo.json",
+      "settableProps": [
+        "teaserVideo",
+        "openButtonLabel",
+        "dialogTitle",
+        "demoDesktop",
+        "demoMobile",
+        "callout"
+      ]
+    },
+    {
+      "id": "hero.split-image",
+      "kind": "section",
+      "file": "sections/hero.split-image.json",
+      "settableProps": [
+        "eyebrow",
+        "headline",
+        "body",
+        "image",
+        "imageAlt",
+        "ctas"
+      ]
+    },
+    {
+      "id": "interactive.integrations-browser",
+      "kind": "section",
+      "file": "sections/interactive.integrations-browser.json",
+      "settableProps": [
+        "searchPlaceholderTemplate",
+        "pillars",
+        "integrations"
+      ]
+    },
+    {
+      "id": "content.footnote-attribution",
+      "kind": "section",
+      "file": "sections/content.footnote-attribution.json",
+      "settableProps": [
+        "text",
+        "link"
+      ]
+    },
+    {
+      "id": "compare.quick-table",
+      "kind": "section",
+      "file": "sections/compare.quick-table.json",
+      "settableProps": [
+        "competitorName",
+        "competitorLogo",
+        "rows"
+      ]
+    },
+    {
+      "id": "compare.reasons",
+      "kind": "section",
+      "file": "sections/compare.reasons.json",
+      "settableProps": [
+        "headline",
+        "intro",
+        "reasons",
+        "accent",
+        "callout"
+      ]
+    },
+    {
+      "id": "compare.feature-table",
+      "kind": "section",
+      "file": "sections/compare.feature-table.json",
+      "settableProps": [
+        "competitorName",
+        "competitorLogo",
+        "initialCategoryCount",
+        "showMoreLabel",
+        "categories"
+      ]
+    },
+    {
+      "id": "hero.eyebrow-title-banner",
+      "kind": "section",
+      "file": "sections/hero.eyebrow-title-banner.json",
+      "settableProps": [
+        "eyebrow",
+        "statement",
+        "banner",
+        "backdropColor"
+      ]
+    },
+    {
+      "id": "content.lead-statement",
+      "kind": "section",
+      "file": "sections/content.lead-statement.json",
+      "settableProps": [
+        "variant",
+        "label",
+        "lead",
+        "ctas"
+      ]
+    },
+    {
+      "id": "interactive.scroll-story",
+      "kind": "section",
+      "file": "sections/interactive.scroll-story.json",
+      "settableProps": [
+        "statements",
+        "patternStrip"
+      ]
+    },
+    {
+      "id": "content.team-cards",
+      "kind": "section",
+      "file": "sections/content.team-cards.json",
+      "settableProps": [
+        "label",
+        "lead",
+        "members",
+        "patternStrip"
+      ]
+    },
+    {
+      "id": "social-proof.logo-grid",
+      "kind": "section",
+      "file": "sections/social-proof.logo-grid.json",
+      "settableProps": [
+        "variant",
+        "label",
+        "lead",
+        "investorLogos",
+        "employerLogos",
+        "patternStrip"
+      ]
+    },
+    {
+      "id": "content.principle-rows",
+      "kind": "section",
+      "file": "sections/content.principle-rows.json",
+      "settableProps": [
+        "variant",
+        "label",
+        "lead",
+        "rows",
+        "patternStrip"
+      ]
+    },
+    {
+      "id": "content.job-board",
+      "kind": "section",
+      "file": "sections/content.job-board.json",
+      "settableProps": [
+        "label",
+        "lead",
+        "teamsLabel",
+        "teams",
+        "boardBaseUrl"
+      ]
+    },
+    {
+      "id": "hero.title-cta",
+      "kind": "section",
+      "file": "sections/hero.title-cta.json",
+      "settableProps": [
+        "headline",
+        "lede",
+        "ctas"
+      ]
+    },
+    {
+      "id": "media.photo-pattern-collage",
+      "kind": "section",
+      "file": "sections/media.photo-pattern-collage.json",
+      "settableProps": [
+        "photo",
+        "photoAlt",
+        "pattern",
+        "bandColor"
+      ]
+    },
+    {
+      "id": "content.qualification-terms",
+      "kind": "section",
+      "file": "sections/content.qualification-terms.json",
+      "settableProps": [
+        "heading",
+        "criteria",
+        "criteriaNote",
+        "investors",
+        "cta",
+        "termsLabel",
+        "terms"
+      ]
+    },
+    {
+      "id": "form.centered-form",
+      "kind": "section",
+      "file": "sections/form.centered-form.json",
+      "settableProps": [
+        "heading",
+        "intro",
+        "fields",
+        "sectionHeadings",
+        "submitLabel",
+        "consentNote",
+        "schedulerFrame"
+      ]
+    },
+    {
+      "id": "hero.form-split",
+      "kind": "section",
+      "file": "sections/hero.form-split.json",
+      "settableProps": [
+        "headline",
+        "lede",
+        "emailPlaceholder",
+        "submitLabel",
+        "consent",
+        "image",
+        "imageAlt"
+      ]
+    },
+    {
+      "id": "doc.prose-page",
+      "kind": "section",
+      "file": "sections/doc.prose-page.json",
+      "settableProps": [
+        "title",
+        "body"
+      ]
+    },
+    {
+      "id": "content.release-entry",
+      "kind": "section",
+      "file": "sections/content.release-entry.json",
+      "settableProps": [
+        "id",
+        "date",
+        "title",
+        "subtitle",
+        "points",
+        "text",
+        "figures"
+      ]
+    },
+    {
+      "id": "hero.mobile-app",
+      "kind": "section",
+      "file": "sections/hero.mobile-app.json",
+      "settableProps": [
+        "tag",
+        "headline",
+        "body",
+        "ctas",
+        "image",
+        "notifications",
+        "downloadDialog"
+      ]
+    },
+    {
+      "id": "content.event-timeline",
+      "kind": "section",
+      "file": "sections/content.event-timeline.json",
+      "settableProps": [
+        "headline",
+        "lede",
+        "entries"
+      ]
+    },
+    {
+      "id": "content.post-list",
+      "kind": "section",
+      "file": "sections/content.post-list.json",
+      "settableProps": [
+        "categories",
+        "posts",
+        "authorAvatars"
+      ]
+    },
+    {
+      "id": "content.post-article",
+      "kind": "section",
+      "file": "sections/content.post-article.json",
+      "settableProps": [
+        "category",
+        "title",
+        "excerpt",
+        "author",
+        "authorPortrait",
+        "date",
+        "cover",
+        "takeaways",
+        "body",
+        "inlineCta",
+        "newsletter"
+      ]
+    },
+    {
+      "id": "content.related-posts",
+      "kind": "section",
+      "file": "sections/content.related-posts.json",
+      "settableProps": [
+        "heading",
+        "viewAll",
+        "posts"
+      ]
+    }
+  ]
+}

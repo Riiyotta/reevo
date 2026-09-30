@@ -1,0 +1,43 @@
+{
+  "id": "hero.eyebrow-title-banner",
+  "kind": "section",
+  "category": "hero",
+  "purpose": "Company-page opener: a mono eyebrow (the h1), a large all-caps statement and a full-width decorative banner (a pattern strip or a wide pattern image) that gives the page a brand-colour anchor before the story content.",
+  "measuredFrom": ["src/pages/About.jsx:38-75", "src/pages/Careers.jsx:78-102", "src/pages/About.jsx:114"],
+  "variants": [
+    { "name": "teal-pattern-strip", "description": "About: a teal-6 backdrop fills the whole header (full bleed below xl, container width at xl) behind the eyebrow, a two-line statement and a right-aligned tiled pattern strip 76px tall (152px from md). The statement is a paragraph, not a heading.", "measuredFrom": ["src/pages/About.jsx:38-75"] },
+    { "name": "full-width-image", "description": "Careers: eyebrow and h2 statement on a plain background, then a 1400 by 752 pattern image that overlaps the next section via negative bottom margins.", "measuredFrom": ["src/pages/Careers.jsx:78-102"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "eyebrow": { "type": "string", "required": true, "maxWords": 2, "note": "Rendered as h1.", "measuredFrom": ["src/pages/About.jsx:57-59", "src/pages/Careers.jsx:82-84"] },
+      "statement": { "type": "string", "required": true, "maxWords": 10, "note": "Large all-caps heading-font statement. Observed 9 words (About, two lines) and 5 words (Careers).", "measuredFrom": ["src/pages/About.jsx:60-64", "src/pages/Careers.jsx:85-87"] },
+      "banner": { "type": "assetRef", "required": true, "assetRole": "decorative-pattern", "note": "About: tiled PNG used as a CSS background image. Careers: 1400 by 752 jpg with empty alt.", "measuredFrom": ["src/pages/About.jsx:67-69", "src/pages/Careers.jsx:91-96"] },
+      "backdropColor": { "type": "enum", "required": false, "values": ["teal-6"], "note": "teal-pattern-strip variant only.", "measuredFrom": ["src/pages/About.jsx:47"] }
+    }
+  },
+  "mediaFields": [ { "field": "banner", "assetRole": "decorative-pattern" } ],
+  "behaviour": [
+    { "note": "Semantic difference between variants: About's statement is a <p>, Careers' is an <h2>. Both keep the eyebrow as the h1.", "measuredFrom": ["src/pages/About.jsx:57-60", "src/pages/Careers.jsx:82-85"] },
+    { "note": "Both are page-local components (About defines its own Hero function), not shared files.", "measuredFrom": ["src/pages/About.jsx:38", "src/pages/Careers.jsx:75-102"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Static.",
+    "measuredFrom": ["src/pages/About.jsx:38-75", "src/pages/Careers.jsx:78-102"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to xl", "change": "About: top padding 40 / 48 (md) / 56 (xl); Careers: vertical padding 40 / 48 / 56 the same way", "measuredFrom": ["src/pages/About.jsx:53", "src/pages/Careers.jsx:78"] },
+      { "at": "md and up", "change": "About pattern strip height doubles from 76px to 152px", "measuredFrom": ["src/pages/About.jsx:68"] },
+      { "at": "below xl", "change": "About teal backdrop and pattern strip bleed to the viewport edge (negative side margins); at xl they align to the container", "measuredFrom": ["src/pages/About.jsx:47", "src/pages/About.jsx:66"] },
+      { "at": "sm to xl", "change": "Careers image aspect 1400/752; it overlaps the next section by 40 / 48 (md) / 56 (lg) / 64 (xl) px with top margin 4 / 8 (sm) / 12 (lg) / 16 (xl)", "measuredFrom": ["src/pages/Careers.jsx:90"] }
+    ]
+  },
+  "usedOnRoutes": ["/about", "/careers"],
+  "tokensUsed": ["color.teal.6", "fontFamily.mono", "fontFamily.heading", "fontSize.display-3xl", "semanticColor.text.strong", "semanticTypography.eyebrow"]
+}

@@ -1,0 +1,34 @@
+{
+  "$description": "Screens. NOT Tailwind defaults. Media queries in the original: min-width 600/840/1140/1380 (and 96rem).",
+  "category": "breakpoint",
+  "breakpoint": {
+    "sm": {
+      "value": "600px",
+      "type": "breakpoint",
+      "measuredFrom": "tailwind.config.js:10"
+    },
+    "md": {
+      "value": "840px",
+      "type": "breakpoint",
+      "note": "tablet 768 is BELOW md",
+      "measuredFrom": "tailwind.config.js:10"
+    },
+    "lg": {
+      "value": "1140px",
+      "type": "breakpoint",
+      "note": "desktop nav appears",
+      "measuredFrom": "tailwind.config.js:10"
+    },
+    "xl": {
+      "value": "1380px",
+      "type": "breakpoint",
+      "measuredFrom": "tailwind.config.js:10"
+    },
+    "2xl": {
+      "value": "1536px",
+      "type": "breakpoint",
+      "note": "= 96rem",
+      "measuredFrom": "tailwind.config.js:10"
+    }
+  }
+}

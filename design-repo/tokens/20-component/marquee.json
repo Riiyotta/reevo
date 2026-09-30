@@ -1,0 +1,30 @@
+{
+  "$description": "Customer logo marquee.",
+  "category": "component",
+  "marquee": {
+    "speed": {
+      "value": "{speed.marquee-px-per-second}",
+      "measuredFrom": "src/components/LogoMarquee.jsx:7"
+    },
+    "keyframe-duration-measured": {
+      "value": "51.8333s",
+      "measuredFrom": "tailwind.config.js:89"
+    },
+    "edge-mask": {
+      "value": "linear-gradient fade, 10% each horizontal edge (.mask-x-from-90)",
+      "measuredFrom": "src/index.css:63-67"
+    },
+    "pause": {
+      "value": "animation-play-state paused on hover / active",
+      "measuredFrom": "src/index.css:74-75"
+    },
+    "item-margin-x": {
+      "value": "20px base / 24px md / 32px xl (mx-5 md:mx-6 xl:mx-8)",
+      "measuredFrom": "src/components/LogoMarquee.jsx:26"
+    },
+    "logo-scale-mobile": {
+      "value": ".85 below md, 1 at md+",
+      "measuredFrom": "src/components/Customers.jsx:146"
+    }
+  }
+}

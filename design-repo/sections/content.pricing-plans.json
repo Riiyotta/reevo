@@ -1,0 +1,76 @@
+{
+  "id": "content.pricing-plans",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Present the three commercial plans side by side without publishing prices, so every plan card routes the visitor to a sales conversation (work-email capture) instead of a checkout. A startup-programme banner underneath offers a discount path to a specific audience.",
+  "measuredFrom": ["src/components/pricing/PricingPlans.jsx:8-127", "src/components/pricing/pricingData.jsx:5-36"],
+  "behaviour": [
+    { "note": "No prices anywhere: each plan card has a name, a one-line tagline, a work-email input with a 'Talk to a human' primary button, a bullet list of allowances, and a footer. The plans are Core, Pro and Enterprise (in that order).", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:46-82", "src/components/pricing/pricingData.jsx:5-36"] },
+    { "note": "Email capture: required, type=email, validated client-side as a work (business) email; an invalid value shows a field error and blocks submit. A valid value navigates to /get-started?source=pricing and hands the email over via router state (not in the URL). The clone sends nothing to a server; the original posted to a capture API.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:10-44", "src/components/pricing/validation.jsx:1-28"] },
+    { "note": "Card colours: default cards use gray-1; the second card (by position, nth-child 2) uses gray-3; a card flagged dark (Enterprise) switches to the dark theme on gray-10. The two cards without a dark flag show a 'Show full plan comparison' link with a down chevron to #compare-plans in the footer strip; the dark card shows its footer sentence instead.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:48", "src/components/pricing/PricingPlans.jsx:68-79", "src/components/pricing/pricingData.jsx:27-36"] },
+    { "note": "Feature list: mono uppercase bullets, 5 to 6 items on Core and Pro; the Enterprise card has no features list (only tagline and the footer sentence). Allowance figures are stated per user per month or per org.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:57-66", "src/components/pricing/pricingData.jsx:5-36"] },
+    { "note": "Startup programme banner spans the full grid width under the cards: a 288x288 square thumbnail (shown 80 to 128px), a bold title, a paragraph and two buttons ('Learn more' outline to /startups and 'See if you qualify' primary to /startups-apply-now).", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:94-120"] },
+    { "note": "Must be followed by content.plan-compare-table (the 'Show full plan comparison' link targets its #compare-plans anchor).", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:72", "src/components/pricing/ComparePlans.jsx:122", "src/pages/Pricing.jsx:16-17"] }
+  ],
+  "variants": [
+    { "name": "plan-standard", "description": "Core-style card: gray-1 (or gray-3 in the second position), features list, comparison link in the footer strip.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:48", "src/components/pricing/PricingPlans.jsx:68-79"] },
+    { "name": "plan-dark", "description": "Enterprise-style card: dark theme on gray-10, no features list, custom footer sentence.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:48", "src/components/pricing/PricingPlans.jsx:69-70", "src/components/pricing/pricingData.jsx:27-36"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "plans": {
+        "type": "array", "required": true, "minItems": 3, "maxItems": 3,
+        "note": "Three cards in a 3-column grid at md and up (md:grid-cols-3). Observed exactly 3.",
+        "measuredFrom": ["src/components/pricing/PricingPlans.jsx:90-93", "src/components/pricing/pricingData.jsx:5-36"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "name": { "type": "string", "required": true, "maxWords": 2, "note": "Card title (h3, heading font, uppercase). Observed one word.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:50-52"] },
+            "tagline": { "type": "string", "required": true, "maxWords": 11, "note": "Bold display-lg line describing the audience. Observed 8 to 10 words.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:53", "src/components/pricing/pricingData.jsx:8", "src/components/pricing/pricingData.jsx:20", "src/components/pricing/pricingData.jsx:29"] },
+            "features": { "type": "array", "required": false, "minItems": 0, "maxItems": 6, "note": "Allowance bullets, absent on the dark card.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:57-66", "src/components/pricing/pricingData.jsx:9-15", "src/components/pricing/pricingData.jsx:21-28"], "items": { "type": "string", "maxWords": 8, "note": "Mono uppercase line. Observed up to 7 words.", "measuredFrom": ["src/components/pricing/pricingData.jsx:9-28"] } },
+            "dark": { "type": "boolean", "required": false, "note": "Dark theme card (Enterprise).", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:48", "src/components/pricing/pricingData.jsx:30"] },
+            "footer": { "type": "string", "required": false, "maxWords": 6, "note": "Replaces the comparison link in the footer strip. Observed 5 words.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:69-70", "src/components/pricing/pricingData.jsx:31"] }
+          }
+        }
+      },
+      "emailPlaceholder": { "type": "string", "required": true, "maxWords": 5, "note": "Shared by all three forms. Observed 4 words.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:34"] },
+      "submitLabel": { "type": "string", "required": true, "maxWords": 4, "note": "Shared primary button label with a chevron. Observed 4 words.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:39-41"] },
+      "comparisonLinkLabel": { "type": "string", "required": true, "maxWords": 5, "note": "Footer link on the non-dark cards, targets the compare table anchor.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:72-73"] },
+      "startupBanner": {
+        "type": "object", "required": true,
+        "measuredFrom": ["src/components/pricing/PricingPlans.jsx:94-120"],
+        "fields": {
+          "image": { "type": "assetRef", "required": true, "assetRole": "editorial-photo", "note": "Square 288x288 thumbnail for the startup programme. Existing real file only.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:95-102"] },
+          "imageAlt": { "type": "string", "required": true, "maxWords": 4, "measuredFrom": ["src/components/pricing/PricingPlans.jsx:97"] },
+          "title": { "type": "richtext-inline", "required": true, "maxWords": 16, "note": "Bold lg line. Observed 13 words.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:104-106"] },
+          "body": { "type": "richtext-inline", "required": true, "maxWords": 26, "note": "Observed about 22 words.", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:107-110"] },
+          "ctas": {
+            "type": "array", "required": true, "minItems": 2, "maxItems": 2,
+            "measuredFrom": ["src/components/pricing/PricingPlans.jsx:112-119"],
+            "items": { "type": "object", "fields": { "label": { "type": "string", "maxWords": 4 }, "href": { "type": "string", "kind": "route-or-url" }, "variant": { "type": "enum", "values": ["outline", "primary"] } } }
+          }
+        }
+      }
+    }
+  },
+  "mediaFields": [ { "field": "startupBanner.image", "assetRole": "editorial-photo" } ],
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No motion in the source, so no fallback is needed; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": ["src/components/pricing/PricingPlans.jsx:84-127"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "plan cards stack in one column with 6px gaps; the startup banner stacks image, text and buttons vertically", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:90", "src/components/pricing/PricingPlans.jsx:94"] },
+      { "at": "md", "change": "three plan cards in a row; startup banner spans all 3 columns as a row with the thumbnail at 112px; top padding 32px", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:86", "src/components/pricing/PricingPlans.jsx:90", "src/components/pricing/PricingPlans.jsx:94", "src/components/pricing/PricingPlans.jsx:101"] },
+      { "at": "lg", "change": "grid spans 24 columns; thumbnail 128px; section padding 128px", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:86", "src/components/pricing/PricingPlans.jsx:89", "src/components/pricing/PricingPlans.jsx:101"] },
+      { "at": "xl", "change": "grid narrows to 22 columns from column 2; card heading and tagline spacing grows", "measuredFrom": ["src/components/pricing/PricingPlans.jsx:50", "src/components/pricing/PricingPlans.jsx:53", "src/components/pricing/PricingPlans.jsx:89"] }
+    ]
+  },
+  "usedOnRoutes": ["/pricing"],
+  "tokensUsed": ["color.gray.1", "color.gray.3", "color.gray.4", "color.gray.10", "semanticColor.text.strong", "fontFamily.heading", "fontFamily.mono", "fontSize.display-2xl", "fontSize.display-lg", "fontSize.display-xs", "theme.dark"]
+}

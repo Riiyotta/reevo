@@ -1,0 +1,93 @@
+{
+  "id": "content.platform-columns",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Show the whole product surface at a glance: four product-pillar columns (Find, Connect, Sell, Manage) with feature chips, plus a Foundation band underneath, so visitors see one platform rather than four tools.",
+  "measuredFrom": ["src/components/BuiltDifferent.jsx:5-65", "src/components/company/Toolkit.jsx:7-56", "src/pages/Startups.jsx:108-112"],
+  "behaviour": [
+    { "note": "Each column: a bold linked pillar title with an arrow, then 4 to 5 feature rows (coloured icon chip plus label, optional Soon tag). Chip colour encodes the pillar: orange-3 Find, pink-3 Connect, green-3 Sell, yellow-3 Manage, blue-3 Foundation.", "measuredFrom": ["src/data/platform.js:6-29", "src/components/BuiltDifferent.jsx:15-35", "src/components/BuiltDifferent.jsx:55"] },
+    { "note": "Foundation band: a full-width tinted link bar (Foundation label plus tagline, arrow) to the foundation product page, then 6 feature items in a grid.", "measuredFrom": ["src/data/platform.js:31-34", "src/components/BuiltDifferent.jsx:39-60"] },
+    { "note": "Column data (COLUMNS, FOUNDATION) lives in one shared module (src/data/platform.js) imported by both the home block and the startups toolkit; the contract treats them as one dataset.", "measuredFrom": ["src/data/platform.js:6-34", "src/components/BuiltDifferent.jsx:2", "src/components/company/Toolkit.jsx:2"] },
+    { "note": "Below md the four columns become a horizontal scroll-snap carousel of bordered cards; from md they are an equal-width flex row.", "measuredFrom": ["src/components/ui.jsx:17-19", "src/components/BuiltDifferent.jsx:14", "src/components/BuiltDifferent.jsx:17"] }
+  ],
+  "variants": [
+    { "name": "home-label-headline", "description": "Home. gray-2 band with a top pattern strip (pattern-01), an eyebrow label with icon, a two-part headline with a bold tail, and a lede, then the columns and Foundation band.", "measuredFrom": ["src/components/BuiltDifferent.jsx:7-11"] },
+    { "name": "toolkit", "description": "Startups. On a white section with no pattern or label: a Lead sentence supplied by the page, then the same columns and Foundation band (no headline lede).", "measuredFrom": ["src/components/company/Toolkit.jsx:7-56", "src/pages/Startups.jsx:108-112"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "variant": { "type": "enum", "required": true, "values": ["home-label-headline", "toolkit"] },
+      "label": { "type": "string", "required": false, "maxWords": 8, "note": "Eyebrow label with an icon; home variant only. Observed 7 words.", "measuredFrom": ["src/components/BuiltDifferent.jsx:8"] },
+      "headline": { "type": "richtext-inline", "required": false, "maxWords": 5, "note": "Home only; plain part plus bold tail. Observed 4 words. For the toolkit variant the page supplies a separate Lead sentence.", "measuredFrom": ["src/components/BuiltDifferent.jsx:10", "src/pages/Startups.jsx:108-111"] },
+      "lede": { "type": "string", "required": false, "maxWords": 30, "note": "Home only. Observed about 28 words.", "measuredFrom": ["src/components/BuiltDifferent.jsx:9"] },
+      "columns": {
+        "type": "array",
+        "required": true,
+        "minItems": 4,
+        "maxItems": 4,
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": { "type": "string", "required": true, "maxWords": 1 },
+            "href": { "type": "string", "required": true, "kind": "route-or-url" },
+            "chipColor": { "type": "enum", "required": true, "values": ["orange-3", "pink-3", "green-3", "yellow-3"], "note": "Pillar colour; one per column." },
+            "items": {
+              "type": "array",
+              "required": true,
+              "minItems": 4,
+              "maxItems": 5,
+              "items": {
+                "type": "object",
+                "fields": {
+                  "label": { "type": "string", "required": true, "maxWords": 3 },
+                  "icon": { "type": "string", "required": true, "note": "Lucide icon name; icons are library glyphs, not asset files." },
+                  "soon": { "type": "boolean", "required": false, "note": "Shows a Soon tag." }
+                }
+              }
+            }
+          }
+        },
+        "measuredFrom": ["src/data/platform.js:6-29"]
+      },
+      "foundationBand": {
+        "type": "object",
+        "required": true,
+        "fields": {
+          "title": { "type": "string", "required": true, "maxWords": 1 },
+          "tagline": { "type": "string", "required": true, "maxWords": 8, "note": "Observed 7 words." },
+          "href": { "type": "string", "required": true, "kind": "route-or-url" },
+          "items": {
+            "type": "array",
+            "required": true,
+            "minItems": 6,
+            "maxItems": 6,
+            "items": { "type": "object", "fields": { "label": { "type": "string", "required": true, "maxWords": 4 }, "icon": { "type": "string", "required": true, "note": "Lucide icon name." } } }
+          }
+        },
+        "measuredFrom": ["src/data/platform.js:31-34", "src/components/BuiltDifferent.jsx:39-60"]
+      },
+      "patternStrip": { "type": "assetRef", "required": false, "assetRole": "decorative-pattern", "note": "Home variant only (pattern-01).", "measuredFrom": ["src/components/BuiltDifferent.jsx:7"] }
+    }
+  },
+  "mediaFields": [{ "field": "patternStrip", "assetRole": "decorative-pattern" }],
+  "constraints": {},
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Static; below md it is native scroll-snap with no scripted motion. No prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": ["src/components/BuiltDifferent.jsx:14", "src/components/ui.jsx:17-19"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "columns become a scroll-snap carousel of bordered cards, 70vw wide (50vw from sm)", "measuredFrom": ["src/components/ui.jsx:17-19", "src/components/BuiltDifferent.jsx:17", "src/components/company/Toolkit.jsx:14"] },
+      { "at": "md", "change": "columns sit in an equal-width row, borders removed", "measuredFrom": ["src/components/BuiltDifferent.jsx:17"] },
+      { "at": "xl", "change": "content spans 23 columns starting at column 2", "measuredFrom": ["src/components/BuiltDifferent.jsx:13"] },
+      { "at": "base / sm / md / lg (foundation grid)", "change": "foundation items grid 2, 3, 4, then 6 columns", "measuredFrom": ["src/components/BuiltDifferent.jsx:52"] },
+      { "at": "sm (foundation bar)", "change": "bar content centres on one row instead of spacing apart", "measuredFrom": ["src/components/BuiltDifferent.jsx:42"] }
+    ]
+  },
+  "usedOnRoutes": ["/", "*", "/startups"],
+  "tokensUsed": ["gray.2", "surface.background", "text.strong", "orange.3", "pink.3", "green.3", "yellow.3", "blue.3", "gray.4", "display-lg", "sm"]
+}

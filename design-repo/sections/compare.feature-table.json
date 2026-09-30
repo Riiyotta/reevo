@@ -1,0 +1,79 @@
+{
+  "id": "compare.feature-table",
+  "kind": "section",
+  "category": "compare",
+  "purpose": "Let a deep-diving buyer verify the comparison feature by feature: a dark table of grouped capabilities with a yes or no mark for Reevo and for the competitor, collapsed to the first three groups until the visitor asks for more.",
+  "measuredFrom": ["src/components/compare/CompareSections.jsx:173-283", "src/pages/Compare.jsx:29"],
+  "behaviour": [
+    { "note": "CONDITIONAL RENDER: the section is only rendered when the competitor record has feature data. 5 of 7 competitors have it (apollo, attio, fireflies, gong, outreach); hubspot and salesforce have none, so their page goes straight from the reasons section to the closing call to action.", "measuredFrom": ["src/pages/Compare.jsx:29", "src/data/compare.js:38", "src/data/compare.js:133", "src/data/compare.js:224", "src/data/compare.js:317", "src/data/compare.js:438"] },
+    { "note": "Two states. Collapsed (initial): only the first 3 categories are rendered. Expanded: after the visitor presses Show more features, all categories render and the button disappears for good (no way to collapse again). The state is local and is not stored in the URL; it resets when the competitor changes because the page is keyed on the competitor name.", "measuredFrom": ["src/components/compare/CompareSections.jsx:174", "src/components/compare/CompareSections.jsx:189-190", "src/components/compare/CompareSections.jsx:264-276", "src/pages/Compare.jsx:25"] },
+    { "note": "The Show more features button is only offered when there are more than 3 categories (true for all 5 competitors that have data: each has 8 categories). Expansion is an instant swap with no animation.", "measuredFrom": ["src/components/compare/CompareSections.jsx:264", "src/data/compare.js:38-100"] },
+    { "note": "Data shape per competitor: 8 categories of up to 5 rows each; 24 rows in total (22 for gong). Each row is a feature label plus one boolean for Reevo and one for the competitor.", "measuredFrom": ["src/components/compare/CompareSections.jsx:236-257", "src/data/compare.js:38-100", "src/data/compare.js:317-377"] },
+    { "note": "Yes cells show a green check, no cells show a red-orange cross; both have a visually hidden Available or Not available label for screen readers, and the icon itself is aria-hidden. Colour is not the only signal because the icon shape differs.", "measuredFrom": ["src/components/compare/CompareSections.jsx:177-184"] },
+    { "note": "Header row has four columns: a hidden Category label (desktop only), a hidden Feature label, the Reevo wordmark (22px high) and the competitor logo (20px by 76px, muted at 60%). Category name is a row-spanning bold cell in the first quarter of the width from md; feature column is 41% wide.", "measuredFrom": ["src/components/compare/CompareSections.jsx:203-226", "src/components/compare/CompareSections.jsx:240-250"] },
+    { "note": "Dark band: the section root carries the dark class so tokens resolve to their dark values. It follows a white reasons section and precedes the closing call to action.", "measuredFrom": ["src/components/compare/CompareSections.jsx:192", "src/pages/Compare.jsx:28-30"] },
+    { "note": "Feature and category names are competitor-comparison data written by the original author; they are not reproduced here. Each yes or no is a factual claim about a third-party product and must be verified before it is authored for a new competitor.", "measuredFrom": ["src/data/compare.js:1-4"] }
+  ],
+  "themeDependency": {
+    "requires": "dark",
+    "how": "The section root carries className dark bg-background, re-scoping the semantic tokens (text-strong, border, background) to dark values for the whole table. Row rules use border at 50% opacity. Without the dark scope the strong text would sit on a light surface with the wrong contrast.",
+    "measuredFrom": ["src/components/compare/CompareSections.jsx:175", "src/components/compare/CompareSections.jsx:192", "src/index.css:42-48"]
+  },
+  "variants": [
+    { "name": "collapsed", "description": "Initial state: first 3 categories and a Show more features outline button with a plus icon under the table (minimum width 240px; full width below sm).", "measuredFrom": ["src/components/compare/CompareSections.jsx:174", "src/components/compare/CompareSections.jsx:190", "src/components/compare/CompareSections.jsx:264-276"] },
+    { "name": "expanded", "description": "All categories shown; the button is removed.", "measuredFrom": ["src/components/compare/CompareSections.jsx:190", "src/components/compare/CompareSections.jsx:264"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "competitorName": { "type": "string", "required": true, "maxWords": 2, "note": "Used in the fixed headline pattern and as the hidden column label.", "measuredFrom": ["src/components/compare/CompareSections.jsx:198", "src/components/compare/CompareSections.jsx:216"] },
+      "competitorLogo": { "type": "assetRef", "required": true, "assetRole": "competitor-logo", "note": "Single-colour third-party logo in the column header. Exact existing file only; never redraw.", "measuredFrom": ["src/components/compare/CompareSections.jsx:217-224", "src/data/compare.js:5-6"] },
+      "initialCategoryCount": { "type": "number", "required": false, "note": "Fixed at 3 in the code (a constant, not authored per page).", "measuredFrom": ["src/components/compare/CompareSections.jsx:174"] },
+      "showMoreLabel": { "type": "string", "required": false, "maxWords": 3, "note": "Expand button label; fixed text, 3 words.", "measuredFrom": ["src/components/compare/CompareSections.jsx:273"] },
+      "categories": {
+        "type": "array", "required": true, "minItems": 4, "maxItems": 10,
+        "note": "The whole section is omitted (not rendered empty) when there is no feature data. Observed 8 categories for every competitor that has data; more than 3 are needed for the expand button to appear.",
+        "measuredFrom": ["src/pages/Compare.jsx:29", "src/components/compare/CompareSections.jsx:229-260", "src/data/compare.js:38"],
+        "items": {
+          "type": "object",
+          "fields": {
+            "name": { "type": "string", "required": true, "maxWords": 5, "note": "Bold category label. Observed up to 4 words.", "measuredFrom": ["src/components/compare/CompareSections.jsx:233", "src/components/compare/CompareSections.jsx:245"] },
+            "rows": {
+              "type": "array", "required": true, "minItems": 1, "maxItems": 6,
+              "note": "Observed 1 to 5 rows per category.",
+              "measuredFrom": ["src/components/compare/CompareSections.jsx:236-257"],
+              "items": {
+                "type": "object",
+                "fields": {
+                  "feature": { "type": "string", "required": true, "maxWords": 14, "note": "Capability label. Observed up to 13 words.", "measuredFrom": ["src/components/compare/CompareSections.jsx:249"] },
+                  "reevo": { "type": "boolean", "required": true, "note": "True renders the green check, false the cross.", "measuredFrom": ["src/components/compare/CompareSections.jsx:252"] },
+                  "competitor": { "type": "boolean", "required": true, "note": "True renders the green check, false the cross.", "measuredFrom": ["src/components/compare/CompareSections.jsx:255"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "mediaFields": [ { "field": "competitorLogo", "assetRole": "competitor-logo" } ],
+  "constraints": { "onePerPage": true, "mustFollow": "compare.reasons", "mustBeFollowedBy": "conversion" },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Expanding the table is an instant state swap with no transition, so nothing needs reducing; the code has no prefers-reduced-motion handling.",
+    "measuredFrom": ["src/components/compare/CompareSections.jsx:189-190", "src/components/compare/CompareSections.jsx:264-276"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "Category column and its row-spanning cell are hidden; each category instead gets its own bold full-width heading row with a rule beneath; feature cells lose left padding", "measuredFrom": ["src/components/compare/CompareSections.jsx:205", "src/components/compare/CompareSections.jsx:231-235", "src/components/compare/CompareSections.jsx:242", "src/components/compare/CompareSections.jsx:248"] },
+      { "at": "below sm", "change": "Show more features button spans the full width and is centred", "measuredFrom": ["src/components/compare/CompareSections.jsx:265", "src/components/compare/CompareSections.jsx:270"] },
+      { "at": "md", "change": "category cell returns as a quarter-width row-spanning first column; first row of each category gets 40px top padding; button aligns left, offset 25% to sit under the feature column", "measuredFrom": ["src/components/compare/CompareSections.jsx:237", "src/components/compare/CompareSections.jsx:242", "src/components/compare/CompareSections.jsx:248", "src/components/compare/CompareSections.jsx:265-266"] },
+      { "at": "lg", "change": "feature cell gains 24px left padding; section vertical padding grows to 128px", "measuredFrom": ["src/components/compare/CompareSections.jsx:192", "src/components/compare/CompareSections.jsx:248"] },
+      { "at": "xl", "change": "feature cell left padding 32px; stacked content rhythm 96px", "measuredFrom": ["src/components/ui.jsx:8", "src/components/compare/CompareSections.jsx:248"] }
+    ]
+  },
+  "usedOnRoutes": ["/compare/apollo", "/compare/attio", "/compare/fireflies", "/compare/gong", "/compare/outreach"],
+  "tokensUsed": ["surface.background", "text.strong", "text.muted", "border.default", "green.5", "dark"]
+}

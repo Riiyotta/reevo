@@ -1,0 +1,47 @@
+{
+  "id": "eyebrow",
+  "kind": "primitive",
+  "purpose": "Mono uppercase label text used for eyebrows, mono rows and small captions.",
+  "measuredFrom": [
+    "src/components/ui.jsx:29-30"
+  ],
+  "props": {
+    "as": {
+      "type": "enum",
+      "values": [
+        "span",
+        "h1",
+        "h2",
+        "p"
+      ],
+      "default": "span",
+      "description": "Tag; span default, h2 in SectionLabel, p in job rows (Careers.jsx:59,66)"
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "block font-mono text-display-xs uppercase text-strong",
+      "measuredFrom": [
+        "src/components/ui.jsx:30"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "eyebrow",
+    "text.strong",
+    "mono",
+    "display-xs"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/ui.jsx:29-30"
+    ]
+  }
+}

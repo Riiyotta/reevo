@@ -1,0 +1,41 @@
+{
+  "id": "pattern-strip",
+  "kind": "primitive",
+  "purpose": "Decorative repeating pattern image strip at the top of a section, aria-hidden.",
+  "measuredFrom": [
+    "src/components/ui.jsx:84-98",
+    "src/components/products/ProductTestimonial.jsx:6",
+    "src/components/company/QuoteTestimonial.jsx:19-20"
+  ],
+  "props": {
+    "src": {
+      "type": "assetRef",
+      "required": true,
+      "assetRole": "decorative-pattern"
+    }
+  },
+  "variants": [
+    {
+      "name": "section top (PatternStrip)",
+      "description": "60px tall (md 120px) repeating background, in cols 7-12 at md, 13-24 at lg",
+      "measuredFrom": [
+        "src/components/ui.jsx:90-92"
+      ]
+    },
+    {
+      "name": "testimonial strip",
+      "description": "28px tall (md 40px), full width, top or bottom",
+      "measuredFrom": [
+        "src/components/company/QuoteTestimonial.jsx:19-20"
+      ]
+    }
+  ],
+  "tokensUsed": [],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/ui.jsx:85-98"
+    ]
+  }
+}

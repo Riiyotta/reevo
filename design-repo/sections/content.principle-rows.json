@@ -1,0 +1,60 @@
+{
+  "id": "content.principle-rows",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Communicate how the company operates and what it values as a list of short titled statements, each a two-column row (bold title left, explanatory sentence right), so culture reads as clear commitments rather than a paragraph.",
+  "measuredFrom": ["src/pages/Careers.jsx:37-46", "src/pages/Careers.jsx:123-134", "src/pages/Careers.jsx:162-177", "src/components/compare/CompareSections.jsx:134-144"],
+  "behaviour": [
+    { "note": "Appears twice on /careers with different data and spacing: How we operate (3 rows, each with a bold lead-in sentence followed by a longer explanation) and Our core values (5 rows, plain body). Both sit on gray-2 with a top pattern strip.", "measuredFrom": ["src/pages/Careers.jsx:6-29", "src/pages/Careers.jsx:123-134", "src/pages/Careers.jsx:162-177"] },
+    { "note": "The same row pattern (title in 5-6 columns, body in 13-15 columns) is used inline in the compare page reasons list; it is not a separate component there and is out of scope for this contract.", "measuredFrom": ["src/components/compare/CompareSections.jsx:134-144"] },
+    { "note": "Each section starts with a label row and a Lead paragraph (a bold opening plus rest), then the rows.", "measuredFrom": ["src/pages/Careers.jsx:123-127", "src/pages/Careers.jsx:166-170"] }
+  ],
+  "variants": [
+    { "name": "operate", "description": "Three rows; body is a bold lead sentence followed by longer text. Standard vertical spacing.", "measuredFrom": ["src/pages/Careers.jsx:6-20", "src/pages/Careers.jsx:129-134"] },
+    { "name": "values", "description": "Five rows with a plain body sentence; larger vertical spacing (16, 20, 24) than the operate variant.", "measuredFrom": ["src/pages/Careers.jsx:24-29", "src/pages/Careers.jsx:162-164", "src/pages/Careers.jsx:171-177"] }
+  ],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "variant": { "type": "enum", "required": true, "values": ["operate", "values"] },
+      "label": { "type": "string", "required": true, "maxWords": 4, "note": "Eyebrow label with an icon. Observed 3 to 4 words.", "measuredFrom": ["src/pages/Careers.jsx:123", "src/pages/Careers.jsx:166"] },
+      "lead": { "type": "richtext-inline", "required": true, "maxWords": 28, "note": "Lead paragraph with a bold opening. Observed 17 to 24 words.", "measuredFrom": ["src/pages/Careers.jsx:124-127", "src/pages/Careers.jsx:167-170"] },
+      "rows": {
+        "type": "array",
+        "required": true,
+        "minItems": 3,
+        "maxItems": 5,
+        "note": "Observed 3 (operate) and 5 (values).",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": { "type": "string", "required": true, "maxWords": 5, "note": "Observed 2 to 5 words." },
+            "boldLead": { "type": "string", "required": false, "maxWords": 18, "note": "operate variant only; observed 12 to 17 words, rendered bold before the body." },
+            "body": { "type": "string", "required": true, "maxWords": 52, "note": "operate: 35 to 51 words; values: 18 to 25 words." }
+          }
+        },
+        "measuredFrom": ["src/pages/Careers.jsx:6-29"]
+      },
+      "patternStrip": { "type": "assetRef", "required": false, "assetRole": "decorative-pattern", "note": "Top strip; pattern-07 (operate) and pattern-10 (values).", "measuredFrom": ["src/pages/Careers.jsx:122", "src/pages/Careers.jsx:163"] }
+    }
+  },
+  "mediaFields": [{ "field": "patternStrip", "assetRole": "decorative-pattern" }],
+  "constraints": {},
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No motion in the source; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": ["src/pages/Careers.jsx:37-46"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "title above body, each full width", "measuredFrom": ["src/pages/Careers.jsx:40", "src/pages/Careers.jsx:43"] },
+      { "at": "md", "change": "two columns: title 4 of 12, body 8 of 12", "measuredFrom": ["src/pages/Careers.jsx:40", "src/pages/Careers.jsx:43"] },
+      { "at": "lg", "change": "title 5 of 24 columns, body 15 columns starting at column 9", "measuredFrom": ["src/pages/Careers.jsx:40", "src/pages/Careers.jsx:43"] },
+      { "at": "xl", "change": "title 6 columns from column 2, body 13 columns from column 11", "measuredFrom": ["src/pages/Careers.jsx:40", "src/pages/Careers.jsx:43"] }
+    ]
+  },
+  "usedOnRoutes": ["/careers"],
+  "tokensUsed": ["gray.2", "text.strong", "display-lg", "xl"]
+}

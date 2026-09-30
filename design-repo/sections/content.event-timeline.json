@@ -1,0 +1,60 @@
+{
+  "id": "content.event-timeline",
+  "kind": "section",
+  "category": "content",
+  "purpose": "Tell a day-in-the-life story on a dark background: three timestamped moments at a conference show how the product captures every conversation, presented as a horizontal timeline with tick marks.",
+  "measuredFrom": ["src/components/blog/MobileSections.jsx:342-402", "src/components/blog/MobileSections.jsx:342-352"],
+  "themeDependency": {
+    "requires": "dark",
+    "how": "Section root carries className dark with the background token and a minimum height of 60vh, re-scoping semantic colours (strong, foreground, muted, background) to dark values.",
+    "measuredFrom": ["src/components/blog/MobileSections.jsx:357", "src/index.css:42-48"]
+  },
+  "behaviour": [
+    { "note": "Each entry is a time (semibold), a location phrase (small muted) and a body sentence (max 34ch). The tick strip is decorative (aria-hidden): a row of thin marks whose first tick is fully opaque and the last is transparent; the rest are 20% opacity. Below md the ticks run vertically as short horizontal dashes and some are hidden (max-md:hidden).", "measuredFrom": ["src/components/blog/MobileSections.jsx:347-352", "src/components/blog/MobileSections.jsx:378-385"] },
+    { "note": "Adjacency: on /apps/mobile it is followed by a photo band on gray-10 (the TaxiBand: dark band with a background-coloured bottom slab), so dark flows into the dark band before returning to the page background. The code does not enforce this; it is an observed pairing.", "measuredFrom": ["src/pages/AppsMobile.jsx:83-84", "src/components/blog/MobileSections.jsx:410-411"] },
+    { "note": "Static: tick marks and text do not animate.", "measuredFrom": ["src/components/blog/MobileSections.jsx:374-397"] }
+  ],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "headline": { "type": "string", "required": true, "maxWords": 9, "note": "Section h2 in the heading font, uppercase, with a non-breaking space before the last word. Observed 7 words (the inventory said 9).", "measuredFrom": ["src/components/blog/MobileSections.jsx:362-364"] },
+      "lede": { "type": "string", "required": true, "maxWords": 20, "note": "Observed 19 words.", "measuredFrom": ["src/components/blog/MobileSections.jsx:367-369"] },
+      "entries": {
+        "type": "array",
+        "required": true,
+        "minItems": 3,
+        "maxItems": 3,
+        "note": "Three timestamped moments; the grid is three columns from md and the tick strip is sized for it.",
+        "items": {
+          "type": "object",
+          "fields": {
+            "time": { "type": "string", "required": true, "maxWords": 2, "note": "Clock time such as 8:52 AM." },
+            "where": { "type": "string", "required": true, "maxWords": 5, "note": "Location phrase; observed up to 4 words." },
+            "body": { "type": "string", "required": true, "maxWords": 26, "note": "Observed 21 to 24 words." }
+          }
+        },
+        "measuredFrom": ["src/components/blog/MobileSections.jsx:342-345", "src/components/blog/MobileSections.jsx:374-397"]
+      }
+    }
+  },
+  "mediaFields": [],
+  "constraints": { "mustBeFollowedBy": "dark" },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "Static tick marks, no animation; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": ["src/components/blog/MobileSections.jsx:347-352"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "below md", "change": "entries stack vertically at fixed height (148px, 132px from sm) with the tick strip as a short dash column beside the text; 6 of the 13 ticks are hidden and 5 are shortened", "measuredFrom": ["src/components/blog/MobileSections.jsx:347-352", "src/components/blog/MobileSections.jsx:378-385"] },
+      { "at": "md", "change": "three columns; each entry has a left border, the tick strip becomes a horizontal row of 40px-high vertical ticks placed below the text (flex-col-reverse)", "measuredFrom": ["src/components/blog/MobileSections.jsx:347", "src/components/blog/MobileSections.jsx:378-385"] },
+      { "at": "md / lg", "change": "headline takes 7 of 12 columns, lede 5; at lg the lede starts at column 15 (9 wide), at xl column 16 (8 wide)", "measuredFrom": ["src/components/blog/MobileSections.jsx:361", "src/components/blog/MobileSections.jsx:366"] },
+      { "at": "lg / xl (tick offset)", "change": "tick strip top margin grows 64, 80, 96px", "measuredFrom": ["src/components/blog/MobileSections.jsx:381"] }
+    ]
+  },
+  "usedOnRoutes": ["/apps/mobile"],
+  "tokensUsed": ["dark", "surface.background", "text.strong", "text.body", "text.muted", "display-2xl", "lg", "sm"]
+}

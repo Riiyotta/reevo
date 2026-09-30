@@ -1,0 +1,77 @@
+{
+  "id": "product-card",
+  "kind": "component",
+  "purpose": "Product feature card: title and body over an image, optionally with a full-bleed background image.",
+  "measuredFrom": [
+    "src/components/products/ProductCards.jsx:4-46"
+  ],
+  "props": {
+    "title": {
+      "type": "richtext-inline",
+      "required": true,
+      "maxWords": 6
+    },
+    "body": {
+      "type": "richtext-inline",
+      "required": true,
+      "maxWords": 30
+    },
+    "img": {
+      "type": "assetRef",
+      "required": true
+    },
+    "alt": {
+      "type": "string"
+    },
+    "bgImg": {
+      "type": "assetRef"
+    },
+    "dark": {
+      "type": "boolean"
+    },
+    "light": {
+      "type": "boolean",
+      "description": "Uses gray-10 text instead of white"
+    },
+    "wide": {
+      "type": "boolean"
+    },
+    "bg": {
+      "type": "string",
+      "description": "Tailwind bg class for wide cards"
+    }
+  },
+  "variants": [
+    {
+      "name": "half-width",
+      "description": "col-span 11 at xl, alternating start; image aspect 633/466",
+      "measuredFrom": [
+        "src/components/products/ProductCards.jsx:29-44"
+      ]
+    },
+    {
+      "name": "wide",
+      "description": "full-width row, text and image side by side at md, image aspect 631/397",
+      "measuredFrom": [
+        "src/components/products/ProductCards.jsx:15-27"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "display-lg",
+    "text.strong",
+    "gray.10",
+    "white",
+    "4"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/products/ProductCards.jsx:13-46"
+    ]
+  },
+  "composes": [
+    "rich-text"
+  ]
+}

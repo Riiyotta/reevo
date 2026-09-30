@@ -1,0 +1,395 @@
+{
+  "$description": "Foundation typography. fontSize values are the exact fluid clamp() strings; lineHeight and letterSpacing are broken out as their own scales but each fontSize carries its paired values (the source ties them together).",
+  "category": "typography",
+  "fontFamily": {
+    "sans": {
+      "value": [
+        "Haltung",
+        "\"Haltung Fallback\"",
+        "system-ui",
+        "sans-serif"
+      ],
+      "role": "body",
+      "measuredFrom": "tailwind.config.js:55"
+    },
+    "heading": {
+      "value": [
+        "Metrify",
+        "\"Metrify Fallback\"",
+        "sans-serif"
+      ],
+      "role": "headings/display",
+      "measuredFrom": "tailwind.config.js:56"
+    },
+    "mono": {
+      "value": [
+        "GTAmericaMono",
+        "\"GTAmericaMono Fallback\"",
+        "Consolas",
+        "monospace"
+      ],
+      "role": "eyebrow/labels",
+      "measuredFrom": "tailwind.config.js:57"
+    }
+  },
+  "fontSize": {
+    "xs": {
+      "value": "clamp(.75rem,.699rem + .2041vw,.875rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "115%",
+      "pairedLetterSpacing": "-.01em",
+      "measuredFrom": "tailwind.config.js:39"
+    },
+    "sm": {
+      "value": "clamp(.875rem,.824rem + .2041vw,1rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "135%",
+      "pairedLetterSpacing": "0",
+      "measuredFrom": "tailwind.config.js:40"
+    },
+    "md": {
+      "value": "clamp(1rem,.949rem + .2041vw,1.125rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "135%",
+      "pairedLetterSpacing": "0",
+      "measuredFrom": "tailwind.config.js:41"
+    },
+    "lg": {
+      "value": "clamp(1.125rem,1.074rem + .2041vw,1.25rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "135%",
+      "pairedLetterSpacing": "0",
+      "measuredFrom": "tailwind.config.js:42"
+    },
+    "xl": {
+      "value": "clamp(1.5rem,1.2449rem + 1.0204vw,2.125rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "115%",
+      "pairedLetterSpacing": "-.01em",
+      "measuredFrom": "tailwind.config.js:43"
+    },
+    "2xl": {
+      "value": "clamp(1.75rem,1.3929rem + 1.4286vw,2.625rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "105%",
+      "pairedLetterSpacing": "-.01em",
+      "measuredFrom": "tailwind.config.js:44"
+    },
+    "3xl": {
+      "value": "clamp(2.25rem,1.7398rem + 2.0408vw,3.5rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "105%",
+      "pairedLetterSpacing": "-.02em",
+      "measuredFrom": "tailwind.config.js:45"
+    },
+    "display-xs": {
+      "value": "12px",
+      "type": "fontSize",
+      "fluid": false,
+      "pairedLineHeight": "115%",
+      "pairedLetterSpacing": "0",
+      "measuredFrom": "tailwind.config.js:46"
+    },
+    "display-md": {
+      "value": "clamp(.875rem,.824rem + .2041vw,1rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "105%",
+      "pairedLetterSpacing": ".15em",
+      "measuredFrom": "tailwind.config.js:47"
+    },
+    "display-lg": {
+      "value": "clamp(1.125rem,1.074rem + .2041vw,1.25rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "115%",
+      "pairedLetterSpacing": "-.02em",
+      "measuredFrom": "tailwind.config.js:48"
+    },
+    "display-lg-2": {
+      "value": "clamp(1.25rem,1.0969rem + .6122vw,1.625rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "110%",
+      "pairedLetterSpacing": "-.02em",
+      "measuredFrom": "tailwind.config.js:49"
+    },
+    "display-xl": {
+      "value": "clamp(1.5rem,1.2959rem + .8163vw,2rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "105%",
+      "pairedLetterSpacing": "-.02em",
+      "measuredFrom": "tailwind.config.js:50"
+    },
+    "display-2xl": {
+      "value": "clamp(3rem,2.2857rem + 2.8571vw,4.75rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "80%",
+      "pairedLetterSpacing": "-.01em",
+      "measuredFrom": "tailwind.config.js:51"
+    },
+    "display-3xl": {
+      "value": "clamp(3.5939rem,2.1729rem + 5.6842vw,7.0755rem)",
+      "type": "fontSize",
+      "fluid": true,
+      "pairedLineHeight": "80%",
+      "pairedLetterSpacing": "-.01em",
+      "measuredFrom": "tailwind.config.js:52"
+    }
+  },
+  "fontWeight": {
+    "regular": {
+      "value": 400,
+      "measuredFrom": "src/index.css:2",
+      "type": "fontWeight",
+      "note": "Metrify 400 (css:2) and Haltung 400 (css:7)"
+    },
+    "medium": {
+      "value": 500,
+      "measuredFrom": "src/index.css:3",
+      "type": "fontWeight",
+      "note": "Metrify 500 (css:3) and Haltung 500 (css:9)"
+    },
+    "bold": {
+      "value": 700,
+      "measuredFrom": "src/index.css:4",
+      "type": "fontWeight",
+      "note": "Metrify 700 (css:4) and Haltung 700 (css:10)"
+    },
+    "extrabold": {
+      "value": 800,
+      "measuredFrom": "src/index.css:5",
+      "type": "fontWeight",
+      "note": "Metrify only (css:5)"
+    },
+    "black": {
+      "value": 900,
+      "measuredFrom": "src/index.css:6",
+      "type": "fontWeight",
+      "note": "Metrify only (css:6); hero H1 / CTA H2 use font-black"
+    }
+  },
+  "lineHeight": {
+    "lh-105": {
+      "value": "105%",
+      "type": "lineHeight",
+      "usedBySizes": [
+        "2xl",
+        "3xl",
+        "display-md",
+        "display-xl"
+      ],
+      "measuredFrom": "tailwind.config.js:44"
+    },
+    "lh-110": {
+      "value": "110%",
+      "type": "lineHeight",
+      "usedBySizes": [
+        "display-lg-2"
+      ],
+      "measuredFrom": "tailwind.config.js:49"
+    },
+    "lh-115": {
+      "value": "115%",
+      "type": "lineHeight",
+      "usedBySizes": [
+        "xs",
+        "xl",
+        "display-xs",
+        "display-lg"
+      ],
+      "measuredFrom": "tailwind.config.js:39"
+    },
+    "lh-135": {
+      "value": "135%",
+      "type": "lineHeight",
+      "usedBySizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "measuredFrom": "tailwind.config.js:40"
+    },
+    "lh-80": {
+      "value": "80%",
+      "type": "lineHeight",
+      "usedBySizes": [
+        "display-2xl",
+        "display-3xl"
+      ],
+      "measuredFrom": "tailwind.config.js:51"
+    }
+  },
+  "letterSpacing": {
+    "tight-1": {
+      "value": "-.01em",
+      "type": "letterSpacing",
+      "usedBySizes": [
+        "xs",
+        "xl",
+        "2xl",
+        "display-2xl",
+        "display-3xl"
+      ],
+      "measuredFrom": "tailwind.config.js:39"
+    },
+    "zero": {
+      "value": "0",
+      "type": "letterSpacing",
+      "usedBySizes": [
+        "sm",
+        "md",
+        "lg",
+        "display-xs"
+      ],
+      "measuredFrom": "tailwind.config.js:40"
+    },
+    "tight-2": {
+      "value": "-.02em",
+      "type": "letterSpacing",
+      "usedBySizes": [
+        "3xl",
+        "display-lg",
+        "display-lg-2",
+        "display-xl"
+      ],
+      "measuredFrom": "tailwind.config.js:45"
+    },
+    "wide-15": {
+      "value": ".15em",
+      "type": "letterSpacing",
+      "usedBySizes": [
+        "display-md"
+      ],
+      "measuredFrom": "tailwind.config.js:47"
+    }
+  },
+  "fontFace": [
+    {
+      "family": "Metrify",
+      "weight": 400,
+      "style": "normal",
+      "file": "/fonts/5a1939b990a8ae92-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:2"
+    },
+    {
+      "family": "Metrify",
+      "weight": 500,
+      "style": "normal",
+      "file": "/fonts/a5cdf4507e05b80a-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:3"
+    },
+    {
+      "family": "Metrify",
+      "weight": 700,
+      "style": "normal",
+      "file": "/fonts/48fefe2276517d74-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:4"
+    },
+    {
+      "family": "Metrify",
+      "weight": 800,
+      "style": "normal",
+      "file": "/fonts/cdb4207d9156d056-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:5"
+    },
+    {
+      "family": "Metrify",
+      "weight": 900,
+      "style": "normal",
+      "file": "/fonts/7467bd508c427a2b-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:6"
+    },
+    {
+      "family": "Haltung",
+      "weight": 400,
+      "style": "normal",
+      "file": "/fonts/adf06ed147ff8f4c-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:7"
+    },
+    {
+      "family": "Haltung",
+      "weight": 400,
+      "style": "italic",
+      "file": "/fonts/e2b20310cd2df4ae-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:8"
+    },
+    {
+      "family": "Haltung",
+      "weight": 500,
+      "style": "normal",
+      "file": "/fonts/5f099d1fc3ece706-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:9"
+    },
+    {
+      "family": "Haltung",
+      "weight": 700,
+      "style": "normal",
+      "file": "/fonts/7b61ee17c1b12113-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:10"
+    },
+    {
+      "family": "Haltung",
+      "weight": 700,
+      "style": "italic",
+      "file": "/fonts/416f91833d5cd616-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:11"
+    },
+    {
+      "family": "GTAmericaMono",
+      "weight": 400,
+      "style": "normal",
+      "file": "/fonts/ec10966dde464df8-s.p.woff2",
+      "display": "swap",
+      "measuredFrom": "src/index.css:12"
+    }
+  ],
+  "fontFallbackFace": [
+    {
+      "family": "Metrify Fallback",
+      "src": "local('Arial')",
+      "ascentOverride": "127.51%",
+      "descentOverride": "31.88%",
+      "lineGapOverride": "31.88%",
+      "sizeAdjust": "62.74%",
+      "measuredFrom": "src/index.css:15"
+    },
+    {
+      "family": "Haltung Fallback",
+      "src": "local('Arial')",
+      "ascentOverride": "96.37%",
+      "descentOverride": "25.36%",
+      "lineGapOverride": "0%",
+      "sizeAdjust": "98.58%",
+      "measuredFrom": "src/index.css:16"
+    },
+    {
+      "family": "GTAmericaMono Fallback",
+      "src": "local('Arial')",
+      "ascentOverride": "73.60%",
+      "descentOverride": "18.99%",
+      "lineGapOverride": "0%",
+      "sizeAdjust": "135.87%",
+      "measuredFrom": "src/index.css:17"
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "$description": "Foundation colour palette. Raw hex values from the Tailwind theme (mirrors the original Tailwind v4 :root). Only steps present in source are listed; the step numbers are sparse.",
+  "category": "color",
+  "color": {
+    "black": {
+      "value": "#000",
+      "type": "color",
+      "measuredFrom": "tailwind.config.js:14"
+    },
+    "white": {
+      "value": "#fff",
+      "type": "color",
+      "measuredFrom": "tailwind.config.js:15"
+    },
+    "gray": {
+      "1": {
+        "value": "#f7f7f0",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:17"
+      },
+      "2": {
+        "value": "#f2f2ea",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:17"
+      },
+      "3": {
+        "value": "#e7e7de",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:17"
+      },
+      "4": {
+        "value": "#a8a6a4",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:17"
+      },
+      "5": {
+        "value": "#92918f",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:17"
+      },
+      "6": {
+        "value": "#7d7b7a",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:18"
+      },
+      "7": {
+        "value": "#676665",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:18"
+      },
+      "8": {
+        "value": "#525151",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:18"
+      },
+      "9": {
+        "value": "#3c3c3c",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:18"
+      },
+      "10": {
+        "value": "#121212",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:18"
+      }
+    },
+    "yellow": {
+      "1": {
+        "value": "#ffffdb",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:20"
+      },
+      "3": {
+        "value": "#fffda7",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:20"
+      },
+      "5": {
+        "value": "#fff47d",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:20"
+      },
+      "8": {
+        "value": "#ffdd4e",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:20"
+      },
+      "9": {
+        "value": "#f8c647",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:20"
+      },
+      "10": {
+        "value": "#efab3e",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:20"
+      },
+      "12": {
+        "value": "#c05822",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:20"
+      }
+    },
+    "green": {
+      "1": {
+        "value": "#e8fcf3",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:22"
+      },
+      "2": {
+        "value": "#d9faec",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:22"
+      },
+      "3": {
+        "value": "#bef5dd",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:22"
+      },
+      "4": {
+        "value": "#a4efce",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:22"
+      },
+      "5": {
+        "value": "#8ce8bf",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:22"
+      },
+      "6": {
+        "value": "#74dfaf",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:22"
+      },
+      "8": {
+        "value": "#54c794",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:23"
+      },
+      "9": {
+        "value": "#49b585",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:23"
+      },
+      "10": {
+        "value": "#38a373",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:23"
+      },
+      "11": {
+        "value": "#2c9364",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:23"
+      },
+      "13": {
+        "value": "#16774b",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:23"
+      },
+      "15": {
+        "value": "#085d37",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:23"
+      }
+    },
+    "orange": {
+      "1": {
+        "value": "#fff0e8",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:25"
+      },
+      "2": {
+        "value": "#fedfce",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:25"
+      },
+      "3": {
+        "value": "#fecfb5",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:25"
+      },
+      "8": {
+        "value": "#fa7b34",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:25"
+      },
+      "9": {
+        "value": "#f96a1a",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:25"
+      },
+      "13": {
+        "value": "#9e2d09",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:25"
+      }
+    },
+    "blue": {
+      "1": {
+        "value": "#eaf7ff",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:26"
+      },
+      "2": {
+        "value": "#d8efff",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:26"
+      },
+      "3": {
+        "value": "#b4e0ff",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:26"
+      },
+      "7": {
+        "value": "#48a5ff",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:26"
+      },
+      "8": {
+        "value": "#3896fa",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:26"
+      },
+      "13": {
+        "value": "#2b5fc8",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:26"
+      },
+      "15": {
+        "value": "#2044b2",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:26"
+      }
+    },
+    "pink": {
+      "1": {
+        "value": "#fff1fa",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:27"
+      },
+      "2": {
+        "value": "#ffe2f4",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:27"
+      },
+      "3": {
+        "value": "#fed3ed",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:27"
+      },
+      "4": {
+        "value": "#fcc0e5",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:27"
+      },
+      "9": {
+        "value": "#e36fb6",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:27"
+      },
+      "11": {
+        "value": "#d156a2",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:27"
+      },
+      "13": {
+        "value": "#b64189",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:27"
+      },
+      "15": {
+        "value": "#7f0b50",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:27"
+      }
+    },
+    "teal": {
+      "1": {
+        "value": "#e3fcff",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:28"
+      },
+      "2": {
+        "value": "#c9f8ff",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:28"
+      },
+      "4": {
+        "value": "#9cecfa",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:28"
+      },
+      "6": {
+        "value": "#77dbec",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:28"
+      },
+      "8": {
+        "value": "#5ac4d6",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:28"
+      },
+      "9": {
+        "value": "#4ab7ca",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:28"
+      },
+      "13": {
+        "value": "#187887",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:28"
+      },
+      "14": {
+        "value": "#10666f",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:28"
+      },
+      "15": {
+        "value": "#0a5257",
+        "type": "color",
+        "measuredFrom": "tailwind.config.js:28"
+      }
+    }
+  }
+}

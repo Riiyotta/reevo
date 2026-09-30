@@ -1,0 +1,83 @@
+{
+  "id": "hero.mobile-app",
+  "kind": "section",
+  "category": "hero",
+  "purpose": "Mobile-app landing hero: tag, headline with a coloured emphasis span, bold-led pitch and two CTAs (talk to sales, or open a QR install dialog), beside a square photo with a looping stack of sample notification cards that demonstrates what the app surfaces.",
+  "measuredFrom": ["src/components/blog/MobileSections.jsx:175-218", "src/components/blog/MobileSections.jsx:91-173", "src/components/blog/MobileSections.jsx:15-58", "src/pages/AppsMobile.jsx:4"],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "tag": { "type": "string", "required": true, "maxWords": 5, "measuredFrom": ["src/components/blog/MobileSections.jsx:182"] },
+      "headline": { "type": "richtext-inline", "required": true, "maxWords": 14, "note": "h1, uppercase heading font, extrabold, balanced. The second sentence is wrapped in a pink-11 coloured span. Observed 12 words.", "measuredFrom": ["src/components/blog/MobileSections.jsx:183-185"] },
+      "body": { "type": "richtext-inline", "required": true, "maxWords": 42, "note": "A bold lead sentence followed by a plain sentence. Observed about 34 words.", "measuredFrom": ["src/components/blog/MobileSections.jsx:186-191"] },
+      "ctas": {
+        "type": "array", "required": true, "minItems": 2, "maxItems": 2,
+        "items": { "type": "object", "fields": {
+          "label": { "type": "string", "maxWords": 3 },
+          "action": { "type": "enum", "values": ["link", "open-download-dialog"] },
+          "href": { "type": "string", "kind": "route-or-url" },
+          "variant": { "type": "enum", "values": ["primary", "outline"] }
+        } },
+        "note": "First is a primary link (talk to sales); second is an outline button that opens the download dialog and has no href.",
+        "measuredFrom": ["src/components/blog/MobileSections.jsx:192-201"]
+      },
+      "image": { "type": "assetRef", "required": true, "assetRole": "editorial-photo", "note": "Square photo of a conference scene, rounded, with empty alt (decorative here).", "measuredFrom": ["src/components/blog/MobileSections.jsx:204-213"] },
+      "notifications": {
+        "type": "array", "required": true, "minItems": 4, "maxItems": 4,
+        "items": { "type": "object", "fields": {
+          "icon": { "type": "string" },
+          "chipColor": { "type": "enum", "values": ["pink", "blue", "green", "orange"] },
+          "title": { "type": "string", "maxWords": 4 },
+          "body": { "type": "string", "maxWords": 16 }
+        } },
+        "note": "Sample cards cycled in the overlay stack. Each pairs a lucide icon with a tinted chip (bg-*-2 / text-*-13). The content is illustrative copy, not real customer data.",
+        "measuredFrom": ["src/components/blog/MobileSections.jsx:63-68"]
+      },
+      "downloadDialog": {
+        "type": "object", "required": true,
+        "fields": {
+          "title": { "type": "string", "maxWords": 5 },
+          "helper": { "type": "string", "maxWords": 22 },
+          "fallbackText": { "type": "string", "maxWords": 8 },
+          "qr": { "type": "assetRef", "assetRole": "store-badge" },
+          "storeBadges": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "assetRef", "assetRole": "store-badge" } }
+        },
+        "note": "Dialog opened by the second CTA: QR code, a fallback line and two store badges linking to the app stores.",
+        "measuredFrom": ["src/components/blog/MobileSections.jsx:15-58"]
+      }
+    }
+  },
+  "mediaFields": [
+    { "field": "image", "assetRole": "editorial-photo" },
+    { "field": "downloadDialog.qr", "assetRole": "store-badge" },
+    { "field": "downloadDialog.storeBadges", "assetRole": "store-badge" }
+  ],
+  "behaviour": [
+    { "note": "Page-local component; the file lives under components/blog/ but is used only by the /apps/mobile page.", "measuredFrom": ["src/components/blog/MobileSections.jsx:175", "src/pages/AppsMobile.jsx:4"] },
+    { "note": "Download dialog: the shared CardDialog (dialog.jsx) with a 440px-max panel, close button, Escape and overlay-click to close, body scroll locked while open (useModal). Opens and closes with no animation (the original Radix dialog also opens without animation).", "measuredFrom": ["src/components/blog/MobileSections.jsx:15-21", "src/components/dialog.jsx:7-20", "src/components/dialog.jsx:76-100"] },
+    { "note": "The notification stack is aria-hidden and pointer-events-none: decorative only, anchored at the bottom of the photo, max 400px wide. Once three cards are visible the oldest exits as a new one arrives.", "measuredFrom": ["src/components/blog/MobileSections.jsx:150-152", "src/components/blog/MobileSections.jsx:98-109"] }
+  ],
+  "constraints": { "onePerPage": true, "mustFollowNav": true },
+  "motion": {
+    "pattern": "notification-stack",
+    "reducedMotionFallback": "pause",
+    "reducedMotionNote": "Proposal only: no prefers-reduced-motion handling exists. A new card arrives every 2600ms; at most 3 are visible (opacity by rank 1 / .7 / .45, 250ms easeOut). Entering card slides translateY(28px) scale(.96) to none over 400ms cubic-bezier(.4,0,.2,1); existing cards FLIP-shift with the same 400ms; the oldest exits scale .95 and fades over 180ms cubic-bezier(0,0,.58,1). The timer runs continuously with no in-view gating.",
+    "durationMs": 400,
+    "easing": "cubic-bezier(.4,0,.2,1)",
+    "intervalMs": 2600,
+    "measuredFrom": ["src/components/blog/MobileSections.jsx:69-72", "src/components/blog/MobileSections.jsx:99-109", "src/components/blog/MobileSections.jsx:115-135", "src/components/blog/MobileSections.jsx:156-164"]
+  },
+  "responsive": {
+    "breakpointsPx": { "sm": 600, "md": 840, "lg": 1140, "xl": 1380 },
+    "changes": [
+      { "at": "base to xl", "change": "vertical padding 40 / 48 (md) / 56 (xl)", "measuredFrom": ["src/components/blog/MobileSections.jsx:178"] },
+      { "at": "below md", "change": "single column: text first, photo below; grid gap 40px", "measuredFrom": ["src/components/blog/MobileSections.jsx:180-181", "src/components/blog/MobileSections.jsx:203"] },
+      { "at": "md to xl", "change": "text column 5 cols (md), 9 (lg), 8 from col 2 (xl); photo 7 cols from col 6 at md, 14 from col 11 at lg and xl", "measuredFrom": ["src/components/blog/MobileSections.jsx:181", "src/components/blog/MobileSections.jsx:203"] },
+      { "at": "sm and up", "change": "the two CTAs sit in two columns (max 400px wide); below sm they stack", "measuredFrom": ["src/components/blog/MobileSections.jsx:192"] },
+      { "at": "below md", "change": "notification body text is clamped to one line and the card is slightly smaller (icon chip 28px, padding 12px); the stack sits 12px from the photo edge (20px from md)", "measuredFrom": ["src/components/blog/MobileSections.jsx:77-87", "src/components/blog/MobileSections.jsx:150-152"] }
+    ]
+  },
+  "usedOnRoutes": ["/apps/mobile"],
+  "tokensUsed": ["fontFamily.heading", "fontSize.display-2xl", "fontSize.lg", "color.pink.11", "color.pink.2", "color.blue.2", "color.green.2", "color.orange.2", "semanticColor.text.strong", "semanticMotion.notification-cycle", "duration.notification-interval-2600", "duration.fast-180", "duration.fade-250", "easing.standard", "easing.ease-out"]
+}

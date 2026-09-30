@@ -1,0 +1,29 @@
+{
+  "$description": "Radius roles.",
+  "category": "semantic-radius",
+  "radius": {
+    "control-lg": {
+      "value": "{borderRadius.lg}",
+      "note": "large button",
+      "measuredFrom": "src/components/ui.jsx:50"
+    },
+    "control-sm": {
+      "value": "{borderRadius.sm}",
+      "note": "small button, compliance chip",
+      "measuredFrom": "src/components/ui.jsx:51"
+    },
+    "tag": {
+      "value": "{borderRadius.DEFAULT}",
+      "note": "Tag, feature chip, dropdown panel",
+      "measuredFrom": "src/components/ui.jsx:36"
+    },
+    "panel": {
+      "value": "{borderRadius.DEFAULT}",
+      "measuredFrom": "src/components/Navbar.jsx:60"
+    },
+    "avatar-round": {
+      "value": "{borderRadius.full}",
+      "measuredFrom": "src/pages/Startups.jsx:95"
+    }
+  }
+}

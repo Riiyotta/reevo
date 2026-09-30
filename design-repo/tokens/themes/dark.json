@@ -1,0 +1,136 @@
+{
+  "$description": "Dark theme: the .dark class override (src/index.css:42-50). Applied to the Problem section (#problem, src/components/Problem.jsx:27, className `dark`), and the careers experience section (src/pages/Careers.jsx:137). Roles not overridden in .dark inherit from light (inheritedFromLight) and are constant palette picks.",
+  "theme": "dark",
+  "appliedTo": [
+    "#problem (src/components/Problem.jsx:27)",
+    "#experience (src/pages/Careers.jsx:137)"
+  ],
+  "tokens": {
+    "text.strong": {
+      "ref": "{color.white}",
+      "foundation": "color.white",
+      "resolved": "#fff",
+      "measuredFrom": "src/index.css:45"
+    },
+    "text.body": {
+      "ref": "{color.gray.2}",
+      "foundation": "color.gray.2",
+      "resolved": "#f2f2ea",
+      "measuredFrom": "src/index.css:44"
+    },
+    "text.secondary": {
+      "ref": "{color.white}",
+      "foundation": "color.white",
+      "resolved": "#fff",
+      "measuredFrom": "src/index.css:49"
+    },
+    "text.muted": {
+      "ref": "{color.gray.5}",
+      "foundation": "color.gray.5",
+      "resolved": "#92918f",
+      "measuredFrom": "src/index.css:32",
+      "inheritedFromLight": true
+    },
+    "text.on-primary": {
+      "ref": "{color.gray.10}",
+      "foundation": "color.gray.10",
+      "resolved": "#121212",
+      "measuredFrom": "src/index.css:48"
+    },
+    "surface.background": {
+      "ref": "{color.gray.10}",
+      "foundation": "color.gray.10",
+      "resolved": "#121212",
+      "measuredFrom": "src/index.css:43"
+    },
+    "surface.primary": {
+      "ref": "{color.white}",
+      "foundation": "color.white",
+      "resolved": "#fff",
+      "measuredFrom": "src/index.css:47"
+    },
+    "surface.subtle": {
+      "ref": "{color.gray.1}",
+      "foundation": "color.gray.1",
+      "resolved": "#f7f7f0",
+      "measuredFrom": "CLONE_SPEC.md:292",
+      "inheritedFromLight": true
+    },
+    "surface.section-alt": {
+      "ref": "{color.gray.2}",
+      "foundation": "color.gray.2",
+      "resolved": "#f2f2ea",
+      "measuredFrom": "src/components/BuiltDifferent.jsx:7",
+      "inheritedFromLight": true
+    },
+    "surface.section-deep": {
+      "ref": "{color.gray.3}",
+      "foundation": "color.gray.3",
+      "resolved": "#e7e7de",
+      "measuredFrom": "src/components/Customers.jsx:97",
+      "inheritedFromLight": true
+    },
+    "surface.inverse": {
+      "ref": "{color.gray.10}",
+      "foundation": "color.gray.10",
+      "resolved": "#121212",
+      "measuredFrom": "src/components/Hero.jsx:85",
+      "inheritedFromLight": true
+    },
+    "border.default": {
+      "ref": "{color.gray.7}",
+      "foundation": "color.gray.7",
+      "resolved": "#676665",
+      "measuredFrom": "src/index.css:46"
+    },
+    "border.card": {
+      "ref": "{color.gray.4}",
+      "foundation": "color.gray.4",
+      "resolved": "#a8a6a4",
+      "measuredFrom": "CLONE_SPEC.md:283",
+      "inheritedFromLight": true
+    },
+    "accent.find": {
+      "ref": "{color.orange.2}",
+      "foundation": "color.orange.2",
+      "resolved": "#fedfce",
+      "measuredFrom": "src/components/Solution.jsx:7",
+      "inheritedFromLight": true
+    },
+    "accent.connect": {
+      "ref": "{color.pink.2}",
+      "foundation": "color.pink.2",
+      "resolved": "#ffe2f4",
+      "measuredFrom": "src/components/Solution.jsx:13",
+      "inheritedFromLight": true
+    },
+    "accent.sell": {
+      "ref": "{color.green.3}",
+      "foundation": "color.green.3",
+      "resolved": "#bef5dd",
+      "measuredFrom": "src/components/Solution.jsx:19",
+      "inheritedFromLight": true
+    },
+    "accent.manage": {
+      "ref": "{color.yellow.3}",
+      "foundation": "color.yellow.3",
+      "resolved": "#fffda7",
+      "measuredFrom": "src/components/Solution.jsx:25",
+      "inheritedFromLight": true
+    },
+    "accent.progress": {
+      "ref": "{color.orange.8}",
+      "foundation": "color.orange.8",
+      "resolved": "#fa7b34",
+      "measuredFrom": "CLONE_SPEC.md:290",
+      "inheritedFromLight": true
+    },
+    "accent.feature-chip": {
+      "ref": "{color.blue.3}",
+      "foundation": "color.blue.3",
+      "resolved": "#b4e0ff",
+      "measuredFrom": "CLONE_SPEC.md:180",
+      "inheritedFromLight": true
+    }
+  }
+}

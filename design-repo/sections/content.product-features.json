@@ -1,0 +1,220 @@
+{
+  "id": "content.product-features",
+  "kind": "section",
+  "category": "content",
+  "purpose": "On each product page, lay out the capabilities of that product as a scannable grid of icon, name and one-sentence description, with a See Reevo call to action, before the deeper accordion showcases.",
+  "measuredFrom": [
+    "src/components/products/ProductFeatures.jsx:6-61",
+    "src/components/products/ProductPage.jsx:26-34"
+  ],
+  "behaviour": [
+    {
+      "note": "Coupling: this section draws a decorative gray-10 (dark) slab that bleeds to the right edge and downward (height calc(100% + 6/8/10rem) from md) into the NEXT section, so the next section must be dark. True on all five product pages: the first section after the features is a dark accordion.",
+      "measuredFrom": [
+        "src/components/products/ProductFeatures.jsx:50-57",
+        "src/components/products/data.js:25",
+        "src/components/products/data.js:70",
+        "src/components/products/data.js:108",
+        "src/components/products/data.js:140",
+        "src/components/products/data.js:184"
+      ]
+    },
+    {
+      "note": "Section root uses overflow-x-clip so the slab (negative right margin of 10/15/20vw at md/lg/xl) does not create horizontal scroll. The slab is aria-hidden and only appears from md.",
+      "measuredFrom": [
+        "src/components/products/ProductFeatures.jsx:8",
+        "src/components/products/ProductFeatures.jsx:51-57"
+      ]
+    },
+    {
+      "note": "Product pages render this straight after the hero (tab bar, hero, features, then the data-driven section list). Item counts observed: find 6, connect 7, sell 3, manage 4, foundation 8.",
+      "measuredFrom": [
+        "src/components/products/ProductPage.jsx:27-32",
+        "src/components/products/data.js:14-23"
+      ]
+    },
+    {
+      "note": "Some items carry a Soon tag; the CTA is fixed to an outline button to the product tour.",
+      "measuredFrom": [
+        "src/components/products/ProductFeatures.jsx:32",
+        "src/components/products/ProductFeatures.jsx:45-47"
+      ]
+    }
+  ],
+  "variants": [],
+  "content": {
+    "additionalProperties": false,
+    "fields": {
+      "title": {
+        "type": "richtext-inline",
+        "required": true,
+        "maxWords": 9,
+        "note": "Intro sentence with a bold lead phrase and inline HTML entities. Observed 5 to 8 words.",
+        "measuredFrom": [
+          "src/components/products/ProductFeatures.jsx:13",
+          "src/components/products/data.js:14-16"
+        ]
+      },
+      "iconBackground": {
+        "type": "enum",
+        "required": true,
+        "values": [
+          "orange-2",
+          "pink-2",
+          "green-3",
+          "yellow-5",
+          "blue-3"
+        ],
+        "note": "Icon square tint per product: find orange-2, connect pink-2, sell green-3, manage yellow-5, foundation blue-3.",
+        "measuredFrom": [
+          "src/components/products/ProductFeatures.jsx:24",
+          "src/components/products/data.js:14",
+          "src/components/products/data.js:58",
+          "src/components/products/data.js:100",
+          "src/components/products/data.js:131",
+          "src/components/products/data.js:171"
+        ]
+      },
+      "items": {
+        "type": "array",
+        "required": true,
+        "minItems": 3,
+        "maxItems": 8,
+        "items": {
+          "type": "object",
+          "fields": {
+            "icon": {
+              "type": "string",
+              "required": true,
+              "note": "Lucide icon name; a library glyph, not an asset file."
+            },
+            "title": {
+              "type": "richtext-inline",
+              "required": true,
+              "maxWords": 3
+            },
+            "soon": {
+              "type": "boolean",
+              "required": false,
+              "note": "Shows a Soon tag."
+            },
+            "body": {
+              "type": "richtext-inline",
+              "required": true,
+              "maxWords": 36,
+              "note": "Observed up to about 34 words."
+            }
+          }
+        },
+        "measuredFrom": [
+          "src/components/products/ProductFeatures.jsx:18-38",
+          "src/components/products/data.js:17-23"
+        ]
+      },
+      "cta": {
+        "type": "object",
+        "required": true,
+        "fields": {
+          "label": {
+            "type": "string",
+            "maxWords": 2
+          },
+          "href": {
+            "type": "string",
+            "kind": "route-or-url"
+          },
+          "variant": {
+            "type": "enum",
+            "values": [
+              "outline"
+            ]
+          }
+        },
+        "note": "Fixed in code: outline See Reevo button to /product-tour with a Youtube icon; not passed as a prop.",
+        "measuredFrom": [
+          "src/components/products/ProductFeatures.jsx:45-47"
+        ]
+      }
+    }
+  },
+  "mediaFields": [],
+  "constraints": {
+    "mustFollow": "hero.product",
+    "mustBeFollowedBy": "dark"
+  },
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "reducedMotionNote": "No motion in the source; no prefers-reduced-motion handling exists in the code.",
+    "measuredFrom": [
+      "src/components/products/ProductFeatures.jsx:6-61"
+    ]
+  },
+  "responsive": {
+    "breakpointsPx": {
+      "sm": 600,
+      "md": 840,
+      "lg": 1140,
+      "xl": 1380
+    },
+    "changes": [
+      {
+        "at": "below sm",
+        "change": "one item per row",
+        "measuredFrom": [
+          "src/components/products/ProductFeatures.jsx:21"
+        ]
+      },
+      {
+        "at": "sm",
+        "change": "items take 3 of 6 columns (two per row)",
+        "measuredFrom": [
+          "src/components/products/ProductFeatures.jsx:21"
+        ]
+      },
+      {
+        "at": "md",
+        "change": "items take 4 of 12 columns (three per row); dark slab appears and bleeds 10vw off the right edge",
+        "measuredFrom": [
+          "src/components/products/ProductFeatures.jsx:21",
+          "src/components/products/ProductFeatures.jsx:54-56"
+        ]
+      },
+      {
+        "at": "lg",
+        "change": "items take 8 of 24 columns; slab bleeds 15vw",
+        "measuredFrom": [
+          "src/components/products/ProductFeatures.jsx:21",
+          "src/components/products/ProductFeatures.jsx:54-56"
+        ]
+      },
+      {
+        "at": "xl",
+        "change": "items take 7 of 24 columns with a spacer column; slab bleeds 20vw",
+        "measuredFrom": [
+          "src/components/products/ProductFeatures.jsx:20-21",
+          "src/components/products/ProductFeatures.jsx:54-56"
+        ]
+      }
+    ]
+  },
+  "usedOnRoutes": [
+    "/products/find",
+    "/products/connect",
+    "/products/sell",
+    "/products/manage",
+    "/products/foundation"
+  ],
+  "tokensUsed": [
+    "surface.background",
+    "text.strong",
+    "gray.10",
+    "orange.2",
+    "pink.2",
+    "green.3",
+    "yellow.5",
+    "blue.3",
+    "display-lg",
+    "2xl"
+  ]
+}

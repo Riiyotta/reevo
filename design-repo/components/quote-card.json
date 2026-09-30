@@ -1,0 +1,77 @@
+{
+  "id": "quote-card",
+  "kind": "component",
+  "purpose": "Single quotation block: square photo, large quote over a coloured card, name tag overlapping the photo, pattern strips.",
+  "measuredFrom": [
+    "src/components/company/QuoteTestimonial.jsx:6-87"
+  ],
+  "props": {
+    "photo": {
+      "type": "assetRef",
+      "required": true
+    },
+    "photoAlt": {
+      "type": "string"
+    },
+    "quote": {
+      "type": "richtext-inline",
+      "required": true,
+      "maxWords": 70
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxWords": 1
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "maxWords": 6
+    },
+    "cardColor": {
+      "type": "string",
+      "default": "#c9f8ff"
+    },
+    "quoteColor": {
+      "type": "string",
+      "default": "#121212"
+    },
+    "sectionBg": {
+      "type": "string",
+      "default": "bg-gray-9"
+    },
+    "patternTop": {
+      "type": "assetRef"
+    },
+    "patternBottom": {
+      "type": "assetRef"
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "photo left cols 1-9, quote right, name tag h-14 white bar",
+      "measuredFrom": [
+        "src/components/company/QuoteTestimonial.jsx:49-79"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "gray.9",
+    "teal.2",
+    "gray.10",
+    "display-lg-2"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/company/QuoteTestimonial.jsx:6-87"
+    ]
+  },
+  "composes": [
+    "pattern-strip",
+    "container",
+    "grid"
+  ]
+}

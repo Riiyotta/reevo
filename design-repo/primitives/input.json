@@ -1,0 +1,49 @@
+{
+  "id": "input",
+  "kind": "primitive",
+  "purpose": "Single-line text input.",
+  "measuredFrom": [
+    "src/components/company/Form.jsx:5-9",
+    "src/components/company/Form.jsx:22-24"
+  ],
+  "props": {
+    "className": {
+      "type": "string",
+      "default": ""
+    },
+    "type": {
+      "type": "string",
+      "description": "Native input attributes pass through (name, id, required, placeholder)"
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "46px tall (h-button), bg gray-1, rounded-lg, transparent 1px border, px-4, text-sm",
+      "measuredFrom": [
+        "src/components/company/Form.jsx:5-9"
+      ]
+    },
+    {
+      "name": "focus-visible",
+      "description": "white background + strong border",
+      "measuredFrom": [
+        "src/components/company/Form.jsx:9"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "gray.1",
+    "control-lg",
+    "sm",
+    "text.muted",
+    "text.strong"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/company/Form.jsx:9"
+    ]
+  }
+}

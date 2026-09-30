@@ -1,0 +1,55 @@
+{
+  "$description": "Header / navigation values.",
+  "category": "component",
+  "nav": {
+    "height-mobile": {
+      "value": "64px",
+      "measuredFrom": "src/index.css:36",
+      "cssVar": "--nav-height-mobile",
+      "tailwindClass": "h-nav-mobile"
+    },
+    "height-desktop": {
+      "value": "72px",
+      "measuredFrom": "src/index.css:37",
+      "cssVar": "--nav-height-desktop",
+      "tailwindClass": "h-nav-desktop",
+      "note": "md+ (840px)"
+    },
+    "position": {
+      "value": "sticky top-0 z-50",
+      "measuredFrom": "src/components/Navbar.jsx:314"
+    },
+    "background": {
+      "value": "{semanticColor.surface.background}",
+      "measuredFrom": "src/components/Navbar.jsx:314"
+    },
+    "item-height": {
+      "value": "36px",
+      "measuredFrom": "src/components/Navbar.jsx:58"
+    },
+    "item-padding-x": {
+      "value": "1rem",
+      "measuredFrom": "src/components/Navbar.jsx:58"
+    },
+    "item-hover-bg": {
+      "value": "{semanticColor.surface.subtle}",
+      "measuredFrom": "src/components/Navbar.jsx:97"
+    },
+    "panel-shadow": {
+      "value": "{elevation.diffused}",
+      "measuredFrom": "src/components/Navbar.jsx:60"
+    },
+    "panel-radius": {
+      "value": "{borderRadius.DEFAULT}",
+      "measuredFrom": "src/components/Navbar.jsx:60"
+    },
+    "desktop-nav-breakpoint": {
+      "value": "{breakpoint.lg}",
+      "measuredFrom": "CLONE_SPEC.md:18"
+    },
+    "mobile-panel-top": {
+      "value": "nav.height-mobile (64px) below md, nav.height-desktop (72px) at md+",
+      "measuredFrom": "src/components/Navbar.jsx:207"
+    }
+  }
+}

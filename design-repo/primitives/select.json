@@ -1,0 +1,42 @@
+{
+  "id": "select",
+  "kind": "primitive",
+  "purpose": "Native select with a custom chevron background and a fixed empty first option.",
+  "measuredFrom": [
+    "src/components/company/Form.jsx:11-12",
+    "src/components/company/Form.jsx:30-46"
+  ],
+  "props": {
+    "options": {
+      "type": "array",
+      "required": true,
+      "description": "Array of [value,label] pairs"
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "variants": [
+    {
+      "name": "default",
+      "description": "h-button rounded-lg bg-gray-1, focus-visible border gray-10 + white bg, chevron 24px at right 8px",
+      "measuredFrom": [
+        "src/components/company/Form.jsx:33-34"
+      ]
+    }
+  ],
+  "tokensUsed": [
+    "gray.1",
+    "gray.10",
+    "control-lg",
+    "sm"
+  ],
+  "motion": {
+    "pattern": "none",
+    "reducedMotionFallback": "none-needed",
+    "measuredFrom": [
+      "src/components/company/Form.jsx:33"
+    ]
+  }
+}

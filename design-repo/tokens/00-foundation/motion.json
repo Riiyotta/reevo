@@ -1,0 +1,108 @@
+{
+  "$description": "Durations, easings, and timings actually present in source. Note: CLONE_SPEC.md:44 records the original's default CSS transition as .15s; the built clone uses duration-200 (200ms) explicitly on buttons/nav, so 200ms is the value carried here.",
+  "category": "motion",
+  "duration": {
+    "fast-180": {
+      "value": "180ms",
+      "type": "duration",
+      "usedAt": "mobile notification card exit",
+      "measuredFrom": "src/components/blog/MobileSections.jsx:131"
+    },
+    "base-200": {
+      "value": "200ms",
+      "type": "duration",
+      "usedAt": "button/nav transitions, Presence default (src/components/motion.jsx:25)",
+      "measuredFrom": "src/components/ui.jsx:44"
+    },
+    "fade-250": {
+      "value": "250ms",
+      "type": "duration",
+      "usedAt": "opacity transition",
+      "measuredFrom": "src/components/blog/MobileSections.jsx:163"
+    },
+    "slow-300": {
+      "value": "300ms",
+      "type": "duration",
+      "usedAt": "hero Presence, with easeOut",
+      "measuredFrom": "src/components/Hero.jsx:77"
+    },
+    "marquee-fade-in-700": {
+      "value": "700ms",
+      "type": "duration",
+      "usedAt": "logo marquee opacity 0 to 1 on mount",
+      "measuredFrom": "src/components/LogoMarquee.jsx:49"
+    },
+    "hover-intent-open-200": {
+      "value": "200ms",
+      "type": "duration",
+      "usedAt": "Radix-style open delay for nav menus",
+      "measuredFrom": "src/components/Navbar.jsx:260"
+    },
+    "hover-intent-close-150": {
+      "value": "150ms",
+      "type": "duration",
+      "usedAt": "close delay after pointer leaves",
+      "measuredFrom": "src/components/Navbar.jsx:261"
+    },
+    "stepper-linear-200": {
+      "value": "200ms",
+      "type": "duration",
+      "easing": "linear",
+      "usedAt": "progress-fill transform/opacity",
+      "measuredFrom": "src/components/Foundation.jsx:121"
+    },
+    "notification-interval-2600": {
+      "value": "2600ms",
+      "type": "duration",
+      "usedAt": "one card arrives every 2.6s",
+      "measuredFrom": "src/components/blog/MobileSections.jsx:71"
+    },
+    "carousel-advance-5000": {
+      "value": "5000ms",
+      "type": "duration",
+      "usedAt": "auto-advance for Foundation, ProductAccordion (src/components/products/ProductAccordion.jsx:11), mobile accordion (src/components/blog/MobileSections.jsx:225)",
+      "measuredFrom": "src/components/Foundation.jsx:5"
+    },
+    "marquee-cycle-51833": {
+      "value": "51.8333s",
+      "type": "duration",
+      "usedAt": "marquee keyframe loop, linear infinite",
+      "measuredFrom": "tailwind.config.js:89"
+    }
+  },
+  "easing": {
+    "standard": {
+      "value": "cubic-bezier(.4,0,.2,1)",
+      "type": "easing",
+      "alsoAt": "src/components/motion.jsx:8",
+      "measuredFrom": "tailwind.config.js:90"
+    },
+    "ease-out": {
+      "value": "cubic-bezier(0,0,.58,1)",
+      "type": "easing",
+      "note": "framer default tween ease",
+      "measuredFrom": "src/components/motion.jsx:9"
+    },
+    "linear": {
+      "value": "linear",
+      "type": "easing",
+      "measuredFrom": "src/components/Foundation.jsx:121"
+    }
+  },
+  "speed": {
+    "marquee-px-per-second": {
+      "value": 30,
+      "type": "speed",
+      "unit": "px/s",
+      "note": "react-fast-marquee speed; animation duration = trackWidth / 30",
+      "measuredFrom": "src/components/LogoMarquee.jsx:7"
+    }
+  },
+  "keyframes": {
+    "marquee": {
+      "value": "0% translateX(0) -> 100% translateX(-100%)",
+      "type": "keyframes",
+      "measuredFrom": "tailwind.config.js:87"
+    }
+  }
+}
